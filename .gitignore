@@ -60,3 +60,6 @@ Thumbs.db
 _ide_helper.php
 Homestead.json
 Homestead.yaml
+
+# --- Release artifacts (scripts/release/build.sh) ------------------------------
+/build/
