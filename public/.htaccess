@@ -1,0 +1,48 @@
+# Apache configuration for Laravel's public/ directory (document root).
+# Only this directory may be exposed by the web server (see docs/deployment-goneo.md).
+
+Options -Indexes -MultiViews
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block hidden files and directories (.env, .git, …) except .well-known.
+    RewriteRule (^|/)\.(?!well-known/) - [F,L]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Only the front controller may execute PHP. Any other PHP-like file that ends
+# up in public/ (by mistake or attack) is never executed.
+<FilesMatch "\.(php\d?|phtml|phar|phps|pht|cgi|pl|py|sh)$">
+    Require all denied
+</FilesMatch>
+<Files "index.php">
+    Require all granted
+</Files>
+
+# Headers for static files served directly by Apache (Laravel adds its own
+# headers to every response it generates).
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|mjs|map|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|avif|ico|txt|xml|json|pdf)$">
+        Header set X-Content-Type-Options "nosniff"
+        Header set Referrer-Policy "strict-origin-when-cross-origin"
+    </FilesMatch>
+    # Content-hashed build output can be cached forever.
+    <If "%{REQUEST_URI} =~ m#^/build/assets/#">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </If>
+</IfModule>

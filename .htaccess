@@ -1,0 +1,4 @@
+# Defence in depth: the document root must be public/ (see
+# docs/deployment-goneo.md). If the web server is ever misconfigured to serve
+# the project root, deny everything instead of exposing .env, storage, logs…
+Require all denied
