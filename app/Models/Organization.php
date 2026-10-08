@@ -81,6 +81,14 @@ class Organization extends Model implements Revisionable, Routable, Searchable
         return ['name', 'type', 'description', 'category_id', 'contact_name', 'street', 'postal_code', 'city', 'phone', 'email', 'website', 'is_active', 'sort_order'];
     }
 
+    /**
+     * @return array<string, list<string>>
+     */
+    public function revisionCollections(): array
+    {
+        return ['links' => ['label', 'url', 'sort_order']];
+    }
+
     public function toSearchDocument(): SearchDocument
     {
         return new SearchDocument($this->name, (string) $this->description, array_values(array_filter([$this->type->label(), $this->category?->name])));

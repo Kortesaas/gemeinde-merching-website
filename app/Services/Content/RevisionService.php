@@ -9,6 +9,7 @@ use App\Services\Audit\AuditLogger;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,10 @@ use LogicException;
  */
 class RevisionService
 {
-    private const SCHEMA = 1;
+    /** 2 = snapshots also contain child collections (e.g. service aliases). */
+    private const SCHEMA = 2;
+
+    public const PUBLICATION_FIELDS = ['status', 'publish_at', 'expires_at', 'archived_at'];
 
     public function __construct(private readonly AuditLogger $audit) {}
 
@@ -66,7 +70,7 @@ class RevisionService
     }
 
     /**
-     * @return array{schema: int, attributes: array<string, mixed>, relations: array<string, list<array<string, mixed>>>}
+     * @return array{schema: int, attributes: array<string, mixed>, relations: array<string, list<array<string, mixed>>>, collections: array<string, list<array<string, mixed>>>}
      */
     public function snapshot(Model&Revisionable $model): array
     {
@@ -83,7 +87,12 @@ class RevisionService
             $relations[$relation] = $this->relationRows($model, $relation, $pivotColumns);
         }
 
-        return ['schema' => self::SCHEMA, 'attributes' => $attributes, 'relations' => $relations];
+        $collections = [];
+        foreach ($model->revisionCollections() as $relation => $columns) {
+            $collections[$relation] = $this->collectionRows($model, $relation, $columns);
+        }
+
+        return ['schema' => self::SCHEMA, 'attributes' => $attributes, 'relations' => $relations, 'collections' => $collections];
     }
 
     /**
@@ -97,19 +106,7 @@ class RevisionService
         }
 
         return DB::transaction(function () use ($model, $revision, $editor) {
-            $publicationFields = ['status', 'publish_at', 'expires_at', 'archived_at'];
-            $attributes = Arr::except(
-                Arr::only($revision->snapshot['attributes'], $model->revisionAttributes()),
-                $publicationFields,
-            );
-
-            $model->forceFill($attributes)->save();
-
-            foreach ($revision->snapshot['relations'] as $relation => $rows) {
-                if (array_key_exists($relation, $model->revisionRelations())) {
-                    $this->restoreRelation($model, $relation, $rows);
-                }
-            }
+            $this->applySnapshot($model, $revision->snapshot);
 
             $new = $this->record($model->refresh(), $editor, "Version {$revision->revision_number} wiederhergestellt")
                 ?? $model->revisions()->firstOrFail();
@@ -122,6 +119,77 @@ class RevisionService
 
             return $new;
         });
+    }
+
+    /**
+     * Write editorial content from a snapshot to the model (no revision is
+     * recorded). Publication fields are never applied. Optionally limited to
+     * the given attribute/relation/collection names (used to apply only the
+     * parts a change proposal actually changed).
+     *
+     * @param  array<string, mixed>  $snapshot
+     * @param  list<string>|null  $onlyAttributes
+     * @param  list<string>|null  $onlyRelations
+     * @param  list<string>|null  $onlyCollections
+     */
+    public function applySnapshot(Model&Revisionable $model, array $snapshot, ?array $onlyAttributes = null, ?array $onlyRelations = null, ?array $onlyCollections = null): void
+    {
+        $allowed = array_values(array_diff($model->revisionAttributes(), self::PUBLICATION_FIELDS));
+        $attributes = Arr::only((array) ($snapshot['attributes'] ?? []), $onlyAttributes === null ? $allowed : array_intersect($allowed, $onlyAttributes));
+
+        $model->forceFill($attributes)->save();
+
+        foreach ((array) ($snapshot['relations'] ?? []) as $relation => $rows) {
+            if (array_key_exists($relation, $model->revisionRelations()) && ($onlyRelations === null || in_array($relation, $onlyRelations, true))) {
+                $this->restoreRelation($model, $relation, $rows);
+            }
+        }
+
+        foreach ((array) ($snapshot['collections'] ?? []) as $relation => $rows) {
+            if (array_key_exists($relation, $model->revisionCollections()) && ($onlyCollections === null || in_array($relation, $onlyCollections, true))) {
+                $this->restoreCollection($model, $relation, $model->revisionCollections()[$relation], $rows);
+            }
+        }
+    }
+
+    /**
+     * Rows of a HasMany child collection (e.g. service aliases).
+     *
+     * @param  list<string>  $columns
+     * @return list<array<string, mixed>>
+     */
+    private function collectionRows(Model&Revisionable $model, string $relation, array $columns): array
+    {
+        /** @var HasMany<Model, Model> $query */
+        $query = $model->{$relation}();
+
+        $rows = $query->get()->map(function (Model $child) use ($columns) {
+            $row = [];
+            foreach ($columns as $column) {
+                $row[$column] = $this->normalizeValue($child->getAttributes()[$column] ?? null);
+            }
+
+            return $row;
+        })->all();
+
+        usort($rows, fn (array $a, array $b) => array_values($a) <=> array_values($b));
+
+        return $rows;
+    }
+
+    /**
+     * @param  list<string>  $columns
+     * @param  list<array<string, mixed>>  $rows
+     */
+    private function restoreCollection(Model&Revisionable $model, string $relation, array $columns, array $rows): void
+    {
+        /** @var HasMany<Model, Model> $query */
+        $query = $model->{$relation}();
+        $query->delete();
+
+        foreach ($rows as $row) {
+            $query->forceCreate(Arr::only($row, $columns) + [$query->getForeignKeyName() => $model->getKey()]);
+        }
     }
 
     /**

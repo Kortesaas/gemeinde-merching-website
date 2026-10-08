@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property int $revision_number
  * @property int|null $user_id
  * @property string|null $summary
- * @property array{schema: int, attributes: array<string, mixed>, relations: array<string, list<array<string, mixed>>>} $snapshot
+ * @property array{schema: int, attributes: array<string, mixed>, relations: array<string, list<array<string, mixed>>>, collections?: array<string, list<array<string, mixed>>>} $snapshot
  * @property CarbonImmutable $created_at
  */
 class ContentRevision extends Model

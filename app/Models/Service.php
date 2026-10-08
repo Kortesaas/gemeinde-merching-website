@@ -139,6 +139,14 @@ class Service extends Model implements Revisionable, Routable, Searchable
         ];
     }
 
+    /**
+     * @return array<string, list<string>>
+     */
+    public function revisionCollections(): array
+    {
+        return ['aliases' => ['alias']];
+    }
+
     public function toSearchDocument(): SearchDocument
     {
         return new SearchDocument(

@@ -21,6 +21,11 @@ interface Revisionable
     public function revisionRelations(): array;
 
     /**
+     * @return array<string, list<string>>
+     */
+    public function revisionCollections(): array;
+
+    /**
      * @return MorphMany<ContentRevision, covariant \Illuminate\Database\Eloquent\Model>
      */
     public function revisions(): MorphMany;

@@ -36,4 +36,14 @@ trait HasRevisions
     {
         return [];
     }
+
+    /**
+     * HasMany child collections captured in a revision: relation => columns.
+     *
+     * @return array<string, list<string>>
+     */
+    public function revisionCollections(): array
+    {
+        return [];
+    }
 }

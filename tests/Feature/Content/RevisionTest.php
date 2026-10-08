@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\AuditEvent;
 use App\Models\ContentRevision;
 use App\Models\Person;
+use App\Models\Service;
 use App\Models\Tag;
 use App\Services\Content\RevisionService;
 use App\Support\Authorization\Role;
@@ -140,5 +141,19 @@ class RevisionTest extends TestCase
         $this->artisan('revisions:prune')->assertSuccessful();
         $this->assertSame([3], $article->revisions()->pluck('revision_number')->all(), 'Newest revision is always kept.');
         $this->assertSame(0, AuditEvent::query()->where('action', 'revision.pruned')->count(), 'Independent of the audit log.');
+    }
+
+    public function test_child_collections_such_as_service_aliases_are_versioned(): void
+    {
+        $admin = $this->createUser();
+        $this->actingAsAdmin($admin)->post($this->adminUrl('buergerservice'), ['title' => 'Personalausweis', 'aliases' => "Perso\nAusweis"]);
+        $service = Service::query()->firstOrFail();
+        $this->actingAsAdmin($admin)->put($this->adminUrl('buergerservice/'.$service->id), ['title' => 'Personalausweis', 'aliases' => 'Reisepass']);
+
+        $this->assertSame(['Reisepass'], $service->aliases()->pluck('alias')->all());
+        $this->assertEquals([['alias' => 'Ausweis'], ['alias' => 'Perso']], $service->revisions()->where('revision_number', 1)->firstOrFail()->snapshot['collections']['aliases']);
+
+        $this->actingAsAdmin($admin)->post($this->adminUrl('buergerservice/'.$service->id.'/versionen/1/wiederherstellen'))->assertRedirect();
+        $this->assertEqualsCanonicalizing(['Perso', 'Ausweis'], $service->aliases()->pluck('alias')->all());
     }
 }
