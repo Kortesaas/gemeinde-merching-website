@@ -1,2 +1,62 @@
-# Design export – reference only, must never be committed
+# --- Secrets & environment -------------------------------------------------
+.env
+.env.*
+!.env.example
+/auth.json
+/storage/*.key
+
+# --- Design system export (reference only, never commit) -------------------
 /designsystem-inspiration/
+
+# --- Dependencies -----------------------------------------------------------
+/vendor/
+/node_modules/
+
+# --- Build output (compiled locally, uploaded during deployment) ------------
+/public/build/
+/public/hot
+/public/storage
+/public/fonts-manifest.dev.json
+
+# --- Runtime data: logs, caches, sessions, compiled views, uploads ----------
+# (directory placeholders are kept via the .gitignore files inside storage/)
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/framework/testing/*
+!storage/**/.gitignore
+/storage/pail
+/bootstrap/cache/*.php
+
+# --- Development databases, dumps & backups ---------------------------------
+*.sqlite
+*.sqlite-journal
+*.sql
+*.sql.gz
+/backups/
+
+# --- Test & tooling output --------------------------------------------------
+.phpunit.result.cache
+/.phpunit.cache
+/coverage/
+/playwright-report/
+/test-results/
+/blob-report/
+/storage/phpstan/
+
+# --- Logs & OS/editor files -------------------------------------------------
+*.log
+.DS_Store
+Thumbs.db
+/.idea
+/.vscode
+/.zed
+/.nova
+/.cursor/
+/.codex
+/.fleet
+.phpactor.json
+_ide_helper.php
+Homestead.json
+Homestead.yaml
