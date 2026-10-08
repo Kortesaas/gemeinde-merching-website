@@ -1,0 +1,50 @@
+# Optional local development environment. Docker is NOT used in production:
+# goneo runs Apache + PHP 8.4 + MySQL directly. See docs/local-development.md.
+name: merching
+
+services:
+    app:
+        build: docker/php
+        image: merching-php-dev
+        ports:
+            - "127.0.0.1:${APP_PORT:-8088}:80"
+        volumes:
+            - .:/var/www/html
+        environment:
+            # Container-internal hostnames override the native defaults in .env.
+            DB_HOST: mysql
+            DB_PORT: 3306
+            MAIL_HOST: mailpit
+            MAIL_PORT: 1025
+        depends_on:
+            mysql:
+                condition: service_healthy
+
+    mysql:
+        build: docker/mysql
+        image: merching-mysql-dev
+        command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-merching}
+            MYSQL_USER: ${DB_USERNAME:-merching}
+            MYSQL_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env (any local-only value)}
+            MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+            TZ: UTC
+        ports:
+            - "127.0.0.1:${FORWARD_DB_PORT:-33060}:3306"
+        volumes:
+            - mysql-data:/var/lib/mysql
+        healthcheck:
+            test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u\"$$MYSQL_USER\" -p\"$$MYSQL_PASSWORD\" --silent"]
+            interval: 5s
+            timeout: 5s
+            retries: 20
+
+    # Local mail catcher – password-reset mails can be read at http://localhost:8025
+    mailpit:
+        image: axllent/mailpit:v1.27
+        ports:
+            - "127.0.0.1:${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025"
+
+volumes:
+    mysql-data:
