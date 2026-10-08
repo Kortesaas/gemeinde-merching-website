@@ -6,7 +6,7 @@ application on **PHP 8.4** and **MySQL**, designed to run on goneo shared
 hosting (Apache; no Docker, Node.js, Composer or Redis in production).
 
 > **Status:** technical and content/domain foundation with functional admin
-> CRUD under `/verwaltung`. Public design, final CMS screens, search and the
+> CRUD and a change-proposal/review workflow under `/verwaltung`. Public design, final CMS screens, search and the
 > contact form are not built yet.
 
 ## What is there

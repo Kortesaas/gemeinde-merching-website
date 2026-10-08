@@ -164,10 +164,10 @@ current UTC time – no cron job ever flips a status:
   (`App\Policies\*Policy` → `ContentPolicy`), `can:` middleware and `@can` –
   never role names.
 - **Edit ≠ publish.** Users with `edit` but without `publish` can only save
-  drafts. Any status change, and any change to a non-draft record (content or
-  publication window), requires `publish`; entering/leaving the archive also
-  requires `archive`. Until a review workflow exists, live content is locked
-  for pure editors (prepared: `isPublicationLocked()`).
+  drafts directly. Any status change, and any direct change to a non-draft
+  record (content or publication window), requires `publish`;
+  entering/leaving the archive also requires `archive`. For live content,
+  editors create **change proposals** (see below).
 - **Deletion** moves to the recycle bin (`delete`, also allows restore).
   Permanent deletion requires the separate `force-delete` permission, only from
   the recycle bin, and fails while the record is referenced.
@@ -201,6 +201,40 @@ bin & restore), X = force-delete. The "Prüfung" role is read-only and prepared
 for a later approval workflow. Recipient addresses of contact routes are only
 visible with `contact-route.edit`.
 
+## Change proposals and review
+
+For content that is published, scheduled or archived (`isPublicationLocked()`),
+users with `edit` create a **change proposal** ("Änderung vorschlagen"). The
+live version stays public and unchanged until a reviewer approves.
+
+| Step | Who | Effect |
+|---|---|---|
+| create | `<type>.edit` | snapshot of the live state as base and starting payload (one open proposal per author and record) |
+| edit, add/remove placements | author | proposed state validated with the same field rules as a direct edit |
+| submit | author | status `submitted` – appears in the review queue (`/verwaltung/freigaben`) |
+| withdraw | author | status `withdrawn` |
+| reject | `<type>.publish`, not the author | status `rejected`, reason required, visible to the author |
+| approve and publish | `<type>.publish`, not the author | changed parts written to the live record, new revision, status `applied` |
+
+- Four-eyes principle by default: nobody approves their own proposal
+  (`PROPOSALS_ALLOW_SELF_APPROVAL=false`).
+- The proposed state is computed by running the admin form logic inside a
+  database transaction that is **always rolled back** – identical behaviour to
+  direct edits, no side effects on the live record.
+- Proposals cover editorial fields, relations (tags, contacts, …),
+  placements of documents/links and child collections (service aliases).
+  They never change publication state, URLs or files (publishers do that).
+- **Only changed parts are applied** (compared with the proposal's base
+  snapshot), so newer live edits to other fields survive. If the live record
+  changed the same field since the proposal was created, the reviewer sees a
+  conflict and must confirm it explicitly; the proposal then wins.
+- Every step is audited (`proposal.created|updated|submitted|withdrawn|
+  rejected|applied`); applying creates a content revision naming the
+  proposal and its author. Proposals are backend-only, never public, and are
+  deleted when the record is permanently deleted; proposals of records in the
+  recycle bin can only be rejected or withdrawn.
+- Not yet included: e-mail notifications to reviewers/authors.
+
 ## URL model
 
 **Navigation is not URL structure.** A record's URL is stored in
@@ -223,10 +257,24 @@ page can move to another menu section without changing its URL.
   never break and never form chains. Re-using a former path swaps it back.
 - Reserved paths (backend prefix, `/build`, `/robots.txt`, `/index.php`,
   `/storage`, `/.well-known`, `/up`, `/`) cannot be assigned.
-- New records get a suggested path from a type prefix + title slug
-  (`/aktuelles/…`, `/veranstaltungen/…`, `/buergerservice/…`, `/dokumente/…`,
-  pages at top level); editors may enter any valid path, e.g. the exact legacy
-  WordPress path.
+- **Existing (migrated) URLs always take precedence**: routes are never
+  changed automatically; conventions only apply to genuinely new records.
+- Auto-routed types get a suggested slashless path: `/aktuelles/{slug}`,
+  `/veranstaltungen/{slug}`, `/bekanntmachungen/{slug}`,
+  `/buergerservice/{slug}`, `/buergerservice/lebenslagen/{slug}`, pages at
+  `/{slug}`. Editors may enter any valid path, e.g. the exact legacy path.
+- **Opt-in public pages** for departments, locations and organizations: a
+  route exists only if an editor enters a path; clearing it withdraws the page
+  (route kept inactive, audited `route.deactivated`). People never get public
+  profile URLs.
+- **Documents** get no automatic detail page. They are linked from contextual
+  listings via the stable download URL `/download/{id}/{filename}` (stateless,
+  only while publicly reachable, wrong filename → one 301). A deliberately
+  assigned route (e.g. a migrated `/wp-content/uploads/…` URL) is the
+  canonical download address and takes precedence.
+- Public archives (expired/archived content stays reachable) only for
+  articles, public notices, events and documents; all other types rely on
+  backend revisions/history.
 
 **Redirects** (`redirects`): `source_path` (normalised, unique key),
 `destination` (internal slashless path or absolute https URL), `status_code`
@@ -317,7 +365,8 @@ ExternalResource "Online-Antrag" → Service "Personalausweis" → slot "online"
   and **creates a new revision** ("Version N wiederhergestellt"); history is
   never deleted. Publication state is never restored – going live is a separate
   decision. Restoring requires edit rights.
-- Retention: **pending policy decision**; default keep all
+- Child collections (service aliases, organization links) are versioned too.
+- Retention: **pending policy decision**; disabled/unlimited
   (`REVISION_RETENTION_DAYS` unset). `php artisan revisions:prune` applies the
   policy once configured and always keeps the newest `REVISION_KEEP_LATEST`
   (20) revisions per record. Independent of the 730-day audit retention.
