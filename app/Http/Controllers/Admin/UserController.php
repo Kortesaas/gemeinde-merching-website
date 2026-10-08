@@ -81,7 +81,7 @@ class UserController extends Controller
         /** @var User $actor */
         $actor = $request->user();
 
-        $roles = array_values($data['roles'] ?? []);
+        $roles = $data['roles'] ?? [];
         $active = (bool) ($data['is_active'] ?? false);
 
         if ($actor->is($user) && (! $active || ! in_array(Role::Administrator->value, $roles, true)) && $user->hasRole(Role::Administrator->value)) {

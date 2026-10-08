@@ -49,6 +49,7 @@
             "pint"
         ],
         "analyse": [
+            "phpstan clear-result-cache -q",
             "phpstan analyse --memory-limit=1G"
         ],
         "check": [

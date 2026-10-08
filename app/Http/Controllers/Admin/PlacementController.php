@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Admin\Options;
 use App\Admin\ResourceRegistry;
+use App\Contracts\Revisionable;
 use App\Http\Controllers\Controller;
 use App\Models\ExternalResource;
 use App\Models\User;
@@ -105,7 +106,10 @@ class PlacementController extends Controller
 
         $relation = $kind === 'documents' ? $model->documents() : $model->externalResources(); // @phpstan-ignore method.notFound, method.notFound
 
-        return [$model, $relation, $model::{self::KINDS[$kind]}()];
+        /** @var array<string, string> $slots */
+        $slots = (new \ReflectionMethod($model, self::KINDS[$kind]))->invoke(null);
+
+        return [$model, $relation, $slots];
     }
 
     /**
@@ -122,7 +126,9 @@ class PlacementController extends Controller
     {
         /** @var User $user */
         $user = $request->user();
-        app(RevisionService::class)->record($model, $user, 'Zuordnungen geändert');
+        if ($model instanceof Revisionable) {
+            app(RevisionService::class)->record($model, $user, 'Zuordnungen geändert');
+        }
         app(AuditLogger::class)->record('content.updated', $model, ['type' => $model->getMorphClass(), 'change' => $what], actor: $user);
     }
 }
