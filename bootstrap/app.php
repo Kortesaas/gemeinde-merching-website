@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Middleware\AdminAreaHeaders;
+use App\Http\Middleware\CanonicalUrlRedirect;
 use App\Http\Middleware\PreventRequestForgery;
-use App\Http\Middleware\RedirectToHttps;
 use App\Http\Middleware\RequireTwoFactor;
 use App\Http\Middleware\SearchEngineIndexingHeader;
 use App\Http\Middleware\SecurityHeaders;
@@ -39,7 +39,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->trustHosts(
             at: fn () => array_map(
                 fn (string $host) => '^'.preg_quote($host).'$',
-                (array) config('security.trusted_hosts'),
+                [...(array) config('security.trusted_hosts'), ...(array) config('security.redirect_hosts')],
             ),
             subdomains: false,
         );
@@ -47,7 +47,7 @@ return Application::configure(basePath: dirname(__DIR__))
             SecurityHeaders::class,
             AdminAreaHeaders::class,
             SearchEngineIndexingHeader::class,
-            RedirectToHttps::class,
+            CanonicalUrlRedirect::class,
         ]);
 
         // Stateless group for the public website: no session, no cookies.

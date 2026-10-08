@@ -8,14 +8,25 @@ $appHost = parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST) 
 
 return [
 
-    // Redirect every plain-HTTP request to HTTPS (default: production only).
+    // Redirect every plain-HTTP request to HTTPS on the canonical host
+    // (default: production only).
     'force_https' => (bool) env('FORCE_HTTPS', env('APP_ENV') === 'production'),
 
     // Host names the application answers to (protects generated links, e.g. in
     // password-reset mails, against Host-header injection). Not enforced locally.
+    // Requests for any other host get HTTP 400.
     'trusted_hosts' => array_values(array_filter(array_map(
         'trim',
         explode(',', (string) env('TRUSTED_HOSTS', $appHost)),
+    ))),
+
+    // Alias host names that are permanently redirected (path and query kept)
+    // to the canonical host of APP_URL, e.g. "gemeinde-merching.de" ->
+    // "https://www.gemeinde-merching.de". Empty = no host redirects. These
+    // hosts are trusted automatically.
+    'redirect_hosts' => array_values(array_filter(array_map(
+        'trim',
+        explode(',', (string) env('REDIRECT_HOSTS', '')),
     ))),
 
     // Reverse proxies whose X-Forwarded-* headers may be trusted. Empty means
