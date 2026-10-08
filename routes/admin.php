@@ -1,11 +1,17 @@
 <?php
 
+use App\Admin\ResourceRegistry;
 use App\Http\Controllers\Admin\Account\TwoFactorSetupController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\TwoFactorChallengeController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DocumentFileController;
+use App\Http\Controllers\Admin\PlacementController;
+use App\Http\Controllers\Admin\ResourceController;
+use App\Http\Controllers\Admin\RevisionController;
+use App\Http\Controllers\Admin\UserController;
 use App\Support\Authorization\Permission;
 use Illuminate\Support\Facades\Route;
 
@@ -56,5 +62,35 @@ Route::middleware(['auth', 'auth.session', 'admin.session'])->group(function () 
         Route::post('konto/zwei-faktor/wiederherstellungscodes', [TwoFactorSetupController::class, 'regenerateRecoveryCodes'])
             ->middleware('throttle:6,1')
             ->name('two-factor.recovery-codes');
+
+        // --- Content management (functional CRUD, see App\Admin\Resource) ---
+        // Authorization happens per action in policies (ContentPolicy).
+        foreach (ResourceRegistry::all() as $key => $resource) {
+            Route::prefix($resource->slug())->name($key.'.')->group(function () use ($key) {
+                $r = fn ($route) => $route->defaults('resource', $key)->whereNumber(['record', 'revision', 'pivot']);
+
+                $r(Route::get('/', [ResourceController::class, 'index'])->name('index'));
+                $r(Route::get('neu', [ResourceController::class, 'create'])->name('create'));
+                $r(Route::post('/', [ResourceController::class, 'store'])->name('store'));
+                $r(Route::get('{record}', [ResourceController::class, 'edit'])->name('edit'));
+                $r(Route::put('{record}', [ResourceController::class, 'update'])->name('update'));
+                $r(Route::delete('{record}', [ResourceController::class, 'destroy'])->name('destroy'));
+                $r(Route::post('{record}/wiederherstellen', [ResourceController::class, 'restore'])->name('restore'));
+                $r(Route::delete('{record}/endgueltig', [ResourceController::class, 'forceDelete'])->name('force-delete'));
+
+                $r(Route::get('{record}/versionen', [RevisionController::class, 'index'])->name('revisions'));
+                $r(Route::get('{record}/versionen/{revision}', [RevisionController::class, 'show'])->name('revisions.show'));
+                $r(Route::post('{record}/versionen/{revision}/wiederherstellen', [RevisionController::class, 'restore'])->name('revisions.restore'));
+
+                $r(Route::post('{record}/zuordnungen', [PlacementController::class, 'store'])->name('placements.store'));
+                $r(Route::patch('{record}/zuordnungen/{kind}/{pivot}', [PlacementController::class, 'update'])->name('placements.update'));
+                $r(Route::delete('{record}/zuordnungen/{kind}/{pivot}', [PlacementController::class, 'destroy'])->name('placements.destroy'));
+            });
+        }
+
+        Route::get('dokumente/{record}/datei', DocumentFileController::class)->whereNumber('record')->name('document.file');
+
+        Route::resource('benutzer', UserController::class)->only(['index', 'create', 'store', 'edit', 'update'])
+            ->parameters(['benutzer' => 'user'])->names('user');
     });
 });

@@ -1,0 +1,97 @@
+/* Functional admin lists and form groups (temporary, design system follows). */
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: var(--space-4);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.form-fieldset {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+}
+
+.form-fieldset > legend {
+    padding-inline: var(--space-1);
+}
+
+.form-option {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.form-field--checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.form-field--checkbox .form-hint,
+.form-field--checkbox .form-error {
+    flex-basis: 100%;
+}
+
+.form-checkbox {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+}
+
+.form-input--small {
+    display: inline-block;
+    width: 7rem;
+}
+
+.form-textarea {
+    max-width: 48rem;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.filter-form .form-field {
+    margin-bottom: 0;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.summary-list--inline {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: var(--space-1) var(--space-3);
+}
+
+.summary-list--inline dd {
+    margin: 0;
+}
+
+.preserve-lines {
+    white-space: pre-line;
+}
+
+.link-list {
+    columns: 2 16rem;
+}
