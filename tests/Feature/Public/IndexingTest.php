@@ -2,10 +2,13 @@
 
 namespace Tests\Feature\Public;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class IndexingTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_non_production_is_never_indexable(): void
     {
         config(['site.public_indexing' => true]);

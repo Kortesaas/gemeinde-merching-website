@@ -2,10 +2,13 @@
 
 namespace Tests\Feature\Public;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PlaceholderPageTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_placeholder_page_is_served(): void
     {
         $this->get('/')

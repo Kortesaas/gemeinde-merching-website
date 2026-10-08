@@ -133,7 +133,9 @@ class LoginTest extends TestCase
 
     public function test_logout_requires_post(): void
     {
-        $this->actingAsAdmin($this->createUser())->get($this->adminUrl('logout'))->assertStatus(405);
+        $user = $this->createUser();
+        $this->actingAsAdmin($user)->get($this->adminUrl('logout'))->assertNotFound();
+        $this->assertAuthenticatedAs($user);
     }
 
     public function test_login_and_failure_are_audited_without_network_data(): void

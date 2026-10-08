@@ -2,11 +2,14 @@
 
 namespace Tests\Feature\Security;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CanonicalHostTest extends TestCase
 {
+    use RefreshDatabase;
+
     private const CANONICAL = 'https://www.gemeinde-merching.de';
 
     protected function setUp(): void

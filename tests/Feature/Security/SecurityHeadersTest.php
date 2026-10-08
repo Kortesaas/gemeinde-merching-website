@@ -2,10 +2,13 @@
 
 namespace Tests\Feature\Security;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class SecurityHeadersTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -100,7 +103,6 @@ class SecurityHeadersTest extends TestCase
     public function test_authenticated_admin_pages_are_not_cacheable(): void
     {
         $this->app['env'] = 'testing';
-        $this->artisan('migrate:fresh');
         $user = $this->createUser();
 
         $response = $this->actingAsAdmin($user)->get($this->adminUrl('dashboard'))->assertOk();

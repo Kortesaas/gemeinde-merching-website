@@ -6,8 +6,10 @@ use App\Models\User;
 use App\Services\Auth\AdminAuthenticator;
 use App\Services\Authorization\RoleSynchronizer;
 use App\Support\Authorization\Role;
+use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Http\Request;
+use Illuminate\Testing\TestResponse;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -63,6 +65,19 @@ abstract class TestCase extends BaseTestCase
     protected function withSessionCookie(): static
     {
         return $this->withCookie((string) config('session.cookie'), session()->getId());
+    }
+
+    /**
+     * Send a GET request with the exact URI (Laravel's test client strips
+     * trailing slashes, which matter for preserved legacy URLs).
+     */
+    protected function rawGet(string $uri): TestResponse
+    {
+        $request = Request::create(str_starts_with($uri, 'http') ? $uri : 'http://localhost'.$uri, 'GET');
+        $response = $this->app->make(HttpKernel::class)->handle($request);
+        $this->app->make(HttpKernel::class)->terminate($request, $response);
+
+        return TestResponse::fromBaseResponse($response, $request);
     }
 
     protected function adminUrl(string $path = ''): string

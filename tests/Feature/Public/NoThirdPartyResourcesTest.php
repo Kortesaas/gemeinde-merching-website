@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Public;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
@@ -12,6 +13,8 @@ use Tests\TestCase;
  */
 class NoThirdPartyResourcesTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @return array<string, array{string}>
      */
