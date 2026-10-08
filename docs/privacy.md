@@ -34,10 +34,17 @@ actually used.
 | Audit events (user, action, record, time, safe metadata) | Accountability, security investigations | 730 days (`AUDIT_RETENTION_DAYS`) – **provisional, to be confirmed with the Datenschutzbeauftragte before launch**; deleted automatically without cron |
 | Rate-limit entries (SHA-256 of IP, counter) | Brute-force protection | ≤ 5 minutes in the cache table |
 | Password reset tokens (hashed) | Password reset | 60 minutes |
+| Content revisions (editorial snapshots, editor, time) | Editorial history, restore | Keep all until a policy is decided (`REVISION_RETENTION_DAYS`) |
+| Contact-route recipient addresses (encrypted) | Internal routing of the future contact form | While the route exists |
+| Person records (public contact data of staff, no photos) | Public contact information | Deactivated, not deleted, while referenced |
 
 The audit retention period applies only to audit events. Future content
 revisions/versions (articles, pages, documents) are a separate topic and will
 get their own retention rules together with the content model.
+
+Staff contact data is limited to what is intended for publication (name,
+function, phone, public e-mail, room, availability); there is deliberately no
+portrait field. Demo/test data never uses real personal data.
 
 Deliberately **not** stored by the application: IP addresses (sessions, audit
 log), user agents, attempted login names, request bodies.

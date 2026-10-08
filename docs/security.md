@@ -55,9 +55,14 @@ vulnerabilities: see [`SECURITY.md`](../SECURITY.md).
 ## Authorization
 
 Roles and permissions are defined in code and synchronised with
-`php artisan permissions:sync`. Checks go through gates/policies/`can:`
-middleware – never `if ($user->role === …)`. See
-[architecture.md](architecture.md#authorization).
+`php artisan permissions:sync` (stale permissions are removed). Checks go
+through policies/`can:` middleware/`@can` – never `if ($user->role === …)`.
+Content permissions are `<type>.<ability>` (view, create, edit, publish,
+archive, delete, force-delete). Editing never implies publishing; permanent
+deletion is a separate, administrator-only permission. Matrix and rules:
+[content-model.md → Authorization](content-model.md#authorization-philosophy).
+Every admin action authorizes **before** validating input (403 without leaking
+validation details).
 
 ## Sessions
 
@@ -161,9 +166,29 @@ hashed build assets via `public/.htaccess`.
   covers only audit events – future content revisions get their own retention
   rules.
 
+## Content safety
+
+- Editor rich text is Markdown rendered by `SafeMarkdown`: raw HTML is escaped,
+  `javascript:`/`data:`/`vbscript:`/`file:` links are removed, images are not
+  rendered (no external requests). Being authenticated does not make content
+  trusted. A controlled block editor will replace it (see content-model.md).
+- All links entered by editors are validated by `SafeUrl` (http/https, no
+  credentials or control characters).
+- Tested with script tags, event-handler attributes, unsafe schemes and
+  tracking images.
+
+## Contact-form recipients
+
+`ContactRoute::recipients` are internal addresses: encrypted at rest with
+`APP_KEY` (`encrypted:array` cast), `$hidden` from serialisation, exposed to
+public code only via `publicData()` (id, label, explanation), never in
+revisions or audit metadata, redacted from log context (`recipient` key), and
+only rendered in the backend form for users with `contact-route.edit`
+(read-only views omit the field). Covered by `ContactRoutePrivacyTest`.
+
 ## Uploads
 
-Prepared for documents, images, galleries and downloads
+Implemented for documents (images, galleries and media follow)
 (`config/uploads.php`, `App\Services\Uploads\UploadInspector`):
 
 1. Size limit (`UPLOADS_MAX_KILOBYTES`, default 20 MB; PHP's
@@ -178,11 +203,12 @@ Prepared for documents, images, galleries and downloads
    executable PHP files. The sanitised original filename is kept as metadata
    only (download name). SHA-256 is computed for integrity/duplicates.
 5. Delivery only through controllers that check authorization/publication
-   status and set safe headers: `Content-Type` from the stored (detected) MIME
-   type, `X-Content-Type-Options: nosniff`, `Content-Disposition: attachment`
-   (or `inline` only for PDFs/images) with an RFC 6266 encoded filename, and
-   `Content-Security-Policy: default-src 'none'; sandbox` for non-PDF inline
-   files. Public, published media may later be copied to a deliberately
+   status (`DocumentStorage::response()`) with safe headers: `Content-Type` from
+   the stored (detected) MIME type, `X-Content-Type-Options: nosniff`,
+   `Content-Disposition: attachment` (`inline` only for PDFs/images) with an
+   RFC 6266 encoded filename, and a sandboxing `Content-Security-Policy`.
+   Physical files are only deleted when their document is permanently deleted
+   and nothing references it. Public, published media may later be copied to a deliberately
    designed public media directory with PHP execution disabled
    (`public/.htaccess` already denies executing anything but `index.php`).
 6. Images will be re-encoded (GD) on upload to strip metadata (EXIF/GPS) and

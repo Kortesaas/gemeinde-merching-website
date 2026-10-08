@@ -46,6 +46,18 @@ Base layout (`resources/views/layouts/base.blade.php`) and backend pages:
 - `prefers-reduced-motion` respected.
 - Works completely without JavaScript.
 
+## Backend (functional CMS screens)
+
+The generic admin forms reuse the accessible components: visible labels with
+„(Pflichtfeld)“, hints/errors via `aria-describedby`, checkbox groups as
+`fieldset`/`legend` with labelled order inputs, error summary with focus,
+`datetime-local` inputs labelled with the site time zone, tables with
+captions and `scope`, state shown as text. During phase 2, 13 admin screens
+(dashboard, lists, create/edit forms incl. placements, revisions, users) and
+the error state were checked with axe in a real browser session: no
+detectable violations. Keyboard and screen-reader testing of the final CMS
+design is still required.
+
 ## Automated checks
 
 ```bash

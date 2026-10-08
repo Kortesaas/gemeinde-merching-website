@@ -1,7 +1,8 @@
 # Architecture
 
-Status: technical foundation (phase 1). Content types, real design and CMS
-screens follow in later phases.
+Status: technical foundation (phase 1) and content/domain foundation
+(phase 2, see [content-model.md](content-model.md)). Real design, final CMS
+screens, search and the contact form follow in later phases.
 
 ## Overview
 
@@ -43,25 +44,38 @@ MySQL (one database: content, users, sessions, cache, audit log)
 
 ```
 app/
-  Console/Commands/        admin:create, admin:reset-mfa, permissions:sync, audit:prune, deploy:check
+  Admin/                   functional CMS: ContentResource (save workflow), Resources/ (one per entity),
+                           Fields/ (form field types), ResourceRegistry, Options
+  Console/Commands/        admin:create, admin:reset-mfa, permissions:sync, audit:prune, revisions:prune, deploy:check
+  Contracts/               Routable, Revisionable, Searchable
+  Enums/                   PublicationStatus/State, AccessibilityStatus, CategoryContext, …
+  Exceptions/              DomainRuleViolation (business rule → accessible form error)
   Http/
-    Controllers/Public/    public website (currently placeholder + robots.txt)
-    Controllers/Admin/     backend; Auth/ (login, MFA challenge, password reset), Account/ (MFA setup)
-    Middleware/            security headers, admin headers, indexing, HTTPS, MFA, session checks
+    Controllers/Public/    placeholder, robots.txt, ContentController (DB routes & redirects)
+    Controllers/Admin/     Auth/, Account/, ResourceController (generic CRUD), Placement-, Revision-,
+                           DocumentFile-, UserController
+    Middleware/            security headers, admin headers, indexing, canonical URL, trailing slash, MFA, sessions
+    Requests/Admin/        ResourceRequest (authorization incl. publish rules + validation)
   Logging/                 log redaction (Monolog tap)
-  Models/                  User, AuditEvent, TwoFactorRecoveryCode
-  Policies/                UserPolicy
-  Services/                Auth (login flow, TOTP), Audit, Authorization (role sync), Uploads
+  Models/                  content & directory models, PublicRoute, Redirect, NavigationItem,
+                           ContentRevision, SourceReference, User, AuditEvent, …
+  Models/Concerns/         HasPublication, HasRevisions, HasPublicRoute, Has*Placements, TracksEditors, …
+  Policies/                ContentPolicy + one subclass per model, UserPolicy
+  Rules/                   SafeUrl, SiteDateTime, RecurrenceRule
+  Services/                Auth, Audit, Authorization, Content (publication, revisions, documents,
+                           usage), Routing (RouteManager, RedirectManager), Uploads
   Session/                 privacy-preserving database session handler
-  Support/                 AdminArea, SearchEngineIndexing, SiteTime, Authorization enums
+  Support/                 AdminArea, SiteTime, MorphMap, Routing/PublicPath, Content/SafeMarkdown,
+                           Search/SearchDocument, Authorization (ContentType, Ability, Permission, Role)
 bootstrap/app.php          routing areas, middleware groups, exception settings
 config/admin.php           backend path, MFA policy, throttling, session lifetime
 config/audit.php           audit-event retention
+config/revisions.php       content-revision retention (pending policy)
 config/security.php        HTTPS, canonical/trusted/redirect hosts, proxies, HSTS, CSP
 config/site.php            site time zone, search-engine indexing switch
 config/uploads.php         upload allowlist and limits
-routes/public.php          public routes (stateless)
-routes/admin.php           backend routes (prefix /verwaltung)
+routes/public.php          public routes (stateless) incl. the content fallback route
+routes/admin.php           backend routes (prefix /verwaltung), one route set per admin resource
 resources/views/
   layouts/                 base (document skeleton), public, admin
   components/              form field, error summary, status message
@@ -82,10 +96,11 @@ everything below `/verwaltung`), `SearchEngineIndexingHeader`,
 `CanonicalUrlRedirect` (HTTP → HTTPS and alias hosts → canonical host in a
 single 301, path and query preserved).
 
-**`public` group**: only route-model binding. No session, no cookie
-encryption, no CSRF token → anonymous visitors receive **no cookies**. A future
-stateful public feature (contact form) opts in per route with
-`->middleware('web')`.
+**`public` group**: trailing-slash normalisation and route-model binding.
+No session, no cookie encryption, no CSRF token → anonymous visitors receive
+**no cookies**. A future stateful public feature (contact form) opts in per
+route with `->middleware('web')`. The last public route is a fallback that
+resolves database-managed URLs (`ContentController`).
 
 **`web` group** (backend): encrypted cookies, database session, CSRF
 (token + `Sec-Fetch-Site` check, no `XSRF-TOKEN` cookie), shared validation
@@ -141,8 +156,10 @@ catch-all route can never shadow them.
 - Comparisons (`publish_at <= now()`) always happen in UTC and are therefore
   independent of DST (tested in `tests/Unit/SiteTimeTest.php`).
 
-## Scheduled publication (future content)
+## Scheduled publication
 
+Implemented for all publishable content (see
+[content-model.md → Publication lifecycle](content-model.md#publication-lifecycle)).
 Visibility is a query condition, not a job:
 
 ```sql
@@ -151,25 +168,31 @@ WHERE status = 'published'
   AND (expires_at IS NULL OR expires_at > UTC_TIMESTAMP())
 ```
 
-implemented as an Eloquent scope using `now()` (UTC). Content therefore appears
-and disappears exactly on time even if no cron job ever runs. Composite indexes
-on `(status, publish_at, expires_at)` will be added with the content tables.
-Caches of public pages must respect the next `publish_at`/`expires_at`.
+implemented as the Eloquent scope `visible()` using `now()` (UTC). Content
+therefore appears and disappears exactly on time even if no cron job ever
+runs. Every publishable table has a composite index on
+`(status, publish_at, expires_at)`. Caches of public pages must respect the
+next `publish_at`/`expires_at`.
 
-## URLs, redirects, SEO (prepared, not implemented)
+## URLs, redirects, SEO
 
 - Canonical origin: `https://www.gemeinde-merching.de` (`APP_URL`). The
   existing host and existing paths are preserved. Alias hosts in
   `REDIRECT_HOSTS` (the non-www domain) and plain HTTP are redirected in one
-  301 hop with path and query unchanged (`CanonicalUrlRedirect`); unknown
-  hosts get HTTP 400.
-- Public URLs are explicit paths/slugs stored per content item; they never
-  encode database IDs or the menu hierarchy. Old URLs of the previous website
-  can be kept 1:1 or mapped via a `redirects` table (`source_path` unique →
-  `target`, status 301/410) checked in a fallback route.
-- Canonical URLs are generated from `APP_URL` (forced root URL in production).
-- XML sitemaps will be generated by a controller from published content (no
-  cron), cached in the database cache. Backend URLs never appear in sitemaps.
+  301 hop straight to the final target (`CanonicalUrlRedirect`); unknown hosts
+  get HTTP 400.
+- **Canonical paths have no trailing slash** (root stays `/`). Legacy URLs
+  with a slash reach the slashless canonical URL (or a legacy redirect's
+  destination) in a single 301, path and query preserved.
+- Implemented: database-managed URLs (`public_routes`) independent of IDs and
+  navigation, redirects with loop/chain/collision protection, one-hop
+  resolution, `<link rel="canonical">`. Details:
+  [content-model.md → URL model](content-model.md#url-model).
+- **Navigation is not URL structure**: menus reference a record's canonical
+  route; moving a page in the menu never changes its URL.
+- Still to build: XML sitemaps (generated on request from published content,
+  using `PublicPath::absoluteUrl()` → slashless, cached; no cron; backend URLs
+  never included).
 - `robots.txt` is dynamic (`RobotsController`): `Disallow: /` unless
   `APP_ENV=production` **and** `PUBLIC_INDEXING=true`. There is deliberately no
   static `public/robots.txt`.
@@ -178,7 +201,7 @@ Caches of public pages must respect the next `publish_at`/`expires_at`.
 
 ## Search (prepared, not implemented)
 
-MySQL only: a denormalised `search_index` table (type, id, title, body text,
+Models expose their text via `Searchable::toSearchDocument()`. MySQL only: a denormalised `search_index` table (type, id, title, body text,
 URL, publish window) maintained synchronously on save, with a `FULLTEXT` index
 (InnoDB, natural-language/boolean mode). German specifics (umlauts, compound
 words, minimum token size `innodb_ft_min_token_size`) must be verified on the
@@ -187,13 +210,16 @@ the expected data volume.
 
 ## Files and uploads
 
-See [security.md → Uploads](security.md#uploads). Originals are stored outside
-the web root (`storage/app/private`), delivered only through controllers.
+See [security.md → Uploads](security.md#uploads) and
+[content-model.md → Document model](content-model.md#document-model).
+Originals are stored outside the web root (`storage/app/private`), delivered
+only through controllers, and never physically deleted while referenced.
 
 ## Database
 
 All schema changes are versioned migrations; production never needs manual
-SQL. Current tables (phase 1):
+SQL. Content and routing tables (phase 2) are described in
+[content-model.md](content-model.md#entities). System tables (phase 1):
 
 | Table | Purpose |
 |---|---|

@@ -5,8 +5,9 @@ Official website and employee CMS of Gemeinde Merching
 application on **PHP 8.4** and **MySQL**, designed to run on goneo shared
 hosting (Apache; no Docker, Node.js, Composer or Redis in production).
 
-> **Status:** technical foundation. Public website, content types, design and
-> CMS screens are not built yet.
+> **Status:** technical and content/domain foundation with functional admin
+> CRUD under `/verwaltung`. Public design, final CMS screens, search and the
+> contact form are not built yet.
 
 ## What is there
 
@@ -55,6 +56,7 @@ Native PHP/MySQL setup and details: [docs/local-development.md](docs/local-devel
 | `php artisan admin:reset-mfa <email>` | remove MFA from an account (lock-out recovery) |
 | `php artisan permissions:sync` | sync code-defined roles/permissions |
 | `php artisan audit:prune` | delete audit events older than `AUDIT_RETENTION_DAYS` |
+| `php artisan revisions:prune` | apply the content-revision retention policy (off by default) |
 | `php artisan deploy:check` | verify production configuration |
 | `scripts/release/build.sh` | build the deployable release artifact (vendor + assets included) |
 
@@ -63,6 +65,7 @@ Native PHP/MySQL setup and details: [docs/local-development.md](docs/local-devel
 ## Documentation
 
 - [Architecture](docs/architecture.md) – decisions, structure, database, routing
+- [Content model](docs/content-model.md) – entities, lifecycle, URLs, revisions, permissions
 - [Local development](docs/local-development.md)
 - [Deployment to goneo](docs/deployment-goneo.md)
 - [Security](docs/security.md) · [SECURITY.md](SECURITY.md)

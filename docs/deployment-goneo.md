@@ -234,7 +234,10 @@ the previous release (expand/contract), which is the rule for this project.
    `https://www.gemeinde-merching.de/aktuelles`;
    `curl -sI https://gemeinde-merching.de/aktuelles?x=1` → `301` to
    `https://www.gemeinde-merching.de/aktuelles?x=1` (one hop);
-   certificate valid for both hosts; `Strict-Transport-Security` present.
+   certificate valid for both hosts; `Strict-Transport-Security` present;
+   `curl -sI https://www.gemeinde-merching.de/aktuelles/?x=1` → one `301` to
+   `https://www.gemeinde-merching.de/aktuelles?x=1` (canonical URLs are
+   slashless).
 2. **`APP_DEBUG=false`:** `grep APP_DEBUG ~/merching/shared/.env`; a
    non-existent URL shows the generic 404 page without technical details.
 3. **Admin login:** log in with password + authenticator code; logout works;
