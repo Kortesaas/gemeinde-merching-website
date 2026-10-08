@@ -4,13 +4,16 @@
 
 Please **do not** open a public issue for security problems.
 
-Report suspected vulnerabilities confidentially to the project maintainers
-(contact address to be defined by Gemeinde Merching – see open issues in the
-project documentation). Include a description, affected URL/component and
-steps to reproduce. We aim to acknowledge reports within five working days.
+Report suspected vulnerabilities confidentially to:
 
-A `/.well-known/security.txt` will be published once the official contact is
-defined.
+> **Security contact: PLACEHOLDER – an official Gemeinde Merching address will
+> be confirmed before production.**
+
+Include a description, affected URL/component and steps to reproduce. We aim
+to acknowledge reports within five working days.
+
+`/.well-known/security.txt` will **not** be published until the official
+contact address has been confirmed; it must be in place before production.
 
 ## Supported versions
 

@@ -34,7 +34,7 @@ MySQL (one database: content, users, sessions, cache, audit log)
 | **Minimal JavaScript** | Only for genuine enhancements (progressive enhancement). Every feature must work without JS. No React/Vue for the CMS shell. |
 | **PHP 8.4** | Target version of the goneo package (8.5 is available but 8.4 is the conservative choice). `composer.json` pins the platform to 8.4 so the lock file always resolves for production. |
 | **MySQL, one production database** | Available on goneo; used for everything that needs persistence (incl. sessions, cache, rate limits). Local development and the test suite also use MySQL – never SQLite – so behaviour (strict mode, collations, foreign keys, time zones) matches production. |
-| **No Node.js runtime** | Node/Vite only compiles CSS/JS locally. Production serves static files from `public/build`. |
+| **No Node.js runtime, no Composer on the server** | Node/Vite only compiles CSS/JS and Composer only installs `vendor/` – both at build time, in the Linux PHP 8.4 development environment. Production receives a self-contained release artifact (`scripts/release/build.sh`) and serves static files from `public/build`. |
 | **No Redis, no queue worker** | Not available on shared hosting. Sessions, cache and rate limiting use the database driver; queues run `sync`. Password-reset mails are sent after the response via `defer()` (no worker). |
 | **No external search server** | Search will be implemented with MySQL (see below). |
 | **No cron dependency for publishing** | goneo's WebCron is limited. Visibility is computed from timestamps at request time (see below). |
@@ -43,7 +43,7 @@ MySQL (one database: content, users, sessions, cache, audit log)
 
 ```
 app/
-  Console/Commands/        admin:create, admin:reset-mfa, permissions:sync, deploy:check
+  Console/Commands/        admin:create, admin:reset-mfa, permissions:sync, audit:prune, deploy:check
   Http/
     Controllers/Public/    public website (currently placeholder + robots.txt)
     Controllers/Admin/     backend; Auth/ (login, MFA challenge, password reset), Account/ (MFA setup)
@@ -53,11 +53,12 @@ app/
   Policies/                UserPolicy
   Services/                Auth (login flow, TOTP), Audit, Authorization (role sync), Uploads
   Session/                 privacy-preserving database session handler
-  Support/                 AdminArea, SearchEngineIndexing, LocalTime, Authorization enums
+  Support/                 AdminArea, SearchEngineIndexing, SiteTime, Authorization enums
 bootstrap/app.php          routing areas, middleware groups, exception settings
 config/admin.php           backend path, MFA policy, throttling, session lifetime
-config/security.php        HTTPS, trusted hosts/proxies, HSTS, CSP, Permissions-Policy
-config/site.php            search-engine indexing switch
+config/audit.php           audit-event retention
+config/security.php        HTTPS, canonical/trusted/redirect hosts, proxies, HSTS, CSP
+config/site.php            site time zone, search-engine indexing switch
 config/uploads.php         upload allowlist and limits
 routes/public.php          public routes (stateless)
 routes/admin.php           backend routes (prefix /verwaltung)
@@ -69,6 +70,7 @@ resources/css/             tokens.css, base.css, components/, pages/, entry poin
 resources/js/              app.js (empty entry point for future progressive enhancement)
 tests/Feature/{Public,Admin,Security}, tests/Unit, tests/Browser (Playwright + axe)
 docker/                    optional local development environment
+scripts/release/           build.sh (release artifact), activate.sh (runs on goneo)
 docs/                      this documentation
 ```
 
@@ -77,7 +79,8 @@ docs/                      this documentation
 **Global middleware** (every request, including 404s): trusted hosts, trusted
 proxies, `SecurityHeaders`, `AdminAreaHeaders` (no-store + noindex for
 everything below `/verwaltung`), `SearchEngineIndexingHeader`,
-`RedirectToHttps`.
+`CanonicalUrlRedirect` (HTTP → HTTPS and alias hosts → canonical host in a
+single 301, path and query preserved).
 
 **`public` group**: only route-model binding. No session, no cookie
 encryption, no CSRF token → anonymous visitors receive **no cookies**. A future
@@ -114,12 +117,29 @@ catch-all route can never shadow them.
 
 ## Time zones
 
-- `config('app.timezone')` is **UTC**; the MySQL session time zone is `+00:00`.
-  All timestamps are stored and compared in UTC.
-- `config('app.local_timezone')` (`Europe/Berlin`) is used only at the edges:
-  `App\Support\LocalTime::format()` for display, `LocalTime::toUtc()` for form
-  input. This keeps scheduled publication unambiguous across DST changes
-  (e.g. the non-existent 02:30 on the last Sunday in March).
+- **Internal/database time is UTC**: `config('app.timezone')` is fixed to
+  `UTC`, the MySQL session time zone is `+00:00`. All timestamps (incl.
+  `publish_at`, `expires_at`, audit log, sessions) are stored and compared in
+  UTC.
+- **Citizen/editor-facing time is `SITE_TIMEZONE`** (`config('site.timezone')`,
+  default `Europe/Berlin`). Every date/time that is displayed or entered goes
+  through `App\Support\SiteTime` – never format a stored timestamp directly:
+
+  | Use | Method |
+  |---|---|
+  | Display | `SiteTime::format($utc)` → `29.03.2026, 03:00` |
+  | Pre-fill `<input type="datetime-local">` | `SiteTime::toInput($utc)` |
+  | Store editor input (publish/expiry) | `SiteTime::fromInput($request->input('publish_at'))` → UTC |
+  | Warn about the repeated DST hour | `SiteTime::isAmbiguous($value)` |
+  | "Now" for display | `SiteTime::now()` |
+
+- DST rules for input: a wall-clock time that does not exist (the skipped hour
+  when clocks go forward, e.g. 29.03.2026 02:30) is **rejected** with a
+  validation error instead of being silently shifted. For the hour that occurs
+  twice (e.g. 25.10.2026 02:30) the **later** occurrence is used, so scheduled
+  content never appears too early; forms should show a hint.
+- Comparisons (`publish_at <= now()`) always happen in UTC and are therefore
+  independent of DST (tested in `tests/Unit/SiteTimeTest.php`).
 
 ## Scheduled publication (future content)
 
@@ -138,6 +158,11 @@ Caches of public pages must respect the next `publish_at`/`expires_at`.
 
 ## URLs, redirects, SEO (prepared, not implemented)
 
+- Canonical origin: `https://www.gemeinde-merching.de` (`APP_URL`). The
+  existing host and existing paths are preserved. Alias hosts in
+  `REDIRECT_HOSTS` (the non-www domain) and plain HTTP are redirected in one
+  301 hop with path and query unchanged (`CanonicalUrlRedirect`); unknown
+  hosts get HTTP 400.
 - Public URLs are explicit paths/slugs stored per content item; they never
   encode database IDs or the menu hierarchy. Old URLs of the previous website
   can be kept 1:1 or mapped via a `redirects` table (`source_path` unique →
@@ -178,7 +203,7 @@ SQL. Current tables (phase 1):
 | `cache`, `cache_locks` | database cache (rate limiting, permission cache) |
 | `roles`, `permissions`, `model_has_roles`, `model_has_permissions`, `role_has_permissions` | authorization (spatie/laravel-permission) |
 | `two_factor_recovery_codes` | HMAC-hashed single-use recovery codes |
-| `audit_events` | append-only audit log without network data |
+| `audit_events` | append-only audit log without network data; retention `AUDIT_RETENTION_DAYS` (default 730) |
 | `migrations` | Laravel migration bookkeeping |
 
 Charset `utf8mb4`, collation `utf8mb4_unicode_ci` (portable to MySQL 5.7/8.x

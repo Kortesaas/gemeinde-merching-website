@@ -104,6 +104,8 @@ Prefix with `docker compose exec app` when using Docker.
 | Browser a11y/privacy tests (app must be running) | `npm test` |
 | npm dependency audit | `npm run audit` |
 | Production config check | `php artisan deploy:check` |
+| Delete expired audit events | `php artisan audit:prune` |
+| Build a release artifact (host, clean tree) | `scripts/release/build.sh` |
 
 `npm test` needs the Playwright browser once: `npx playwright install chromium`
 (or `--only-shell chromium`).
@@ -123,5 +125,5 @@ Prefix with `docker compose exec app` when using Docker.
   Stop the dev server before running `npm test` against built assets.
 - `designsystem-inspiration/` is a local reference export and is git-ignored;
   do not modify or commit it.
-- Time: the app runs in UTC; display/input uses Europe/Berlin
-  (`App\Support\LocalTime`).
+- Time: internal/database time is UTC; everything citizens and editors see or
+  enter uses `SITE_TIMEZONE` (Europe/Berlin) via `App\Support\SiteTime`.

@@ -1,8 +1,9 @@
 # Gemeinde Merching – Website & Verwaltung
 
-Official website and employee CMS of Gemeinde Merching: a single, server-rendered
-**Laravel 13** application on **PHP 8.4** and **MySQL**, designed to run on
-goneo shared hosting (Apache, no Docker, no Node.js, no Redis in production).
+Official website and employee CMS of Gemeinde Merching
+(<https://www.gemeinde-merching.de>): a single, server-rendered **Laravel 13**
+application on **PHP 8.4** and **MySQL**, designed to run on goneo shared
+hosting (Apache; no Docker, Node.js, Composer or Redis in production).
 
 > **Status:** technical foundation. Public website, content types, design and
 > CMS screens are not built yet.
@@ -53,7 +54,9 @@ Native PHP/MySQL setup and details: [docs/local-development.md](docs/local-devel
 | `php artisan admin:create` | create an administrator interactively |
 | `php artisan admin:reset-mfa <email>` | remove MFA from an account (lock-out recovery) |
 | `php artisan permissions:sync` | sync code-defined roles/permissions |
+| `php artisan audit:prune` | delete audit events older than `AUDIT_RETENTION_DAYS` |
 | `php artisan deploy:check` | verify production configuration |
+| `scripts/release/build.sh` | build the deployable release artifact (vendor + assets included) |
 
 (With Docker, run PHP commands via `docker compose exec app …`.)
 

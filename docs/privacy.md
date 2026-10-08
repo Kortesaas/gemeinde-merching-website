@@ -31,9 +31,13 @@ actually used.
 | TOTP secret (encrypted), recovery-code hashes | MFA | While MFA is enabled |
 | Session (encrypted payload, user ID, last activity) | Login state | Idle 60 min / browser close / absolute 10 h; expired rows removed by lottery |
 | Session cookie (`__Host-merching_session`) | Technically necessary for login | Session cookie (browser close) |
-| Audit events (user, action, record, time, safe metadata) | Accountability, security investigations | To be defined (open issue) |
+| Audit events (user, action, record, time, safe metadata) | Accountability, security investigations | 730 days (`AUDIT_RETENTION_DAYS`) – **provisional, to be confirmed with the Datenschutzbeauftragte before launch**; deleted automatically without cron |
 | Rate-limit entries (SHA-256 of IP, counter) | Brute-force protection | ≤ 5 minutes in the cache table |
 | Password reset tokens (hashed) | Password reset | 60 minutes |
+
+The audit retention period applies only to audit events. Future content
+revisions/versions (articles, pages, documents) are a separate topic and will
+get their own retention rules together with the content model.
 
 Deliberately **not** stored by the application: IP addresses (sessions, audit
 log), user agents, attempted login names, request bodies.

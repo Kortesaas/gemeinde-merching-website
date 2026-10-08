@@ -4,9 +4,14 @@ The application code is recoverable from Git (plus `npm run build` and
 `composer install`). What must be backed up separately:
 
 1. **MySQL database** – content, accounts, sessions, audit log.
-2. **Uploaded files/media** – `storage/app/private/uploads/` (and later any
-   public media directory).
-3. **Configuration outside Git** – the production `.env`, above all `APP_KEY`.
+2. **Uploaded files/media** – `~/merching/shared/storage/app/private/`
+   (and later any public media directory).
+3. **Configuration outside Git** – `~/merching/shared/.env`, above all
+   `APP_KEY`.
+
+Release artifacts (`~/merching/releases/`) need no backup: they can be rebuilt
+from Git with `scripts/release/build.sh <commit>` (the commit is recorded in
+each release's `RELEASE` file).
 
 > **`APP_KEY` is critical.** It encrypts the MFA secrets and session data and
 > keys the recovery-code hashes. A database backup restored with a different
@@ -51,13 +56,13 @@ locking the site. Sessions and cache are included but harmless.
 ## Media / uploads
 
 ```bash
-tar -czf ~/backups/media-$(date +%Y%m%d-%H%M%S).tar.gz -C ~/merching storage/app/private
+tar -czf ~/backups/media-$(date +%Y%m%d-%H%M%S).tar.gz -C ~/merching/shared storage/app/private
 ```
 
 or incremental (more efficient for large media):
 
 ```bash
-rsync -az --delete goneo:~/merching/storage/app/private/ /backup/merching/media/
+rsync -az --delete goneo:~/merching/shared/storage/app/private/ /backup/merching/media/
 ```
 
 ## Off-site copy
@@ -86,11 +91,11 @@ SSHes in, runs the dump and pulls the files is the most robust option.
 
 ## Backup before deployment
 
-Every deployment (see deployment-goneo.md step 3.3) starts with:
+Every deployment (see deployment-goneo.md section 4) starts with:
 
 ```bash
 ssh goneo 'cd ~ && mysqldump --defaults-extra-file=~/.my.cnf --single-transaction --quick --no-tablespaces DATABASE_NAME | gzip > backups/predeploy-$(date +%Y%m%d-%H%M%S).sql.gz'
-ssh goneo 'tar -czf ~/backups/predeploy-media-$(date +%Y%m%d-%H%M%S).tar.gz -C ~/merching storage/app/private'
+ssh goneo 'tar -czf ~/backups/predeploy-media-$(date +%Y%m%d-%H%M%S).tar.gz -C ~/merching/shared storage/app/private'
 ```
 
 ## Restore
@@ -100,13 +105,14 @@ ssh goneo 'tar -czf ~/backups/predeploy-media-$(date +%Y%m%d-%H%M%S).tar.gz -C ~
    ```bash
    gunzip -c db-YYYYMMDD-HHMMSS.sql.gz | mysql --defaults-extra-file=~/.my.cnf DATABASE_NAME
    ```
-3. Media: extract/rsync back to `storage/app/private/`.
-4. Ensure the `.env` with the **original `APP_KEY`** is in place.
-5. Deploy the code version matching the backup (or newer) and run
-   `php artisan migrate --force` to apply newer migrations.
-6. `php artisan optimize:clear && php artisan config:cache && php artisan route:cache && php artisan view:cache`
-7. `php artisan up`, then run the verification checklist of the deployment
-   guide.
+3. Media: extract/rsync back to `~/merching/shared/storage/app/private/`.
+4. Ensure `~/merching/shared/.env` with the **original `APP_KEY`** is in place.
+5. Activate a release matching the backup (or newer) with
+   `scripts/release/activate.sh`; it applies newer migrations and rebuilds the
+   caches. If the matching release was already removed, rebuild it locally with
+   `scripts/release/build.sh <commit>`.
+6. `php ~/merching/current/artisan up`, then run the verification checklist of
+   the deployment guide.
 
 Test a full restore into a separate (local or staging) database at least
 twice a year and after major changes; document the result.

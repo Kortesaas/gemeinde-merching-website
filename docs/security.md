@@ -112,11 +112,15 @@ hashed build assets via `public/.htaccess`.
 
 ## HTTPS and hosts
 
-- Production: plain HTTP is redirected (301) to `https://` + host from
-  `APP_URL` (`FORCE_HTTPS`, default on in production). All generated URLs use
-  `APP_URL` (`URL::forceRootUrl`).
-- Trusted hosts (`TRUSTED_HOSTS`, default: host of `APP_URL`) – requests with a
-  foreign `Host` header get HTTP 400. This protects absolute links, e.g. in
+- Canonical origin: `https://www.gemeinde-merching.de` (`APP_URL`).
+- `CanonicalUrlRedirect`: plain HTTP (`FORCE_HTTPS`, default on in
+  production) and alias hosts listed in `REDIRECT_HOSTS` (e.g.
+  `gemeinde-merching.de`) are redirected in a single hop – 301 for GET/HEAD,
+  308 for other methods – to the scheme and host of `APP_URL` with path and
+  query preserved. The target host never comes from the request (no open
+  redirect). All generated URLs use `APP_URL` (`URL::forceRootUrl`).
+- Trusted hosts (`TRUSTED_HOSTS`, default: host of `APP_URL`, plus the
+  `REDIRECT_HOSTS`) – requests with any other `Host` header get HTTP 400. This protects absolute links, e.g. in
   password-reset mails, against Host-header injection.
 - Trusted proxies: none by default (`TRUSTED_PROXIES`); only set if goneo puts
   a reverse proxy in front (verify with `deploy:check` / request headers).
@@ -148,8 +152,14 @@ hashed build assets via `public/.htaccess`.
   `auth.login_failed` (only for existing accounts), `auth.logout`,
   `auth.mfa_enabled`, `auth.mfa_failed`, `auth.recovery_code_used`,
   `auth.recovery_codes_regenerated`, `auth.mfa_reset`, `auth.password_reset`,
-  `user.created`. Audit events are immutable (update throws). Retention rules
-  are to be decided (see open issues).
+  `user.created`. Audit events are immutable (update throws).
+- Audit retention: `AUDIT_RETENTION_DAYS`, default **730 days (provisional –
+  must be confirmed with the Datenschutzbeauftragte before launch)**; `0`
+  disables deletion. Expired events are deleted without cron: opportunistically
+  when new events are written (lottery, batches of 1000), on every release
+  activation and via `php artisan audit:prune` / `model:prune`. This rule
+  covers only audit events – future content revisions get their own retention
+  rules.
 
 ## Uploads
 
