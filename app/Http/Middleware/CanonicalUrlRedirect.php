@@ -50,6 +50,6 @@ class CanonicalUrlRedirect
      */
     private function redirectHosts(): array
     {
-        return array_map('strtolower', (array) config('security.redirect_hosts'));
+        return array_values(array_map('strtolower', (array) config('security.redirect_hosts')));
     }
 }
