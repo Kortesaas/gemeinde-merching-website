@@ -14,7 +14,8 @@
 # Environment: PHP_BIN (default "php"), KEEP_RELEASES (default 5).
 # See docs/deployment-goneo.md.
 
-set -euo pipefail
+# -E: the ERR trap also fires inside functions.
+set -Eeuo pipefail
 
 RELEASE="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 BASE="${BASE:-$(cd "$RELEASE/../.." && pwd)}"
@@ -47,7 +48,12 @@ ln -s "$SHARED/storage" "$RELEASE/storage"
 ln -sfn "$SHARED/.env" "$RELEASE/.env"
 
 echo "==> Verifying configuration (nothing has changed yet)"
-artisan optimize:clear >/dev/null
+# File caches only – the application cache lives in the database, whose
+# tables do not exist yet on a first install.
+artisan config:clear >/dev/null
+artisan route:clear >/dev/null
+artisan view:clear >/dev/null
+artisan event:clear >/dev/null
 artisan deploy:check
 
 echo "==> Maintenance mode"
