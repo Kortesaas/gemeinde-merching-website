@@ -62,16 +62,14 @@ return [
     | Here you may specify the default timezone for your application, which
     | will be used by the PHP date and date-time functions.
     |
-    | Deliberately UTC: all timestamps are stored and compared in UTC so that
-    | scheduled publication windows are unambiguous across daylight-saving
-    | transitions. Dates are converted to "local_timezone" (Europe/Berlin)
-    | only for display and form input – see App\Support\LocalTime.
+    | Deliberately UTC and not configurable: all internal/database timestamps
+    | are stored and compared in UTC so that scheduled publication windows are
+    | unambiguous across daylight-saving transitions. Citizen/editor-facing
+    | dates use config('site.timezone') (SITE_TIMEZONE) via App\Support\SiteTime.
     |
     */
 
     'timezone' => 'UTC',
-
-    'local_timezone' => env('APP_LOCAL_TIMEZONE', 'Europe/Berlin'),
 
     /*
     |--------------------------------------------------------------------------
