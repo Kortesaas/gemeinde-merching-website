@@ -8,6 +8,8 @@
         <dt>Datei</dt>
         <dd>{{ $model->original_filename }} ({{ strtoupper($model->extension) }}, {{ number_format($model->size_bytes / 1024, 0, ',', '.') }} KB)
             – <a href="{{ route('admin.document.file', $model->getKey()) }}">herunterladen</a></dd>
+        <dt>Öffentliche Download-Adresse</dt>
+        <dd><code>{{ $model->downloadPath() }}</code> (nur erreichbar, solange das Dokument veröffentlicht ist)</dd>
     </dl>
 @endif
 <div @class(['form-field', 'form-field--error' => $hasError])>

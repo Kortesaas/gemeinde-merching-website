@@ -41,9 +41,12 @@ class RouteManager
             /** @var PublicRoute|null $canonical */
             $canonical = $model->canonicalRoute()->first();
 
+            // (Re-)activating an opt-in page re-activates its former paths too.
+            $model->publicRoutes()->where('is_active', false)->update(['is_active' => true]);
+
             if ($canonical !== null && $canonical->path_key === $key) {
-                if ($canonical->path !== $path) {
-                    $canonical->update(['path' => $path]);
+                if ($canonical->path !== $path || ! $canonical->is_active) {
+                    $canonical->update(['path' => $path, 'is_active' => true]);
                 }
 
                 return $canonical;
@@ -78,6 +81,22 @@ class RouteManager
 
             return $canonical;
         });
+    }
+
+    /**
+     * Withdraw the public page of a record (opt-in types). Routes are kept
+     * inactive (404) so the URL is not silently reused by another record and
+     * can be re-activated later.
+     *
+     * @param  Model&Routable  $model
+     */
+    public function deactivate(Model $model): void
+    {
+        $affected = $model->publicRoutes()->where('is_active', true)->update(['is_active' => false]);
+
+        if ($affected > 0) {
+            $this->audit->record('route.deactivated', $model, ['paths' => $affected]);
+        }
     }
 
     /**

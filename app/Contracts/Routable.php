@@ -21,6 +21,12 @@ interface Routable
     public static function defaultPathPrefix(): string;
 
     /**
+     * Whether new records get a public route automatically. False = opt-in:
+     * a route only exists when an editor deliberately enters a path.
+     */
+    public static function createsRouteAutomatically(): bool;
+
+    /**
      * @return MorphMany<PublicRoute, covariant \Illuminate\Database\Eloquent\Model>
      */
     public function publicRoutes(): MorphMany;

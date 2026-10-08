@@ -61,7 +61,7 @@ class LifeSituation extends Model implements Revisionable, Routable, Searchable
 
     public static function defaultPathPrefix(): string
     {
-        return '/lebenslagen';
+        return '/buergerservice/lebenslagen';
     }
 
     /**

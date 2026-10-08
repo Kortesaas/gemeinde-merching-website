@@ -242,6 +242,32 @@ abstract class ContentResource
     }
 
     /**
+     * URL handling on save:
+     * - an entered path is assigned (former paths keep redirecting);
+     * - existing routes – e.g. migrated legacy URLs – are never changed
+     *   automatically, so they always take precedence over new conventions;
+     * - new records of auto-route types get a suggested slashless path;
+     * - for opt-in types (documents, departments, locations, organizations)
+     *   an empty path means "no public page" and withdraws an existing one.
+     *
+     * @param  array<string, mixed>  $data
+     */
+    protected function syncPublicRoute(Model&Routable $model, array $data): void
+    {
+        $routes = app(RouteManager::class);
+        $path = trim((string) ($data['public_path'] ?? ''));
+        $hasRoute = $model->canonicalRoute()->exists();
+
+        if ($path !== '') {
+            $routes->assign($model, $path);
+        } elseif (! $hasRoute && $model::createsRouteAutomatically()) {
+            $routes->assign($model, $routes->suggestPath($model));
+        } elseif ($hasRoute && ! $model::createsRouteAutomatically() && array_key_exists('public_path', $data)) {
+            $routes->deactivate($model);
+        }
+    }
+
+    /**
      * Delete: recycle bin for soft-deleting types, otherwise immediately.
      *
      * @param  TModel  $model
@@ -292,13 +318,7 @@ abstract class ContentResource
                 }
 
                 if ($model instanceof Routable) {
-                    $path = trim((string) ($data['public_path'] ?? ''));
-                    if ($path === '' && $model->getAttribute('canonicalRoute') === null) {
-                        $path = app(RouteManager::class)->suggestPath($model);
-                    }
-                    if ($path !== '') {
-                        app(RouteManager::class)->assign($model, $path);
-                    }
+                    $this->syncPublicRoute($model, $data);
                 }
 
                 if ($model instanceof Revisionable) {

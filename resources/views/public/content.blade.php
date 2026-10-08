@@ -5,7 +5,7 @@
     $attributes = $model->getAttributes();
     $archived = method_exists($model, 'isInPublicArchive') && $model->isInPublicArchive();
     $documents = method_exists($model, 'documents')
-        ? $model->documents()->get()->filter(fn ($d) => $d->isPubliclyReachable() && $d->publicPath())
+        ? $model->documents()->get()->filter(fn ($d) => $d->isPubliclyReachable())
         : collect();
     $links = method_exists($model, 'externalResources')
         ? $model->externalResources()->visible()->get()
@@ -41,7 +41,7 @@
             <h2>Dokumente</h2>
             <ul>
                 @foreach ($documents as $document)
-                    <li><a href="{{ \App\Support\Routing\PublicPath::toUrl($document->publicPath()) }}">{{ $document->title }}</a>
+                    <li><a href="{{ \App\Support\Routing\PublicPath::toUrl($document->downloadPath()) }}">{{ $document->title }}</a>
                         ({{ strtoupper($document->extension) }}, {{ number_format($document->size_bytes / 1024, 0, ',', '.') }} KB)</li>
                 @endforeach
             </ul>

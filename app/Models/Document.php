@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 /**
  * Central document/download record: one uploaded file, placed wherever it is
@@ -151,9 +152,36 @@ class Document extends Model implements Revisionable, Routable, Searchable
         return true;
     }
 
+    /**
+     * Documents are exposed through contextual listings and download URLs,
+     * not automatic detail pages. A route is only assigned deliberately
+     * (e.g. to preserve a migrated legacy file URL).
+     */
+    public static function createsRouteAutomatically(): bool
+    {
+        return false;
+    }
+
     public static function defaultPathPrefix(): string
     {
         return '/dokumente';
+    }
+
+    /**
+     * Public download path: a deliberately assigned (e.g. migrated legacy)
+     * route takes precedence; otherwise the stable download URL
+     * /download/{id}/{filename}.
+     */
+    public function downloadPath(): string
+    {
+        return $this->publicPath() ?? '/download/'.$this->getKey().'/'.$this->downloadFilename();
+    }
+
+    public function downloadFilename(): string
+    {
+        $name = Str::slug(pathinfo($this->original_filename, PATHINFO_FILENAME), '-', 'de');
+
+        return ($name !== '' ? Str::limit($name, 120, '') : 'dokument').'.'.$this->extension;
     }
 
     /**

@@ -37,6 +37,17 @@ trait HasPublicRoute
 
     public function publicPath(): ?string
     {
-        return $this->canonicalRoute?->path;
+        $route = $this->canonicalRoute;
+
+        return $route !== null && $route->is_active ? $route->path : null;
+    }
+
+    /**
+     * Default: new records of this type get a suggested route. Types with
+     * opt-in public pages override this.
+     */
+    public static function createsRouteAutomatically(): bool
+    {
+        return true;
     }
 }

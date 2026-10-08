@@ -69,6 +69,14 @@ class Department extends Model implements Revisionable, Routable, Searchable
         return $this->is_active && ! $this->trashed();
     }
 
+    /**
+     * Opt-in: a public detail page exists only if an editor enters a path.
+     */
+    public static function createsRouteAutomatically(): bool
+    {
+        return false;
+    }
+
     public static function defaultPathPrefix(): string
     {
         return '/rathaus/aemter';

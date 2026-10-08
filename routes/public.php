@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Public\ContentController;
+use App\Http\Controllers\Public\DocumentDownloadController;
 use App\Http\Controllers\Public\PlaceholderController;
 use App\Http\Controllers\Public\RobotsController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', PlaceholderController::class)->name('public.home');
 
 Route::get('/robots.txt', RobotsController::class)->name('public.robots');
+
+// Download URL of documents without their own (legacy) route.
+Route::get('/download/{document}/{filename}', DocumentDownloadController::class)
+    ->whereNumber('document')->where('filename', '[^/]+')->name('public.document.download');
 
 // Everything else: content routes and redirects from the database
 // (App\Services\Routing\RouteManager). Must stay the last public route.
