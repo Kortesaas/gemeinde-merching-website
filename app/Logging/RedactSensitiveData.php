@@ -18,7 +18,7 @@ class RedactSensitiveData
      */
     private const SENSITIVE_KEYS = [
         'password', 'passwort', 'token', 'secret', 'recovery', 'code', 'cookie',
-        'session', 'authorization', 'api_key', 'apikey', 'credential',
+        'session', 'authorization', 'api_key', 'apikey', 'credential', 'recipient',
     ];
 
     public function __invoke(Logger $logger): void
