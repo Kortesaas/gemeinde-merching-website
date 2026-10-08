@@ -1,0 +1,30 @@
+.button {
+    display: inline-block;
+    min-height: 2.75rem; /* ≥ 24px target size (WCAG 2.5.8), comfortably 44px */
+    padding: var(--space-2) var(--space-4);
+    font: inherit;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #ffffff;
+    background: var(--color-link);
+    border: 2px solid var(--color-link);
+    border-radius: var(--radius);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    color: #ffffff;
+    background: var(--color-link-hover);
+    border-color: var(--color-link-hover);
+}
+
+.button--secondary {
+    color: var(--color-link);
+    background: var(--color-background);
+}
+
+.button--secondary:hover {
+    color: var(--color-link-hover);
+    background: var(--color-surface);
+}

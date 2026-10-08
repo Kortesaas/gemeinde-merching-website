@@ -1,0 +1,45 @@
+/* Status messages and the error summary. */
+.notice {
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+    border-left: 6px solid var(--color-link);
+    background: var(--color-success-surface);
+}
+
+.notice--warning {
+    border-left-color: var(--color-error);
+    background: var(--color-warning-surface);
+}
+
+.notice > :last-child {
+    margin-bottom: 0;
+}
+
+.notice__title {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.error-summary {
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+    border: 4px solid var(--color-error);
+}
+
+.error-summary__title {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.error-summary__list {
+    margin-bottom: 0;
+}
+
+.error-summary__list a {
+    color: var(--color-error);
+    font-weight: 700;
+}
+
+.form-error__prefix {
+    font-weight: 700;
+}

@@ -1,0 +1,16 @@
+/* "Zum Inhalt springen" – hidden until focused (WCAG 2.4.1). */
+.skip-link {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 100;
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-background);
+    color: var(--color-link);
+    font-weight: 700;
+    transform: translateY(-200%);
+}
+
+.skip-link:focus {
+    transform: none;
+}

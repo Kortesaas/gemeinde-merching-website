@@ -1,0 +1,42 @@
+/* Temporary page header/footer – replaced by the design system later. */
+.page-header {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-3);
+}
+
+.page-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-header__name {
+    margin: 0;
+    font-weight: 700;
+}
+
+.page-footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-3);
+    color: var(--color-text-muted);
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-list form {
+    margin: 0;
+}
+
+[aria-current="page"] {
+    font-weight: 700;
+}

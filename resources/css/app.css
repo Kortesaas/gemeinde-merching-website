@@ -1,0 +1,8 @@
+/*
+ * Public website stylesheet (entry point).
+ * Structure: tokens → base → components → pages. All self-hosted.
+ */
+@import "./tokens.css";
+@import "./base.css";
+@import "./components/skip-link.css";
+@import "./components/page-chrome.css";

@@ -1,0 +1,45 @@
+/*
+ * Design tokens – TEMPORARY NEUTRAL VALUES.
+ *
+ * This file will be populated from the Gemeinde Merching design system in a
+ * later phase. Until then only neutral, accessible defaults are defined here
+ * (system fonts, high-contrast greys). No branding.
+ *
+ * Contrast on #ffffff (WCAG 2.2 AA needs 4.5:1 text, 3:1 UI): text #1a1a1a 17.4:1,
+ * muted #4a4a4a 8.9:1, link/button/focus #0b4f8a 8.4:1, error #b00020 7.3:1,
+ * borders #6b6b6b 5.3:1.
+ */
+:root {
+    /* Typography – system fonts only (no external font requests). */
+    --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --font-size-base: 1rem;
+    --line-height-base: 1.5;
+
+    /* Colours */
+    --color-text: #1a1a1a;
+    --color-text-muted: #4a4a4a;
+    --color-background: #ffffff;
+    --color-surface: #f3f3f3;
+    --color-border: #6b6b6b;
+    --color-link: #0b4f8a;
+    --color-link-hover: #07345c;
+    --color-focus: #0b4f8a;
+    --color-focus-contrast: #ffd34d;
+    --color-error: #b00020;
+    --color-warning-surface: #fff4d6;
+    --color-success-surface: #e7f4ea;
+
+    /* Spacing & layout */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-5: 2rem;
+    --space-6: 3rem;
+    --container-max: 72rem;
+    --container-narrow: 36rem;
+    --radius: 0.25rem;
+
+    --focus-ring-width: 3px;
+}

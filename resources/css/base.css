@@ -1,0 +1,120 @@
+/*
+ * Accessible base styles: light normalisation, readable defaults, visible
+ * keyboard focus, reflow-safe layout (no fixed widths, rem-based sizes).
+ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-text);
+    background: var(--color-background);
+    overflow-wrap: break-word;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.25;
+    margin: var(--space-5) 0 var(--space-3);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+p,
+ul,
+ol,
+dl {
+    margin: 0 0 var(--space-3);
+}
+
+a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+a:hover {
+    color: var(--color-link-hover);
+    text-decoration-thickness: 2px;
+}
+
+code {
+    font-family: var(--font-family-mono);
+}
+
+/* Visible keyboard focus for every interactive element (WCAG 2.4.7 / 2.4.11). */
+:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 calc(var(--focus-ring-width) + 2px) var(--color-focus-contrast);
+}
+
+/* Programmatic focus targets (main, error summary) without a permanent ring. */
+[tabindex="-1"]:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--space-3);
+}
+
+.page-main {
+    padding-block: var(--space-5);
+}
+
+.page-main--narrow {
+    max-width: var(--container-narrow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
