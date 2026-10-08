@@ -22,7 +22,8 @@
         <div class="notice" role="status">
             <p>Sie können diesen Eintrag ansehen, aber nicht ändern.
                 @if (method_exists($model, 'isPublicationLocked') && $model->isPublicationLocked())
-                    Veröffentlichte oder geplante Inhalte können nur mit Veröffentlichungsrecht geändert werden.
+                    Veröffentlichte oder geplante Inhalte können nur mit Veröffentlichungsrecht direkt geändert werden.
+                    @can('propose', $model) Sie können aber eine Änderung vorschlagen (siehe „Änderungsvorschläge“ unten). @endcan
                 @endif
             </p>
         </div>
@@ -64,6 +65,10 @@
     </form>
 
     @unless ($isNew)
+        @if ($model instanceof \App\Contracts\Proposable && $model->isPublicationLocked())
+            @include('admin.resources.partials.proposals')
+        @endif
+
         @if ($resource->hasPlacements() && ! $trashed)
             @include('admin.resources.partials.placements')
         @endif

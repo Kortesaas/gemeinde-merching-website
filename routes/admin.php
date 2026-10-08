@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\TwoFactorChallengeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentFileController;
 use App\Http\Controllers\Admin\PlacementController;
+use App\Http\Controllers\Admin\ProposalController;
 use App\Http\Controllers\Admin\ResourceController;
 use App\Http\Controllers\Admin\RevisionController;
 use App\Http\Controllers\Admin\UserController;
@@ -83,10 +84,24 @@ Route::middleware(['auth', 'auth.session', 'admin.session'])->group(function () 
                 $r(Route::post('{record}/versionen/{revision}/wiederherstellen', [RevisionController::class, 'restore'])->name('revisions.restore'));
 
                 $r(Route::post('{record}/zuordnungen', [PlacementController::class, 'store'])->name('placements.store'));
+                $r(Route::post('{record}/vorschlaege', [ProposalController::class, 'store'])->name('proposals.store'));
                 $r(Route::patch('{record}/zuordnungen/{kind}/{pivot}', [PlacementController::class, 'update'])->name('placements.update'));
                 $r(Route::delete('{record}/zuordnungen/{kind}/{pivot}', [PlacementController::class, 'destroy'])->name('placements.destroy'));
             });
         }
+
+        // --- Change proposals & review queue -----------------------------------
+        Route::prefix('freigaben')->name('proposals.')->controller(ProposalController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('{proposal}', 'show')->name('show');
+            Route::put('{proposal}', 'update')->name('update');
+            Route::post('{proposal}/einreichen', 'submit')->name('submit');
+            Route::post('{proposal}/zurueckziehen', 'withdraw')->name('withdraw');
+            Route::post('{proposal}/freigeben', 'apply')->name('apply');
+            Route::post('{proposal}/ablehnen', 'reject')->name('reject');
+            Route::post('{proposal}/zuordnungen', 'storePlacement')->name('placements.store');
+            Route::delete('{proposal}/zuordnungen/{kind}/{index}', 'destroyPlacement')->whereNumber('index')->name('placements.destroy');
+        })->whereNumber('proposal');
 
         Route::get('dokumente/{record}/datei', DocumentFileController::class)->whereNumber('record')->name('document.file');
 

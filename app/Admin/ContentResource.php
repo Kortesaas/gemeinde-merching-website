@@ -37,6 +37,9 @@ abstract class ContentResource
     /** @var list<callable(): void> cleanup callbacks when saving fails (e.g. stored files) */
     protected array $onFailure = [];
 
+    /** True while form data is applied to compute a change proposal (no side effects such as file uploads). */
+    protected bool $applyingProposal = false;
+
     /**
      * @return class-string<TModel>
      */
@@ -239,6 +242,32 @@ abstract class ContentResource
         }
 
         $this->after($validator, $model);
+    }
+
+    /**
+     * Apply form data to a model (fields, derived values, relations) without
+     * publication changes, routes, revisions or audit. Used to compute change
+     * proposals inside a rolled-back transaction.
+     *
+     * @param  TModel  $model
+     * @param  array<string, mixed>  $data
+     */
+    public function applyFormData(Model $model, array $data, Request $request, bool $forProposal = false): void
+    {
+        $this->applyingProposal = $forProposal;
+
+        try {
+            foreach ($this->fields($model) as $field) {
+                $field->fill($model, $data);
+            }
+            $this->beforeSave($model, $data, $request);
+            $model->save();
+            foreach ($this->fields($model) as $field) {
+                $field->afterSave($model, $data);
+            }
+        } finally {
+            $this->applyingProposal = false;
+        }
     }
 
     /**

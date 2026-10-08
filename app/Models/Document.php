@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Contracts\Revisionable;
+use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
 use App\Enums\AccessibilityStatus;
+use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasPublicRoute;
 use App\Models\Concerns\HasRevisions;
@@ -44,9 +45,9 @@ use Illuminate\Support\Str;
  * @property int|null $replaces_document_id
  */
 #[Fillable(['title', 'description', 'category_id', 'year', 'document_date', 'valid_from', 'valid_until', 'language', 'accessibility_status', 'accessibility_notes', 'accessible_alternative_id', 'replaces_document_id'])]
-class Document extends Model implements Revisionable, Routable, Searchable
+class Document extends Model implements Proposable, Routable, Searchable
 {
-    use HasPublication, HasPublicRoute, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasProposals, HasPublication, HasPublicRoute, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     /**
      * @var array<string, mixed>

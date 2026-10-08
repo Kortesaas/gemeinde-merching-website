@@ -98,6 +98,27 @@ abstract class Field
     }
 
     /**
+     * Value shown when editing a change proposal: $preview carries the
+     * proposed attributes; relation fields read $snapshot instead.
+     *
+     * @param  array<string, mixed>  $snapshot
+     */
+    public function snapshotValue(Model $preview, array $snapshot): mixed
+    {
+        return $this->formValue($preview);
+    }
+
+    /**
+     * Human-readable value of a snapshot (diffs).
+     *
+     * @param  array<string, mixed>  $snapshot
+     */
+    public function snapshotDisplay(Model $preview, array $snapshot): string
+    {
+        return $this->display($preview);
+    }
+
+    /**
      * Human-readable value for lists and revision views.
      */
     public function display(Model $model): string

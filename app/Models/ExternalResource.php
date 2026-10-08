@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Contracts\Revisionable;
+use App\Contracts\Proposable;
 use App\Contracts\Searchable;
 use App\Enums\ExternalResourceType;
+use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasRevisions;
 use App\Models\Concerns\HasSourceReferences;
@@ -29,9 +30,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $privacy_note
  */
 #[Fillable(['title', 'url', 'description', 'type', 'provider_name', 'privacy_note'])]
-class ExternalResource extends Model implements Revisionable, Searchable
+class ExternalResource extends Model implements Proposable, Searchable
 {
-    use HasPublication, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasProposals, HasPublication, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected function casts(): array
     {

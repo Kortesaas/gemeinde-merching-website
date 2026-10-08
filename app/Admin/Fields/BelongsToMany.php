@@ -86,6 +86,36 @@ class BelongsToMany extends Field
         return $model->exists ? $model->{$this->name}()->pluck($model->{$this->name}()->getRelated()->getQualifiedKeyName())->map(fn ($id) => (int) $id)->all() : [];
     }
 
+    public function snapshotValue(Model $preview, array $snapshot): mixed
+    {
+        return array_map(fn (array $row) => (int) $row['id'], (array) ($snapshot['relations'][$this->name] ?? []));
+    }
+
+    public function snapshotDisplay(Model $preview, array $snapshot): string
+    {
+        $options = $this->optionsFor($preview);
+        $rows = (array) ($snapshot['relations'][$this->name] ?? []);
+        usort($rows, fn (array $a, array $b) => ($a['sort_order'] ?? 0) <=> ($b['sort_order'] ?? 0));
+
+        return implode(', ', array_map(fn (array $row) => $options[(int) $row['id']] ?? '#'.$row['id'], $rows));
+    }
+
+    /**
+     * Sort order per related id taken from a snapshot.
+     *
+     * @param  array<string, mixed>  $snapshot
+     * @return array<int, int>
+     */
+    public function snapshotOrders(array $snapshot): array
+    {
+        $orders = [];
+        foreach ((array) ($snapshot['relations'][$this->name] ?? []) as $row) {
+            $orders[(int) $row['id']] = (int) ($row['sort_order'] ?? 0);
+        }
+
+        return $orders;
+    }
+
     /**
      * Current sort order per related id (sortable relations).
      *

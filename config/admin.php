@@ -27,6 +27,12 @@ return [
         'challenge_timeout' => 300,
     ],
 
+    'proposals' => [
+        // Four-eyes principle: the author of a change proposal may not approve
+        // it, even with publish permission.
+        'allow_self_approval' => (bool) env('PROPOSALS_ALLOW_SELF_APPROVAL', false),
+    ],
+
     'session' => [
         // Absolute maximum duration of a backend login in minutes, independent of
         // activity. The idle timeout is SESSION_LIFETIME (config/session.php).

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Contracts\Revisionable;
+use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
 use App\Models\Concerns\HasDocumentPlacements;
+use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasPublicRoute;
 use App\Models\Concerns\HasResourcePlacements;
@@ -31,9 +32,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $body
  */
 #[Fillable(['title', 'sort_title', 'summary', 'body', 'category_id', 'online_service_resource_id', 'sort_order'])]
-class Service extends Model implements Revisionable, Routable, Searchable
+class Service extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasDocumentPlacements, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected function casts(): array
     {

@@ -28,6 +28,10 @@
                     <li><a href="{{ route('admin.'.$key.'.index') }}">{{ $resource->pluralLabel() }}</a></li>
                 @endcan
             @endforeach
+            <li><a href="{{ route('admin.proposals.index') }}">Freigaben und Änderungsvorschläge
+                @if (\App\Http\Controllers\Admin\ProposalController::canReviewAnything(auth()->user()))
+                    ({{ \App\Models\ContentProposal::query()->where('status', 'submitted')->count() }} eingereicht)
+                @endif</a></li>
             @can('viewAny', \App\Models\User::class)
                 <li><a href="{{ route('admin.user.index') }}">Benutzerkonten</a></li>
             @endcan

@@ -89,6 +89,23 @@ class Lines extends Field
         return implode("\n", $lines);
     }
 
+    public function snapshotValue(Model $preview, array $snapshot): mixed
+    {
+        if (! isset($snapshot['collections'][$this->name])) {
+            return $this->formValue($preview);
+        }
+
+        return implode("\n", array_map(
+            fn (array $row) => isset($row['label'], $row['url']) ? $row['label'].' | '.$row['url'] : (string) reset($row),
+            (array) $snapshot['collections'][$this->name],
+        ));
+    }
+
+    public function snapshotDisplay(Model $preview, array $snapshot): string
+    {
+        return str_replace("\n", ', ', (string) $this->snapshotValue($preview, $snapshot));
+    }
+
     public function view(): string
     {
         return 'admin.fields.textarea';

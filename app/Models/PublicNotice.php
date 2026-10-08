@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Contracts\Revisionable;
+use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
 use App\Models\Concerns\HasDocumentPlacements;
+use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasPublicRoute;
 use App\Models\Concerns\HasRevisions;
@@ -29,9 +30,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $body
  */
 #[Fillable(['title', 'summary', 'body', 'category_id', 'published_on'])]
-class PublicNotice extends Model implements Revisionable, Routable, Searchable
+class PublicNotice extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasPublication, HasPublicRoute, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasDocumentPlacements, HasProposals, HasPublication, HasPublicRoute, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected function casts(): array
     {

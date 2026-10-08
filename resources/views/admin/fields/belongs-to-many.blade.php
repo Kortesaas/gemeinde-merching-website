@@ -2,7 +2,7 @@
 @php
     $options = $field->optionsFor($model);
     $selected = array_map('intval', (array) $value);
-    $orders = (array) old($field->name.'_order', $field->sortable ? $field->orderValues($model) : []);
+    $orders = (array) old($field->name.'_order', $orderOverride ?? ($field->sortable ? $field->orderValues($model) : []));
     $hasError = $errors->has($field->name) || $errors->has($field->name.'.*');
 @endphp
 <fieldset id="{{ $field->name }}" @class(['form-field', 'form-fieldset', 'form-field--error' => $hasError]) @if ($hasError) aria-describedby="{{ $field->name }}-error" @endif>

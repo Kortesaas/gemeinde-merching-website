@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Contracts\Revisionable;
+use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
 use App\Models\Concerns\HasDocumentPlacements;
+use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasPublicRoute;
 use App\Models\Concerns\HasResourcePlacements;
@@ -30,9 +31,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $is_featured
  */
 #[Fillable(['title', 'summary', 'body', 'category_id', 'department_id', 'author_name', 'is_featured'])]
-class Article extends Model implements Revisionable, Routable, Searchable
+class Article extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasDocumentPlacements, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected function casts(): array
     {

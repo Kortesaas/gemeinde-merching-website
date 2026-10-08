@@ -105,6 +105,10 @@ class DocumentResource extends ContentResource
     protected function beforeSave(Model $model, array $data, Request $request): void
     {
         /** @var Document $model */
+        if ($this->applyingProposal) {
+            return; // proposals change metadata only; files are replaced by publishers
+        }
+
         $file = $request->file('file');
         if ($file instanceof UploadedFile) {
             app(DocumentStorage::class)->attach($model, $file);

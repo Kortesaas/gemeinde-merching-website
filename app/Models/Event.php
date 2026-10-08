@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Contracts\Revisionable;
+use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
 use App\Models\Concerns\HasDocumentPlacements;
+use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasPublicRoute;
 use App\Models\Concerns\HasResourcePlacements;
@@ -39,9 +40,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $auto_archive
  */
 #[Fillable(['title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive'])]
-class Event extends Model implements Revisionable, Routable, Searchable
+class Event extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasDocumentPlacements, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected static function booted(): void
     {

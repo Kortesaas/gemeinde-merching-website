@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Contracts\Revisionable;
+use App\Contracts\Proposable;
 use App\Enums\AlertSeverity;
+use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasRevisions;
 use App\Models\Concerns\TracksEditors;
@@ -23,9 +24,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $link_label
  */
 #[Fillable(['title', 'body', 'severity', 'link_url', 'link_label'])]
-class SiteAlert extends Model implements Revisionable
+class SiteAlert extends Model implements Proposable
 {
-    use HasPublication, HasRevisions, SoftDeletes, TracksEditors;
+    use HasProposals, HasPublication, HasRevisions, SoftDeletes, TracksEditors;
 
     protected function casts(): array
     {

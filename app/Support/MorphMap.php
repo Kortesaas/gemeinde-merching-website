@@ -31,5 +31,6 @@ final class MorphMap
         'navigation-item' => Models\NavigationItem::class,
         'redirect' => Models\Redirect::class,
         'public-route' => Models\PublicRoute::class,
+        'proposal' => Models\ContentProposal::class,
     ];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Contracts\Proposable;
 use App\Models\User;
 use App\Support\Authorization\Ability;
 use App\Support\Authorization\ContentType;
@@ -14,9 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * @can / $this->authorize) – never role names.
  *
  * Editing vs. publishing: users with "edit" but without "publish" may only
- * change drafts. Content that is or was public (or scheduled) is locked for
- * them until the review workflow exists, so an editor can never change what
- * the public sees without a publisher.
+ * change drafts directly. For content that is or was public (or scheduled)
+ * they create change proposals ("propose"), which a publisher reviews and
+ * applies – an editor can never change what the public sees on their own.
  */
 abstract class ContentPolicy
 {
@@ -74,6 +75,18 @@ abstract class ContentPolicy
     public function forceDelete(User $user, Model $model): bool
     {
         return $this->isTrashed($model) && $this->allows($user, Ability::ForceDelete);
+    }
+
+    /**
+     * Create a change proposal: content that is locked by its publication
+     * state, not in the recycle bin, and the user may edit this type.
+     */
+    public function propose(User $user, Model $model): bool
+    {
+        return $model instanceof Proposable
+            && ! $this->isTrashed($model)
+            && $model->isPublicationLocked()
+            && $this->allows($user, Ability::Edit);
     }
 
     public function viewRevisions(User $user, Model $model): bool
