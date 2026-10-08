@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Models;
+
+use App\Contracts\Revisionable;
+use App\Contracts\Routable;
+use App\Contracts\Searchable;
+use App\Models\Concerns\HasDocumentPlacements;
+use App\Models\Concerns\HasPublication;
+use App\Models\Concerns\HasPublicRoute;
+use App\Models\Concerns\HasResourcePlacements;
+use App\Models\Concerns\HasRevisions;
+use App\Models\Concerns\HasSourceReferences;
+use App\Models\Concerns\TracksEditors;
+use App\Support\Search\SearchDocument;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * Lebenslage (Umzug, Geburt, …) bundling services, documents and links.
+ *
+ * @property int $id
+ * @property string $title
+ * @property string|null $summary
+ * @property string|null $body
+ */
+#[Fillable(['title', 'summary', 'body', 'sort_order'])]
+class LifeSituation extends Model implements Revisionable, Routable, Searchable
+{
+    use HasDocumentPlacements, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+
+    protected function casts(): array
+    {
+        return ['sort_order' => 'integer'];
+    }
+
+    /**
+     * @return BelongsToMany<Service, $this>
+     */
+    public function services(): BelongsToMany
+    {
+        return $this->belongsToMany(Service::class)->withPivot('sort_order')->withTimestamps()->orderByPivot('sort_order');
+    }
+
+    public static function documentSlots(): array
+    {
+        return ['dokumente' => 'Dokumente'];
+    }
+
+    public static function resourceSlots(): array
+    {
+        return ['links' => 'Links & Online-Dienste'];
+    }
+
+    public function displayTitle(): string
+    {
+        return $this->title;
+    }
+
+    public static function defaultPathPrefix(): string
+    {
+        return '/lebenslagen';
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function revisionAttributes(): array
+    {
+        return ['title', 'summary', 'body', 'sort_order'];
+    }
+
+    /**
+     * @return array<string, list<string>>
+     */
+    public function revisionRelations(): array
+    {
+        return [
+            'services' => ['sort_order'],
+            'documents' => ['slot', 'group_label', 'sort_order'],
+            'externalResources' => ['slot', 'group_label', 'sort_order'],
+        ];
+    }
+
+    public function toSearchDocument(): SearchDocument
+    {
+        return new SearchDocument($this->title, (string) $this->summary, [], (string) $this->body);
+    }
+}

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Session\PrivacyDatabaseSessionHandler;
+use App\Support\MorphMap;
 use Carbon\CarbonImmutable;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -53,9 +54,7 @@ class AppServiceProvider extends ServiceProvider
         Model::shouldBeStrict(! $this->app->isProduction());
 
         // Stable aliases instead of PHP class names in polymorphic columns.
-        Relation::enforceMorphMap([
-            'user' => User::class,
-        ]);
+        Relation::enforceMorphMap(MorphMap::MAP);
     }
 
     private function configureSecurity(): void
