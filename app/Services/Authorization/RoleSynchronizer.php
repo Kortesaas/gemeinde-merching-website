@@ -11,7 +11,8 @@ use Spatie\Permission\PermissionRegistrar;
 
 /**
  * Synchronises the code-defined roles and permissions into the database.
- * Idempotent; safe to run on every deployment.
+ * Idempotent; safe to run on every deployment. Permissions that no longer
+ * exist in code are removed (code is the single source of truth).
  */
 class RoleSynchronizer
 {
@@ -22,14 +23,16 @@ class RoleSynchronizer
         $this->registrar->forgetCachedPermissions();
 
         DB::transaction(function () {
-            foreach (Permission::cases() as $permission) {
-                PermissionModel::findOrCreate($permission->value, 'web');
+            $names = Permission::all();
+
+            foreach ($names as $name) {
+                PermissionModel::findOrCreate($name, 'web');
             }
 
+            PermissionModel::query()->where('guard_name', 'web')->whereNotIn('name', $names)->delete();
+
             foreach (Role::cases() as $role) {
-                RoleModel::findOrCreate($role->value, 'web')->syncPermissions(
-                    array_map(fn (Permission $p) => $p->value, $role->permissions()),
-                );
+                RoleModel::findOrCreate($role->value, 'web')->syncPermissions($role->permissions());
             }
         });
 

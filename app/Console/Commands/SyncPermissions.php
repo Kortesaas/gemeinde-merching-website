@@ -19,7 +19,7 @@ class SyncPermissions extends Command
         $this->components->info('Roles and permissions synchronised.');
         $this->table(['Role', 'Permissions'], array_map(fn (Role $role) => [
             $role->value,
-            implode(', ', array_map(fn ($p) => $p->value, $role->permissions())),
+            count($role->permissions()),
         ], Role::cases()));
 
         return self::SUCCESS;

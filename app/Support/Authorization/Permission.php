@@ -3,20 +3,17 @@
 namespace App\Support\Authorization;
 
 /**
+ * System permissions that are not tied to a content type. Content permissions
+ * ("article.edit", …) are derived from ContentType × Ability.
+ *
  * Permissions are defined in code (single source of truth) and synchronised to
  * the database with `php artisan permissions:sync`. Check them through gates,
  * policies or the `can:` middleware – never by comparing role names.
- *
- * Content permissions (articles, events, documents, …) are added together with
- * the respective content types in later phases.
  */
 enum Permission: string
 {
     /** Enter the backend at all. */
     case AccessAdmin = 'admin.access';
-
-    /** Create, edit and deactivate employee accounts and assign roles. */
-    case ManageUsers = 'users.manage';
 
     /** Read the audit log. */
     case ViewAuditLog = 'audit.view';
@@ -25,8 +22,23 @@ enum Permission: string
     {
         return match ($this) {
             self::AccessAdmin => 'Verwaltungsbereich aufrufen',
-            self::ManageUsers => 'Benutzerkonten verwalten',
             self::ViewAuditLog => 'Protokoll einsehen',
         };
+    }
+
+    /**
+     * Every permission name of the application (system + content).
+     *
+     * @return list<string>
+     */
+    public static function all(): array
+    {
+        $names = array_map(fn (self $p) => $p->value, self::cases());
+
+        foreach (ContentType::cases() as $type) {
+            array_push($names, ...$type->permissions());
+        }
+
+        return $names;
     }
 }
