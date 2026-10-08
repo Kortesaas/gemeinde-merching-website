@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Public\ContentController;
 use App\Http\Controllers\Public\PlaceholderController;
 use App\Http\Controllers\Public\RobotsController;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', PlaceholderController::class)->name('public.home');
 
 Route::get('/robots.txt', RobotsController::class)->name('public.robots');
+
+// Everything else: content routes and redirects from the database
+// (App\Services\Routing\RouteManager). Must stay the last public route.
+Route::fallback(ContentController::class)->name('public.content');
+
+// Unknown paths are 404 for every method (not 405 because of the GET fallback).
+Route::match(['POST', 'PUT', 'PATCH', 'DELETE'], '{any}', fn () => abort(404))->where('any', '.*');

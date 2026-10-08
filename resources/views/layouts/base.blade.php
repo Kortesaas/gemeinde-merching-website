@@ -14,6 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $hasErrors ? 'Fehler: ' : '' }}{{ $pageTitle !== '' ? $pageTitle.' – ' : '' }}{{ $siteTitle ?? config('app.name') }}</title>
     <meta name="robots" content="{{ $robots ?? 'noindex, nofollow' }}">
+    @hasSection('canonical')
+        {{-- Absolute, slashless canonical URL on the canonical host (APP_URL). --}}
+        <link rel="canonical" href="@yield('canonical')">
+    @endif
     {{-- Suppresses the automatic /favicon.ico request until the real icon exists. --}}
     <link rel="icon" href="data:,">
     @vite($viteEntries ?? ['resources/css/app.css'])

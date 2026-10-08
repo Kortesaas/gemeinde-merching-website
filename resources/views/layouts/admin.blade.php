@@ -29,7 +29,7 @@
         </div>
     </header>
 
-    <main id="inhalt" class="container page-main page-main--narrow" tabindex="-1">
+    <main id="inhalt" @class(['container', 'page-main', 'page-main--narrow' => ! request()->routeIs('admin.*.index', 'admin.*.edit', 'admin.*.create', 'admin.*.revisions', 'admin.*.revisions.show', 'admin.dashboard')]) tabindex="-1">
         @yield('content')
     </main>
 @endsection

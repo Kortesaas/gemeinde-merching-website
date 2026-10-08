@@ -14,10 +14,10 @@ ServerSignature Off
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
+    # No trailing-slash rewrite here on purpose: canonical URLs are slashless,
+    # but the application redirects "/foo/" in ONE hop to the final target
+    # (e.g. directly to the destination of a legacy redirect). An Apache rule
+    # would add a second hop (redirect chain).
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

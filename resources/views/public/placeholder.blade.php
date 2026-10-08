@@ -1,6 +1,7 @@
 @extends('layouts.public')
 
 @section('title', 'Entwicklungsumgebung')
+@section('canonical', \App\Support\Routing\PublicPath::absoluteUrl('/'))
 
 @section('content')
     <h1>Gemeinde Merching – Entwicklungsumgebung</h1>
