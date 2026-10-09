@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
+use PragmaRX\Google2FA\Google2FA;
 use RuntimeException;
 use Tests\TestCase;
 
@@ -29,6 +30,10 @@ class DevelopmentAccountTest extends TestCase
     {
         $this->post($this->adminUrl('login'), ['email' => DevelopmentDemoSeeder::ADMIN_EMAIL, 'password' => DevelopmentDemoSeeder::ADMIN_PASSWORD])
             ->assertRedirect($this->adminUrl('login/zwei-faktor'));
+        // The documented TOTP secret completes the second factor.
+        $code = (new Google2FA)->getCurrentOtp(DevelopmentDemoSeeder::ADMIN_TOTP_SECRET);
+        $this->post($this->adminUrl('login/zwei-faktor'), ['code' => $code])->assertRedirect($this->adminUrl('dashboard'));
+        $this->assertAuthenticated();
     }
 
     public function test_demo_accounts_cannot_sign_in_outside_local_environments(): void
