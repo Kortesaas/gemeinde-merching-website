@@ -19,6 +19,15 @@ class HomeController extends Controller
         $settings = app(SiteConfiguration::class)->current();
         $public = fn ($model) => $model?->isPubliclyReachable() ? $model : null;
         $hero = $settings?->homepageMedia;
+        $greetingMedia = $settings?->greetingMedia;
+        $greetingPage = $settings?->greetingPage;
+        $greeting = trim((string) $settings?->greeting_text) === '' ? null : [
+            'text' => trim((string) $settings?->greeting_text),
+            'name' => $settings?->greeting_name,
+            'role' => $settings?->greeting_role,
+            'url' => $greetingPage?->isPubliclyReachable() ? $greetingPage->publicPath() : null,
+            'media' => $greetingMedia !== null && $greetingMedia->isPubliclyReachable() && $greetingMedia->isImage() && $greetingMedia->hasAccessibleAlternative() ? $greetingMedia : null,
+        ];
         $news = $catalog->items('articles')->take(4)->values();
         $news->each(fn ($article) => $article instanceof Article ? $article->load('media') : null);
         $resources = ExternalResource::query()->visible()->whereIn('type', ['online_service', 'portal'])->orderBy('title')->get();
@@ -31,6 +40,7 @@ class HomeController extends Controller
             'recycling' => $public($settings?->recyclingLocation),
             'hero' => $hero !== null && $hero->isPubliclyReachable() && $hero->isImage() && $hero->hasAccessibleAlternative() ? $hero : null,
             'shortcuts' => $navigation->tree(NavigationMenu::Service),
+            'greeting' => config('public.homepage.greeting', true) ? $greeting : null,
             'news' => $news,
             'events' => $catalog->items('events')->filter(fn ($m) => $m instanceof Event && $m->endsAtForArchiving()->isFuture())->take(4)->values(),
             'portal' => $resources->first(fn ($r) => $r->getRawOriginal('type') === 'portal'),

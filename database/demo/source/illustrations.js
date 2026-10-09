@@ -130,6 +130,15 @@ export const scenes = {
         ${tree(300, g + 30, 1.2)}${tree(900, g + 10, 0.9)}${tree(1800, g + 20, 1.1, '#356f45', '#468a58')}${tree(2200, g + 30, 1.4)}
         <g transform="translate(1250 ${g + 120})"><circle cx="0" cy="0" r="38" fill="none" stroke="#16202e" stroke-width="8"/><circle cx="110" cy="0" r="38" fill="none" stroke="#16202e" stroke-width="8"/><path d="M0 0 L 45 -60 L 110 0 M 45 -60 L 95 -60" stroke="#c62828" stroke-width="10" fill="none"/><circle cx="60" cy="-150" r="20" fill="#16202e"/><path d="M60 -130 L 55 -70 L 85 -62" stroke="#2f73c9" stroke-width="18" fill="none" stroke-linecap="round"/></g>${label(w, h)}`;
     } },
+    // Neutral silhouette for the greeting example: deliberately not a real person.
+    grusswort: { width: 800, height: 1000, draw(w, h) {
+        return `<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3effd"/><stop offset="1" stop-color="#94c3f7"/></linearGradient></defs>
+        <rect width="${w}" height="${h}" fill="url(#bg)"/>
+        <circle cx="${w / 2}" cy="${h * 0.38}" r="${w * 0.19}" fill="#1d3f6e"/>
+        <path d="M ${w * 0.12} ${h} C ${w * 0.14} ${h * 0.72}, ${w * 0.3} ${h * 0.62}, ${w / 2} ${h * 0.62} S ${w * 0.86} ${h * 0.72}, ${w * 0.88} ${h} Z" fill="#1d3f6e"/>
+        <path d="M ${w * 0.44} ${h * 0.63} L ${w / 2} ${h * 0.76} L ${w * 0.56} ${h * 0.63} Z" fill="#f4f7fb"/>
+        ${label(w, h)}`;
+    } },
     winter: { width: 640, height: 480, draw(w, h) {
         const g = h * 0.7;
         return `${sky(w, h, '#a9c8e6', '#f2f6fa')}${hills(w, h, g, '#ffffff', 20)}

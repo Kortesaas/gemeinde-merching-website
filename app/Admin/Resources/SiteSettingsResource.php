@@ -8,6 +8,7 @@ use App\Models\ContactRoute;
 use App\Models\Department;
 use App\Models\Location;
 use App\Models\Media;
+use App\Models\Page;
 use App\Models\SiteSettings;
 use App\Support\Authorization\ContentType;
 use Illuminate\Database\Eloquent\Model;
@@ -55,6 +56,11 @@ class SiteSettingsResource extends ContentResource
             Fields\BelongsTo::make('works_department_id', 'Bauhof-Kontakt')->options(fn () => Department::query()->pluck('name', 'id')->all()),
             Fields\BelongsTo::make('recycling_location_id', 'Wertstoffsammelstelle')->options(fn () => Location::query()->pluck('name', 'id')->all()),
             Fields\BelongsTo::make('homepage_media_id', 'Startseitenbild')->options(fn () => Media::query()->where('mime_type', 'like', 'image/%')->where(fn ($q) => $q->where('is_decorative', true)->orWhereNotNull('alt_text'))->orderBy('title')->pluck('title', 'id')->all())->hint('Optional. Erscheint groß neben der Suche auf der Startseite. Nur veröffentlichte Bilder mit Alternativtext werden angezeigt.'),
+            Fields\Textarea::make('greeting_text', 'Grußwort auf der Startseite (Zitat)')->rules(['max:400'])->hint('Optional. Ein bis zwei Sätze ohne Anführungszeichen; erscheint als Zitat auf der Startseite. Leer = kein Grußwort.'),
+            Fields\Text::make('greeting_name', 'Grußwort: Name')->rules(['required_with:greeting_text'])->hint('z. B. der Name des Ersten Bürgermeisters.'),
+            Fields\Text::make('greeting_role', 'Grußwort: Funktion')->hint('z. B. „Erster Bürgermeister“.'),
+            Fields\BelongsTo::make('greeting_page_id', 'Grußwort: Seite mit dem vollständigen Text')->options(fn () => Page::query()->orderBy('title')->pluck('title', 'id')->all())->hint('Optional. Verlinkt als „Zum Grußwort“, solange die Seite veröffentlicht ist.'),
+            Fields\BelongsTo::make('greeting_media_id', 'Grußwort: Bild')->options(fn () => Media::query()->where('mime_type', 'like', 'image/%')->whereNotNull('alt_text')->orderBy('title')->pluck('title', 'id')->all())->hint('Optional. Nur veröffentlichte Bilder mit Alternativtext werden angezeigt.'),
             Fields\Textarea::make('postal_address', 'Abweichende Postanschrift'), Fields\Textarea::make('legal_contact', 'Rechtlicher Kontakt / Footer'),
             Fields\Text::make('default_seo_title', 'Standard-Seitentitel'), Fields\Textarea::make('default_meta_description', 'Standard-Meta-Beschreibung')->rules(['max:500']),
         ];

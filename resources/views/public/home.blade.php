@@ -98,12 +98,11 @@
 
 @if (config('public.homepage.online') && ($portal || $online->isNotEmpty()))
     <section class="section panel panel--split" aria-labelledby="online-heading">
-        <div>
+        <div class="panel__intro">
             <h2 id="online-heading">Digitales Rathaus</h2>
-            <p>Viele Anträge stellen Sie rund um die Uhr online – unabhängig von den Öffnungszeiten.</p>
+            <p>Viele Anträge stellen Sie rund um die Uhr online – unabhängig von den Öffnungszeiten{{ $portal?->provider_name ? ', zum Beispiel im '.$portal->provider_name : '' }}.</p>
             @if ($portal)
-                <a class="button" href="{{ $portal->url }}">{{ $portal->title }}<span class="visually-hidden"> (externer Link)</span> <x-icon name="external" /></a>
-                <p class="meta">Externer Dienst @if ($portal->provider_name) · {{ $portal->provider_name }}@endif</p>
+                <a class="button button--pill" href="{{ $portal->url }}">{{ $portal->title }}<span class="visually-hidden"> (externer Link)</span> <x-icon name="external" /></a>
             @endif
         </div>
         @if ($online->isNotEmpty())
@@ -119,6 +118,22 @@
             </ul>
         @endif
     </section>
+@endif
+
+@if ($greeting)
+    <figure class="section greeting {{ $greeting['media'] ? '' : 'greeting--text' }}" aria-labelledby="greeting-text">
+        @if ($greeting['media'])
+            <div class="greeting__media">@include('public.partials.image', ['medium' => $greeting['media'], 'imageSizes' => '10rem', 'imageClass' => 'greeting__image'])</div>
+        @endif
+        <div class="greeting__body">
+            <blockquote class="greeting__quote" id="greeting-text"><p>„{{ $greeting['text'] }}“</p></blockquote>
+            <figcaption class="greeting__caption">
+                @if ($greeting['name'])<strong class="greeting__name">{{ $greeting['name'] }}</strong>@endif
+                @if ($greeting['role'])<span>{{ $greeting['role'] }}</span>@endif
+                @if ($greeting['url'])<span><a href="{{ \App\Support\Routing\PublicPath::toUrl($greeting['url']) }}">Zum Grußwort</a></span>@endif
+            </figcaption>
+        </div>
+    </figure>
 @endif
 
 @if (config('public.homepage.contact') && ($townHall || $central || $works || $recycling))

@@ -93,7 +93,7 @@ class ContentUsage
             }
         }
 
-        foreach (SiteSettings::query()->where('homepage_media_id', $media->getKey())->get() as $settings) {
+        foreach (SiteSettings::query()->where('homepage_media_id', $media->getKey())->orWhere('greeting_media_id', $media->getKey())->get() as $settings) {
             $owners[] = $settings;
         }
 
@@ -109,7 +109,7 @@ class ContentUsage
     /** @param array<string,mixed> $snapshot */
     private function snapshotUsesMedia(array $snapshot, int $id): bool
     {
-        if ((int) ($snapshot['attributes']['homepage_media_id'] ?? 0) === $id) {
+        if ((int) ($snapshot['attributes']['homepage_media_id'] ?? 0) === $id || (int) ($snapshot['attributes']['greeting_media_id'] ?? 0) === $id) {
             return true;
         }
         foreach ($snapshot['relations']['media'] ?? [] as $row) {

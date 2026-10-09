@@ -83,7 +83,7 @@ paths stay slashless, with production origin `https://www.gemeinde-merching.de`.
 
 | Component | Behavior |
 |---|---|
-| Homepage | Search, live alert, managed service-menu shortcuts, current articles, upcoming events, published online resources, settings-based contacts; empty sections disappear |
+| Homepage | Search, live alert, managed service-menu shortcuts, current articles, upcoming events, published online resources, optional greeting (quote, name, role, link to a Grußwort page, optional image — all from Website-Einstellungen), settings-based contacts; empty sections disappear |
 | Search form/results | Ordinary GET `/suche`, server snippets/type labels, type filter, pagination and helpful empty/no-results text |
 | Catalog | Public visibility before filtering/pagination, categories, title filter, online filter, archive switch, life situations |
 | A–Z | Native letter anchors, folded German umlauts, service/contact metadata; all matching letters remain available |
@@ -261,6 +261,8 @@ launch, as described in `docs/accessibility.md`.
 - The header has no utility row (“Leichte Sprache”/“Gebärdensprache” links in the
   reference point to content that does not exist yet); add them as footer or menu
   entries once the pages exist.
+- The greeting image is a site-settings media reference, not a person field:
+  people still have no portrait. The demo uses a neutral silhouette illustration.
 - News listings use image cards (featured first card, designed fallback without
   image) instead of the reference's text list, so editorial images are visible;
   the homepage keeps a compact list with one lead image.

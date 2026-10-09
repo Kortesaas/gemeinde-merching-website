@@ -11,7 +11,7 @@ return [
         '/dokumente' => ['title' => 'Dokumente und Formulare', 'kind' => 'documents'],
         '/verzeichnisse' => ['title' => 'Ansprechpartner und Einrichtungen', 'kind' => 'directory'],
     ],
-    'homepage' => ['services' => true, 'news' => true, 'events' => true, 'online' => true, 'contact' => true],
+    'homepage' => ['services' => true, 'news' => true, 'events' => true, 'online' => true, 'greeting' => true, 'contact' => true],
     'wappen' => 'resources/images/wappen-merching-prototype.png',
     // Short identity line under the municipality name in the header.
     'tagline' => env('PUBLIC_TAGLINE', 'im Landkreis Aichach-Friedberg'),

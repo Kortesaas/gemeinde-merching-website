@@ -403,6 +403,7 @@ class DevelopmentDemoSeeder extends Seeder
             'markt' => ['Wochenmarkt (Illustration)', 'Illustration dreier Marktstände mit gestreiften Markisen und Obst', null, 50, 60],
             'radweg' => ['Radweg (Illustration)', 'Illustration eines Radwegs durch Felder mit einer radfahrenden Person', null, 52, 60],
             'winter' => ['Winterdienst (Illustration, klein)', 'Kleine Illustration eines verschneiten Hauses', null, 50, 50],
+            'grusswort' => ['Grußwort (Platzhalter-Silhouette)', 'Neutrale Silhouette als Platzhalter für ein Bild zum Grußwort', null, 50, 40],
         ];
         foreach ($images as $key => [$title, $alt, $caption, $fx, $fy]) {
             $media = new Media(['title' => $title, 'alt_text' => $alt, 'caption' => $caption, 'copyright' => 'Demo-Illustration (frei erfunden)', 'creator' => 'DevelopmentDemoSeeder', 'focal_x' => $fx, 'focal_y' => $fy]);
@@ -791,6 +792,17 @@ class DevelopmentDemoSeeder extends Seeder
         $this->ref('page.bauen', Page::class)->externalResources()->attach($this->ref('link.bayernatlas', ExternalResource::class)->getKey(), ['slot' => 'links', 'sort_order' => 0]);
         $this->ref('page.bauen', Page::class)->externalResources()->attach($this->ref('link.portal', ExternalResource::class)->getKey(), ['slot' => 'online-dienste', 'sort_order' => 0]);
         $this->ref('page.kinderbetreuung', Page::class)->contacts()->attach($this->ref('person.sitzung', Person::class)->getKey(), ['sort_order' => 0]);
+
+        $greeting = Page::create(['title' => 'Grußwort des Ersten Bürgermeisters', 'summary' => 'Musterinhalt: ein Grußwort zur Demonstration der Startseite.', 'body' => "Liebe Mitbürgerinnen und Mitbürger,\n\nherzlich willkommen auf der neuen Website der Gemeinde. Hier finden Sie Leistungen, Formulare, Termine und Ansprechpersonen an einem Ort.\n\n*Musterinhalt – dieser Text und die genannte Person sind frei erfunden.*"]);
+        $this->publish($greeting, 100);
+        $this->route($greeting, '/rathaus-und-politik/grusswort');
+        SiteSettings::query()->whereKey(1)->update([
+            'greeting_text' => 'Liebe Mitbürgerinnen, liebe Mitbürger, ich freue mich sehr, dass Sie uns auf dem digitalen Weg besuchen.',
+            'greeting_name' => 'Max Mustermann',
+            'greeting_role' => 'Erster Bürgermeister (Demo)',
+            'greeting_page_id' => $greeting->getKey(),
+            'greeting_media_id' => $this->ref('img.grusswort', Media::class)->getKey(),
+        ]);
 
         // A page that exercises every supported content block.
         $page = Page::create(['title' => 'Freizeit am See', 'summary' => 'Baden, Spielen und Erholen am Badeplatz – mit allen Informationen zu Badeordnung, Veranstaltungen und Anfahrt.', 'department_id' => $this->ref('dep.ordnung', Department::class)->getKey()]);

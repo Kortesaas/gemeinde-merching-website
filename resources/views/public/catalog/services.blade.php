@@ -44,8 +44,8 @@
     <section class="section panel panel--split" aria-labelledby="online-services-heading">
         <div>
             <h2 id="online-services-heading">Online-Dienste</h2>
-            <p>Viele Anträge erledigen Sie unabhängig von den Öffnungszeiten.</p>
-            @if ($portal)<a class="button" href="{{ $portal->url }}">{{ $portal->title }}<span class="visually-hidden"> (externer Link)</span> <x-icon name="external" /></a><p class="meta">Externer Dienst · Sie verlassen die Website der Gemeinde.</p>@endif
+            <p>Viele Anträge erledigen Sie unabhängig von den Öffnungszeiten{{ $portal?->provider_name ? ' im '.$portal->provider_name : '' }}. Der Link führt zu einem externen Dienst.</p>
+            @if ($portal)<a class="button button--pill" href="{{ $portal->url }}">{{ $portal->title }}<span class="visually-hidden"> (externer Link)</span> <x-icon name="external" /></a>@endif
         </div>
         @if ($onlineServices->isNotEmpty())
             <details class="accordion accordion--panel">
