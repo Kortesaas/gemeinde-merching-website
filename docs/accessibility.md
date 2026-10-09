@@ -105,6 +105,44 @@ Every new page/component must be added to these tests.
 
 ## Controlled components
 
+The public **Darstellung & Barrierefreiheit** panel is an optional personalization
+aid, not an accessibility overlay or a substitute for the underlying WCAG work.
+It is available from a fixed icon at the viewport's lower-right corner. A compact,
+scrollable overlay expands directly above it without fullscreen treatment or dimming.
+The native modal dialog
+has a labelled title, an initial close-button focus, native focus containment,
+Escape dismissal and focus return to the invoking button. Native checkboxes and
+a select expose their actual states; their labels and buttons meet the 44 px
+target. No controls rely on hover. On narrow screens the overlay keeps a margin
+and fits within the viewport; changing the font size also scales the panel itself.
+
+The no-JavaScript experience hides unavailable controls and explains browser
+zoom; all existing content, navigation, search and forms remain usable. Browser
+and OS settings keep working. Palette overrides are scoped to
+`forced-colors: none`; system contrast colours and focus remain authoritative.
+OS reduced motion is always respected, including after resetting manual settings.
+
+Image hiding preserves each image's dimensions, aspect ratio and crop, replacing
+its pixels with a neutral surface and overlaid alternative text. Captions and
+links remain; overflowing descriptions can be scrolled with the keyboard.
+Decorative image slots remain neutral, while essential images can opt out.
+
+`tests/Browser/display-preferences.spec.js` checks keyboard focus/return,
+320/390/768/1024/1440 px reflow at 150% text, control targets, all 24 palette
+combinations on home/contact/events, forced colours, manual/OS reduced motion,
+no JavaScript, image context/geometry, cross-page/tab persistence and reset,
+denied/corrupt storage and speech failure paths.
+Read-aloud tests use deterministic browser API doubles; actual voice quality,
+platform speech and assistive-technology compatibility require native testing.
+
+Read-aloud uses only browser-reported local German voices and reads rendered
+main content in short chunks. Forms, field values, buttons, navigation and hidden
+content are omitted. The panel closes on start and the footer retains a stop
+button; reset and leaving the page also stop speech. It never starts automatically.
+Unsupported APIs, missing local voices and synthesis errors have explicit German
+messages. It cannot read downloaded PDFs, external sites or unprovided image
+descriptions, and is not a screen reader.
+
 Block headings are restricted to H2–H4 after the page H1; skipped levels are
 publishing errors. Images use central reviewed alternatives, with justified
 gallery context overrides. Native details/summary implements accordions.

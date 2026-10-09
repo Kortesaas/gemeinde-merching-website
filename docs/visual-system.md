@@ -287,8 +287,9 @@ Browser checks cover 320, 390, 768, 1024 and 1440 CSS px. Keyboard checks exerci
 skip links, disclosures, search focus/selection/Escape, no-JavaScript navigation
 and search, row ordering/add/remove, form error focus and restore disclosure.
 Axe checks cover public journeys and authenticated CMS, including expanded editor
-groups. Reduced-motion and forced-colors emulation are checked; no custom contrast
-mode is provided. Contrast, reflow and local screenshots were reviewed manually.
+groups. Reduced-motion and forced-colors emulation are checked. The optional
+public display panel includes a contrast helper; forced colours remain controlled
+by the operating system. Contrast, reflow and local screenshots were reviewed manually.
 
 These checks do not constitute a formal WCAG/BITV assessment. Native screen-reader
 checks with VoiceOver/Safari and NVDA/Firefox/Chrome, mobile assistive technology,

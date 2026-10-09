@@ -193,7 +193,7 @@ h2 {
 }
 
 .badge--cancelled {
-    color: #fff;
+    color: var(--color-action-text);
     background: var(--color-error);
 }
 
@@ -338,7 +338,7 @@ h2 {
     padding: var(--space-2) 0;
     border-radius: var(--radius);
     background: var(--color-sky-soft);
-    color: var(--color-dark);
+    color: var(--color-on-sky);
     line-height: 1;
 }
 
@@ -454,7 +454,7 @@ figcaption {
 
 .pagination [aria-current] span,
 .pagination span[aria-current] {
-    color: #fff;
+    color: var(--color-action-text);
     background: var(--color-link);
     border-color: var(--color-link);
 }

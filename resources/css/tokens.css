@@ -47,6 +47,8 @@
     --color-rule: #d6deea;
     --color-link: #0b5cc2;
     --color-link-hover: #0a4a9c;
+    --color-action-text: #fff;
+    --color-on-sky: var(--color-dark);
     --color-gold: #c99a06;
     --color-gold-soft: #fbf3d5;
     --color-focus: #000;

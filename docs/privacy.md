@@ -13,7 +13,9 @@ default (Art. 25 GDPR) and must not require consent for merely reading it
 | Topic | Implementation |
 |---|---|
 | Cookies | **None** for visitors reading the website. Public routes run in the stateless `public` middleware group: no session, no CSRF cookie, no tracking. Tested in PHPUnit (`PlaceholderPageTest`) and in the browser (`tests/Browser/privacy.spec.js`). |
-| Browser storage | No `localStorage`/`sessionStorage` (browser test). |
+| Browser storage | No storage writes for ordinary browsing. Explicit display choices use one `localStorage` entry, `merching.display-preferences.v1`; no `sessionStorage`, identifiers or other stored visitor data. |
+| Display preferences | At the user's explicit request, the optional font step, five boolean display flags and colour-helper choice persist locally across pages/tabs in the same browser/origin. Native storage events sync open public tabs. No cookies, server writes or additional requests; reset removes the entry. Denied/full storage falls back to page-local memory with an explanation. Speech state is never saved. |
+| Read-aloud | Explicitly started browser speech synthesis using only German voices with `localService === true`. No remote/default voice fallback, recordings, microphone access or application API. Voice availability is inspected only after opening the panel, never logged or transmitted. No local voice means the control stays disabled with an explanation. |
 | Third-party requests | None. No Google Fonts or other font CDNs (self-hosted Atkinson Hyperlegible variable font), no external JS/CSS libraries, no CDNs, no embeds. Tested: rendered HTML contains no foreign hosts; the browser makes no request to another origin. The CSP (`default-src 'self'`) also blocks accidental external resources. |
 | Analytics / tracking | None: no Google Analytics, Tag Manager, Meta Pixel, tracking pixels, social widgets, fingerprinting or profiling. |
 | Consent banner | Not built and not needed as long as only strictly necessary technology is used. Any future third-party integration (maps, videos, …) requires an individual privacy decision first (e.g. two-click solution, self-hosting). |
@@ -93,8 +95,9 @@ municipal content or portraits were seeded. See [content-parity.md](content-pari
 ## Final visual implementation
 
 Menus, search suggestions, image variants and the editorial interface preserve
-the same privacy boundary. Ordinary public views remain stateless, cookie-free,
-storage-free and same-origin. Suggestions omit credentials/statistics; full
+the same privacy boundary. Ordinary public views remain stateless, cookie-free
+and same-origin. Browsing writes no storage; only explicitly chosen display
+preferences use the local entry documented above. Suggestions omit credentials/statistics; full
 search respects `search.statistics_enabled`. Contact enhancement preserves valid
 details only in the current browser page, never session flash or browser storage;
 the message is cleared. Public image variants recheck original authorization.

@@ -26,11 +26,51 @@ test('anonymous visitor of the public site receives no cookies', async ({ page, 
     expect(await context.cookies()).toEqual([]);
 });
 
-test('no browser storage is used on the public site', async ({ page }) => {
+test('ordinary browsing and opening preferences never write storage; only explicit choices do', async ({ page, context }) => {
+    // Catch attempted writes too, including entries created and immediately deleted.
+    await context.addInitScript(() => {
+        window.__storageMutations = [];
+        for (const method of ['setItem', 'removeItem', 'clear']) {
+            const original = Storage.prototype[method];
+            Storage.prototype[method] = function (...args) {
+                window.__storageMutations.push({ area: this === localStorage ? 'local' : 'session', method, key: args[0] ?? null });
+                return original.apply(this, args);
+            };
+        }
+    });
+    for (const path of ['/', '/buergerservice', '/veranstaltungen', '/suche?q=Rathaus', '/gibt-es-nicht']) {
+        const response = await page.goto(path);
+        expect(response.status()).toBe(path === '/gibt-es-nicht' ? 404 : 200);
+        expect(response.headers()['set-cookie']).toBeUndefined();
+        await page.waitForLoadState('networkidle');
+        // The intentionally minimal error template has no settings panel.
+        if (response.status() !== 404) {
+            await page.locator('.display-launcher').click();
+            await page.keyboard.press('Escape');
+        }
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        expect(await page.evaluate(() => window.__storageMutations)).toEqual([]);
+        expect(await page.evaluate(() => [localStorage.length, sessionStorage.length])).toEqual([0, 0]);
+        expect(await context.cookies()).toEqual([]);
+    }
     await page.goto('/');
+    await page.locator('.display-launcher').click();
+    await page.getByLabel('Dunkler Modus', { exact: true }).check();
+    expect(await page.evaluate(() => window.__storageMutations)).toEqual([
+        { area: 'local', method: 'setItem', key: 'merching.display-preferences.v1' },
+    ]);
+    expect(await page.evaluate(() => [localStorage.length, sessionStorage.length])).toEqual([1, 0]);
+    expect(await context.cookies()).toEqual([]);
 
-    const storage = await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length }));
-    expect(storage).toEqual({ local: 0, session: 0 });
+    // Restoring a previous choice on navigation and in a new tab is read-only.
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveClass(/display-dark/);
+    expect(await page.evaluate(() => window.__storageMutations)).toEqual([]);
+    const other = await context.newPage();
+    await other.goto('/veranstaltungen');
+    await expect(other.locator('html')).toHaveClass(/display-dark/);
+    expect(await other.evaluate(() => window.__storageMutations)).toEqual([]);
+    expect(await context.cookies()).toEqual([]);
 });
 
 test('strict CSP produces no violations', async ({ page }) => {

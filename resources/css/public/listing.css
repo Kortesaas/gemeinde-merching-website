@@ -578,7 +578,7 @@
 
 .has-events .event-calendar__day {
     background: var(--color-sky-soft);
-    color: var(--color-dark);
+    color: var(--color-on-sky);
     font-weight: var(--weight-bold);
 }
 

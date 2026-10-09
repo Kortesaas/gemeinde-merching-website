@@ -25,7 +25,7 @@
         @include('public.partials.brand')
         <a class="search-trigger search-trigger--compact" href="{{ route('public.search') }}" data-search-trigger><x-icon name="search" /><span class="visually-hidden">Suchen</span></a>
         <details class="site-navigation" id="site-navigation" open data-navigation>
-            <summary class="menu-toggle"><x-icon name="menu" class="menu-toggle__open" /><x-icon name="close" class="menu-toggle__close" /><span class="menu-toggle__label">Menü</span></summary>
+            <summary class="menu-toggle" aria-label="Menü"><x-icon name="menu" class="menu-toggle__open" /><x-icon name="close" class="menu-toggle__close" /><span class="menu-toggle__label">Menü</span></summary>
             <div class="site-navigation__panel">
                 <div class="site-navigation__search">
                     @include('public.partials.search-form', ['searchId' => 'menu-search', 'searchLabel' => 'Website durchsuchen', 'pill' => true, 'suggest' => false])
@@ -105,8 +105,12 @@
         </div>
         <div class="footer-bottom">
             <p>© {{ \App\Support\SiteTime::now()->format('Y') }} {{ $siteTitle }}</p>
+            <div class="display-actions">
+                <button class="button button--ghost" type="button" data-read-stop hidden>Vorlesen stoppen</button>
+            </div>
             <a href="#inhalt" class="footer-top">Zum Seitenanfang</a>
         </div>
+        <noscript><p class="display-noscript">Für die Darstellungshilfen benötigen Sie JavaScript. Die Website bleibt vollständig nutzbar; die Schrift können Sie mit der Zoomfunktion Ihres Browsers vergrößern.</p></noscript>
     </div>
 </footer>
 <dialog class="search-panel" id="search-panel" aria-labelledby="search-panel-title" data-search-dialog>
@@ -125,4 +129,6 @@
         </div>
     </div>
 </dialog>
+<button class="button display-trigger display-launcher" type="button" data-display-trigger aria-label="Darstellung &amp; Barrierefreiheit" title="Darstellung &amp; Barrierefreiheit" aria-haspopup="dialog" aria-controls="display-panel" aria-expanded="false" hidden><x-icon name="eye" /></button>
+@include('public.partials.display-panel')
 @endsection

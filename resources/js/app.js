@@ -1,7 +1,10 @@
 import.meta.glob('../images/*', { eager: true, query: '?url', import: 'default' });
+import { initDisplayPreferences } from './display-preferences.js';
 // Small, same-origin enhancements. Native links, GET search and form fields remain the fallback.
 // Enhanced layouts (e.g. the overlay menu) only apply once this script runs.
 document.documentElement.classList.add('js');
+initDisplayPreferences();
+const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('display-reduce-motion');
 // Native overscroll reveals the page canvas: white at the top, footer blue below.
 const publicFooter = document.querySelector('.site-footer');
 if (publicFooter) {
@@ -109,7 +112,7 @@ for (const button of document.querySelectorAll('[data-alert-dismiss]')) {
         const alert = button.closest('[data-alert]');
         alert.classList.add('is-leaving');
         const done = () => { alert.hidden = true; document.getElementById('inhalt')?.focus({ preventScroll: true }); };
-        matchMedia('(prefers-reduced-motion: reduce)').matches ? done() : alert.addEventListener('animationend', done, { once: true });
+        reduceMotion() ? done() : alert.addEventListener('animationend', done, { once: true });
     });
 }
 const searchDialog = document.querySelector('[data-search-dialog]');
@@ -120,7 +123,7 @@ if (searchDialog?.showModal) {
     });
     // Close with a short fade (the header in the panel matches the page header, so nothing jumps).
     const closeSearch = () => {
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { searchDialog.close(); return; }
+        if (reduceMotion()) { searchDialog.close(); return; }
         searchDialog.classList.add('is-closing');
         searchDialog.addEventListener('animationend', () => { searchDialog.classList.remove('is-closing'); searchDialog.close(); }, { once: true });
     };

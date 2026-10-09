@@ -9,7 +9,7 @@
     font: inherit;
     font-weight: var(--weight-bold);
     line-height: 1.3;
-    color: #fff;
+    color: var(--color-action-text);
     background: var(--color-link);
     border: 2px solid var(--color-link);
     border-radius: var(--radius);
@@ -19,7 +19,7 @@
 }
 
 .button:hover {
-    color: #fff;
+    color: var(--color-action-text);
     background: var(--color-link-hover);
     border-color: var(--color-link-hover);
 }

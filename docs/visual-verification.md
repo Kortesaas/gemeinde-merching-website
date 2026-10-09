@@ -3,6 +3,30 @@
 Implementation and reference adaptations: [visual-system.md](visual-system.md).
 No real content was imported, nothing was deployed and nothing was pushed.
 
+## Display preferences verification — 2026-10-09
+
+The optional [display preferences](display-preferences.md) use a fixed bottom-right
+launcher and compact, anchored overlay with no screen dimming. The final public
+templates and shared default tokens were checked with:
+
+| Check | Result |
+|---|---|
+| `docker compose exec -T app composer check` | Pint: 347 files; PHPStan level 8: no errors; PHPUnit: 427 tests / 2,577 assertions; Composer audit: no advisories |
+| `npm run audit` | 0 vulnerabilities |
+| `npm run build` | Passed; public CSS 83.73 kB / 15.39 kB gzip; shared JS 20.78 kB / 7.15 kB gzip |
+| `PARITY_BROWSER_FIXTURES=docker npm test` | All 61 tests passed, including all optional public-content/CMS fixtures and 20 new display tests |
+| Display behavior | Keyboard open/close/focus return, outside-click dismissal, fixed icon and compact overlay at mobile/desktop widths, 44 px targets, 150% text reflow at 320/390/768/1024/1440 px, all 24 palette combinations on home/contact/events, reduced motion, forced colours and no JavaScript; image slots retain exact geometry and overlaid descriptions can be keyboard-scrolled |
+| Privacy / speech | No public browsing cookies or default storage writes, no added external requests, no CSP violations; explicit local display choices persist/sync across pages/tabs, reset deletes them, denied/corrupt storage fails gracefully. Deterministic speech mocks test local-only selection, absent/delayed/remote voices, synthesis failure, chunking, omitted forms/closed details, stopping/reset/page departure |
+
+Desktop and mobile light/dark screenshots were visually reviewed. The local
+Chromium browser exposed installed German voices marked local. Speech behavior
+was tested with API doubles, not an audible native-engine verification.
+VoiceOver/NVDA, Safari/iOS, browser zoom/text spacing and native audible speech
+remain manual platform checks; no formal WCAG conformance is claimed by these
+automated checks.
+
+The following results record the earlier visual-system phase.
+
 | Check | Result |
 |---|---|
 | PHPUnit (MySQL) | 422 tests, 2,539 assertions passed |
