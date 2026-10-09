@@ -43,8 +43,9 @@ class DevelopmentDemoContentTest extends TestCase
         $this->assertTrue(SourceReference::query()->where('source_system', DevelopmentDemoSeeder::SOURCE_SYSTEM)->exists());
         $this->assertSame(4, ContentProposal::query()->where('status', 'submitted')->count());
         $this->assertNotNull(SiteSettings::query()->find(1)?->homepage_media_id);
-        // Demo accounts have unknown random passwords; nobody can sign in with shared credentials.
-        $this->assertTrue(User::query()->where('email', 'like', '%@beispiel.invalid')->exists());
+        // All demo accounts use the reserved development domain; only the admin has documented credentials.
+        $this->assertSame(5, User::query()->where('email', 'like', '%@demo.localhost')->count());
+        $this->assertTrue(User::query()->where('email', DevelopmentDemoSeeder::ADMIN_EMAIL)->firstOrFail()->hasRole('administrator'));
     }
 
     public function test_demo_seed_refuses_a_database_with_existing_content(): void

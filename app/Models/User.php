@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\Auth\DevelopmentAccounts;
 use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use RuntimeException;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -33,6 +35,16 @@ class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, HasRoles, Notifiable;
+
+    protected static function booted(): void
+    {
+        // Development demo accounts can never be created or kept outside local environments.
+        static::saving(function (self $user) {
+            if (DevelopmentAccounts::isDevelopmentAccount($user->email) && ! DevelopmentAccounts::allowed()) {
+                throw new RuntimeException('Entwicklungskonten sind in dieser Umgebung nicht erlaubt.');
+            }
+        });
+    }
 
     /**
      * "Remember me" logins are intentionally not supported.

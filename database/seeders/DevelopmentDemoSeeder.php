@@ -49,6 +49,7 @@ use App\Services\Content\RevisionService;
 use App\Services\Routing\RedirectManager;
 use App\Services\Routing\RouteManager;
 use App\Services\Search\SearchIndexer;
+use App\Support\Auth\DevelopmentAccounts;
 use App\Support\Authorization\Role;
 use Carbon\CarbonImmutable;
 use Database\Seeders\Demo\DemoFiles;
@@ -78,6 +79,18 @@ class DevelopmentDemoSeeder extends Seeder
 {
     public const SOURCE_SYSTEM = 'development-demo';
 
+    /**
+     * Local-only full administrator for trying the CMS. The reserved
+     * demo.localhost domain is refused outside local environments
+     * (User model, login, deploy:check); see docs/local-development.md.
+     */
+    public const ADMIN_EMAIL = 'admin@'.DevelopmentAccounts::DOMAIN;
+
+    public const ADMIN_PASSWORD = 'Merching-Demo-2026';
+
+    /** Base32 TOTP secret for any authenticator app (local demo only). */
+    public const ADMIN_TOTP_SECRET = 'MERCHINGDEMOVERWALTUNGLOKAL23456';
+
     /** @var array<string, User> */
     private array $users = [];
 
@@ -106,7 +119,7 @@ class DevelopmentDemoSeeder extends Seeder
 
     public function run(): void
     {
-        if (! app()->environment(['local', 'development', 'testing'])) {
+        if (! DevelopmentAccounts::allowed()) {
             throw new RuntimeException('DevelopmentDemoSeeder darf nur in lokalen Entwicklungsumgebungen laufen.');
         }
         if (Page::withTrashed()->exists() || Article::withTrashed()->exists() || Service::withTrashed()->exists()) {
@@ -202,14 +215,20 @@ class DevelopmentDemoSeeder extends Seeder
 
     private function users(): void
     {
+        $admin = User::create(['name' => 'Demo-Administration', 'email' => self::ADMIN_EMAIL, 'password' => self::ADMIN_PASSWORD, 'is_active' => true]);
+        $admin->forceFill(['password_changed_at' => now(), 'two_factor_secret' => self::ADMIN_TOTP_SECRET, 'two_factor_confirmed_at' => now()])->save();
+        $admin->assignRole(Role::Administrator->value);
+        $this->users['admin'] = $admin;
+
+        $domain = '@'.DevelopmentAccounts::DOMAIN;
         $accounts = [
-            'redaktion' => ['Sabine Probe (Demo)', 'sabine.probe@beispiel.invalid', Role::Chefredaktion],
-            'fachbereich' => ['Petra Beispiel (Demo)', 'petra.beispiel@beispiel.invalid', Role::Fachbereichsredaktion],
-            'termine' => ['Tobias Muster (Demo)', 'tobias.muster@beispiel.invalid', Role::Veranstaltungsredaktion],
-            'pruefung' => ['Jana Exempel (Demo)', 'jana.exempel@beispiel.invalid', Role::Reviewer],
+            'redaktion' => ['Sabine Probe (Demo)', 'sabine.probe'.$domain, Role::Chefredaktion],
+            'fachbereich' => ['Petra Beispiel (Demo)', 'petra.beispiel'.$domain, Role::Fachbereichsredaktion],
+            'termine' => ['Tobias Muster (Demo)', 'tobias.muster'.$domain, Role::Veranstaltungsredaktion],
+            'pruefung' => ['Jana Exempel (Demo)', 'jana.exempel'.$domain, Role::Reviewer],
         ];
         foreach ($accounts as $key => [$name, $email, $role]) {
-            // Random, never displayed password: there are no shared demo credentials.
+            // Random, never displayed password: only the documented admin has local credentials.
             $user = User::create(['name' => $name, 'email' => $email, 'password' => Str::password(48), 'is_active' => true]);
             $user->assignRole($role->value);
             $this->users[$key] = $user;
@@ -957,7 +976,7 @@ class DevelopmentDemoSeeder extends Seeder
             }
             $proposal->update(['payload' => $payload, 'summary' => $summary]);
             $proposals->submit($proposal, $author);
-            $proposal->forceFill(['submitted_at' => now()->subHours($hoursAgo)])->save();
+            $proposal->forceFill(['created_at' => now()->subHours($hoursAgo + 1), 'submitted_at' => now()->subHours($hoursAgo)])->save();
 
             return $proposal;
         };

@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
+use App\Support\Auth\DevelopmentAccounts;
 use App\Support\SearchEngineIndexing;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
@@ -38,6 +40,7 @@ class DeployCheck extends Command
             'No Vite dev-server "hot" file' => ! is_file(public_path('hot')),
             'storage/ is writable' => is_writable(storage_path('framework')) && is_writable(storage_path('logs')),
             'Database connection works' => $this->databaseWorks(),
+            'No development demo accounts' => $this->databaseWorks() && ! User::query()->where('email', 'like', '%@'.DevelopmentAccounts::DOMAIN)->exists(),
         ];
 
         $failed = 0;

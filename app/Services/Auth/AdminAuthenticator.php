@@ -4,6 +4,7 @@ namespace App\Services\Auth;
 
 use App\Models\User;
 use App\Services\Audit\AuditLogger;
+use App\Support\Auth\DevelopmentAccounts;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Contracts\Auth\StatefulGuard;
@@ -53,14 +54,17 @@ class AdminAuthenticator
             // Always run one hash verification so unknown accounts take as long as known ones.
             $passwordMatches = Hash::check($password, $user->password ?? $this->dummyHash());
 
-            if ($user !== null && $passwordMatches && $user->is_active) {
+            // Development demo accounts never authenticate outside local environments.
+            $permitted = $user !== null && (DevelopmentAccounts::allowed() || ! DevelopmentAccounts::isDevelopmentAccount($user->email));
+
+            if ($user !== null && $passwordMatches && $user->is_active && $permitted) {
                 $timebox->returnEarly();
 
                 return $user;
             }
 
             if ($user !== null) {
-                $this->audit->record('auth.login_failed', $user, ['reason' => $passwordMatches ? 'inactive' : 'password'], actor: null);
+                $this->audit->record('auth.login_failed', $user, ['reason' => ! $permitted ? 'development_account' : ($passwordMatches ? 'inactive' : 'password')], actor: null);
             }
 
             return null;
