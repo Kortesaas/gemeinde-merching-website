@@ -75,6 +75,11 @@
         animation: fade-in .2s ease-out;
     }
 
+    .search-panel.is-closing,
+    .search-panel.is-closing::backdrop {
+        animation: fade-out .16s ease-in forwards;
+    }
+
     .suggestions:not([hidden]) {
         animation: fade-in .15s ease-out;
     }
@@ -162,6 +167,12 @@
 
     @keyframes fade-in {
         from {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fade-out {
+        to {
             opacity: 0;
         }
     }

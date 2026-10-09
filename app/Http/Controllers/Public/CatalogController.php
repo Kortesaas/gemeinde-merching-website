@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Public;
 
+use App\Contracts\Routable;
 use App\Enums\NavigationMenu;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\CouncilTerm;
 use App\Models\Department;
 use App\Models\Document;
+use App\Models\Event;
 use App\Models\ExternalResource;
 use App\Models\LifeSituation;
 use App\Models\Location;
@@ -17,6 +19,8 @@ use App\Models\Person;
 use App\Models\Service;
 use App\Services\Content\PublicCatalog;
 use App\Services\Navigation\NavigationManager;
+use App\Support\Content\EventCalendar;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -27,10 +31,10 @@ class CatalogController extends Controller
     /** @param array{title:string,kind:string} $section */
     public function show(Request $request, array $section, ?Page $model = null): Response
     {
-        $data = $request->validate(['q' => ['nullable', 'string', 'max:150'], 'archiv' => ['nullable', 'in:1'], 'online' => ['nullable', 'in:1'], 'category' => ['nullable', 'integer', 'min:1'], 'page' => ['nullable', 'integer', 'min:1', 'max:10000']]);
+        $data = $request->validate(['q' => ['nullable', 'string', 'max:150'], 'archiv' => ['nullable', 'in:1'], 'online' => ['nullable', 'in:1'], 'category' => ['nullable', 'integer', 'min:1'], 'page' => ['nullable', 'integer', 'min:1', 'max:10000'], 'monat' => ['nullable', 'regex:/^\d{4}-(0[1-9]|1[0-2])$/']]);
         $kind = $section['kind'];
         $catalog = app(PublicCatalog::class);
-        /** @var \Illuminate\Support\Collection<int, \Illuminate\Database\Eloquent\Model&\App\Contracts\Routable> $items */
+        /** @var Collection<int, Model&Routable> $items */
         $items = match ($kind) {
             'directory' => $catalog->directory(),
             'organizations' => $catalog->directory()->filter(fn ($m) => $m instanceof Organization)->values(),
@@ -56,6 +60,11 @@ class CatalogController extends Controller
         $situations = $kind === 'services' ? LifeSituation::query()->with('canonicalRoute')->visible()->orderBy('sort_order')->orderBy('title')->get()->filter(fn ($m) => $m->publicPath() !== null) : collect();
         $filtered = $term !== '' || ! empty($data['category']) || ! empty($data['online']);
         $extra = $kind === 'services' ? $this->serviceLanding($catalog) : [];
+        if ($kind === 'events') {
+            /** @var Collection<int, Event> $events */
+            $events = $items->filter(fn ($m) => $m instanceof Event)->values();
+            $extra['calendar'] = EventCalendar::build($events, EventCalendar::month($data['monat'] ?? null, $request->boolean('archiv') ? $events->last() : $events->first()));
+        }
 
         return response()->view('public.catalog', compact('section', 'kind', 'term', 'groups', 'records', 'situations', 'model', 'categories', 'filtered') + $extra);
     }

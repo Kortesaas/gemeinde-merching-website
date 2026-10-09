@@ -52,6 +52,45 @@ for (const item of document.querySelectorAll('.site-navigation [data-nav-item]')
         delete branch.dataset.hoverOpened;
     });
 }
+// Event calendar ⇄ list: pointing at a day highlights its events and vice versa.
+// Month arrows swap only the calendar (no reload, no scroll); the links work without JavaScript.
+const calendarStatus = document.createElement('p');
+calendarStatus.className = 'visually-hidden'; calendarStatus.setAttribute('role', 'status');
+const initEventCalendar = calendar => {
+    if (!calendar) return;
+    if (!calendarStatus.isConnected) calendar.after(calendarStatus);
+    const items = [...document.querySelectorAll('[data-event-dates]')];
+    const cells = [...calendar.querySelectorAll('[data-cal-date]')];
+    const mark = dates => {
+        for (const item of items) item.classList.toggle('is-highlighted', dates.some(date => item.dataset.eventDates.split(' ').includes(date)));
+        for (const cell of cells) cell.classList.toggle('is-highlighted', dates.includes(cell.dataset.calDate));
+    };
+    for (const cell of cells) {
+        for (const type of ['pointerenter', 'focusin']) cell.addEventListener(type, () => mark([cell.dataset.calDate]));
+        for (const type of ['pointerleave', 'focusout']) cell.addEventListener(type, () => mark([]));
+    }
+    for (const item of items) {
+        item.onpointerenter = () => mark(item.dataset.eventDates.split(' '));
+        item.onpointerleave = () => mark([]);
+    }
+    for (const link of calendar.querySelectorAll('[data-cal-nav]')) link.addEventListener('click', async event => {
+        event.preventDefault();
+        calendar.setAttribute('aria-busy', 'true');
+        try {
+            const response = await fetch(link.href, { credentials: 'omit', headers: { Accept: 'text/html' } });
+            if (!response.ok) throw new Error('calendar');
+            const next = new DOMParser().parseFromString(await response.text(), 'text/html').querySelector('[data-event-calendar]');
+            if (!next) throw new Error('calendar');
+            calendar.replaceWith(next);
+            const url = new URL(link.href); url.hash = '';
+            history.replaceState(null, '', url.pathname + url.search);
+            initEventCalendar(next);
+            next.querySelector(`[data-cal-nav="${link.dataset.calNav}"]`)?.focus({ preventScroll: true });
+            calendarStatus.textContent = next.querySelector('.event-calendar__title')?.textContent.trim() + ' angezeigt';
+        } catch { location.assign(link.href); }
+    });
+};
+initEventCalendar(document.querySelector('[data-event-calendar]'));
 // Site alerts can be hidden for the current page view (nothing is stored).
 for (const button of document.querySelectorAll('[data-alert-dismiss]')) {
     button.hidden = false;
@@ -68,7 +107,23 @@ if (searchDialog?.showModal) {
     for (const trigger of document.querySelectorAll('[data-search-trigger]')) trigger.addEventListener('click', event => {
         event.preventDefault(); opener = trigger; searchDialog.showModal(); searchDialog.querySelector('[data-search-input]').focus();
     });
-    searchDialog.querySelector('[data-dialog-close]').addEventListener('click', () => searchDialog.close());
+    // Close with a short fade (the header in the panel matches the page header, so nothing jumps).
+    const closeSearch = () => {
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { searchDialog.close(); return; }
+        searchDialog.classList.add('is-closing');
+        searchDialog.addEventListener('animationend', () => { searchDialog.classList.remove('is-closing'); searchDialog.close(); }, { once: true });
+    };
+    searchDialog.querySelector('[data-dialog-close]').addEventListener('click', closeSearch);
+    // Escape is handled here (a search field would otherwise swallow it); suggestions close first in the form.
+    searchDialog.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        event.preventDefault();
+        if (!searchDialog.classList.contains('is-closing')) closeSearch();
+    });
+    searchDialog.addEventListener('cancel', event => {
+        event.preventDefault();
+        if (!searchDialog.classList.contains('is-closing')) closeSearch();
+    });
     searchDialog.addEventListener('close', () => opener?.focus());
     const all = searchDialog.querySelector('[data-search-all]'), overlayInput = searchDialog.querySelector('[data-search-input]');
     overlayInput.addEventListener('input', () => { all.href = '/suche' + (overlayInput.value.trim() ? '?q=' + encodeURIComponent(overlayInput.value.trim()) : ''); });
@@ -116,7 +171,11 @@ for (const form of document.querySelectorAll('[data-search-form]')) {
     document.addEventListener('pointerdown', event => { if (!list.hidden && !form.contains(event.target)) { controller?.abort(); serial++; clear(); } });
     form.addEventListener('keydown', event => {
         const links = [...list.querySelectorAll('a')];
-        if (event.key === 'Escape') { controller?.abort(); serial++; clear(); input.focus(); event.stopPropagation(); }
+        if (event.key === 'Escape' && !list.hidden) {
+            // With suggestions open, Escape only closes them; a further Escape closes the overlay.
+            event.preventDefault(); event.stopPropagation();
+            controller?.abort(); serial++; clear(); input.focus();
+        }
         if (['ArrowDown', 'ArrowUp'].includes(event.key) && links.length) {
             event.preventDefault(); selected = Math.max(-1, Math.min(links.length - 1, selected + (event.key === 'ArrowDown' ? 1 : -1)));
             links.forEach((link, index) => link.setAttribute('aria-selected', String(index === selected)));

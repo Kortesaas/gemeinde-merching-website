@@ -113,7 +113,7 @@
     <div class="search-panel__bar">
         <div class="container search-panel__bar-inner">
             @include('public.partials.brand', ['brandTag' => 'div'])
-            <button class="button button--ghost" type="button" data-dialog-close><x-icon name="close" /> Suche schließen</button>
+            <button class="button button--ghost" type="button" aria-label="Suche schließen" data-dialog-close><x-icon name="close" /> <span class="search-panel__close-long">Suche schließen</span><span class="search-panel__close-short">Schließen</span></button>
         </div>
     </div>
     <div class="search-panel__body">

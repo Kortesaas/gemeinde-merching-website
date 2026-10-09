@@ -103,6 +103,19 @@ test.describe('local content composition', () => {
         expect(await context.cookies()).toEqual([]);
     });
 
+    test('event calendar switches months in place and stays accessible', async ({ page }) => {
+        await page.goto('/veranstaltungen'); await accessible(page);
+        const title = page.locator('.event-calendar__title');
+        const before = await title.textContent();
+        const scroll = await page.evaluate(() => scrollY);
+        await page.locator('[data-cal-nav=next]').click();
+        await expect(title).not.toHaveText(before);
+        expect(await page.evaluate(() => scrollY)).toBe(scroll);
+        await expect(page.locator('[data-cal-nav=next]')).toBeFocused();
+        await expect(page).toHaveURL(/monat=\d{4}-\d{2}$/);
+        await accessible(page);
+    });
+
     test('desktop navigation and modal search manage keyboard focus', async ({ page }) => {
         await page.setViewportSize({ width: 1440, height: 960 });
         await page.goto('/');

@@ -466,23 +466,13 @@ html:not(.js) .site-navigation {
         color: var(--color-link);
     }
 
-    /* Current section: a small dot under the label. */
-    .main-nav__link.is-current::after,
-    .main-nav__link[aria-current="page"]::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: .125rem;
-        width: .375rem;
-        height: .375rem;
-        margin-left: -.1875rem;
-        border-radius: 50%;
-        background: var(--color-link);
-    }
-
-    .main-nav__item--branch > .main-nav__link.is-current::after,
-    .main-nav__item--branch > .main-nav__link[aria-current="page"]::after {
-        left: calc(50% + .25rem);
+    /* Current section: a thin underline under the label text. */
+    .main-nav__link.is-current,
+    .main-nav__link[aria-current="page"] {
+        text-decoration: underline;
+        text-decoration-color: var(--color-link);
+        text-decoration-thickness: 2px;
+        text-underline-offset: .5em;
     }
 
     .main-nav__link.is-current,

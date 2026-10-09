@@ -172,14 +172,41 @@
 
 .search-panel__bar {
     border-top: var(--space-1) solid var(--color-sky);
+    border-bottom: 1px solid var(--color-rule);
 }
 
+/* Same box as the site header, so the Wappen and name stay exactly in place. */
 .search-panel__bar-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-3);
-    min-height: 5rem;
+    min-height: 4.5rem;
+    padding-block: var(--space-2);
+}
+
+@media (min-width: 64rem) {
+    .search-panel__bar-inner {
+        min-height: 5.5rem;
+        padding-block: var(--space-3);
+    }
+}
+
+@media (max-width: 40rem) {
+    .search-panel__bar-inner {
+        min-height: 4rem;
+        gap: var(--space-2);
+    }
+
+    .search-panel__close-long {
+        display: none;
+    }
+}
+
+@media (min-width: 40.0625rem) {
+    .search-panel__close-short {
+        display: none;
+    }
 }
 
 .search-panel__bar .button {
@@ -221,7 +248,6 @@
 }
 
 @media (max-width: 40rem) {
-    .search-panel__bar .brand__text,
     .search-panel__hint {
         display: none;
     }

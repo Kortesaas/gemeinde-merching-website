@@ -89,6 +89,7 @@ paths stay slashless, with production origin `https://www.gemeinde-merching.de`.
 | A–Z | Native letter anchors, folded German umlauts, service/contact metadata; all matching letters remain available |
 | Content | Generic reading column; optional contact/online aside; real fields and controlled blocks; update date and contextual feedback |
 | Service detail | Requirements, items, fees, duration, notice, online state, offices/people/locations, downloads and related services |
+| Event listing | Chronological list grouped by month plus a six-week month calendar (Monday first, site time). Days with events are linked (to the list entry on this page, else the event page) and show their titles on hover/focus (`role="tooltip"`, `aria-describedby`); pointing at a day highlights its events in the list and vice versa. Month arrows are GET links (`?monat=YYYY-MM`); with JavaScript only the calendar is swapped in place (no reload or scroll), focus stays on the arrow and the month is announced. Cancelled events show a hollow red dot. Below 64 rem the calendar sits above the list |
 | Article/event/notice | Dates, optional teaser/media, category, blocks, attachments, links and contacts; cancellation explicitly says “Abgesagt” |
 | Documents | Type, size, description, date/year, neutral accessibility state, available alternative and public replacement |
 | Vereine | `/vereine` lists active organisations grouped by category with contact data and website links; opt-in detail pages |
@@ -129,9 +130,10 @@ on wide screens the panel also opens after a short hover pause over the entry an
 closes on leaving; a click on the toggle right after a hover-open keeps it open.
 Keyboard and touch use the toggle (Enter/Space, tap); Escape closes the panel and
 returns focus to the toggle; focus or clicks outside the entry close it. Nothing is
-reachable only by hover. The current section is marked by a small dot under its
-label plus a visually hidden “(aktueller Bereich)”; the exact current page uses
-`aria-current="page"`. Hovered or open entries get a soft pill background.
+reachable only by hover. The current section is marked by a thin underline under its text plus a visually hidden
+“(aktueller Bereich)”; the exact current page uses `aria-current="page"`. Hovered or open entries get a soft pill background.
+All select fields (public and CMS) use one inset chevron instead of the native
+arrow; forced-colours mode falls back to the system control.
 
 On narrow screens each label row links to the overview and ends in a +/− toggle
 for its children. Without JavaScript the narrow menu is rendered open in the page
@@ -143,8 +145,11 @@ page. Each page should therefore appear once in the main menu; the demo gives
 of reusing the directory page.
 
 The search link has a real GET destination. Where supported, JavaScript opens a
-native modal `dialog` (full-screen panel with brand bar), focuses the labelled
-input and returns focus on close; “Alle Ergebnisse anzeigen” follows the typed
+native modal `dialog` (full-screen panel whose brand bar has exactly the header's
+geometry, so the Wappen and name do not move), focuses the labelled input and
+returns focus on close. Opening fades the panel in; Escape first closes open
+suggestions, a further Escape or “Suche schließen” fades it out (instant with
+reduced motion); “Alle Ergebnisse anzeigen” follows the typed
 phrase. Suggestions use the existing `SiteSearch` service through
 `/suche/vorschlaege`: debounced, abortable, same-origin, credential-free and
 rate-limited; the typed text is emphasised with DOM text nodes only. On the

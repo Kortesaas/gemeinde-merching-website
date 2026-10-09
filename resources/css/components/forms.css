@@ -41,3 +41,28 @@
     border-color: var(--color-error);
     border-width: 3px;
 }
+
+/* Selects: own chevron, inset from the edge (the native arrow sits tight to the border). */
+select.form-input {
+    appearance: none;
+    padding-inline-end: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234b4f58' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+}
+
+select.form-input:disabled {
+    cursor: not-allowed;
+    opacity: .7;
+}
+
+/* Forced colours: fall back to the system control and its arrow. */
+@media (forced-colors: active) {
+    select.form-input {
+        appearance: auto;
+        background-image: none;
+        padding-inline-end: var(--space-2);
+    }
+}
