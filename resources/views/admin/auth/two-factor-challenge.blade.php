@@ -1,41 +1,44 @@
 @extends('layouts.admin')
 
-@section('title', 'Bestätigung mit zweitem Faktor')
+@section('title', 'Anmeldung bestätigen')
 
 @section('content')
-    <h1>Bestätigung mit zweitem Faktor</h1>
+    <div class="auth-step auth-challenge">
+        <h1>Anmeldung bestätigen</h1>
+        <p class="auth-challenge__intro">Code aus Ihrer Authenticator-App eingeben.</p>
 
-    <x-status />
-    <x-form.error-summary />
+        <x-status />
+        <x-form.error-summary />
 
-    <form method="POST" action="{{ route('admin.two-factor.challenge.store') }}" novalidate>
-        @csrf
-        <x-form.field
-            name="code"
-            label="Sechsstelliger Code aus Ihrer Authenticator-App"
-            hint="Öffnen Sie die App auf Ihrem Gerät und geben Sie den aktuell angezeigten Code ein."
-            inputmode="numeric"
-            autocomplete="one-time-code"
-            spellcheck="false"
-            required
-        />
-        <button type="submit" class="button">Bestätigen</button>
-    </form>
+        <form class="auth-challenge__code" method="POST" action="{{ route('admin.two-factor.challenge.store') }}" novalidate>
+            @csrf
+            <x-form.field
+                name="code"
+                label="6-stelliger Bestätigungscode"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                spellcheck="false"
+                required
+            />
+            <button type="submit" class="button">Anmelden</button>
+        </form>
 
-    <h2>Kein Zugriff auf die Authenticator-App?</h2>
-    <form method="POST" action="{{ route('admin.two-factor.recovery.store') }}" novalidate>
-        @csrf
-        <x-form.field
-            name="recovery_code"
-            label="Wiederherstellungscode"
-            hint="Jeder Wiederherstellungscode kann nur einmal verwendet werden."
-            autocomplete="off"
-            autocapitalize="characters"
-            spellcheck="false"
-            required
-        />
-        <button type="submit" class="button button--secondary">Mit Wiederherstellungscode anmelden</button>
-    </form>
-
-    <p><a href="{{ route('admin.login') }}">Abbrechen und zur Anmeldung zurückkehren</a></p>
+        <details class="auth-recovery" @if ($errors->has('recovery_code') || old('recovery_code')) open @endif>
+            <summary>Wiederherstellungscode verwenden <x-icon name="chevron-down" /></summary>
+            <form method="POST" action="{{ route('admin.two-factor.recovery.store') }}" novalidate>
+                @csrf
+                <x-form.field
+                    name="recovery_code"
+                    label="Wiederherstellungscode"
+                    hint="Jeder Wiederherstellungscode kann nur einmal verwendet werden."
+                    autocomplete="off"
+                    autocapitalize="characters"
+                    spellcheck="false"
+                    required
+                />
+                <button type="submit" class="button button--secondary">Mit Wiederherstellungscode anmelden</button>
+            </form>
+        </details>
+        <p class="auth-challenge__back"><a href="{{ route('admin.login') }}">Zurück zur Anmeldung</a></p>
+    </div>
 @endsection

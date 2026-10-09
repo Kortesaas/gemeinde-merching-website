@@ -160,7 +160,7 @@ try {
     $records = [...$records, ...$extraRecords];
     file_put_contents($manifest, json_encode(['records' => $records, 'session_id' => $session->getId(), 'user_id' => $user->id], JSON_THROW_ON_ERROR));
     DB::commit();
-    echo json_encode(['cookieName' => $cookieName, 'cookie' => $cookie, 'pageId' => $page->id, 'articleId' => $article->id, 'eventId' => $event->id, 'serviceId' => $service->id, 'mediaId' => $media->id, 'proposalId' => $proposal->id, 'revisionNumber' => $revision?->revision_number], JSON_THROW_ON_ERROR);
+    echo json_encode(['cookieName' => $cookieName, 'cookie' => $cookie, 'pageId' => $page->id, 'articleId' => $article->id, 'eventId' => $event->id, 'serviceId' => $service->id, 'mediaId' => $media->id, 'documentId' => $document->id, 'personId' => $person->id, 'departmentId' => $department->id, 'organizationId' => $organization->id, 'locationId' => $location->id, 'navigationId' => $nav->id, 'userId' => $user->id, 'proposalId' => $proposal->id, 'revisionNumber' => $revision?->revision_number], JSON_THROW_ON_ERROR);
 
 } catch (Throwable $exception) {
     if (DB::transactionLevel() > 0) {

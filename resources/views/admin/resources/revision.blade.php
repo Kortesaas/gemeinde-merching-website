@@ -12,7 +12,7 @@
     @if ($revision->summary)<p class="cms-lead">„{{ $revision->summary }}“</p>@endif
 
     @can('restoreRevision', $model)
-        <details class="cms-panel restore-panel"><summary>Wiederherstellung bestätigen</summary><form data-confirm="Diese Version als neue Version wiederherstellen?" method="POST" action="{{ route('admin.'.$resource->key().'.revisions.restore', [$model->getKey(), $revision->revision_number]) }}">
+        <details class="cms-panel restore-panel"><summary>Wiederherstellung bestätigen <x-icon name="chevron-down" /></summary><form data-confirm="Diese Version als neue Version wiederherstellen?" method="POST" action="{{ route('admin.'.$resource->key().'.revisions.restore', [$model->getKey(), $revision->revision_number]) }}">
             @csrf
             <p class="form-hint">Der Inhalt dieser Version wird als neue Version übernommen. Der Veröffentlichungsstatus bleibt unverändert; die Geschichte bleibt vollständig erhalten.</p>
             <button type="submit" class="button">Diese Version wiederherstellen</button>

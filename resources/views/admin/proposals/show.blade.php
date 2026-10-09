@@ -14,7 +14,14 @@
         <a class="editor-bar__back" href="{{ route('admin.proposals.index') }}"><x-icon name="arrow-left" /> Freigaben</a>
         <span class="state state--proposal-{{ $proposal->status->value }}">{{ $proposal->status->label() }}</span>
         <span class="editor-bar__meta">von {{ $proposal->author?->name ?? 'unbekannt' }} · {{ \App\Support\SiteTime::format($proposal->submitted_at ?? $proposal->created_at) }}</span>
-        <div class="editor-bar__actions"><a class="button button--secondary" href="{{ $recordUrl }}">Veröffentlichten Inhalt öffnen</a></div>
+        <div class="editor-bar__actions">
+            <details class="editor-more"><summary>Weitere <x-icon name="chevron-down" /></summary><div class="editor-more__menu"><a href="{{ $recordUrl }}">Aktuellen Inhalt öffnen</a></div></details>
+            @if ($canReview)<a class="button" href="#review-heading">Zur Entscheidung</a>@endif
+            @if ($canEdit)
+                @can('submit', $proposal)<button class="button" type="submit" form="proposal-form" name="action" value="submit">Zur Prüfung einreichen</button>
+                @else<button class="button" type="submit" form="proposal-form" name="action" value="save">Vorschlag speichern</button>@endcan
+            @endif
+        </div>
     </div>
     <p class="cms-eyebrow">{{ $proposal->displayTitle() }} · {{ $resource->label() }}</p>
     <h1 class="editor-title">{{ $record->displayTitle() }}</h1>
@@ -31,7 +38,7 @@
         @if ($proposal->review_comment)<div class="proposal-facts__wide"><dt>Begründung der Ablehnung</dt><dd class="preserve-lines">{{ $proposal->review_comment }}</dd></div>@endif
     </dl>
 
-    <p class="notice" role="note">Der veröffentlichte Inhalt bleibt unverändert öffentlich, bis eine andere berechtigte Person diesen Vorschlag freigibt.</p>
+    @if ($proposal->status->isOpen())<p class="notice" role="note">Der aktuelle Inhalt bleibt unverändert, bis eine andere berechtigte Person den Vorschlag freigibt.</p>@endif
 
     @if ($conflicts !== [])
         <div class="notice notice--warning conflict-notice" role="status">
@@ -72,16 +79,16 @@
                     @if ($conflicts !== [])
                         <x-form.checkbox name="confirm_conflicts" label="Ich habe die Konflikte geprüft; der Vorschlag soll die neueren Änderungen ersetzen." />
                     @endif
-                    <p class="form-hint">Die geänderten Teile werden übernommen und sofort veröffentlicht; es entsteht eine neue Version.</p>
-                    <button type="submit" class="button">Freigeben und veröffentlichen</button>
+                    <p class="form-hint">Die Änderungen werden als neue Version übernommen. Veröffentlichungsstatus und Zeitraum bleiben unverändert.</p>
+                    <button type="submit" class="button">{{ $record->isVisible() ? 'Freigeben und veröffentlichen' : 'Freigeben und übernehmen' }}</button>
                 </form>
             @else
                 <p>Der zugehörige Inhalt liegt im Papierkorb; der Vorschlag kann nur abgelehnt werden.</p>
             @endif
             <form method="POST" action="{{ route('admin.proposals.reject', $proposal) }}" class="review-panel__reject">
                 @csrf
-                <x-form.textarea name="review_comment" label="Begründung (Pflichtfeld bei Ablehnung)" :value="old('review_comment')" rows="3" hint="Die Begründung sieht die Person, die den Vorschlag eingereicht hat." />
-                <button type="submit" class="button button--secondary">Zurück an Autor/in (ablehnen)</button>
+                <x-form.textarea name="review_comment" label="Begründung (Pflichtfeld bei Ablehnung)" :value="old('review_comment')" rows="3" required hint="Die Begründung sieht die Person, die den Vorschlag eingereicht hat." />
+                <button type="submit" class="button button--secondary">Vorschlag ablehnen</button>
             </form>
             </div>
         </section>
@@ -91,11 +98,11 @@
         <section class="cms-panel" aria-labelledby="edit-heading">
             <header class="cms-panel__header"><h2 id="edit-heading">Vorschlag bearbeiten</h2></header>
             <div class="cms-panel__body">
-            <form method="POST" action="{{ route('admin.proposals.update', $proposal) }}" novalidate>
+            <form id="proposal-form" method="POST" action="{{ route('admin.proposals.update', $proposal) }}" novalidate>
                 @csrf @method('PUT')
                 <input type="hidden" name="_form_started" value="1">
-                @foreach (\App\Support\Content\EditorSections::group($fields) as $section => $group)
-                    <details class="editor-section" open><summary><span>{{ $section }}</span><x-icon name="chevron-down" class="editor-section__chevron" /></summary><div class="field-grid">
+                @foreach (\App\Support\Content\EditorSections::group($fields, $resource->key()) as $section => $group)
+                    <details class="editor-section" @if (\App\Support\Content\EditorSections::expanded($section, $group) || collect($group)->contains(fn ($field) => $errors->has($field->name) || $errors->has($field->name.'.*'))) open @endif><summary><span>{{ $section }}</span><x-icon name="chevron-down" class="editor-section__chevron" /></summary><div class="field-grid">
                     @foreach ($group as $field)
                     @include($field->view(), [
                         'field' => $field,
@@ -109,10 +116,13 @@
                 @endforeach
                 <x-form.field name="proposal_summary" label="Beschreibung der Änderung (für die Prüfung)" :value="old('proposal_summary', $proposal->summary)" maxlength="255" autocomplete="off" />
                 <input type="hidden" name="_form_complete" value="1">
+                <p class="form-hint">Speichern behält den Vorschlag als Entwurf. Einreichen sendet ihn zur Freigabe.</p>
+                <div class="cms-action-footer">
                 <button type="submit" class="button button--secondary" name="action" value="save">Vorschlag speichern</button>
                 @can('submit', $proposal)
-                    <button type="submit" class="button" name="action" value="submit">Speichern und zur Prüfung einreichen</button>
+                    <button type="submit" class="button" name="action" value="submit">Zur Prüfung einreichen</button>
                 @endcan
+                </div>
             </form>
 
             @foreach ($kinds as $kind => $config)

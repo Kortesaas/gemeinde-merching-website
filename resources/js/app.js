@@ -19,10 +19,11 @@ if (publicFooter) {
 // Matches the CSS breakpoints: wide layouts start at 64rem (1024px).
 const narrow = matchMedia('(max-width: 63.99rem)');
 for (const menu of document.querySelectorAll('[data-navigation], [data-cms-navigation]')) {
-    const sync = () => { menu.open = !narrow.matches; };
-    sync(); narrow.addEventListener('change', sync);
+    const menuNarrow = menu.matches('[data-cms-navigation]') ? matchMedia('(max-width: 64rem)') : narrow;
+    const sync = () => { menu.open = !menuNarrow.matches; };
+    sync(); menuNarrow.addEventListener('change', sync);
     menu.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && narrow.matches) {
+        if (event.key === 'Escape' && menuNarrow.matches) {
             menu.open = false; menu.querySelector('summary').focus();
         }
     });
@@ -215,16 +216,12 @@ if (cmsSidebar) {
     cmsSidebar.addEventListener('scroll', remember, { passive: true });
     addEventListener('pagehide', remember);
 }
-// Keep the primary content and media metadata visible; optional groups are native disclosures.
-for (const section of document.querySelectorAll('details.editor-section')) {
-    // Rarely edited search-engine fields start collapsed unless they contain errors.
-    if (section.querySelector('summary')?.textContent.trim() === 'SEO' && !section.querySelector('[aria-invalid=true], .form-error')) section.open = false;
-}
 for (const editor of document.querySelectorAll('[data-row-editor]')) {
     const rows = [...editor.querySelectorAll('[data-editor-row]')];
     const announcement = document.createElement('p'); announcement.setAttribute('role', 'status'); editor.append(announcement);
     const normalize = () => [...editor.querySelectorAll('[data-editor-row]')].forEach((row, index) => {
-        row.querySelector('[data-row-column="sort_order"] input').value = String(index);
+        const order = row.querySelector('[data-row-column="sort_order"] input');
+        if (order && !order.disabled) order.value = String(index);
     });
     // Icon buttons keep their full text as accessible name; paths are static constants.
     const icons = { 'Nach oben': 'M12 19V5M6 11l6-6 6 6', 'Nach unten': 'M12 5v14M18 13l-6 6-6-6', 'Entfernen': 'M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3' };
@@ -242,7 +239,7 @@ for (const editor of document.querySelectorAll('[data-row-editor]')) {
     const references = { image: 'media_id', gallery: 'gallery_id', downloads: 'document_id', contact: 'person_id', department: 'department_id', services: 'service_id', events: 'event_id', external: 'external_resource_id', location: 'location_id' };
     for (const row of rows) {
         const toolbar = document.createElement('div'); toolbar.className = 'row-toolbar';
-        toolbar.append(button('Nach oben', () => { const previous = row.previousElementSibling; if (previous?.matches('[data-editor-row]')) { const focus = document.activeElement; previous.before(row); normalize(); focus.focus(); announcement.textContent = 'Eintrag nach oben verschoben.'; } }),
+        toolbar.append(button('Nach oben', () => { const previous = row.previousElementSibling; if (previous?.matches('[data-editor-row]') && !previous.hidden) { const focus = document.activeElement; previous.before(row); normalize(); focus.focus(); announcement.textContent = 'Eintrag nach oben verschoben.'; } }),
             button('Nach unten', () => { const next = row.nextElementSibling; if (next?.matches('[data-editor-row]') && !next.hidden) { const focus = document.activeElement; next.after(row); normalize(); focus.focus(); announcement.textContent = 'Eintrag nach unten verschoben.'; } }));
         const remove = row.querySelector('input[type="checkbox"][name$="[_remove]"]');
         if (remove && !remove.disabled) toolbar.append(button('Entfernen', () => {
@@ -269,14 +266,33 @@ for (const editor of document.querySelectorAll('[data-row-editor]')) {
             if (row.classList.contains('row-add-slot')) row.hidden = true;
         }
     }
-    if (editor.dataset.rowEditor === 'blocks' && rows.some(r => r.classList.contains('row-add-slot'))) {
+    const slots = rows.filter(row => row.classList.contains('row-add-slot') && !row.querySelector(':disabled'));
+    if (slots.length) {
+        for (const row of slots) row.hidden = true;
         const add = document.createElement('div'); add.className = 'row-add-bar';
-        const addLabel = document.createElement('span'); addLabel.className = 'row-add-bar__label'; addLabel.textContent = 'Baustein hinzufügen:'; add.append(addLabel);
-        for (const option of rows[0].querySelector('[data-row-column="type"] select').options) if (option.value) add.append(button('+ ' + option.textContent, () => {
-            const row = rows.find(r => r.hidden); if (!row) { announcement.textContent = 'Bitte speichern, um weitere freie Einträge hinzuzufügen.'; return; }
-            row.hidden = false; const type = row.querySelector('[data-row-column="type"] select'); type.value = option.value; type.dispatchEvent(new Event('change')); type.focus(); announcement.textContent = option.textContent + ' hinzugefügt. Änderungen anschließend speichern.';
-        }));
-        editor.append(add);
+        const typeTemplate = slots[0].querySelector('[data-row-column="type"] select');
+        let select;
+        if (typeTemplate) {
+            const label = document.createElement('label');
+            select = document.createElement('select'); select.className = 'form-input'; select.id = editor.id + '-add-type';
+            label.htmlFor = select.id; label.textContent = 'Baustein hinzufügen';
+            for (const option of typeTemplate.options) if (option.value) select.add(new Option(option.textContent, option.value));
+            add.append(label, select);
+        }
+        const addButton = button(typeTemplate ? 'Baustein hinzufügen' : 'Eintrag hinzufügen', () => {
+            const row = slots.find(row => row.hidden);
+            if (!row) return;
+            row.hidden = false;
+            const type = row.querySelector('[data-row-column="type"] select');
+            if (type && select) { type.value = select.value; type.dispatchEvent(new Event('change')); }
+            row.querySelector('.row-grid input:not([type="hidden"]), .row-grid select, .row-grid textarea')?.focus();
+            announcement.textContent = 'Eintrag hinzugefügt. Änderungen anschließend speichern.';
+            if (slots.every(row => !row.hidden)) {
+                addButton.disabled = true;
+                announcement.textContent += ' Bitte speichern, um weitere Einträge hinzuzufügen.';
+            }
+        });
+        add.append(addButton); editor.append(add);
     }
 }
 // Opening an editor anchor also opens any enclosing native disclosures.
@@ -318,3 +334,69 @@ enhanceContact(document.querySelector('[data-contact-form]'));
 for (const form of document.querySelectorAll('form[data-confirm]')) form.addEventListener('submit', event => {
     if (!confirm(form.dataset.confirm)) event.preventDefault();
 });
+
+// Employee account menu: native disclosure with predictable dismissal and focus return.
+for (const cmsAccount of document.querySelectorAll('.cms-account, .editor-more')) {
+    cmsAccount.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && cmsAccount.open) {
+            cmsAccount.open = false; cmsAccount.querySelector('summary').focus();
+        }
+    });
+    document.addEventListener('pointerdown', event => { if (!cmsAccount.contains(event.target)) cmsAccount.open = false; });
+    cmsAccount.addEventListener('focusout', event => { if (!cmsAccount.contains(event.relatedTarget)) cmsAccount.open = false; });
+}
+// Saving stays a normal form submission. Its label reflects the selected visibility.
+const publicationStatus = document.querySelector('#editor-form [name="status"]');
+if (publicationStatus) {
+    const start = document.querySelector('#editor-form [name="publish_at"]');
+    const end = document.querySelector('#editor-form [name="expires_at"]');
+    const syncSave = () => {
+        const parts = new Intl.DateTimeFormat('sv-SE', { timeZone: publicationStatus.dataset.timezone, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+        const part = name => parts.find(part => part.type === name).value;
+        const now = `${part('year')}-${part('month')}-${part('day')}T${part('hour')}:${part('minute')}`;
+        const scheduled = start?.value && start.value > now;
+        const expired = end?.value && end.value <= now;
+        const labels = { draft: 'Entwurf speichern', published: scheduled ? 'Speichern und planen' : 'Speichern und veröffentlichen', archived: 'Speichern und archivieren' };
+        const feedback = { draft: 'Nur intern sichtbar. Der Entwurf wird nicht veröffentlicht.', published: scheduled ? 'Wird zum gewählten Startzeitpunkt öffentlich sichtbar.' : 'Wird auf der Website sichtbar. Ein Enddatum begrenzt die Veröffentlichung.', archived: 'Wird gespeichert und ist nicht mehr öffentlich sichtbar.' };
+        if (publicationStatus.value === 'published' && expired) {
+            labels.published = 'Speichern';
+            feedback.published = publicationStatus.dataset.publicArchive === '1' ? 'Das Enddatum ist erreicht. Aus aktuellen Listen entfernt; frühere Veröffentlichungen bleiben öffentlich erreichbar.' : 'Das Enddatum ist erreicht. Der Inhalt ist nicht öffentlich sichtbar.';
+        }
+        if (publicationStatus.value === 'archived' && publicationStatus.dataset.publicArchive === '1') feedback.archived = 'Aus aktuellen Listen entfernt. Frühere Veröffentlichungen bleiben öffentlich erreichbar.';
+        for (const button of document.querySelectorAll('[data-save-label]')) button.textContent = labels[publicationStatus.value] ?? 'Speichern';
+        const note = document.querySelector('[data-save-feedback]');
+        if (note) { note.setAttribute('role', 'status'); note.textContent = feedback[publicationStatus.value] ?? ''; }
+    };
+    publicationStatus.addEventListener('change', syncSave); start?.addEventListener('change', syncSave); end?.addEventListener('change', syncSave); syncSave();
+}
+// Selection state follows the checkbox; the static server class must not outlive an edit.
+for (const option of document.querySelectorAll('.form-option')) {
+    const checkbox = option.querySelector('input[type="checkbox"]');
+    if (checkbox) {
+        const sync = () => option.classList.toggle('is-selected', checkbox.checked);
+        checkbox.addEventListener('change', sync); sync();
+    }
+}
+// Navigation has one target. Hide the unused alternatives after choosing a type;
+// without JavaScript all three original fields and server validation remain available.
+const navigationHint = document.querySelector('[data-navigation-targets]');
+if (navigationHint) {
+    const names = ['public_route_id', 'external_resource_id', 'url'];
+    const inputs = names.map(name => document.querySelector(`#editor-form [name="${name}"]`));
+    if (inputs.every(Boolean) && inputs.every(input => !input.disabled)) {
+        const field = document.createElement('div'); field.className = 'form-field';
+        const label = document.createElement('label'); label.className = 'form-label'; label.htmlFor = 'navigation-target-type'; label.textContent = 'Art des Linkziels';
+        const select = document.createElement('select'); select.className = 'form-input'; select.id = label.htmlFor;
+        const labels = ['Seite der Gemeinde', 'Gespeicherter externer Link', 'Externe Internetadresse'];
+        names.forEach((name, index) => select.add(new Option(labels[index], name)));
+        const populated = inputs.filter(input => input.value);
+        if (populated.length > 1) select.add(new Option('Ziele prüfen', 'all'));
+        select.value = populated.length > 1 ? 'all' : (populated[0]?.name ?? names[0]);
+        const sync = () => inputs.forEach(input => { input.closest('.form-field').hidden = select.value !== 'all' && input.name !== select.value; });
+        select.addEventListener('change', () => {
+            if (select.value !== 'all') for (const input of inputs) if (input.name !== select.value) input.value = '';
+            sync();
+        });
+        field.append(label, select); navigationHint.after(field); sync();
+    }
+}

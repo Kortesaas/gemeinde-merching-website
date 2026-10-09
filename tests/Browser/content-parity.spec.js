@@ -17,6 +17,9 @@ test.describe('local content composition', () => {
     async function accessible(page) {
         // Scan the settled state: short UI transitions (e.g. the search overlay fade) must finish first.
         await page.waitForFunction(() => document.getAnimations().every(animation => animation.playState !== 'running'));
+        // Scan a stable page position: partially occluded offscreen toolbar icons
+        // after scroll-into-view must not distort axe's target-size measurement.
+        if (await page.locator('.cms-shell').count()) await page.evaluate(() => window.scrollTo(0, 0));
         const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa', 'best-practice']).analyze();
         expect(result.violations.map(v => `${v.id}: ${v.help}: ${v.nodes.map(n => n.html).join('; ')}`)).toEqual([]);
     }
@@ -66,12 +69,14 @@ test.describe('local content composition', () => {
         const page = await context.newPage();
         await page.goto(`/verwaltung/seiten/${fixture.pageId}`);
         await expect(page.getByRole('heading', { name: 'Browser Test Composition', exact: true })).toBeVisible();
+        await page.locator('details.editor-section').filter({ has: page.locator('#blocks') }).locator(':scope > summary').focus();
+        await page.keyboard.press('Enter');
         await page.locator('#blocks_1_sort_order').focus();
         await page.keyboard.press('ControlOrMeta+A');
         await page.keyboard.type('0');
         await page.locator('#blocks_0_sort_order').fill('1');
         // The editor offers the same save action in the sticky bar and beside the fields.
-        await page.getByRole('button', { name: 'Speichern', exact: true }).first().click();
+        await page.locator('[data-save-label]').first().click();
         await expect(page.getByText('Änderungen wurden gespeichert.')).toBeVisible();
         await expect(page.locator('#blocks_0_type')).toHaveValue('text');
         await context.close();
@@ -193,16 +198,115 @@ test.describe('local content composition', () => {
         const editor = page.locator('[data-row-editor=blocks]');
         const first = editor.locator('[data-editor-row]').filter({ has: page.locator('#blocks_0_type') });
         const down = first.getByRole('button', { name: 'Nach unten', exact: true });
+        const targets = await first.locator('.icon-button').evaluateAll(buttons => buttons.map(button => ({ width: button.getBoundingClientRect().width, height: button.getBoundingClientRect().height })));
+        for (const target of targets) { expect(target.width).toBeGreaterThanOrEqual(44); expect(target.height).toBeGreaterThanOrEqual(44); }
         await down.focus(); await page.keyboard.press('Enter'); await expect(down).toBeFocused();
         await expect(editor.getByRole('status')).toHaveText('Eintrag nach unten verschoben.');
         const before = await editor.locator('[data-editor-row]:visible').count();
-        await editor.getByRole('button', { name: '+ Text', exact: true }).focus(); await page.keyboard.press('Enter');
+        await editor.locator('#blocks-add-type').selectOption('text');
+        await editor.getByRole('button', { name: 'Baustein hinzufügen', exact: true }).focus(); await page.keyboard.press('Enter');
         await expect(editor.locator('[data-editor-row]:visible')).toHaveCount(before + 1);
         page.once('dialog', dialog => dialog.accept());
         await first.getByRole('button', { name: 'Entfernen', exact: true }).click();
         await expect(first.locator('input[name$="[_remove]"]')).toBeChecked();
         await first.locator('input[name$="[_remove]"]').uncheck(); await expect(first).not.toHaveClass(/is-removed/);
         await accessible(page);
+    });
+
+    test('CMS publication actions describe drafts, scheduling and public archives in site time', async ({ page, context, baseURL }) => {
+        await login(context, baseURL);
+        await page.goto('/verwaltung/seiten/neu');
+        await expect(page.locator('[data-save-label]').first()).toHaveText('Entwurf speichern');
+        await page.locator('#status').selectOption('published');
+        await expect(page.locator('[data-save-label]').first()).toHaveText('Speichern und veröffentlichen');
+        await page.locator('.publication-schedule > summary').click();
+        await page.locator('#publish_at').fill('2099-10-09T10:00');
+        await page.locator('#publish_at').blur();
+        await expect(page.locator('[data-save-label]').first()).toHaveText('Speichern und planen');
+        await expect(page.locator('[data-save-feedback]')).toContainText('Startzeitpunkt');
+        await page.goto(`/verwaltung/artikel/${fixture.articleId}`);
+        await page.locator('#status').selectOption('archived');
+        await expect(page.locator('[data-save-feedback]')).toContainText('bleiben öffentlich erreichbar');
+    });
+
+    test('CMS navigation offers one target and menus dismiss with Escape', async ({ page, context, baseURL }) => {
+        await login(context, baseURL);
+        const response = await page.goto(`/verwaltung/navigation/${fixture.navigationId}`);
+        expect(response.status()).toBe(200);
+        await expect(page.locator('#public_route_id')).toBeVisible();
+        await expect(page.locator('#url')).not.toBeVisible();
+        await page.locator('#navigation-target-type').selectOption('url');
+        await expect(page.locator('#url')).toBeVisible();
+        await expect(page.locator('#public_route_id')).toHaveValue('');
+        await page.locator('#url').fill('https://example.test/new-target');
+        const data = await page.locator('#editor-form').evaluate(form => Object.fromEntries(new FormData(form)));
+        expect(data.public_route_id).toBe('');
+        expect(data.url).toBe('https://example.test/new-target');
+        await page.locator('.editor-more > summary').click();
+        await page.locator('.editor-more__menu a').first().focus();
+        await page.keyboard.press('Escape');
+        await expect(page.locator('.editor-more > summary')).toBeFocused();
+        await expect(page.locator('.editor-more')).not.toHaveAttribute('open');
+        await page.locator('.cms-account > summary').click();
+        await page.locator('.cms-account__menu a').focus();
+        await page.keyboard.press('Escape');
+        await expect(page.locator('.cms-account > summary')).toBeFocused();
+        await accessible(page);
+    });
+
+    test('CMS invalid optional fields reopen and keep entered values', async ({ page, context, baseURL }) => {
+        await login(context, baseURL);
+        await page.goto('/verwaltung/orte/neu');
+        await page.locator('#name').fill('Browser Test invalid place');
+        await page.locator('#type').selectOption('verwaltung');
+        const extra = page.locator('details.editor-section').filter({ has: page.locator('#sort_order') });
+        await extra.locator('summary').click();
+        await page.locator('#sort_order').fill('-1');
+        await page.locator('[data-save-label]').first().click();
+        await expect(page.locator('.error-summary')).toBeFocused();
+        await expect(page.locator('#name')).toHaveValue('Browser Test invalid place');
+        await expect(extra).toHaveAttribute('open');
+        await expect(page.locator('#sort_order')).toHaveAttribute('aria-invalid', 'true');
+        await page.locator('.error-summary a').first().click();
+        await expect(page.locator('#sort_order')).toBeInViewport();
+        await accessible(page);
+    });
+
+    test('CMS expanded forms, documents and account management reflow with accessible controls', async ({ page, context, baseURL }) => {
+        test.setTimeout(120000);
+        await login(context, baseURL);
+        const paths = [`/verwaltung/dokumente/${fixture.documentId}`, `/verwaltung/personen/${fixture.personId}`, `/verwaltung/aemter/${fixture.departmentId}`, `/verwaltung/verzeichnis/${fixture.organizationId}`, `/verwaltung/orte/${fixture.locationId}`, `/verwaltung/navigation/${fixture.navigationId}`, '/verwaltung/einstellungen', '/verwaltung/benutzer/create', `/verwaltung/benutzer/${fixture.userId}/edit`];
+        for (const width of [390, 768, 1024, 1440]) {
+            await page.setViewportSize({ width, height: 960 });
+            for (const path of paths) {
+                const response = await page.goto(path); expect(response.status(), path).toBe(200);
+                await page.locator('details.editor-section, details.publication-schedule').evaluateAll(sections => sections.forEach(section => section.open = true));
+                await reflow(page);
+                if (width === 390 || width === 1440) await accessible(page);
+            }
+            await page.goto('/verwaltung/dashboard');
+            if (width === 1024) {
+                await expect(page.locator('[data-cms-navigation]')).not.toHaveAttribute('open');
+                await page.locator('[data-cms-navigation] > summary').focus(); await page.keyboard.press('Enter');
+                await expect(page.locator('.cms-sidebar a[aria-current]')).toBeVisible();
+            }
+        }
+    });
+
+    test('CMS optional sections and navigation work without JavaScript', async ({ browser, baseURL }) => {
+        const context = await browser.newContext({ baseURL, javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+        await login(context, baseURL);
+        const page = await context.newPage();
+        await page.goto(`/verwaltung/navigation/${fixture.navigationId}`);
+        await expect(page.locator('#public_route_id')).toBeVisible();
+        await expect(page.locator('#external_resource_id')).toBeVisible();
+        await expect(page.locator('#url')).toBeVisible();
+        await page.goto(`/verwaltung/seiten/${fixture.pageId}`);
+        const blocks = page.locator('details.editor-section').filter({ has: page.locator('#blocks') });
+        await blocks.locator(':scope > summary').focus(); await page.keyboard.press('Enter');
+        await expect(page.locator('#blocks_0_type')).toBeVisible();
+        await expect(page.locator('input[name="_form_complete"]')).toHaveValue('1');
+        await context.close();
     });
 
     test('contact keeps valid details in memory after errors and clears the message', async ({ page }) => {

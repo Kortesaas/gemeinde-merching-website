@@ -15,6 +15,9 @@
             <h1>{{ $resource->pluralLabel() }}@if ($trash) <span class="state state--trashed">Papierkorb</span>@endif</h1>
         </div>
         <div class="cms-page-actions">
+            @if ($key === 'site-settings' && $records->isNotEmpty())
+                @can('update', $records->first())<a class="button" href="{{ route('admin.'.$key.'.edit', $records->first()->getKey()) }}">Einstellungen bearbeiten</a>@endcan
+            @endif
             @if ($resource->usesRecycleBin())
                 @if ($trash)
                     <a class="button button--secondary" href="{{ route('admin.'.$key.'.index') }}"><x-icon name="arrow-left" /> Zurück zur Liste</a>
@@ -24,7 +27,7 @@
             @endif
             @can('create', $resource->model())
                 @unless ($trash)
-                    <a class="button" href="{{ route('admin.'.$key.'.create') }}"><x-icon name="plus" /> {{ $resource->label() }} anlegen</a>
+                    <a class="button" href="{{ route('admin.'.$key.'.create') }}"><x-icon name="plus" /> {{ $key === 'media' ? 'Datei hochladen' : $resource->label().' anlegen' }}</a>
                 @endunless
             @endcan
         </div>
@@ -52,8 +55,9 @@
     @if ($records->isEmpty())
         <div class="cms-empty-state">
             <p><strong>{{ $filtered ? 'Keine passenden Einträge.' : ($trash ? 'Der Papierkorb ist leer.' : 'Hier gibt es noch keine Einträge.') }}</strong></p>
+            @if ($filtered)<a href="{{ route('admin.'.$key.'.index', $trash ? ['papierkorb' => 1] : []) }}">Filter zurücksetzen</a>@endif
             @if (! $filtered && ! $trash)
-                @can('create', $resource->model())<a class="button" href="{{ route('admin.'.$key.'.create') }}">{{ $resource->label() }} anlegen</a>@endcan
+                @can('create', $resource->model())<a class="button" href="{{ route('admin.'.$key.'.create') }}">{{ $key === 'media' ? 'Datei hochladen' : $resource->label().' anlegen' }}</a>@endcan
             @endif
         </div>
     @else
@@ -66,8 +70,8 @@
                             <span class="visually-hidden">{{ $medium->title }} bearbeiten</span>
                         </a>
                         <div class="media-card__body">
-                            <p class="media-card__title">{{ $medium->title }}</p>
-                            <p class="cms-row__meta">{{ $medium->width }} × {{ $medium->height }} · {{ \App\Support\Content\PublicFormat::fileSize($medium->size_bytes) }}</p>
+                            <p class="media-card__title"><a href="{{ route('admin.media.edit', $medium->getKey()) }}">{{ $medium->title }}</a></p>
+                            <p class="cms-row__meta">@if ($medium->width){{ $medium->width }} × {{ $medium->height }} · @endif{{ \App\Support\Content\PublicFormat::fileSize($medium->size_bytes) }}</p>
                             @if ($medium->hasAccessibleAlternative())
                                 <span class="severity severity--ok"><x-icon name="check" />{{ $medium->is_decorative ? 'Dekorativ' : 'Alternativtext' }}</span>
                             @else
@@ -78,6 +82,7 @@
                 @endforeach
             </ul>
         @endif
+        @if ($key === 'media')<details class="media-table-disclosure"><summary>Dateiliste anzeigen <x-icon name="chevron-down" /></summary>@endif
         <div class="table-wrapper" role="region" aria-label="{{ $resource->pluralLabel() }}, Tabelle" tabindex="0">
             <table class="data-table data-table--stack" role="table">
                 <caption class="visually-hidden">{{ $resource->pluralLabel() }}, {{ $records->total() }} Einträge</caption>
@@ -101,6 +106,7 @@
                 </tbody>
             </table>
         </div>
+        @if ($key === 'media')</details>@endif
         {{ $records->links('admin.partials.pagination') }}
     @endif
 @endsection

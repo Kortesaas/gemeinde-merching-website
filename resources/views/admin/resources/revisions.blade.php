@@ -19,7 +19,7 @@
                 <li class="timeline__item {{ $loop->first ? 'is-current' : '' }}">
                     <span class="timeline__marker" aria-hidden="true">{{ $revision->revision_number }}</span>
                     <div class="timeline__body">
-                        <p class="timeline__title"><a href="{{ route('admin.'.$resource->key().'.revisions.show', [$model->getKey(), $revision->revision_number]) }}">Version {{ $revision->revision_number }}</a>@if ($loop->first) <span class="state state--published">Aktueller Stand</span>@endif</p>
+                        <p class="timeline__title"><a href="{{ route('admin.'.$resource->key().'.revisions.show', [$model->getKey(), $revision->revision_number]) }}">Version {{ $revision->revision_number }}</a>@if ($loop->first) <span class="state">Aktueller Stand</span>@endif</p>
                         <p class="timeline__summary">{{ $revision->summary ?: 'Ohne Änderungsnotiz' }}</p>
                         <p class="cms-row__meta"><time datetime="{{ $revision->created_at->toIso8601String() }}">{{ \App\Support\SiteTime::format($revision->created_at) }}</time> · {{ $revision->user?->name ?? 'System' }}</p>
                     </div>

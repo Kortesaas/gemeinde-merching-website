@@ -3,7 +3,7 @@
     $blocking = collect($issues)->contains(fn ($i) => $i->severity === \App\Enums\QualitySeverity::Error);
 @endphp
 <section class="editor-card quality-panel {{ $blocking ? 'quality-panel--error' : '' }}" aria-labelledby="quality-heading" id="quality">
-    <h2 class="editor-card__title" id="quality-heading">Qualität</h2>
+    <h2 class="editor-card__title" id="quality-heading">Qualitätsprüfung</h2>
     <div class="editor-card__body">
         <p class="quality-summary">
             @if ($blocking)<x-icon name="error" /> Fehler blockieren die Veröffentlichung.
@@ -20,6 +20,6 @@
                 @endforeach
             </ul>
         @endif
-        <p class="form-hint">Automatische Hinweise ersetzen keine manuelle Prüfung von Inhalt und Barrierefreiheit.</p>
+        <p class="form-hint">Texte und Dateien zusätzlich manuell prüfen.</p>
     </div>
 </section>

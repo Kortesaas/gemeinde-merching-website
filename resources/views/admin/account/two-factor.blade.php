@@ -3,8 +3,10 @@
 @section('title', 'Zwei-Faktor-Authentisierung')
 
 @section('content')
+    <div class="cms-security">
+    <p class="cms-eyebrow">Konto &amp; Sicherheit</p>
     @if ($enabled)
-        <h1>Zwei-Faktor-Authentisierung</h1>
+        <h1 class="editor-title">Zusätzlicher Anmeldeschutz</h1>
 
         <x-status />
         <x-form.error-summary />
@@ -12,9 +14,9 @@
         <p>Die Zwei-Faktor-Authentisierung ist für Ihr Konto <strong>aktiv</strong>.</p>
         <p>Unbenutzte Wiederherstellungscodes: <strong>{{ $remainingRecoveryCodes }}</strong></p>
 
-        <h2>Wiederherstellungscodes neu erzeugen</h2>
+        <section class="cms-panel" aria-labelledby="recovery-heading"><header class="cms-panel__header"><h2 id="recovery-heading">Neue Wiederherstellungscodes</h2></header><div class="cms-panel__body">
         <p>Alle bisherigen Wiederherstellungscodes werden dabei ungültig.</p>
-        <form method="POST" action="{{ route('admin.two-factor.recovery-codes') }}" novalidate>
+        <form method="POST" action="{{ route('admin.two-factor.recovery-codes') }}" data-confirm="Neue Wiederherstellungscodes erzeugen? Alle bisherigen Codes werden ungültig." novalidate>
             @csrf
             <x-form.field
                 name="current_password"
@@ -25,8 +27,9 @@
             />
             <button type="submit" class="button button--secondary">Neue Codes erzeugen</button>
         </form>
+        </div></section>
     @else
-        <h1>Zwei-Faktor-Authentisierung einrichten</h1>
+        <h1 class="editor-title">Anmeldeschutz einrichten</h1>
 
         <x-status />
         <x-form.error-summary />
@@ -57,4 +60,5 @@
             <button type="submit" class="button">Einrichtung bestätigen</button>
         </form>
     @endif
+    </div>
 @endsection

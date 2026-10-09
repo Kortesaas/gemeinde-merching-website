@@ -3,6 +3,46 @@
 Implementation and reference adaptations: [visual-system.md](visual-system.md).
 No real content was imported, nothing was deployed and nothing was pushed.
 
+## CMS usability polish — 2026-10-09
+
+See [CMS usability polish](cms-polish.md) for findings, screen coverage, behavior
+changes and employee review suggestions. The existing left navigation and
+Laravel/Blade workflows are retained.
+
+| Check | Result |
+|---|---|
+| `docker compose exec -T app composer check` | Pint: 351 files; PHPStan level 8: no errors; PHPUnit: 436 tests / 2,762 assertions; Composer audit: no advisories |
+| `npm run build` / `npm audit --audit-level=moderate` | Passed; 0 vulnerabilities; CMS CSS 49.1 kB / 9.6 kB gzip, shared JS 24.3 kB / 8.2 kB gzip (rounded, including login follow-up) |
+| Rendered CMS sweep | 86 screens × 390/768/1024/1440px = 344 successful responses, no page-level horizontal overflow, no JavaScript errors |
+| Expanded desktop axe sweep | All 86 screens pass WCAG 2 A/AA, 2.1/2.2 AA and best-practice checks with optional editor/scheduling/file-table groups expanded |
+| `PARITY_BROWSER_FIXTURES=docker npm test` | All 69 tests passed; includes 320px, expanded phone/desktop axe scans, no-JS ordering/editing, block add/remove, scheduling/archive wording, navigation targets, menu dismissal, validation/value retention and users |
+| Blade / diff checks | View cache compiled successfully and was cleared; `git diff --check` clean |
+
+Screenshots were visually inspected at the requested widths and for lower editor
+sections: downloads/links, fees, event times, address/ZIP fields, review decisions,
+media previews, user roles and navigation targets. The representative service
+editor's initial desktop height fell from 13,839px to 4,182px, primarily by grouping
+fields and collapsing optional sections; all underlying controls remain available.
+
+The browser suite was updated to explicitly open newly collapsed sections in the
+no-JavaScript journey. Block controls are verified at 44px, scroll clearance was
+added for sticky action areas, and axe scans use a stable page position to avoid
+partial-occlusion target-size measurements. Repeated local contact checks reached
+the existing hourly limit; the disposable local cache was cleared before the final
+run. No rate-limit policy or production configuration changed.
+
+Native Safari/iOS date controls, on-screen keyboard behavior, VoiceOver/NVDA,
+zoom/text spacing and employee terminology/workflow review remain manual checks.
+No formal accessibility conformance is claimed. No content was deployed or pushed.
+
+Login follow-up: login and MFA share the same card width and initial height, with
+matching left alignment, ordinary input styling and clear recovery/back actions. Signed-out
+branding reads “Verwaltung Login”; the sidebar reads “Verwaltung”. The actual
+challenge was visually reviewed at 390 and 1440px and checked at all four requested
+widths with recovery both collapsed and expanded: no overflow or axe violations.
+Keyboard disclosure and the return-to-login link passed. The 11 existing MFA tests
+passed (82 assertions), and the production build passed.
+
 ## Identity and SEO verification — 2026-10-09
 
 The [identity and metadata implementation](site-identity-seo.md) was checked with:

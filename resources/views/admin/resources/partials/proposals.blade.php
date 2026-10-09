@@ -17,10 +17,10 @@
         </ul>
     @endif
     @can('propose', $model)
-        <form method="POST" action="{{ route('admin.'.$resource->key().'.proposals.store', $model->getKey()) }}">
+        <form id="create-proposal" method="POST" action="{{ route('admin.'.$resource->key().'.proposals.store', $model->getKey()) }}">
             @csrf
             <p class="form-hint">Änderungen an veröffentlichten Inhalten werden als Vorschlag erfasst. Der veröffentlichte Stand bleibt bis zur Freigabe öffentlich.</p>
-            <button type="submit" class="button">Änderung vorschlagen</button>
+            <button type="submit" class="button button--secondary">Änderung vorschlagen</button>
         </form>
     @endcan
     </div>

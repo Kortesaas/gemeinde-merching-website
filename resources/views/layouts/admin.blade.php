@@ -18,10 +18,10 @@
     <aside class="cms-sidebar">
         <a class="cms-brand" href="{{ route('admin.dashboard') }}">
             <img src="{{ \Illuminate\Support\Facades\Vite::asset(config('public.wappen')) }}" alt="" width="667" height="693">
-            <span><strong>{{ config('app.name') }}</strong><small>Redaktion</small></span>
+            <span><strong>{{ config('app.name') }}</strong><small>Verwaltung</small></span>
         </a>
         <details class="cms-navigation" open data-cms-navigation>
-            <summary><x-icon name="menu" /> Redaktionsmenü</summary>
+            <summary><x-icon name="menu" /> <span class="cms-menu-label">Redaktionsmenü</span><span class="cms-menu-label--short">Menü</span></summary>
             <nav aria-label="Verwaltung">
                 <h2>Übersicht</h2>
                 <ul>
@@ -61,7 +61,7 @@
             @endcan
             <a class="cms-topbar__site" href="{{ route('public.home') }}">Website ansehen<span class="visually-hidden"> (öffnet die öffentliche Startseite)</span><x-icon name="external" class="icon--inline" /></a>
             <details class="cms-account">
-                <summary>
+                <summary aria-label="Konto von {{ $user->name }}">
                     <span class="cms-avatar" aria-hidden="true">{{ $initials ?: '?' }}</span>
                     <span class="cms-account__text"><span class="cms-account__name">{{ $user->name }}</span><span class="cms-account__role">{{ $role?->label() ?? 'Redaktion' }}</span></span>
                 </summary>
@@ -77,7 +77,7 @@
 @else
     <header class="auth-header">
         <img src="{{ \Illuminate\Support\Facades\Vite::asset(config('public.wappen')) }}" alt="" width="667" height="693">
-        <span><strong>{{ config('app.name') }}</strong><small>Redaktion</small></span>
+        <span><strong>{{ config('app.name') }}</strong><small>Verwaltung Login</small></span>
     </header>
     <main id="inhalt" class="auth-main" tabindex="-1">@yield('content')</main>
 @endauth

@@ -19,29 +19,29 @@
         @if ($config['items']->isEmpty())
             <p class="meta">Noch nichts zugeordnet.</p>
         @else
-            <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
-                <table class="data-table">
+            <div class="table-wrapper" role="region" aria-label="Zugeordnete {{ $config['label'] }}, Tabelle" tabindex="0">
+                <table class="data-table data-table--stack" role="table">
                     <caption class="visually-hidden">{{ $config['label'] }}</caption>
-                    <thead><tr><th scope="col">Eintrag</th><th scope="col">Bereich</th><th scope="col">Gruppe</th><th scope="col">Reihenfolge</th>@if ($canEdit)<th scope="col">Aktionen</th>@endif</tr></thead>
-                    <tbody>
+                    <thead><tr role="row"><th scope="col" role="columnheader">Eintrag</th><th scope="col" role="columnheader">Bereich</th><th scope="col" role="columnheader">Gruppe</th><th scope="col" role="columnheader">Reihenfolge</th>@if ($canEdit)<th scope="col" role="columnheader">Aktionen</th>@endif</tr></thead>
+                    <tbody role="rowgroup">
                         @foreach ($config['items'] as $item)
                             @php $pivot = $item->pivot; $formId = 'placement-'.$kind.'-'.$pivot->id; @endphp
-                            <tr>
-                                <td>{{ $item->displayTitle() }}@if ($item->trashed()) (im Papierkorb)@endif</td>
-                                <td>{{ $config['slots'][$pivot->slot] ?? $pivot->slot }}</td>
+                            <tr role="row">
+                                <td role="cell" data-label="Eintrag">{{ $item->displayTitle() }}@if ($item->trashed()) (im Papierkorb)@endif</td>
+                                <td role="cell" data-label="Bereich">{{ $config['slots'][$pivot->slot] ?? $pivot->slot }}</td>
                                 @if ($canEdit)
-                                    <td>
+                                    <td role="cell" data-label="Gruppe">
                                         <label class="visually-hidden" for="{{ $formId }}-group">Gruppe für {{ $item->displayTitle() }}</label>
-                                        <input class="form-input form-input--small" form="{{ $formId }}" id="{{ $formId }}-group" name="group_label" value="{{ $pivot->group_label }}" maxlength="120">
+                                        <input class="form-input" form="{{ $formId }}" id="{{ $formId }}-group" name="group_label" value="{{ $pivot->group_label }}" maxlength="120">
                                     </td>
-                                    <td>
+                                    <td role="cell" data-label="Reihenfolge">
                                         <label class="visually-hidden" for="{{ $formId }}-sort">Reihenfolge für {{ $item->displayTitle() }}</label>
                                         <input class="form-input form-input--small" form="{{ $formId }}" id="{{ $formId }}-sort" type="number" min="0" max="65535" name="sort_order" value="{{ $pivot->sort_order }}">
                                     </td>
-                                    <td>
+                                    <td role="cell" data-label="Aktionen">
                                         <form id="{{ $formId }}" method="POST" action="{{ route('admin.'.$resource->key().'.placements.update', [$model->getKey(), $kind, $pivot->id]) }}" class="inline-form">
                                             @csrf @method('PATCH')
-                                            <button type="submit" class="button button--secondary">Ändern<span class="visually-hidden">: {{ $item->displayTitle() }}</span></button>
+                                            <button type="submit" class="button button--secondary">Speichern<span class="visually-hidden">: {{ $item->displayTitle() }}</span></button>
                                         </form>
                                         <form method="POST" action="{{ route('admin.'.$resource->key().'.placements.destroy', [$model->getKey(), $kind, $pivot->id]) }}" class="inline-form">
                                             @csrf @method('DELETE')
@@ -49,8 +49,8 @@
                                         </form>
                                     </td>
                                 @else
-                                    <td>{{ $pivot->group_label }}</td>
-                                    <td>{{ $pivot->sort_order }}</td>
+                                    <td role="cell" data-label="Gruppe">{{ $pivot->group_label }}</td>
+                                    <td role="cell" data-label="Reihenfolge">{{ $pivot->sort_order }}</td>
                                 @endif
                             </tr>
                         @endforeach

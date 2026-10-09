@@ -8,7 +8,7 @@
         <h2 id="error-summary-title" class="error-summary__title">Bitte prüfen Sie Ihre Angaben</h2>
         <ul class="error-summary__list">
             @foreach ($errors->messages() as $field => $messages)
-                <li><a href="#{{ $field }}">{{ $messages[0] }}</a></li>
+                <li><a href="#{{ request()->routeIs('admin.*') ? explode('.', $field)[0] : $field }}">{{ $messages[0] }}</a></li>
             @endforeach
         </ul>
     </div>

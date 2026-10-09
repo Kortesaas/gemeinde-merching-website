@@ -114,7 +114,7 @@ final class Options
      */
     public static function canonicalRoutes(): array
     {
-        return PublicRoute::query()->where('is_canonical', true)->orderBy('path')->get()
+        return PublicRoute::query()->with('routable')->where('is_canonical', true)->orderBy('path')->get()
             ->mapWithKeys(fn (PublicRoute $r) => [$r->id => $r->path.' – '.($r->routable instanceof Routable ? $r->routable->displayTitle() : '?')])->all();
     }
 

@@ -2,6 +2,9 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Models\NavigationItem;
+use App\Services\Routing\RouteManager;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Concerns\CreatesContent;
 use Tests\TestCase;
@@ -27,7 +30,27 @@ class EditorMarkupTest extends TestCase
         $page = $this->page(['title' => 'Gruppierte Testseite']);
         $editor = $this->userWithPermissions(['page.view', 'page.edit', 'page.publish']);
         $this->actingAsAdmin($editor)->get($this->adminUrl('seiten/'.$page->id))->assertOk()
-            ->assertSeeInOrder(['id="bereich-inhalt"', 'id="bereich-inhaltsbausteine"', 'id="quality"', 'id="publication"', 'id="public-route"'], false)
+            ->assertSeeInOrder(['id="bereich-inhalt"', 'id="bereich-inhaltsbausteine"', 'id="publication"', 'id="quality"', 'id="public-route"'], false)
             ->assertSee('form="editor-form"', false);
+    }
+
+    public function test_navigation_editors_load_content_labels_with_lazy_loading_prevented(): void
+    {
+        $admin = $this->createUser();
+        $first = $this->page(['title' => 'Erstes Navigationsziel']);
+        $second = $this->page(['title' => 'Zweites Navigationsziel']);
+        app(RouteManager::class)->assign($first, '/erstes-ziel');
+        app(RouteManager::class)->assign($second, '/zweites-ziel');
+        $item = NavigationItem::create(['menu' => 'main', 'label' => 'Menüpunkt', 'url' => 'https://example.test', 'is_active' => true]);
+        $before = Model::preventsLazyLoading();
+        Model::preventLazyLoading();
+        try {
+            foreach (['navigation/neu', 'navigation/'.$item->id] as $path) {
+                $this->actingAsAdmin($admin)->get($this->adminUrl($path))->assertOk()
+                    ->assertSee('Erstes Navigationsziel')->assertSee('Zweites Navigationsziel');
+            }
+        } finally {
+            Model::preventLazyLoading($before);
+        }
     }
 }

@@ -1,7 +1,7 @@
 @php $canDelete = auth()->user()->can('delete', $model); $canRestore = auth()->user()->can('restore', $model); $canForce = auth()->user()->can('forceDelete', $model); @endphp
 @if ($canDelete || $canRestore || $canForce)
-<section class="editor-card editor-card--danger" aria-labelledby="actions-heading">
-    <h2 class="editor-card__title" id="actions-heading">Weitere Aktionen</h2>
+<details class="editor-card editor-card--danger editor-section" @if ($canRestore) open @endif aria-labelledby="actions-heading">
+    <summary id="actions-heading">{{ $canRestore ? 'Wiederherstellen oder löschen' : 'Eintrag löschen' }} <x-icon name="chevron-down" class="editor-section__chevron" /></summary>
     <div class="editor-card__body editor-actions">
         @if ($canRestore)
             <form method="POST" action="{{ route('admin.'.$resource->key().'.restore', $model->getKey()) }}">
@@ -23,5 +23,5 @@
         @endif
         <p class="form-hint">{{ $resource->usesRecycleBin() ? 'Einträge im Papierkorb lassen sich wiederherstellen. Verwendete Einträge können nicht endgültig gelöscht werden.' : 'Das Löschen wird protokolliert.' }}</p>
     </div>
-</section>
+</details>
 @endif

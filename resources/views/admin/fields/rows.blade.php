@@ -1,6 +1,6 @@
 <fieldset id="{{ $field->name }}" data-row-editor="{{ $field->rowDefinition }}">
     <legend>{{ $field->label }}</legend>
-    <p class="form-hint">Die Einträge erscheinen in dieser Reihenfolge. Umsortieren mit „Nach oben“ / „Nach unten“ oder über die Positionsnummer. Neue Einträge in den freien Zeilen ergänzen und speichern.</p>
+    <p class="form-hint">Die Reihenfolge entspricht der Website. Mit den Pfeilen oder der Positionsnummer umsortieren. Änderungen werden beim Speichern übernommen.</p>
     @if ($errors->has($field->name))<p class="form-error" role="alert">{{ $errors->first($field->name) }}</p>@endif
     <input type="hidden" name="{{ $field->name }}__present" value="1" @disabled($disabled)>
     @php $rows = is_array($value) ? $value : []; $columns = $field->columns(); @endphp
@@ -12,7 +12,7 @@
             @foreach ($columns as $column => $definition)
                 @php $id = $field->name.'_'.$index.'_'.$column; $inputName = $field->name.'['.$index.']['.$column.']'; $rowValue = $row[$column] ?? ($column === 'sort_order' ? $index : ''); @endphp
                 <div class="form-field" data-row-column="{{ $column }}">
-                    <label class="form-label" for="{{ $id }}">{{ $definition['label'] }}</label>
+                    <label class="form-label" for="{{ $id }}">{{ $column === 'text' ? 'Text' : $definition['label'] }}@if (in_array('required', $definition['rules'], true)) (Pflichtfeld)@endif</label>
                     @if (isset($definition['options']))
                         <select class="form-input" id="{{ $id }}" name="{{ $inputName }}" @disabled($disabled)>
                             <option value="">– keine Auswahl –</option>
