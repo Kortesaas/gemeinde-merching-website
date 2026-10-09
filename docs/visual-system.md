@@ -189,7 +189,10 @@ finish before axe scans, so contrast is checked in the settled state.
 ## CMS components and editorial workflows
 
 `layouts.admin` has a sticky white sidebar (Wappen, “Redaktion”, permission-filtered
-groups, open-review count) and a topbar with content search (to “Alle Inhalte”),
+groups, open-review count). Group headings are dark, uppercase and separated by
+dividers; entries are indented under them with a guide line. The sidebar keeps its
+scroll position between pages for the browser tab (session storage, signed-in area
+only) and always scrolls the active entry into view and a topbar with content search (to “Alle Inhalte”),
 “Website ansehen” and an account menu (initials, name, role, account security,
 logout). Narrow layouts use a native navigation disclosure instead of compressing
 the sidebar. All CMS colours, badges and panels come from the shared tokens.

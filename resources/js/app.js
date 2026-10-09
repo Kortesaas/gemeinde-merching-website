@@ -186,6 +186,21 @@ for (const form of document.querySelectorAll('[data-search-form]')) {
 
     });
 }
+// CMS sidebar: keep its scroll position between pages (signed-in area only) and
+// always show the active entry, so clicking a lower entry does not jump to the top.
+const cmsSidebar = document.querySelector('.cms-sidebar');
+if (cmsSidebar) {
+    const key = 'cms-sidebar-scroll';
+    try { const saved = Number(sessionStorage.getItem(key)); if (saved > 0) cmsSidebar.scrollTop = saved; } catch {}
+    const active = cmsSidebar.querySelector('nav a[aria-current]');
+    if (active && cmsSidebar.scrollHeight > cmsSidebar.clientHeight) {
+        const box = active.getBoundingClientRect(), frame = cmsSidebar.getBoundingClientRect();
+        if (box.top < frame.top || box.bottom > frame.bottom) cmsSidebar.scrollTop += box.top - frame.top - frame.height / 3;
+    }
+    const remember = () => { try { sessionStorage.setItem(key, String(cmsSidebar.scrollTop)); } catch {} };
+    cmsSidebar.addEventListener('scroll', remember, { passive: true });
+    addEventListener('pagehide', remember);
+}
 // Keep the primary content and media metadata visible; optional groups are native disclosures.
 for (const section of document.querySelectorAll('details.editor-section')) {
     // Rarely edited search-engine fields start collapsed unless they contain errors.
