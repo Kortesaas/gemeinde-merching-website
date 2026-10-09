@@ -2,7 +2,7 @@
 
 Status: technical foundation (phase 1) and content/domain foundation
 (phase 2, see [content-model.md](content-model.md)). Real design, final CMS
-screens, search and the contact form follow in later phases.
+screens follow in later phases. [Site-wide functional services](site-foundation.md) are now implemented.
 
 ## Overview
 
@@ -37,7 +37,7 @@ MySQL (one database: content, users, sessions, cache, audit log)
 | **MySQL, one production database** | Available on goneo; used for everything that needs persistence (incl. sessions, cache, rate limits). Local development and the test suite also use MySQL – never SQLite – so behaviour (strict mode, collations, foreign keys, time zones) matches production. |
 | **No Node.js runtime, no Composer on the server** | Node/Vite only compiles CSS/JS and Composer only installs `vendor/` – both at build time, in the Linux PHP 8.4 development environment. Production receives a self-contained release artifact (`scripts/release/build.sh`) and serves static files from `public/build`. |
 | **No Redis, no queue worker** | Not available on shared hosting. Sessions, cache and rate limiting use the database driver; queues run `sync`. Password-reset mails are sent after the response via `defer()` (no worker). |
-| **No external search server** | Search will be implemented with MySQL (see below). |
+| **No external search server** | Search is implemented with MySQL (see below). |
 | **No cron dependency for publishing** | goneo's WebCron is limited. Visibility is computed from timestamps at request time (see below). |
 
 ## Directory structure
@@ -98,7 +98,7 @@ single 301, path and query preserved).
 
 **`public` group**: trailing-slash normalisation and route-model binding.
 No session, no cookie encryption, no CSRF token → anonymous visitors receive
-**no cookies**. A future stateful public feature (contact form) opts in per
+**no cookies**. The contact form opts in per
 route with `->middleware('web')`. The last public route is a fallback that
 resolves database-managed URLs (`ContentController`).
 
@@ -190,23 +190,25 @@ next `publish_at`/`expires_at`.
   [content-model.md → URL model](content-model.md#url-model).
 - **Navigation is not URL structure**: menus reference a record's canonical
   route; moving a page in the menu never changes its URL.
-- Still to build: XML sitemaps (generated on request from published content,
-  using `PublicPath::absoluteUrl()` → slashless, cached; no cron; backend URLs
-  never included).
+- XML sitemaps and server-rendered SEO/Open Graph are implemented; current
+  visibility is evaluated on request without stale caching (see site-foundation.md).
 - `robots.txt` is dynamic (`RobotsController`): `Disallow: /` unless
   `APP_ENV=production` **and** `PUBLIC_INDEXING=true`. There is deliberately no
   static `public/robots.txt`.
-- Structured metadata (Open Graph, schema.org `GovernmentOrganization`, events)
-  will be rendered server-side in the layout.
+- Open Graph is rendered server-side. A `StructuredDataProvider` contract
+  prepares later Schema.org output from verified records; no data is invented.
 
-## Search (prepared, not implemented)
+## Search (implemented foundation)
 
-Models expose their text via `Searchable::toSearchDocument()`. MySQL only: a denormalised `search_index` table (type, id, title, body text,
-URL, publish window) maintained synchronously on save, with a `FULLTEXT` index
-(InnoDB, natural-language/boolean mode). German specifics (umlauts, compound
-words, minimum token size `innodb_ft_min_token_size`) must be verified on the
-goneo MySQL version; a `LIKE`-based fallback for short terms is acceptable for
-the expected data volume.
+The index and query services are implemented in `Services/Search` (see
+[site-foundation.md](site-foundation.md#search-architecture)); the final public
+search UI follows later. Models expose text via `Searchable::toSearchDocument()`.
+The denormalised `search_entries` table stores type/id and title, summary,
+keywords, body with an InnoDB FULLTEXT index (boolean mode); it is maintained
+synchronously on save. Current public visibility/routes are queried against
+source records, so scheduled activation/expiry does not depend on a rebuild.
+A literal `LIKE` fallback covers short terms and compounds. Verify FULLTEXT
+settings and German query performance on the goneo MySQL installation.
 
 ## Files and uploads
 

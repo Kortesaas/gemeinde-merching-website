@@ -5,14 +5,15 @@ Official website and employee CMS of Gemeinde Merching
 application on **PHP 8.4** and **MySQL**, designed to run on goneo shared
 hosting (Apache; no Docker, Node.js, Composer or Redis in production).
 
-> **Status:** technical and content/domain foundation with functional admin
-> CRUD and a change-proposal/review workflow under `/verwaltung`. Public design, final CMS screens, search and the
-> contact form are not built yet.
+> **Status:** technical, content and site-wide functional foundations with admin
+> CRUD, proposals, media, MySQL search services, contact form, settings, SEO,
+> navigation and quality checks. Final public/CMS design and public search UI follow later.
 
 ## What is there
 
 - Public area (stateless, no cookies, no third-party requests) with a
-  placeholder page.
+  placeholder page; structured content, media and sitemap delivery. Only
+  contact-form routes opt into necessary cookies.
 - Employee backend under `/verwaltung`: login, TOTP two-factor authentication
   with recovery codes, password reset, role/permission foundation, dashboard
   placeholder.
@@ -55,6 +56,8 @@ Native PHP/MySQL setup and details: [docs/local-development.md](docs/local-devel
 | `php artisan admin:create` | create an administrator interactively |
 | `php artisan admin:reset-mfa <email>` | remove MFA from an account (lock-out recovery) |
 | `php artisan permissions:sync` | sync code-defined roles/permissions |
+| `php artisan search:rebuild` | rebuild the MySQL content search index |
+| `php artisan search:prune-statistics` | delete expired search statistics |
 | `php artisan audit:prune` | delete audit events older than `AUDIT_RETENTION_DAYS` |
 | `php artisan revisions:prune` | apply the content-revision retention policy (off by default) |
 | `php artisan deploy:check` | verify production configuration |
@@ -64,6 +67,7 @@ Native PHP/MySQL setup and details: [docs/local-development.md](docs/local-devel
 
 ## Documentation
 
+- [Site-wide foundation](docs/site-foundation.md) – media, search/statistics, contact, settings, SEO, navigation, quality
 - [Architecture](docs/architecture.md) – decisions, structure, database, routing
 - [Content model](docs/content-model.md) – entities, lifecycle, URLs, revisions, permissions
 - [Local development](docs/local-development.md)

@@ -19,9 +19,11 @@ default (Art. 25 GDPR) and must not require consent for merely reading it
 | Consent banner | Not built and not needed as long as only strictly necessary technology is used. Any future third-party integration (maps, videos, …) requires an individual privacy decision first (e.g. two-click solution, self-hosting). |
 | Indexing | Unfinished installations are always `noindex` (see architecture.md). |
 
-Future stateful public features (e.g. a contact form) may set a strictly
-necessary session cookie **only on those routes**, and only when they are
-actually used.
+The contact form/confirmation at `/kontakt` opts into a necessary session
+cookie only on its own routes. It is no-store/noindex and does not retain
+message bodies in the database or validation session. See
+[site-foundation.md](site-foundation.md#contact-form-and-mail). Search statistics
+are disabled by default, with configurable retention and no visitor identifiers.
 
 ## Backend
 
@@ -35,7 +37,7 @@ actually used.
 | Rate-limit entries (SHA-256 of IP, counter) | Brute-force protection | ≤ 5 minutes in the cache table |
 | Password reset tokens (hashed) | Password reset | 60 minutes |
 | Content revisions (editorial snapshots, editor, time) | Editorial history, restore | Keep all until a policy is decided (`REVISION_RETENTION_DAYS`) |
-| Contact-route recipient addresses (encrypted) | Internal routing of the future contact form | While the route exists |
+| Contact-route recipient addresses (encrypted) | Internal routing of the contact form | While the route exists |
 | Person records (public contact data of staff, no photos) | Public contact information | Deactivated, not deleted, while referenced |
 
 The audit retention period applies only to audit events. Future content
@@ -60,7 +62,10 @@ log), user agents, attempted login names, request bodies.
 ## E-mail
 
 Password-reset mails are sent via the configured SMTP server (goneo mailbox
-in production). Mail content contains only the reset link.
+in production). Mail content contains only the reset link. Contact messages go to the selected
+internal topic via fixed From/validated Reply-To. No mail-body logging is
+allowed; application audit retains only delivery action and topic ID. SMTP and
+municipal mailbox retention need an operational policy.
 
 ## Checklist for new features
 

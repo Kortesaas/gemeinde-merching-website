@@ -1,8 +1,9 @@
 # Content model
 
 Status: domain foundation (phase 2). Functional admin CRUD exists under
-`/verwaltung`; the final CMS design, the public website design, search, the
-contact form and the WordPress import follow later.
+`/verwaltung`; the final CMS/public design and WordPress import follow later. Media, search
+services, contact, settings, SEO, navigation and quality checks are described
+in [site-foundation.md](site-foundation.md).
 
 ## Core principle: structured data, stored once
 
@@ -101,12 +102,12 @@ lifecycle, "Rev" = revisions, "URL" = public route.
 | `Department` (`departments`) | Ämter / Sachgebiete | name, short_name, description, phone, email, location, opening_hours, people, services, is_active, sort_order | – | ✓ | ✓ |
 | `Organization` (`organizations`) | one directory for Vereine, Gewerbe, Gastronomie (`type`) | name, type, category, description, contact_name, address, phone, email, website, links (`organization_links`), is_active, sort_order | – | ✓ | ✓ |
 | `Location` (`locations`) | Rathaus, Bauhof, Wertstoffhof, Mandichosee … | name, type, description, address, phone, email, opening_hours, latitude/longitude, map link (ExternalResource, never embedded), is_active | – | ✓ | ✓ |
-| `ContactRoute` (`contact_routes`) | topics of the future contact form | label, explanation (public), **recipients (internal, encrypted)**, department, is_active, sort_order | – | – | – |
+| `ContactRoute` (`contact_routes`) | topics of the contact form | label, explanation (public), **recipients (internal, encrypted)**, department, is_active, sort_order | – | – | – |
 | `Category` (`categories`) | manageable categories per context (article, event, document, notice, service, organization) | context, name, slug, description, sort_order | – | – | – |
 | `Tag` (`tags`) | article keywords | name, slug | – | – | – |
 | `PublicRoute` (`public_routes`) | URL paths of records | path, path_key, routable, is_canonical, canonical_for, is_active | – | – | – |
 | `Redirect` (`redirects`) | legacy URL redirects | source_path/key, destination, status_code, is_active, notes | – | – | – |
-| `NavigationItem` (`navigation_items`) | menus (independent of URLs) | menu, parent, label, public_route *or* url, sort_order, is_active | – | – | – |
+| `NavigationItem` (`navigation_items`) | menus (independent of URLs) | menu, parent, label, public_route, managed external_resource or url, sort_order, is_active | – | ✓ | – |
 | `ContentRevision` (`content_revisions`) | editorial history | revisionable, revision_number, user, summary, snapshot (JSON) | – | – | – |
 | `SourceReference` (`source_references`) | migration provenance | referenceable, source_system, source_id, original_url, imported_at | – | – | – |
 
@@ -115,8 +116,9 @@ publication lifecycle: former employees are **deactivated, not deleted**,
 because historical records reference them (foreign keys restrict permanent
 deletion while referenced).
 
-Prepared, not yet built: media/images with `alt`, decorative flag, caption and
-copyright/source (for galleries and the media library).
+Media/images, typed site settings and managed search synonyms are implemented
+with revisions and permissions; see [site-foundation.md](site-foundation.md).
+Visual galleries and the final media-library design follow later.
 
 ## Publication lifecycle
 
@@ -192,6 +194,9 @@ current UTC time – no cron job ever flips a status:
 | Kategorien & Schlagwörter (`taxonomy`) | VCED | VCED | V | V | V |
 | Navigation (`navigation`) | VCED | VCED | V | – | V |
 | Weiterleitungen (`redirect`) | VCED | VCED | V | – | V |
+| Medien (`media`) | VCEPADX | VCEPAD | VCE | VCE | V |
+| Suchbegriffe (`search-synonym`) | VCED | VCED | – | – | V |
+| Website-Einstellungen (`site-settings`) | VCE | VCE | – | – | V |
 | Benutzerkonten (`user`) | VCE | – | – | – | – |
 | Verwaltungsbereich aufrufen (`admin.access`) | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Protokoll einsehen (`audit.view`) | ✓ | – | – | – | – |
@@ -245,7 +250,7 @@ page can move to another menu section without changing its URL.
 - **Convention:** canonical paths have **no trailing slash**
   (`/veranstaltungskalender`, `/buergerservice/personalausweis`,
   `/aktuelles`); the root stays `/`. Internal links, `<link rel="canonical">`
-  and future XML sitemaps use `PublicPath::absoluteUrl()` on the canonical host
+  and XML sitemaps use `PublicPath::absoluteUrl()` on the canonical host
   (`APP_URL`) and are therefore always slashless.
 - `path` = canonical form (decoded UTF-8, case preserved, no trailing slash);
   `path_key` = lower-case lookup key (unique, binary collation – "ü" ≠ "u").
@@ -411,12 +416,15 @@ infrastructure rather than domain data. Each is covered by tests.
 Placements and contacts are **not** polymorphic: they use explicit tables with
 foreign keys on both sides.
 
-## Search preparation
+## Search foundation
 
 Searchable models implement `App\Contracts\Searchable::toSearchDocument()`
 (title, summary, keywords such as aliases, categories, tags,
-responsibilities, body). The later MySQL implementation stores these in a
-`search_index` table with a FULLTEXT index; no external search server.
+responsibilities, body). The synchronous MySQL implementation stores these in
+`search_entries` with a FULLTEXT index and a literal substring fallback.
+Current visibility/routes are checked at query time. Synonyms, filtering,
+ranking and optional privacy-conscious statistics are implemented; the public
+search UI follows later. Details: [site-foundation.md](site-foundation.md).
 
 ## Migration preparation
 

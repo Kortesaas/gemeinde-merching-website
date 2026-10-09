@@ -83,8 +83,8 @@ php artisan admin:create
 Web server: point an Apache vhost's document root to `public/` with
 `AllowOverride All` (closest to goneo). For quick work `php artisan serve` is
 an acceptable substitute (it ignores `.htaccess`). Set `APP_URL` accordingly.
-For password-reset mails either run Mailpit locally (SMTP `127.0.0.1:1025`) or
-set `MAIL_MAILER=log`.
+For password-reset mails either run Mailpit locally (SMTP `127.0.0.1:1025`) or use another local SMTP test transport. Contact messages deliberately refuse
+the `log` mailer to avoid retaining message bodies.
 
 SQLite is intentionally not supported as a substitute for MySQL.
 

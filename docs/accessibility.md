@@ -72,6 +72,9 @@ and 404 page; skip link and focus order; error summary focus; reflow at 320 px.
 PHPUnit additionally asserts the login markup (labels, autocomplete, no
 placeholders, no scripts).
 
+Contact form and confirmation, error focus/labels, 320 px reflow and
+same-origin requests are also covered. Media alt state and the reusable
+quality framework are described in [site-foundation.md](site-foundation.md).
 Every new page/component must be added to these tests.
 
 ## Manual testing (required before go-live and for every new template)

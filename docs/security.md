@@ -72,7 +72,7 @@ validation details).
 - Cookie: `HttpOnly`, `SameSite=Lax`, `Secure` + `__Host-` prefix in
   production (forced in `AppServiceProvider`, independent of `.env`).
 - Garbage collection by lottery (2 % of requests) – no cron needed.
-- The public website never starts a session.
+- Public reading stays stateless; only contact form/confirmation routes opt into sessions.
 
 ## CSRF
 
@@ -188,7 +188,7 @@ only rendered in the backend form for users with `contact-route.edit`
 
 ## Uploads
 
-Implemented for documents (images, galleries and media follow)
+Implemented for documents and media (visual galleries follow)
 (`config/uploads.php`, `App\Services\Uploads\UploadInspector`):
 
 1. Size limit (`UPLOADS_MAX_KILOBYTES`, default 20 MB; PHP's
@@ -208,10 +208,10 @@ Implemented for documents (images, galleries and media follow)
    `Content-Disposition: attachment` (`inline` only for PDFs/images) with an
    RFC 6266 encoded filename, and a sandboxing `Content-Security-Policy`.
    Physical files are only deleted when their document is permanently deleted
-   and nothing references it. Public, published media may later be copied to a deliberately
-   designed public media directory with PHP execution disabled
-   (`public/.htaccess` already denies executing anything but `index.php`).
-6. Images will be re-encoded (GD) on upload to strip metadata (EXIF/GPS) and
+   and nothing references it. Media also protects references in retained
+   revisions/proposals; media delivery requires a reachable public owner.
+   All current media stays on the private disk.
+6. Media images are re-encoded (GD) on upload to strip metadata (EXIF/GPS) and
    neutralise polyglot files.
 
 The automatic file-serving route of Laravel's `local` disk is disabled

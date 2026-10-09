@@ -204,10 +204,10 @@ time, PHP and Node versions.
    - clears file caches and runs `php artisan deploy:check` **before changing
      anything** – if a production setting is unsafe it aborts and the live
      site is untouched;
-   - enables maintenance mode, runs `migrate --force` and `permissions:sync`;
+   - enables maintenance mode, runs `migrate --force`, `permissions:sync` and `search:rebuild`;
    - builds `config`, `route`, `view` and `event` caches;
    - atomically switches `current` to the new release, disables maintenance
-     mode, prunes expired audit events;
+     mode, prunes expired audit events and search statistics;
    - deletes old releases, keeping the newest five (`KEEP_RELEASES`).
 
    If a step fails after maintenance mode was enabled, the script says so;
@@ -254,7 +254,8 @@ the previous release (expand/contract), which is the rule for this project.
    `Referrer-Policy`, `Permissions-Policy`, HSTS; backend `Cache-Control:
    no-store`; session cookie `__Host-merching_session; secure; httponly;
    samesite=lax`.
-8. **Mail:** request a password reset for a test account; check delivery.
+8. **Mail:** request a password reset for a test account and submit a synthetic
+   contact enquiry to an agreed test topic; check delivery and Reply-To.
 9. **Logs:** `ls -t ~/merching/shared/storage/logs | head` – no new errors.
 
 ## 6. Rollback
