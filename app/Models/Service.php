@@ -6,6 +6,7 @@ use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
 use App\Models\Concerns\HasDocumentPlacements;
+use App\Models\Concerns\HasMedia;
 use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasPublicRoute;
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Fillable(['title', 'sort_title', 'summary', 'body', 'category_id', 'online_service_resource_id', 'sort_order'])]
 class Service extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected function casts(): array
     {
@@ -123,7 +124,7 @@ class Service extends Model implements Proposable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['title', 'sort_title', 'summary', 'body', 'category_id', 'online_service_resource_id', 'sort_order'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'sort_title', 'summary', 'body', 'category_id', 'online_service_resource_id', 'sort_order'];
     }
 
     /**
@@ -135,6 +136,7 @@ class Service extends Model implements Proposable, Routable, Searchable
             'departments' => ['sort_order'],
             'contacts' => ['sort_order'],
             'relatedServices' => ['sort_order'],
+            'media' => ['sort_order'],
             'documents' => ['slot', 'group_label', 'sort_order'],
             'externalResources' => ['slot', 'group_label', 'sort_order'],
         ];

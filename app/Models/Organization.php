@@ -78,7 +78,7 @@ class Organization extends Model implements Revisionable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['name', 'type', 'description', 'category_id', 'contact_name', 'street', 'postal_code', 'city', 'phone', 'email', 'website', 'is_active', 'sort_order'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'name', 'type', 'description', 'category_id', 'contact_name', 'street', 'postal_code', 'city', 'phone', 'email', 'website', 'is_active', 'sort_order'];
     }
 
     /**

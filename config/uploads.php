@@ -21,6 +21,8 @@ return [
     'directory' => 'uploads',
 
     // Maximum size per file in kilobytes (also check PHP upload_max_filesize).
+    'max_image_pixels' => (int) env('UPLOADS_MAX_IMAGE_PIXELS', 20000000),
+
     'max_kilobytes' => (int) env('UPLOADS_MAX_KILOBYTES', 20480),
 
     // extension => allowed MIME types detected from file content

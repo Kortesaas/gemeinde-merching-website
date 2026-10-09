@@ -6,6 +6,7 @@ use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
 use App\Models\Concerns\HasDocumentPlacements;
+use App\Models\Concerns\HasMedia;
 use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasPublicRoute;
@@ -42,7 +43,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Fillable(['title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive'])]
 class Event extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected static function booted(): void
     {
@@ -145,7 +146,7 @@ class Event extends Model implements Proposable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive'];
     }
 
     /**
@@ -154,6 +155,7 @@ class Event extends Model implements Proposable, Routable, Searchable
     public function revisionRelations(): array
     {
         return [
+            'media' => ['sort_order'],
             'documents' => ['slot', 'group_label', 'sort_order'],
             'externalResources' => ['slot', 'group_label', 'sort_order'],
         ];

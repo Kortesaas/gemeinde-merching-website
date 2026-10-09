@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\ContentController;
 use App\Http\Controllers\Public\DocumentDownloadController;
+use App\Http\Controllers\Public\MediaController;
 use App\Http\Controllers\Public\PlaceholderController;
 use App\Http\Controllers\Public\RobotsController;
+use App\Http\Controllers\Public\SitemapController;
+use App\Http\Middleware\ContactFormHeaders;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +24,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', PlaceholderController::class)->name('public.home');
+
+Route::middleware(['web', ContactFormHeaders::class])->group(function () {
+    Route::get('/kontakt', [ContactController::class, 'create'])->block(30, 10)->name('public.contact');
+    Route::post('/kontakt', [ContactController::class, 'store'])->middleware('throttle:contact')->block(30, 10)->name('public.contact.store');
+    Route::get('/kontakt/bestaetigung', [ContactController::class, 'success'])->name('public.contact.success');
+});
+
+Route::get('/medien/{media}', MediaController::class)->whereNumber('media')->name('public.media');
+
+Route::get('/sitemap.xml', SitemapController::class)->name('public.sitemap');
+Route::get('/sitemap/{page}.xml', SitemapController::class)->whereNumber('page')->name('public.sitemap.page');
 
 Route::get('/robots.txt', RobotsController::class)->name('public.robots');
 

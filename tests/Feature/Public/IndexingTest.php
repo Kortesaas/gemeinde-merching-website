@@ -38,7 +38,7 @@ class IndexingTest extends TestCase
         $response->assertHeaderMissing('X-Robots-Tag')
             ->assertSee('<meta name="robots" content="index, follow">', false);
 
-        $this->get('/robots.txt')->assertSee("Disallow:\n", false)->assertDontSee('Disallow: /', false);
+        $this->get('/robots.txt')->assertSee("Disallow:\n", false)->assertSee('Disallow: /verwaltung', false)->assertSee('Sitemap:', false);
     }
 
     public function test_backend_is_never_indexable_even_when_public_indexing_is_enabled(): void

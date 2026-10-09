@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Service;
+use App\Models\ServiceAlias;
+use App\Models\Tag;
 use App\Models\User;
+use App\Services\Search\SearchIndexer;
 use App\Session\PrivacyDatabaseSessionHandler;
 use App\Support\MorphMap;
 use Carbon\CarbonImmutable;
@@ -41,8 +46,32 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureModels();
+        $this->configureSearch();
         $this->configureSecurity();
         $this->configureRateLimiting();
+    }
+
+    private function configureSearch(): void
+    {
+        foreach (SearchIndexer::TYPES as $class) {
+            $class::saved(fn (Model $model) => app(SearchIndexer::class)->sync($model));
+            $class::deleted(fn (Model $model) => app(SearchIndexer::class)->remove($model));
+            $class::restored(fn (Model $model) => app(SearchIndexer::class)->sync($model));
+        }
+        foreach ([ServiceAlias::class] as $class) {
+            $sync = function (Model $alias): void {
+                $service = Service::query()->whereKey($alias->getAttribute('service_id'))->first();
+                if ($service) {
+                    app(SearchIndexer::class)->sync($service);
+                }
+            };
+            $class::saved($sync);
+            $class::deleted($sync);
+        }
+        foreach ([Category::class, Tag::class] as $class) {
+            $class::saved(fn () => app(SearchIndexer::class)->rebuild());
+            $class::deleted(fn () => app(SearchIndexer::class)->rebuild());
+        }
     }
 
     private function configureModels(): void
@@ -88,6 +117,8 @@ class AppServiceProvider extends ServiceProvider
 
     private function configureRateLimiting(): void
     {
+        RateLimiter::for('contact', fn (Request $request) => Limit::perHour(max(1, (int) config('contact.hourly_limit')))->by(hash_hmac('sha256', (string) $request->ip().'|'.now()->format('Y-m-d'), (string) config('app.key'))));
+
         RateLimiter::for('admin-password-reset', fn (Request $request) => Limit::perMinute(5)
             ->by(hash('sha256', (string) $request->ip())));
     }

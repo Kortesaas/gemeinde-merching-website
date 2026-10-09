@@ -56,7 +56,7 @@ enum Role: string
             self::Veranstaltungsredaktion => [
                 ...$access,
                 ...self::grant([ContentType::Event], [Ability::View, Ability::Create, Ability::Edit, Ability::Publish, Ability::Archive, Ability::Delete]),
-                ...self::grant([ContentType::Location, ContentType::Organization, ContentType::Document, ContentType::ExternalResource], [Ability::View, Ability::Create, Ability::Edit]),
+                ...self::grant([ContentType::Media, ContentType::Location, ContentType::Organization, ContentType::Document, ContentType::ExternalResource], [Ability::View, Ability::Create, Ability::Edit]),
                 ...self::grant([ContentType::Person, ContentType::Department, ContentType::Taxonomy], [Ability::View]),
             ],
 
@@ -74,7 +74,7 @@ enum Role: string
     private static function editorialTypes(): array
     {
         return [
-            ContentType::Article, ContentType::Event, ContentType::Document, ContentType::ExternalResource,
+            ContentType::Media, ContentType::Article, ContentType::Event, ContentType::Document, ContentType::ExternalResource,
             ContentType::PublicNotice, ContentType::Service, ContentType::LifeSituation, ContentType::Page,
             ContentType::Person, ContentType::Department, ContentType::Organization, ContentType::Location,
         ];

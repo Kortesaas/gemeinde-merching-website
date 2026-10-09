@@ -11,6 +11,9 @@ use App\Models;
 final class MorphMap
 {
     public const MAP = [
+        'media' => Models\Media::class,
+        'search-synonym' => Models\SearchSynonym::class,
+        'site-settings' => Models\SiteSettings::class,
         'user' => Models\User::class,
         'article' => Models\Article::class,
         'event' => Models\Event::class,

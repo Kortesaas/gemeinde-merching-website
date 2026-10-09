@@ -87,7 +87,7 @@ class Location extends Model implements Revisionable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['name', 'type', 'description', 'street', 'postal_code', 'city', 'phone', 'email', 'opening_hours', 'latitude', 'longitude', 'map_resource_id', 'is_active', 'sort_order'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'name', 'type', 'description', 'street', 'postal_code', 'city', 'phone', 'email', 'opening_hours', 'latitude', 'longitude', 'map_resource_id', 'is_active', 'sort_order'];
     }
 
     public function toSearchDocument(): SearchDocument

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\TwoFactorChallengeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentFileController;
+use App\Http\Controllers\Admin\MediaFileController;
 use App\Http\Controllers\Admin\PlacementController;
 use App\Http\Controllers\Admin\ProposalController;
 use App\Http\Controllers\Admin\ResourceController;
@@ -102,6 +103,8 @@ Route::middleware(['auth', 'auth.session', 'admin.session'])->group(function () 
             Route::post('{proposal}/zuordnungen', 'storePlacement')->name('placements.store');
             Route::delete('{proposal}/zuordnungen/{kind}/{index}', 'destroyPlacement')->whereNumber('index')->name('placements.destroy');
         })->whereNumber('proposal');
+
+        Route::get('medien/{record}/datei', MediaFileController::class)->whereNumber('record')->name('media.file');
 
         Route::get('dokumente/{record}/datei', DocumentFileController::class)->whereNumber('record')->name('document.file');
 

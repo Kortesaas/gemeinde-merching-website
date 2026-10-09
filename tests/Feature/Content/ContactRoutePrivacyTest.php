@@ -84,7 +84,7 @@ class ContactRoutePrivacyTest extends TestCase
     {
         $this->route();
 
-        $this->get('/kontakt')->assertNotFound()->assertDontSee(self::SECRET);
+        $this->get('/kontakt')->assertOk()->assertDontSee(self::SECRET);
         $this->assertFalse(is_subclass_of(ContactRoute::class, Routable::class));
     }
 

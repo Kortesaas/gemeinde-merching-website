@@ -9,6 +9,9 @@ namespace App\Support\Authorization;
  */
 enum ContentType: string
 {
+    case Media = 'media';
+    case SearchSynonym = 'search-synonym';
+    case SiteSettings = 'site-settings';
     case Article = 'article';
     case Event = 'event';
     case Document = 'document';
@@ -34,7 +37,7 @@ enum ContentType: string
     public function isPublishable(): bool
     {
         return in_array($this, [
-            self::Article, self::Event, self::Document, self::ExternalResource, self::PublicNotice,
+            self::Media, self::Article, self::Event, self::Document, self::ExternalResource, self::PublicNotice,
             self::Service, self::LifeSituation, self::Page, self::SiteAlert,
         ], true);
     }
@@ -90,6 +93,9 @@ enum ContentType: string
     public function label(): string
     {
         return match ($this) {
+            self::Media => 'Medien',
+            self::SearchSynonym => 'Suchbegriffe',
+            self::SiteSettings => 'Website-Einstellungen',
             self::Article => 'Artikel (Aktuelles)',
             self::Event => 'Veranstaltungen',
             self::Document => 'Dokumente',

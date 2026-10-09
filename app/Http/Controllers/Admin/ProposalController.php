@@ -89,7 +89,7 @@ class ProposalController extends Controller
             'proposal' => $proposal,
             'record' => $record,
             'resource' => $resource,
-            'fields' => $resource->fields($record),
+            'fields' => $resource->formFields($record),
             'preview' => $diff->preview($record, $proposal->payload),
             'diff' => $diff->rows($proposal, $resource, $record),
             'conflicts' => $proposal->status === ProposalStatus::Submitted ? $this->proposals->conflicts($proposal) : [],

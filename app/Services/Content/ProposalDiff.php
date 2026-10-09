@@ -32,7 +32,7 @@ class ProposalDiff
         $changed = $this->proposals->changedParts($base, $payload);
 
         $fields = [];
-        foreach ($resource->fields($record) as $field) {
+        foreach ($resource->formFields($record) as $field) {
             $fields[$field->name] = $field;
         }
 

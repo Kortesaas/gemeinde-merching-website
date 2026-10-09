@@ -11,6 +11,9 @@ final class ResourceRegistry
 {
     /** @var list<class-string> */
     public const RESOURCES = [
+        Resources\MediaResource::class,
+        Resources\SearchSynonymResource::class,
+        Resources\SiteSettingsResource::class,
         Resources\ArticleResource::class,
         Resources\EventResource::class,
         Resources\PublicNoticeResource::class,

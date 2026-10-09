@@ -74,6 +74,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions): void {
         // Never flash secrets back into the session after validation errors.
         $exceptions->dontFlash([
+            'contact_name', 'contact_email', 'contact_phone', 'contact_message', 'website', 'form_nonce',
             'current_password',
             'password',
             'password_confirmation',

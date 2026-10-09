@@ -87,7 +87,7 @@ class Department extends Model implements Revisionable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['name', 'short_name', 'description', 'phone', 'email', 'location_id', 'opening_hours', 'is_active', 'sort_order'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'name', 'short_name', 'description', 'phone', 'email', 'location_id', 'opening_hours', 'is_active', 'sort_order'];
     }
 
     /**

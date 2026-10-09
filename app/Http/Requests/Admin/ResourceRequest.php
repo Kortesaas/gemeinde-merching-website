@@ -95,7 +95,7 @@ class ResourceRequest extends FormRequest
     public function attributes(): array
     {
         $names = ['status' => 'Status', 'publish_at' => 'Veröffentlichen ab', 'expires_at' => 'Veröffentlichen bis', 'public_path' => 'Öffentliche Adresse'];
-        foreach ($this->resource()->fields($this->record()) as $field) {
+        foreach ($this->resource()->formFields($this->record()) as $field) {
             $names[$field->name] = $field->label;
             $names[$field->name.'.*'] = $field->label;
         }

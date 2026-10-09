@@ -6,6 +6,8 @@ use App\Contracts\Revisionable;
 use App\Models\ContentRevision;
 use App\Models\User;
 use App\Services\Audit\AuditLogger;
+use App\Services\Quality\QualityChecks;
+use App\Services\Search\SearchIndexer;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -108,6 +110,8 @@ class RevisionService
         return DB::transaction(function () use ($model, $revision, $editor) {
             $this->applySnapshot($model, $revision->snapshot);
 
+            app(QualityChecks::class)->enforcePublicAssets($model);
+
             $new = $this->record($model->refresh(), $editor, "Version {$revision->revision_number} wiederhergestellt")
                 ?? $model->revisions()->firstOrFail();
 
@@ -150,6 +154,7 @@ class RevisionService
                 $this->restoreCollection($model, $relation, $model->revisionCollections()[$relation], $rows);
             }
         }
+        app(SearchIndexer::class)->sync($model);
     }
 
     /**

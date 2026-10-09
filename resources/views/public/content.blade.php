@@ -37,6 +37,17 @@
         {{-- Editor text is rendered only through SafeMarkdown (escaped HTML, safe links, no images). --}}
         {!! \App\Support\Content\SafeMarkdown::toHtml($attributes['body'] ?? $attributes['description'] ?? null) !!}
 
+        @if (method_exists($model,'media'))
+            @foreach ($model->media()->get() as $medium)
+                @if ($medium->isPubliclyReachable() && $medium->isImage() && $medium->hasAccessibleAlternative())
+                    <figure>
+                        <img src="{{ route('public.media',$medium->getKey()) }}" alt="{{ $medium->is_decorative ? '' : $medium->alt_text }}" width="{{ $medium->width }}" height="{{ $medium->height }}" loading="lazy">
+                        @if ($medium->caption || $medium->copyright)<figcaption>{{ $medium->caption }}@if($medium->copyright) – {{ $medium->copyright }}@endif</figcaption>@endif
+                    </figure>
+                @endif
+            @endforeach
+        @endif
+
         @if ($documents->isNotEmpty())
             <h2>Dokumente</h2>
             <ul>

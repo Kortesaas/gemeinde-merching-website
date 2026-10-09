@@ -8,6 +8,8 @@ const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best
 
 const pages = [
     { name: 'public placeholder', path: '/' },
+    { name: 'public contact form', path: '/kontakt' },
+    { name: 'contact confirmation', path: '/kontakt/bestaetigung' },
     { name: 'admin login', path: '/verwaltung/login' },
     { name: 'password forgotten', path: '/verwaltung/passwort-vergessen' },
     { name: 'not found page', path: '/gibt-es-nicht' },
@@ -74,4 +76,27 @@ test('content reflows at 320 CSS pixels without horizontal scrolling', async ({ 
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
         expect(overflow, path).toBeLessThanOrEqual(0);
     }
+});
+
+test('contact validation errors are accessible and never retain the message', async ({ page }) => {
+    await page.goto('/kontakt');
+    await page.getByRole('button', { name: 'Nachricht senden' }).click();
+    await expect(page).toHaveTitle(/^Fehler: Kontakt/);
+    await expect(page.locator('.error-summary')).toBeFocused();
+    await expect(page.getByLabel('E-Mail (Pflichtfeld)')).toHaveAttribute('aria-invalid', 'true');
+    await expect(page.getByLabel('Nachricht (Pflichtfeld)')).toHaveValue('');
+    await expectNoViolations(page);
+});
+
+test('contact form reflows and has no third-party requests', async ({ page, context }) => {
+    const external = [];
+    page.on('request', request => {
+        if (new URL(request.url()).origin !== new URL(test.info().project.use.baseURL).origin) external.push(request.url());
+    });
+    await page.setViewportSize({ width: 320, height: 640 });
+    await page.goto('/kontakt');
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+    expect(overflow).toBeLessThanOrEqual(0);
+    expect(external).toEqual([]);
+    expect((await context.cookies()).map(c => c.name)).not.toContain('XSRF-TOKEN');
 });

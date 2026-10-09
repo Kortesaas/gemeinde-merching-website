@@ -47,7 +47,7 @@ class ProposalRequest extends FormRequest
     {
         $record = $this->record();
         $rules = [];
-        foreach ($this->resource()->fields($record) as $field) {
+        foreach ($this->resource()->formFields($record) as $field) {
             $rules += $field->validationRules($record);
         }
 
@@ -71,7 +71,7 @@ class ProposalRequest extends FormRequest
     public function attributes(): array
     {
         $names = ['proposal_summary' => 'Beschreibung der Änderung'];
-        foreach ($this->resource()->fields($this->record()) as $field) {
+        foreach ($this->resource()->formFields($this->record()) as $field) {
             $names[$field->name] = $field->label;
         }
 

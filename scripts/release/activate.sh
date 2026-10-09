@@ -64,6 +64,7 @@ fi
 echo "==> Database migrations and permissions"
 artisan migrate --force
 artisan permissions:sync
+artisan search:rebuild
 
 echo "==> Caches"
 artisan config:cache
@@ -77,6 +78,7 @@ mv -Tf "$BASE/current.next" "$CURRENT"
 
 artisan up
 artisan audit:prune
+artisan search:prune-statistics
 
 echo "==> Removing old releases (keeping $KEEP_RELEASES)"
 ls -1dt "$BASE"/releases/*/ | tail -n +"$((KEEP_RELEASES + 1))" | while read -r old; do

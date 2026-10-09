@@ -86,7 +86,7 @@ final class PublicPath
      */
     public static function isReserved(string $key): bool
     {
-        $reserved = ['/', '/'.config('admin.path'), '/build', '/download', '/robots.txt', '/index.php', '/storage', '/.well-known', '/up'];
+        $reserved = ['/', '/'.config('admin.path'), '/build', '/download', '/robots.txt', '/kontakt', '/medien', '/sitemap.xml', '/sitemap', '/index.php', '/storage', '/.well-known', '/up'];
 
         foreach ($reserved as $prefix) {
             if ($key === $prefix || ($prefix !== '/' && str_starts_with($key, $prefix.'/'))) {

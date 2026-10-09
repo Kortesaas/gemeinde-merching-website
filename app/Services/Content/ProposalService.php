@@ -10,6 +10,7 @@ use App\Models\ContentProposal;
 use App\Models\ContentRevision;
 use App\Models\User;
 use App\Services\Audit\AuditLogger;
+use App\Services\Quality\QualityChecks;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -154,6 +155,8 @@ class ProposalService
         try {
             return DB::transaction(function () use ($proposal, $record, $reviewer, $changes, $conflicts) {
                 $this->revisions->applySnapshot($record, $proposal->payload, $changes['attributes'], $changes['relations'], $changes['collections']);
+
+                app(QualityChecks::class)->enforcePublicAssets($record);
 
                 $author = $proposal->author !== null ? $proposal->author->name : 'unbekannt';
                 $revision = $this->revisions->record($record->refresh(), $reviewer, "Änderungsvorschlag #{$proposal->id} von {$author} übernommen"

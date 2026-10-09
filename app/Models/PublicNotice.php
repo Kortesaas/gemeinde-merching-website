@@ -6,6 +6,7 @@ use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
 use App\Models\Concerns\HasDocumentPlacements;
+use App\Models\Concerns\HasMedia;
 use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasPublicRoute;
@@ -32,7 +33,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Fillable(['title', 'summary', 'body', 'category_id', 'published_on'])]
 class PublicNotice extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasProposals, HasPublication, HasPublicRoute, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected function casts(): array
     {
@@ -88,7 +89,7 @@ class PublicNotice extends Model implements Proposable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['title', 'summary', 'body', 'category_id', 'published_on'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'summary', 'body', 'category_id', 'published_on'];
     }
 
     /**
@@ -99,6 +100,7 @@ class PublicNotice extends Model implements Proposable, Routable, Searchable
         return [
             'pages' => [],
             'services' => [],
+            'media' => ['sort_order'],
             'documents' => ['slot', 'group_label', 'sort_order'],
         ];
     }

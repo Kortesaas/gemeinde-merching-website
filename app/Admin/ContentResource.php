@@ -8,12 +8,15 @@ use App\Contracts\Revisionable;
 use App\Contracts\Routable;
 use App\Enums\PublicationStatus;
 use App\Exceptions\DomainRuleViolation;
+use App\Models\Media;
 use App\Models\User;
 use App\Rules\SiteDateTime;
 use App\Services\Audit\AuditLogger;
 use App\Services\Content\PublicationService;
 use App\Services\Content\RevisionService;
+use App\Services\Quality\QualityChecks;
 use App\Services\Routing\RouteManager;
+use App\Services\Search\SearchIndexer;
 use App\Support\Authorization\ContentType;
 use App\Support\SiteTime;
 use Illuminate\Database\Eloquent\Builder;
@@ -59,6 +62,25 @@ abstract class ContentResource
      * @return list<Field>
      */
     abstract public function fields(?Model $model): array;
+
+    /**
+     * @param  TModel|null  $model
+     * @return list<Field>
+     */
+    public function formFields(?Model $model): array
+    {
+        $fields = $this->fields($model);
+        if ($this->isRoutable()) {
+            $fields[] = Fields\Text::make('seo_title', 'Seitentitel (optional)');
+            $fields[] = Fields\Textarea::make('meta_description', 'Meta-Beschreibung')->rules(['max:500']);
+            $fields[] = Fields\Checkbox::make('seo_noindex', 'Von Suchmaschinen ausschließen');
+        }
+        if (method_exists($this->model(), 'media')) {
+            $fields[] = Fields\BelongsToMany::make('media', 'Medien')->options(fn () => Media::query()->pluck('title', 'id')->all())->sortable();
+        }
+
+        return $fields;
+    }
 
     public function key(): string
     {
@@ -189,7 +211,7 @@ abstract class ContentResource
     public function validationRules(?Model $model): array
     {
         $rules = [];
-        foreach ($this->fields($model) as $field) {
+        foreach ($this->formFields($model) as $field) {
             $rules += $field->validationRules($model);
         }
 
@@ -217,7 +239,7 @@ abstract class ContentResource
     {
         $data = $validator->getData();
 
-        foreach ($this->fields($model) as $field) {
+        foreach ($this->formFields($model) as $field) {
             if ($field instanceof Lines && isset($data[$field->name])) {
                 $lines = Lines::split($data[$field->name]);
                 if (count($lines) > $field->maxLines) {
@@ -257,12 +279,12 @@ abstract class ContentResource
         $this->applyingProposal = $forProposal;
 
         try {
-            foreach ($this->fields($model) as $field) {
+            foreach ($this->formFields($model) as $field) {
                 $field->fill($model, $data);
             }
             $this->beforeSave($model, $data, $request);
             $model->save();
-            foreach ($this->fields($model) as $field) {
+            foreach ($this->formFields($model) as $field) {
                 $field->afterSave($model, $data);
             }
         } finally {
@@ -323,7 +345,7 @@ abstract class ContentResource
 
         try {
             return DB::transaction(function () use ($model, $data, $request, $editor, $isNew) {
-                foreach ($this->fields($model) as $field) {
+                foreach ($this->formFields($model) as $field) {
                     $field->fill($model, $data);
                 }
 
@@ -342,13 +364,16 @@ abstract class ContentResource
                 $changed = array_keys($model->getDirty());
                 $model->save();
 
-                foreach ($this->fields($model) as $field) {
+                foreach ($this->formFields($model) as $field) {
                     $field->afterSave($model, $data);
                 }
 
                 if ($model instanceof Routable) {
                     $this->syncPublicRoute($model, $data);
                 }
+
+                app(QualityChecks::class)->enforcePublicAssets($model);
+                app(SearchIndexer::class)->sync($model);
 
                 if ($model instanceof Revisionable) {
                     app(RevisionService::class)->record($model, $editor, $data['revision_summary'] ?? null);

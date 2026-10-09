@@ -6,8 +6,9 @@ use App\Admin\ContentResource;
 use App\Admin\Fields;
 use App\Admin\Options;
 use App\Enums\NavigationMenu;
+use App\Exceptions\DomainRuleViolation;
 use App\Models\NavigationItem;
-use App\Rules\SafeUrl;
+use App\Services\Navigation\NavigationManager;
 use App\Support\Authorization\ContentType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Validator;
@@ -57,6 +58,7 @@ class NavigationItemResource extends ContentResource
             Fields\Text::make('label', 'Beschriftung')->required(),
             Fields\BelongsTo::make('parent_id', 'Übergeordneter Eintrag')->options(fn (?Model $m) => Options::navigationItems($m)),
             Fields\BelongsTo::make('public_route_id', 'Ziel: Inhalt')->options(fn () => Options::canonicalRoutes()),
+            Fields\BelongsTo::make('external_resource_id', 'Ziel: verwalteter externer Link')->options(fn () => Options::externalResources()),
             Fields\Url::make('url', 'Ziel: externe Adresse'),
             Fields\Checkbox::make('is_active', 'Aktiv'),
             Fields\Number::make('sort_order', 'Reihenfolge'),
@@ -65,24 +67,17 @@ class NavigationItemResource extends ContentResource
 
     public function after(Validator $validator, ?Model $model): void
     {
-        $data = $validator->getData();
-        $hasRoute = ! empty($data['public_route_id']);
-        $hasUrl = ! empty($data['url']);
-        if ($hasRoute === $hasUrl) {
-            $validator->errors()->add('public_route_id', 'Bitte genau ein Ziel wählen: einen Inhalt oder eine externe Adresse.');
+        if ($validator->errors()->isNotEmpty()) {
+            return;
         }
-        if ($hasUrl && ! SafeUrl::isSafe((string) $data['url'])) {
-            $validator->errors()->add('url', 'Ungültige Adresse.');
+        $preview = $model ? clone $model : new NavigationItem;
+        foreach ($this->fields($model) as $field) {
+            $field->fill($preview, $validator->getData());
         }
-        $parent = ! empty($data['parent_id']) ? NavigationItem::find((int) $data['parent_id']) : null;
-        if ($parent !== null && $parent->menu->value !== ($data['menu'] ?? null)) {
-            $validator->errors()->add('parent_id', 'Der übergeordnete Eintrag muss im selben Menü liegen.');
-        }
-        for ($hops = 0; $model?->exists && $parent !== null && $hops < 20; $hops++, $parent = $parent->parent) {
-            if ($parent->is($model)) {
-                $validator->errors()->add('parent_id', 'Ein Eintrag kann nicht unter sich selbst einsortiert werden.');
-                break;
-            }
+        try {
+            app(NavigationManager::class)->validate($preview);
+        } catch (DomainRuleViolation $e) {
+            $validator->errors()->add($e->field, $e->getMessage());
         }
     }
 

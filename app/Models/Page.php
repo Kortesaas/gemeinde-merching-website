@@ -6,6 +6,7 @@ use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
 use App\Models\Concerns\HasDocumentPlacements;
+use App\Models\Concerns\HasMedia;
 use App\Models\Concerns\HasProposals;
 use App\Models\Concerns\HasPublication;
 use App\Models\Concerns\HasPublicRoute;
@@ -33,7 +34,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Fillable(['title', 'summary', 'body', 'department_id'])]
 class Page extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     /**
      * @return BelongsTo<Department, $this>
@@ -76,7 +77,7 @@ class Page extends Model implements Proposable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['title', 'summary', 'body', 'department_id'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'summary', 'body', 'department_id'];
     }
 
     /**
@@ -86,6 +87,7 @@ class Page extends Model implements Proposable, Routable, Searchable
     {
         return [
             'contacts' => ['sort_order'],
+            'media' => ['sort_order'],
             'documents' => ['slot', 'group_label', 'sort_order'],
             'externalResources' => ['slot', 'group_label', 'sort_order'],
         ];

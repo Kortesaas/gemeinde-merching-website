@@ -30,16 +30,17 @@
     @endif
 
     @unless ($isNew)
+        @include('admin.resources.partials.quality')
         @include('admin.resources.partials.meta')
     @endunless
 
     <form method="POST" action="{{ $isNew ? route('admin.'.$key.'.store') : route('admin.'.$key.'.update', $model->getKey()) }}"
-          @if ($key === 'document') enctype="multipart/form-data" @endif novalidate>
+          @if (in_array($key, ['document','media'], true)) enctype="multipart/form-data" @endif novalidate>
         @csrf
         @unless ($isNew) @method('PUT') @endunless
 
-        @if ($key === 'document')
-            @include('admin.resources.partials.file')
+        @if (in_array($key, ['document','media'], true))
+            @include($key === 'media' ? 'admin.resources.partials.media-file' : 'admin.resources.partials.file')
         @endif
 
         @foreach ($fields as $field)
@@ -73,7 +74,7 @@
             @include('admin.resources.partials.placements')
         @endif
 
-        @if (in_array($key, ['document', 'external-resource'], true))
+        @if (in_array($key, ['document', 'external-resource','media'], true))
             @include('admin.resources.partials.usage')
         @endif
 

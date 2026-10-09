@@ -190,7 +190,7 @@ class Document extends Model implements Proposable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['title', 'description', 'category_id', 'year', 'document_date', 'valid_from', 'valid_until', 'language', 'accessibility_status', 'accessibility_notes', 'accessible_alternative_id', 'replaces_document_id'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'description', 'category_id', 'year', 'document_date', 'valid_from', 'valid_until', 'language', 'accessibility_status', 'accessibility_notes', 'accessible_alternative_id', 'replaces_document_id'];
     }
 
     public function toSearchDocument(): SearchDocument

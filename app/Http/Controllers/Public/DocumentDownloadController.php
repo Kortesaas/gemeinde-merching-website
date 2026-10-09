@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Document;
 use App\Services\Content\DocumentStorage;
+use App\Services\Seo\SeoMetadata;
 use App\Support\Routing\PublicPath;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,6 +37,11 @@ class DocumentDownloadController extends Controller
 
         abort_unless($storage->exists($model), 404);
 
-        return $storage->response($model);
+        $response = $storage->response($model);
+        $seo = app(SeoMetadata::class)->forModel($model);
+        $response->headers->set('Link', '<'.$seo->canonical.'>; rel="canonical"');
+        $response->headers->set('X-Robots-Tag', $seo->robots);
+
+        return $response;
     }
 }

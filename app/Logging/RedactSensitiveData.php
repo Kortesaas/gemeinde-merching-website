@@ -18,6 +18,7 @@ class RedactSensitiveData
      */
     private const SENSITIVE_KEYS = [
         'password', 'passwort', 'token', 'secret', 'recovery', 'code', 'cookie',
+        'contact_name', 'contact_email', 'contact_phone', 'contact_message', 'enquiry', 'form_nonce',
         'session', 'authorization', 'api_key', 'apikey', 'credential', 'recipient',
     ];
 

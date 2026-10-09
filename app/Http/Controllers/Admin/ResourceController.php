@@ -100,7 +100,11 @@ class ResourceController extends Controller
         $model = $resource->find($record);
         Gate::authorize('delete', $model);
 
-        $resource->delete($model, $this->user($request));
+        try {
+            $resource->delete($model, $this->user($request));
+        } catch (DomainRuleViolation $e) {
+            throw $e->toValidationException();
+        }
 
         return redirect()->route("admin.{$resource->key()}.index")->with('status', $resource->usesRecycleBin()
             ? "„{$this->title($model)}“ wurde in den Papierkorb gelegt."
@@ -158,7 +162,7 @@ class ResourceController extends Controller
         return view('admin.resources.form', [
             'resource' => $resource,
             'model' => $model,
-            'fields' => $resource->fields($model),
+            'fields' => $resource->formFields($model),
             'editable' => $editable,
             'canPublish' => $resource->isPublishable() && (bool) $user?->can('publish', $model->exists ? $model : $resource->model()),
             'canArchive' => $resource->isPublishable() && (bool) $user?->can('archive', $model->exists ? $model : $resource->model()),

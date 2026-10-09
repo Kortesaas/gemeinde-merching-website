@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Admin\ContentResource;
 use App\Admin\ResourceRegistry;
 use App\Contracts\Revisionable;
+use App\Exceptions\DomainRuleViolation;
 use App\Http\Controllers\Controller;
 use App\Models\ContentRevision;
 use App\Models\User;
@@ -40,7 +41,7 @@ class RevisionController extends Controller
             'resource' => $resource,
             'model' => $model,
             'revision' => $this->find($model, $revision),
-            'labels' => collect($resource->fields($model))->mapWithKeys(fn ($f) => [$f->name => $f->label])->all(),
+            'labels' => collect($resource->formFields($model))->mapWithKeys(fn ($f) => [$f->name => $f->label])->all(),
         ]);
     }
 
@@ -51,7 +52,11 @@ class RevisionController extends Controller
 
         /** @var User $user */
         $user = $request->user();
-        $new = $this->revisions->restore($this->find($model, $revision), $user);
+        try {
+            $new = $this->revisions->restore($this->find($model, $revision), $user);
+        } catch (DomainRuleViolation $e) {
+            throw $e->toValidationException();
+        }
 
         return redirect()->route("admin.{$resource->key()}.edit", $model->getKey())
             ->with('status', "Version {$revision} wurde wiederhergestellt (neue Version {$new->revision_number}).");
