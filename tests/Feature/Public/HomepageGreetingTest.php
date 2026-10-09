@@ -39,7 +39,7 @@ class HomepageGreetingTest extends TestCase
         ]);
 
         $response = $this->get('/')->assertOk()
-            ->assertSee('„Herzlich willkommen auf unserer Website.“')
+            ->assertSee('Herzlich willkommen auf unserer Website.')
             ->assertSee('Erika Beispiel')->assertSee('Erste Bürgermeisterin')
             ->assertSee('href="/grusswort"', false)->assertSee('alt="Neutrale Silhouette"', false);
         $this->assertSame([], $response->headers->getCookies());
@@ -49,5 +49,20 @@ class HomepageGreetingTest extends TestCase
         // A draft page is not linked; the quote itself stays.
         $page->forceFill(['status' => PublicationStatus::Draft])->save();
         $this->get('/')->assertSee('Erika Beispiel')->assertDontSee('Zum Grußwort');
+    }
+
+    public function test_greeting_preserves_formatted_salutation_and_paragraphs_safely(): void
+    {
+        SiteSettings::create([
+            'municipality_name' => 'Gemeinde Testdorf',
+            'greeting_text' => "***Liebe Mitbürgerinnen, liebe Mitbürger,***\\\n***liebe Besucher,***\n\nWillkommen in unserer Gemeinde. <script>alert(1)</script>",
+            'greeting_name' => 'Erika Beispiel',
+        ]);
+
+        $this->get('/')->assertOk()
+            ->assertSee('<em><strong>Liebe Mitbürgerinnen, liebe Mitbürger,</strong></em><br', false)
+            ->assertSee('<em><strong>liebe Besucher,</strong></em>', false)
+            ->assertSee('<p>Willkommen in unserer Gemeinde.', false)
+            ->assertDontSee('<script>alert(1)</script>', false);
     }
 }

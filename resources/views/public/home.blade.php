@@ -33,6 +33,22 @@
     @endif
 </section>
 
+@if ($greeting)
+    <figure class="section greeting {{ $greeting['media'] ? '' : 'greeting--text' }}" aria-labelledby="greeting-text">
+        @if ($greeting['media'])
+            <div class="greeting__media">@include('public.partials.image', ['medium' => $greeting['media'], 'imageSizes' => '(max-width: 40rem) calc(100vw - 2rem), 9rem', 'imageClass' => 'greeting__image'])</div>
+        @endif
+        <div class="greeting__body">
+            <blockquote class="greeting__quote" id="greeting-text">{!! \App\Support\Content\SafeMarkdown::toHtml($greeting['text']) !!}</blockquote>
+            <figcaption class="greeting__caption">
+                @if ($greeting['role'])<span>{{ $greeting['role'] }}</span>@endif
+                @if ($greeting['name'])<strong class="greeting__name">{{ $greeting['name'] }}</strong>@endif
+                @if ($greeting['url'])<span><a href="{{ \App\Support\Routing\PublicPath::toUrl($greeting['url']) }}">Zum Grußwort</a></span>@endif
+            </figcaption>
+        </div>
+    </figure>
+@endif
+
 @if (config('public.homepage.services') && $shortcuts)
     <section class="section" aria-labelledby="tasks-heading">
         <div class="section-heading">
@@ -118,22 +134,6 @@
             </ul>
         @endif
     </section>
-@endif
-
-@if ($greeting)
-    <figure class="section greeting {{ $greeting['media'] ? '' : 'greeting--text' }}" aria-labelledby="greeting-text">
-        @if ($greeting['media'])
-            <div class="greeting__media">@include('public.partials.image', ['medium' => $greeting['media'], 'imageSizes' => '10rem', 'imageClass' => 'greeting__image'])</div>
-        @endif
-        <div class="greeting__body">
-            <blockquote class="greeting__quote" id="greeting-text"><p>„{{ $greeting['text'] }}“</p></blockquote>
-            <figcaption class="greeting__caption">
-                @if ($greeting['name'])<strong class="greeting__name">{{ $greeting['name'] }}</strong>@endif
-                @if ($greeting['role'])<span>{{ $greeting['role'] }}</span>@endif
-                @if ($greeting['url'])<span><a href="{{ \App\Support\Routing\PublicPath::toUrl($greeting['url']) }}">Zum Grußwort</a></span>@endif
-            </figcaption>
-        </div>
-    </figure>
 @endif
 
 @if (config('public.homepage.contact') && ($townHall || $central || $works || $recycling))

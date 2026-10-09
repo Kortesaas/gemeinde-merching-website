@@ -56,7 +56,7 @@ class SiteSettingsResource extends ContentResource
             Fields\BelongsTo::make('works_department_id', 'Bauhof-Kontakt')->options(fn () => Department::query()->pluck('name', 'id')->all()),
             Fields\BelongsTo::make('recycling_location_id', 'Wertstoffsammelstelle')->options(fn () => Location::query()->pluck('name', 'id')->all()),
             Fields\BelongsTo::make('homepage_media_id', 'Startseitenbild')->options(fn () => Media::query()->where('mime_type', 'like', 'image/%')->where(fn ($q) => $q->where('is_decorative', true)->orWhereNotNull('alt_text'))->orderBy('title')->pluck('title', 'id')->all())->hint('Optional. Erscheint groß neben der Suche auf der Startseite. Nur veröffentlichte Bilder mit Alternativtext werden angezeigt.'),
-            Fields\Textarea::make('greeting_text', 'Grußwort auf der Startseite (Zitat)')->rules(['max:400'])->hint('Optional. Ein bis zwei Sätze ohne Anführungszeichen; erscheint als Zitat auf der Startseite. Leer = kein Grußwort.'),
+            Fields\Textarea::make('greeting_text', 'Grußwort auf der Startseite (Auszug)')->rules(['max:400'])->hint('Optional. Kurzer Auszug, maximal 400 Zeichen. Absätze und einfache Markdown-Formatierung sind möglich. Leer = kein Grußwort.'),
             Fields\Text::make('greeting_name', 'Grußwort: Name')->rules(['required_with:greeting_text'])->hint('z. B. der Name des Ersten Bürgermeisters.'),
             Fields\Text::make('greeting_role', 'Grußwort: Funktion')->hint('z. B. „Erster Bürgermeister“.'),
             Fields\BelongsTo::make('greeting_page_id', 'Grußwort: Seite mit dem vollständigen Text')->options(fn () => Page::query()->orderBy('title')->pluck('title', 'id')->all())->hint('Optional. Verlinkt als „Zum Grußwort“, solange die Seite veröffentlicht ist.'),

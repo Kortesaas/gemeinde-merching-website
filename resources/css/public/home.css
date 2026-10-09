@@ -115,7 +115,7 @@
     display: grid;
     grid-template-columns: 9rem minmax(0, 1fr);
     gap: var(--space-5);
-    align-items: center;
+    align-items: stretch;
     max-width: 58rem;
     margin-inline: 0;
     padding-bottom: var(--space-6);
@@ -134,7 +134,7 @@
 
 .greeting__media {
     overflow: hidden;
-    aspect-ratio: 4 / 5;
+    min-height: 0;
     border-radius: var(--radius-large);
     background: var(--color-surface);
 }
@@ -157,10 +157,16 @@
     text-wrap: pretty;
 }
 
+.greeting__quote p + p {
+    margin-top: var(--space-3);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+}
+
 .greeting__caption {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0 var(--space-2);
+    flex-direction: column;
+    gap: var(--space-1);
     margin: 0;
     color: var(--color-text-muted);
     font-size: var(--text-small);
@@ -168,12 +174,6 @@
 
 .greeting__caption strong {
     color: var(--color-text);
-}
-
-/* Separators are decorative, so they never start a wrapped line. */
-.greeting__caption > * + *::before {
-    content: "·";
-    margin-inline-end: var(--space-2);
 }
 
 .greeting__caption a {
@@ -184,21 +184,16 @@
 
 @media (max-width: 40rem) {
     .greeting {
-        grid-template-columns: 5.5rem minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--space-4);
-        align-items: start;
+    }
+
+    .greeting__media {
+        height: 14rem;
     }
 
     .greeting--text {
         grid-template-columns: minmax(0, 1fr);
         padding-left: var(--space-4);
-    }
-
-    .greeting__caption {
-        flex-direction: column;
-    }
-
-    .greeting__caption > * + *::before {
-        content: none;
     }
 }

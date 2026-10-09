@@ -101,7 +101,7 @@ paths stay slashless, with production origin `https://www.gemeinde-merching.de`.
 
 | Component | Behavior |
 |---|---|
-| Homepage | Search, live alert, managed service-menu shortcuts, current articles, upcoming events, published online resources, optional greeting (quote, name, role, link to a Grußwort page, optional image — all from Website-Einstellungen), settings-based contacts; empty sections disappear |
+| Homepage | Search, live alert, optional greeting directly below the welcome/search area (excerpt with safe Markdown, name, role, link to a Grußwort page, optional image — all from Website-Einstellungen), managed service-menu shortcuts, current articles, upcoming events, published online resources, settings-based contacts; empty sections disappear |
 | Search form/results | Ordinary GET `/suche`, server snippets/type labels, type filter, pagination and helpful empty/no-results text |
 | Catalog | Public visibility before filtering/pagination, categories, title filter, online filter, archive switch, life situations |
 | A–Z | Native letter anchors, folded German umlauts, service/contact metadata; all matching letters remain available |
