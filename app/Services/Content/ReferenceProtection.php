@@ -30,12 +30,12 @@ final class ReferenceProtection
             }
         }
         if ($item instanceof Models\Media) {
-            foreach (Models\Gallery::withTrashed()->whereHas('items', fn ($q) => $q->where('media_id', $item->getKey()))->get() as $owner) {
+            foreach (Models\Gallery::withTrashed()->with('canonicalRoute')->whereHas('items', fn ($q) => $q->where('media_id', $item->getKey()))->get() as $owner) {
                 $owners[] = $owner;
             }
         }
         if ($item instanceof Models\CouncilMember) {
-            foreach (Models\CouncilTerm::withTrashed()->whereHas('memberships', fn ($q) => $q->where($column, $item->getKey()))->get() as $owner) {
+            foreach (Models\CouncilTerm::withTrashed()->with('canonicalRoute')->whereHas('memberships', fn ($q) => $q->where($column, $item->getKey()))->get() as $owner) {
                 $owners[] = $owner;
             }
             foreach (Models\Committee::withTrashed()->whereHas('committeeMemberships', fn ($q) => $q->where($column, $item->getKey()))->get() as $owner) {

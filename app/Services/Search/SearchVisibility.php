@@ -34,7 +34,7 @@ final class SearchVisibility
         // People have no profile URL; results link to a public context where they are referenced.
         foreach ([Service::class, Department::class, Page::class, Article::class] as $class) {
             $relation = $class === Department::class ? 'people' : 'contacts';
-            foreach ($class::query()->whereHas($relation, fn ($q) => $q->where('people.id', $model->getKey()))->orderBy('id')->get() as $owner) {
+            foreach ($class::query()->with('canonicalRoute')->whereHas($relation, fn ($q) => $q->where('people.id', $model->getKey()))->orderBy('id')->get() as $owner) {
                 if ($owner->isPubliclyReachable() && $owner->publicPath() !== null) {
                     return $owner->publicPath();
                 }
