@@ -108,6 +108,9 @@ for (const form of document.querySelectorAll('[data-search-form]')) {
             } catch (error) { if (error.name !== 'AbortError') clear(); }
         }, 250);
     });
+    // The floating list closes when focus or a click leaves this search form.
+    form.addEventListener('focusout', event => { if (!form.contains(event.relatedTarget)) { controller?.abort(); serial++; clear(); } });
+    document.addEventListener('pointerdown', event => { if (!list.hidden && !form.contains(event.target)) { controller?.abort(); serial++; clear(); } });
     form.addEventListener('keydown', event => {
         const links = [...list.querySelectorAll('a')];
         if (event.key === 'Escape') { controller?.abort(); serial++; clear(); input.focus(); event.stopPropagation(); }

@@ -134,7 +134,10 @@ native modal `dialog` (full-screen panel with brand bar), focuses the labelled
 input and returns focus on close; “Alle Ergebnisse anzeigen” follows the typed
 phrase. Suggestions use the existing `SiteSearch` service through
 `/suche/vorschlaege`: debounced, abortable, same-origin, credential-free and
-rate-limited; the typed text is emphasised with DOM text nodes only. The combobox
+rate-limited; the typed text is emphasised with DOM text nodes only. On the
+page (homepage, Bürgerservice, results) the list floats as a dropdown over the
+content, so nothing below moves; it closes on Escape, an outside click or when
+focus leaves the form. Inside the full-screen overlay it stays in the panel flow. The combobox
 uses `aria-activedescendant`; arrows select, Enter opens or searches, Escape
 clears suggestions first. Results show type tabs with counts, the managed synonym
 hint and highlighted matches (escaped server-side before marking).
