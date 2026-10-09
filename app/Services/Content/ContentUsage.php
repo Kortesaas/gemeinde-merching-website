@@ -15,6 +15,7 @@ use App\Models\NavigationItem;
 use App\Models\Page;
 use App\Models\PublicNotice;
 use App\Models\Service;
+use App\Models\SiteSettings;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -92,6 +93,10 @@ class ContentUsage
             }
         }
 
+        foreach (SiteSettings::query()->where('homepage_media_id', $media->getKey())->get() as $settings) {
+            $owners[] = $settings;
+        }
+
         if ($includeCompositions) {
             foreach (app(ReferenceProtection::class)->liveOwners($media) as $owner) {
                 $owners[] = $owner;
@@ -104,6 +109,9 @@ class ContentUsage
     /** @param array<string,mixed> $snapshot */
     private function snapshotUsesMedia(array $snapshot, int $id): bool
     {
+        if ((int) ($snapshot['attributes']['homepage_media_id'] ?? 0) === $id) {
+            return true;
+        }
         foreach ($snapshot['relations']['media'] ?? [] as $row) {
             if ((int) $row['id'] === $id) {
                 return true;

@@ -7,6 +7,7 @@ use App\Admin\Fields;
 use App\Models\ContactRoute;
 use App\Models\Department;
 use App\Models\Location;
+use App\Models\Media;
 use App\Models\SiteSettings;
 use App\Support\Authorization\ContentType;
 use Illuminate\Database\Eloquent\Model;
@@ -53,6 +54,7 @@ class SiteSettingsResource extends ContentResource
             Fields\BelongsTo::make('central_contact_route_id', 'Zentrales Kontaktformular-Thema')->options(fn () => ContactRoute::query()->where('is_active', true)->pluck('label', 'id')->all()),
             Fields\BelongsTo::make('works_department_id', 'Bauhof-Kontakt')->options(fn () => Department::query()->pluck('name', 'id')->all()),
             Fields\BelongsTo::make('recycling_location_id', 'Wertstoffsammelstelle')->options(fn () => Location::query()->pluck('name', 'id')->all()),
+            Fields\BelongsTo::make('homepage_media_id', 'Startseitenbild')->options(fn () => Media::query()->where('mime_type', 'like', 'image/%')->where(fn ($q) => $q->where('is_decorative', true)->orWhereNotNull('alt_text'))->orderBy('title')->pluck('title', 'id')->all())->hint('Optional. Erscheint groß neben der Suche auf der Startseite. Nur veröffentlichte Bilder mit Alternativtext werden angezeigt.'),
             Fields\Textarea::make('postal_address', 'Abweichende Postanschrift'), Fields\Textarea::make('legal_contact', 'Rechtlicher Kontakt / Footer'),
             Fields\Text::make('default_seo_title', 'Standard-Seitentitel'), Fields\Textarea::make('default_meta_description', 'Standard-Meta-Beschreibung')->rules(['max:500']),
         ];

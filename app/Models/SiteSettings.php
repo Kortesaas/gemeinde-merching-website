@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['municipality_name', 'town_hall_location_id', 'central_department_id', 'central_contact_route_id', 'works_department_id', 'recycling_location_id', 'postal_address', 'legal_contact', 'default_seo_title', 'default_meta_description'])]
+#[Fillable(['municipality_name', 'town_hall_location_id', 'central_department_id', 'central_contact_route_id', 'works_department_id', 'recycling_location_id', 'homepage_media_id', 'postal_address', 'legal_contact', 'default_seo_title', 'default_meta_description'])]
 class SiteSettings extends Model implements Revisionable
 {
     use HasRevisions;
@@ -45,6 +45,18 @@ class SiteSettings extends Model implements Revisionable
         return $this->belongsTo(Location::class, 'recycling_location_id');
     }
 
+    /** @return BelongsTo<Media,$this> */
+    public function homepageMedia(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'homepage_media_id');
+    }
+
+    /** Settings are rendered on every public page; their homepage image is public context. */
+    public function isPubliclyReachable(): bool
+    {
+        return true;
+    }
+
     public function displayTitle(): string
     {
         return $this->municipality_name;
@@ -60,6 +72,6 @@ class SiteSettings extends Model implements Revisionable
     /** @return list<string> */
     public function revisionAttributes(): array
     {
-        return ['municipality_name', 'town_hall_location_id', 'central_department_id', 'central_contact_route_id', 'works_department_id', 'recycling_location_id', 'postal_address', 'legal_contact', 'default_seo_title', 'default_meta_description'];
+        return ['municipality_name', 'town_hall_location_id', 'central_department_id', 'central_contact_route_id', 'works_department_id', 'recycling_location_id', 'homepage_media_id', 'postal_address', 'legal_contact', 'default_seo_title', 'default_meta_description'];
     }
 }
