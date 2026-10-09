@@ -14,7 +14,7 @@ default (Art. 25 GDPR) and must not require consent for merely reading it
 |---|---|
 | Cookies | **None** for visitors reading the website. Public routes run in the stateless `public` middleware group: no session, no CSRF cookie, no tracking. Tested in PHPUnit (`PlaceholderPageTest`) and in the browser (`tests/Browser/privacy.spec.js`). |
 | Browser storage | No `localStorage`/`sessionStorage` (browser test). |
-| Third-party requests | None. No Google Fonts or other font CDNs (system fonts now, self-hosted fonts later), no external JS/CSS libraries, no CDNs, no embeds. Tested: rendered HTML contains no foreign hosts; the browser makes no request to another origin. The CSP (`default-src 'self'`) also blocks accidental external resources. |
+| Third-party requests | None. No Google Fonts or other font CDNs (self-hosted Atkinson Hyperlegible variable font), no external JS/CSS libraries, no CDNs, no embeds. Tested: rendered HTML contains no foreign hosts; the browser makes no request to another origin. The CSP (`default-src 'self'`) also blocks accidental external resources. |
 | Analytics / tracking | None: no Google Analytics, Tag Manager, Meta Pixel, tracking pixels, social widgets, fingerprinting or profiling. |
 | Consent banner | Not built and not needed as long as only strictly necessary technology is used. Any future third-party integration (maps, videos, …) requires an individual privacy decision first (e.g. two-click solution, self-hosting). |
 | Indexing | Unfinished installations are always `noindex` (see architecture.md). |
@@ -89,3 +89,13 @@ External-resource/map blocks remain explicit outbound links. Media focal metadat
 never restores removed EXIF/GPS data. Council information is separate from employee
 records and is published only through the ordinary editorial workflow. No demo
 municipal content or portraits were seeded. See [content-parity.md](content-parity.md).
+
+## Final visual implementation
+
+Menus, search suggestions, image variants and the editorial interface preserve
+the same privacy boundary. Ordinary public views remain stateless, cookie-free,
+storage-free and same-origin. Suggestions omit credentials/statistics; full
+search respects `search.statistics_enabled`. Contact enhancement preserves valid
+details only in the current browser page, never session flash or browser storage;
+the message is cleared. Public image variants recheck original authorization.
+See [visual-system.md](visual-system.md) for component behavior and limitations.

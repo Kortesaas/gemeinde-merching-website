@@ -9,13 +9,13 @@ class PlaceholderPageTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_placeholder_page_is_served(): void
+    public function test_homepage_is_served(): void
     {
         $this->get('/')
             ->assertOk()
             ->assertSee('<html lang="de">', false)
-            ->assertSee('<title>Entwicklungsumgebung – Gemeinde Merching</title>', false)
-            ->assertSee('<h1>Gemeinde Merching – Entwicklungsumgebung</h1>', false);
+            ->assertSee('<title>Startseite – Gemeinde Merching</title>', false)
+            ->assertSee('<h1 id="home-heading">Wie können wir Ihnen helfen?</h1>', false);
     }
 
     public function test_page_has_accessible_landmarks_and_skip_link(): void

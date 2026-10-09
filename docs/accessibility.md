@@ -41,10 +41,12 @@ Base layout (`resources/views/layouts/base.blade.php`) and backend pages:
   window (restart is possible at any time).
 - QR code has a text alternative and the setup key is also shown as text.
 - Status messages use `role="status"`.
-- Colour contrast of the temporary tokens: text 17.4:1, links/buttons 8.4:1,
-  errors 7.3:1, borders 5.3:1. Target sizes ≥ 44 px for buttons.
+- Final shared tokens use dark text on sky-blue surfaces, contrasting action blue,
+  a dark-blue footer and visible black/yellow focus. Target sizes ≥ 44 px for
+  important controls; current contrast measurements are in [visual-verification.md](visual-verification.md).
 - `prefers-reduced-motion` respected.
-- Works completely without JavaScript.
+- Core navigation, reading, search and forms work without JavaScript; menus,
+  suggestions and editorial controls are progressively enhanced.
 
 ## Backend (functional CMS screens)
 
@@ -67,10 +69,10 @@ npm test
 Runs Playwright + axe-core (`tests/Browser/accessibility.spec.js`) against the
 running application (default `http://localhost:8088`, override with
 `BASE_URL`). Checks: axe rules for WCAG 2.0/2.1/2.2 A+AA and best practices on
-the public placeholder, admin login (incl. error state), password-reset page
+the public homepage, admin login (incl. error state), password-reset page
 and 404 page; skip link and focus order; error summary focus; reflow at 320 px.
 PHPUnit additionally asserts the login markup (labels, autocomplete, no
-placeholders, no scripts).
+placeholders, no inline scripts).
 
 Contact form and confirmation, error focus/labels, 320 px reflow and
 same-origin requests are also covered. Media alt state and the reusable
@@ -112,3 +114,19 @@ and scoped headers. Unchecked documents still warn rather than falsely claiming
 accessibility. Location notes appear only when entered, without inferred claims.
 See [content-parity.md](content-parity.md) and the optional local Docker browser
 checks described in [local-development.md](local-development.md).
+
+## Final visual phase
+
+The final suite also covers public home, navigation, suggestions/results, service
+landing/A–Z/detail, article/event, document/notice/directory, contact and error
+views; authenticated dashboard, overview/lists, article/service/event/page
+editors, media, quality, proposals and history. Every editor disclosure is expanded
+for the axe scan. Reflow is checked at 320/390/768/1024/1440 CSS px. Keyboard tests
+include modal focus return, combobox selection, Escape at successive disclosure
+levels, native no-JavaScript navigation/search, block add/up/down/remove and
+form error focus. Forced-colors/reduced-motion emulation also passes.
+
+Local screenshots and contrast/reflow were reviewed. This does not replace the
+manual assistive-technology, text-spacing/zoom, real-content/PDF and formal checks
+listed above. No screen-reader certification is claimed. See
+[visual-system.md](visual-system.md) and [visual-verification.md](visual-verification.md).

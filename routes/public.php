@@ -3,9 +3,10 @@
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\ContentController;
 use App\Http\Controllers\Public\DocumentDownloadController;
+use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\MediaController;
-use App\Http\Controllers\Public\PlaceholderController;
 use App\Http\Controllers\Public\RobotsController;
+use App\Http\Controllers\Public\SearchController;
 use App\Http\Controllers\Public\SitemapController;
 use App\Http\Middleware\ContactFormHeaders;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 | URLs of the old website can be preserved.
 */
 
-Route::get('/', PlaceholderController::class)->name('public.home');
+Route::get('/', HomeController::class)->name('public.home');
+Route::get('/suche', [SearchController::class, 'index'])->name('public.search');
+Route::get('/suche/vorschlaege', [SearchController::class, 'suggestions'])->middleware('throttle:120,1')->name('public.search.suggestions');
 
 Route::middleware(['web', ContactFormHeaders::class])->group(function () {
     Route::get('/kontakt', [ContactController::class, 'create'])->block(30, 10)->name('public.contact');

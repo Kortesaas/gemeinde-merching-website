@@ -1,40 +1,15 @@
 @extends('layouts.admin')
-
 @section('title', 'Dashboard')
-
 @section('content')
-    <h1>Dashboard</h1>
-
-    <x-status />
-
-    <p lang="en">Backend foundation operational</p>
-
-    <dl class="summary-list">
-        <dt>Angemeldet als</dt>
-        <dd>{{ auth()->user()->name }}</dd>
-        <dt>Rollen</dt>
-        <dd>
-            {{ auth()->user()->getRoleNames()->map(fn ($role) => \App\Support\Authorization\Role::tryFrom($role)?->label() ?? $role)->implode(', ') ?: 'keine' }}
-        </dd>
-        <dt>Zwei-Faktor-Authentisierung</dt>
-        <dd>{{ auth()->user()->hasEnabledTwoFactor() ? 'aktiv' : 'nicht eingerichtet' }}</dd>
-    </dl>
-
-    <nav aria-labelledby="content-nav-heading">
-        <h2 id="content-nav-heading">Inhalte verwalten</h2>
-        <ul class="link-list">
-            @foreach (\App\Admin\ResourceRegistry::all() as $key => $resource)
-                @can('viewAny', $resource->model())
-                    <li><a href="{{ route('admin.'.$key.'.index') }}">{{ $resource->pluralLabel() }}</a></li>
-                @endcan
-            @endforeach
-            <li><a href="{{ route('admin.proposals.index') }}">Freigaben und Änderungsvorschläge
-                @if (\App\Http\Controllers\Admin\ProposalController::canReviewAnything(auth()->user()))
-                    ({{ \App\Models\ContentProposal::query()->where('status', 'submitted')->count() }} eingereicht)
-                @endif</a></li>
-            @can('viewAny', \App\Models\User::class)
-                <li><a href="{{ route('admin.user.index') }}">Benutzerkonten</a></li>
-            @endcan
-        </ul>
-    </nav>
+<p class="form-hint">{{ \App\Support\SiteTime::format(now(), 'd.m.Y') }} · Angemeldet als {{ auth()->user()->name }}</p>
+<h1>Was benötigt Ihre Aufmerksamkeit?</h1><x-status />
+<ul class="nav-list">@foreach (['article','event','document'] as $key) @php $resource=\App\Admin\ResourceRegistry::get($key); @endphp @can('create',$resource->model())<li><a class="button" href="{{ route('admin.'.$key.'.create') }}">{{ $resource->label() }} anlegen</a></li>@endcan @endforeach</ul>
+<div class="cms-grid">
+<section class="cms-panel"><h2>Wartet auf Ihre Freigabe</h2><ul class="cms-row-list">@forelse($review as $proposal)<li><a href="{{ route('admin.proposals.show',$proposal) }}">{{ $proposal->proposable?->displayTitle() ?? 'Inhalt' }}</a><p class="meta">Eingereicht von {{ $proposal->author?->name }}</p></li>@empty<li>Zurzeit keine Vorschläge zur Freigabe.</li>@endforelse</ul><a href="{{ route('admin.proposals.index') }}">Freigaben und Änderungsvorschläge</a></section>
+<section class="cms-panel"><h2>Geplant oder bald ablaufend</h2><ul class="cms-row-list">@forelse($attention as $row)<li><a href="{{ route('admin.'.$row['resource']->key().'.edit',$row['record']->getKey()) }}">{{ $row['record']->displayTitle() }}</a><p class="meta">@include('admin.resources.partials.state',['model'=>$row['record']]) · @if($row['record']->expires_at) Ende: {{ \App\Support\SiteTime::format($row['record']->expires_at) }} @else Ab: {{ \App\Support\SiteTime::format($row['record']->publish_at) }} @endif</p></li>@empty<li>Keine Einträge in diesem Zeitraum.</li>@endforelse</ul></section>
+<section class="cms-panel"><h2>Zuletzt bearbeitet</h2><ul class="cms-row-list">@forelse($recent as $row)<li><a href="{{ route('admin.'.$row['resource']->key().'.edit',$row['record']->getKey()) }}">{{ $row['record']->displayTitle() }}</a><p class="meta">{{ $row['resource']->label() }} · {{ \App\Support\SiteTime::format($row['record']->updated_at) }}</p></li>@empty<li>Noch keine Inhalte.</li>@endforelse</ul></section>
+<section class="cms-panel"><h2>Meine Vorschläge</h2><ul class="cms-row-list">@forelse($mine as $proposal)<li><a href="{{ route('admin.proposals.show',$proposal) }}">{{ $proposal->proposable?->displayTitle() ?? 'Inhalt' }}</a><p class="meta">{{ $proposal->status->label() }}</p></li>@empty<li>Noch keine eigenen Änderungsvorschläge.</li>@endforelse</ul></section>
+<section class="cms-panel"><h2>Qualität und anstehende Termine</h2><ul class="cms-row-list">@forelse($quality as $row)<li><a href="{{ route('admin.'.$row['resource']->key().'.edit',$row['record']->getKey()) }}">{{ $row['record']->displayTitle() }}</a><p>{{ $row['message'] }}</p></li>@empty<li>Keine Hinweise in den geprüften Bereichen.</li>@endforelse</ul><p class="form-hint">Bis zu vier Einträge pro Bereich; die vollständige Qualitätsprüfung steht im Editor.</p></section>
+</div>
+<nav aria-labelledby="content-nav-heading"><h2 id="content-nav-heading">Inhalte verwalten</h2><ul class="link-list">@foreach(\App\Admin\ResourceRegistry::all() as $key=>$resource) @can('viewAny',$resource->model())<li><a href="{{ route('admin.'.$key.'.index') }}">{{ $resource->pluralLabel() }}</a></li>@endcan @endforeach</ul></nav>
 @endsection

@@ -1,45 +1,54 @@
-/*
- * Design tokens – TEMPORARY NEUTRAL VALUES.
- *
- * This file will be populated from the Gemeinde Merching design system in a
- * later phase. Until then only neutral, accessible defaults are defined here
- * (system fonts, high-contrast greys). No branding.
- *
- * Contrast on #ffffff (WCAG 2.2 AA needs 4.5:1 text, 3:1 UI): text #1a1a1a 17.4:1,
- * muted #4a4a4a 8.9:1, link/button/focus #0b4f8a 8.4:1, error #b00020 7.3:1,
- * borders #6b6b6b 5.3:1.
- */
+@font-face {
+    font-family: "Atkinson Hyperlegible";
+    src: url("../fonts/atkinson-hyperlegible-next-latin-variable.woff") format("woff");
+    font-weight: 200 800;
+    font-style: normal;
+    font-display: swap;
+}
 :root {
-    /* Typography – system fonts only (no external font requests). */
-    --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-family-base: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
     --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    --font-size-base: 1rem;
-    --line-height-base: 1.5;
-
-    /* Colours */
-    --color-text: #1a1a1a;
-    --color-text-muted: #4a4a4a;
-    --color-background: #ffffff;
-    --color-surface: #f3f3f3;
-    --color-border: #6b6b6b;
-    --color-link: #0b4f8a;
-    --color-link-hover: #07345c;
-    --color-focus: #0b4f8a;
-    --color-focus-contrast: #ffd34d;
-    --color-error: #b00020;
-    --color-warning-surface: #fff4d6;
-    --color-success-surface: #e7f4ea;
-
-    /* Spacing & layout */
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
+    --font-size-base: 1.125rem;
+    --line-height-base: 1.6;
+    --text-small: .9375rem;
+    --text-heading: clamp(2rem, 3.6vw, 3.25rem);
+    --color-text: #16202e;
+    --color-text-muted: #4b4f58;
+    --color-background: #fff;
+    --color-surface: #f4f7fb;
+    --color-sky: #94c3f7;
+    --color-sky-soft: #e3effd;
+    --color-dark: #0f2d57;
+    --color-border: #66707e;
+    --color-rule: #d6deea;
+    --color-link: #0b5cc2;
+    --color-link-hover: #0a4a9c;
+    --color-focus: #000;
+    --color-focus-contrast: #fbe24f;
+    --color-error: #a5300b;
+    --color-warning-surface: #fff7df;
+    --color-success-surface: #e3f3ed;
+    --space-1: .25rem;
+    --space-2: .5rem;
     --space-3: 1rem;
     --space-4: 1.5rem;
     --space-5: 2rem;
     --space-6: 3rem;
-    --container-max: 72rem;
-    --container-narrow: 36rem;
-    --radius: 0.25rem;
-
+    --space-7: 4rem;
+    --space-section: clamp(3rem, 7vw, 6rem);
+    --container-max: 76rem;
+    --container-narrow: 42rem;
+    --reading-width: 46rem;
+    --radius: .5rem;
+    --radius-large: 1rem;
+    --shadow: 0 12px 32px rgb(15 45 87 / .12);
     --focus-ring-width: 3px;
+    --sidebar-width: 15rem;
+    --aside-width: 19rem;
+    --control-height: 2.75rem;
+    /* Native CSS breakpoints: narrow 40rem; medium 64rem; wide 80rem.
+       Custom properties cannot be used in native media-query conditions. */
+    --breakpoint-narrow: 40rem;
+    --breakpoint-medium: 64rem;
+    --breakpoint-wide: 80rem;
 }

@@ -34,8 +34,11 @@
         @include('admin.resources.partials.meta')
     @endunless
 
-    <form method="POST" action="{{ $isNew ? route('admin.'.$key.'.store') : route('admin.'.$key.'.update', $model->getKey()) }}"
-          @if (in_array($key, ['document','media'], true)) enctype="multipart/form-data" @endif novalidate>
+    <form class="editor-form" method="POST" action="{{ $isNew ? route('admin.'.$key.'.store') : route('admin.'.$key.'.update', $model->getKey()) }}"
+          @php $fieldGroups = \App\Support\Content\EditorSections::group($fields); @endphp
+        <nav class="editor-navigation" aria-label="Bereiche bearbeiten">@foreach ($fieldGroups as $section => $group)<a href="#editor-section-{{ $loop->index }}">{{ $section }}</a>@endforeach @if($resource->isRoutable())<a href="#public-route">URL</a>@endif @if($resource->isPublishable())<a href="#publication">Veröffentlichung</a>@endif</nav>
+        <div class="editor-fields">
+        @if (in_array($key, ['document','media'], true)) enctype="multipart/form-data" @endif novalidate>
         @csrf
         <input type="hidden" name="_form_started" value="1">
         @unless ($isNew) @method('PUT') @endunless
@@ -44,10 +47,18 @@
             @include($key === 'media' ? 'admin.resources.partials.media-file' : 'admin.resources.partials.file')
         @endif
 
-        @foreach ($fields as $field)
-            @include($field->view(), ['field' => $field, 'model' => $model, 'value' => old($field->name, $field->formValue($model)), 'disabled' => $disabled])
+        @foreach ($fieldGroups as $section => $group)
+            <details class="editor-section" id="editor-section-{{ $loop->index }}" open>
+                <summary>{{ $section }}</summary><div class="field-grid">
+                @foreach ($group as $field)
+                    @include($field->view(), ['field' => $field, 'model' => $model, 'value' => old($field->name, $field->formValue($model)), 'disabled' => $disabled])
+                @endforeach
+                </div>
+            </details>
         @endforeach
 
+        </div>
+        <aside class="editor-publication" aria-label="Stand und Speicherung">
         @if ($resource->isRoutable())
             @include('admin.resources.partials.route')
         @endif
@@ -61,6 +72,7 @@
                 hint="Kurze Beschreibung der Änderung für die Versionsgeschichte." autocomplete="off" />
         @endif
 
+        </aside>
         <input type="hidden" name="_form_complete" value="1">
         @unless ($disabled)
             <button type="submit" class="button">{{ $isNew ? 'Anlegen' : 'Speichern' }}</button>

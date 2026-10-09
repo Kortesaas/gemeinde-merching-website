@@ -1,5 +1,8 @@
 # Site-wide functional foundation
 
+> Historical phase record: subsequent visual implementation is documented in
+> [visual-system.md](visual-system.md) and [visual-verification.md](visual-verification.md).
+
 Phase 3 extends the existing Laravel monolith. No visual design, real content,
 WordPress import, external service, worker or public search interface is added.
 The design-system export has not been inspected. Run migrations and

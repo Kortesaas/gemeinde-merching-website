@@ -59,6 +59,27 @@ final class NavigationManager
         });
     }
 
+    /**
+     * Find a breadcrumb trail in the visible managed tree, without deriving URLs from hierarchy.
+     *
+     * @param  list<NavigationNode>  $nodes
+     * @return list<NavigationNode>
+     */
+    public function trail(array $nodes, string $path): array
+    {
+        foreach ($nodes as $node) {
+            if (rawurldecode((string) parse_url((string) $node->item->href(), PHP_URL_PATH)) === $path) {
+                return [$node];
+            }
+            $children = $this->trail($node->children, $path);
+            if ($children !== []) {
+                return [$node, ...$children];
+            }
+        }
+
+        return [];
+    }
+
     /** @return list<NavigationNode> */
     public function tree(NavigationMenu $menu): array
     {

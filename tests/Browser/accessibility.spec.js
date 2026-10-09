@@ -7,7 +7,7 @@ import AxeBuilder from '@axe-core/playwright';
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'];
 
 const pages = [
-    { name: 'public placeholder', path: '/' },
+    { name: 'public homepage', path: '/' },
     { name: 'public contact form', path: '/kontakt' },
     { name: 'contact confirmation', path: '/kontakt/bestaetigung' },
     { name: 'admin login', path: '/verwaltung/login' },

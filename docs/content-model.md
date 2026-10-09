@@ -1,7 +1,7 @@
 # Content model
 
 Status: domain foundation (phase 2). Functional admin CRUD exists under
-`/verwaltung`; the final CMS/public design and WordPress import follow later. Media, search
+`/verwaltung`; the [final CMS/public design](visual-system.md) is implemented; WordPress import follows separately. Media, search
 services, contact, settings, SEO, navigation and quality checks are described
 in [site-foundation.md](site-foundation.md). Controlled content composition, galleries,
 service/event/location details and council records are described in
@@ -120,7 +120,7 @@ deletion while referenced).
 
 Media/images, typed site settings and managed search synonyms are implemented
 with revisions and permissions; see [site-foundation.md](site-foundation.md).
-Visual galleries and the final media-library design follow later.
+Visual galleries and the final media-library design are documented in [visual-system.md](visual-system.md).
 
 ## Publication lifecycle
 

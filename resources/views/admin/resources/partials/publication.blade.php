@@ -6,7 +6,7 @@
         ->mapWithKeys(fn ($s) => [$s->value => $s->label()])->all();
     $dateField = fn (string $name, string $label) => \App\Admin\Fields\DateTime::make($name, $label);
 @endphp
-<fieldset class="form-fieldset">
+<fieldset class="form-fieldset cms-panel" id="publication">
     <legend class="form-label">Veröffentlichung</legend>
     <p>Aktueller Status: <strong>@include('admin.resources.partials.state', ['model' => $model])</strong></p>
     @if ($canPublish && ! $disabled)

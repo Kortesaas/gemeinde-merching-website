@@ -66,10 +66,26 @@ class MediaStorage
         DB::afterCommit(fn () => Storage::disk((string) config('uploads.disk'))->delete($path));
     }
 
-    public function response(Media $media): StreamedResponse
+    public function response(Media $media, ?int $width = null): StreamedResponse
     {
         $disk = Storage::disk((string) config('uploads.disk'));
         abort_unless($disk->exists($media->file_path), 404);
+
+        if ($width !== null && in_array($width, [480, 960, 1440], true) && $media->isImage() && $media->width > $width) {
+            $image = imagecreatefromstring((string) $disk->get($media->file_path));
+            abort_if($image === false, 404);
+            $height = max(1, (int) round(imagesy($image) * $width / imagesx($image)));
+            $scaled = imagescale($image, $width, $height);
+            abort_if($scaled === false, 404);
+            imagesavealpha($scaled, true);
+
+            return new StreamedResponse(function () use ($scaled) {
+                imagewebp($scaled, null, 82);
+            }, 200, [
+                'Content-Type' => 'image/webp', 'X-Content-Type-Options' => 'nosniff',
+                'Content-Security-Policy' => "default-src 'none'; sandbox", 'Cache-Control' => 'no-store',
+            ]);
+        }
 
         return $disk->response($media->file_path, 'medium.'.$media->extension, [
             'Content-Type' => $media->mime_type, 'X-Content-Type-Options' => 'nosniff',

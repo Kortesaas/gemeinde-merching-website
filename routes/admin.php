@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\TwoFactorChallengeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentFileController;
 use App\Http\Controllers\Admin\MediaFileController;
+use App\Http\Controllers\Admin\OverviewController;
 use App\Http\Controllers\Admin\PlacementController;
 use App\Http\Controllers\Admin\ProposalController;
 use App\Http\Controllers\Admin\ResourceController;
@@ -60,6 +61,7 @@ Route::middleware(['auth', 'auth.session', 'admin.session'])->group(function () 
     Route::middleware(['admin.mfa', 'can:'.Permission::AccessAdmin->value])->group(function () {
         Route::redirect('/', '/'.config('admin.path').'/dashboard')->name('home');
         Route::get('dashboard', DashboardController::class)->name('dashboard');
+        Route::get('inhalte', OverviewController::class)->name('overview');
 
         Route::post('konto/zwei-faktor/wiederherstellungscodes', [TwoFactorSetupController::class, 'regenerateRecoveryCodes'])
             ->middleware('throttle:6,1')

@@ -12,7 +12,7 @@
         @if ($toReview->isEmpty())
             <p>Keine Vorschläge zur Prüfung.</p>
         @else
-            <div class="table-wrapper">
+            <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
                 <table class="data-table">
                     <caption class="visually-hidden">Eingereichte Vorschläge, älteste zuerst</caption>
                     <thead><tr><th scope="col">Vorschlag</th><th scope="col">Inhalt</th><th scope="col">Von</th><th scope="col">Eingereicht</th></tr></thead>

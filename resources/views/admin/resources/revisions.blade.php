@@ -9,7 +9,7 @@
     @if ($revisions->isEmpty())
         <p>Noch keine Versionen vorhanden.</p>
     @else
-        <div class="table-wrapper">
+        <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
             <table class="data-table">
                 <caption class="visually-hidden">Versionen, neueste zuerst</caption>
                 <thead><tr><th scope="col">Version</th><th scope="col">Zeitpunkt</th><th scope="col">Bearbeitet von</th><th scope="col">Notiz</th></tr></thead>

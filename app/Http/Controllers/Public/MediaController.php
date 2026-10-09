@@ -8,11 +8,13 @@ use App\Models\Media;
 use App\Services\Content\ContentUsage;
 use App\Services\Content\MediaStorage;
 use App\Services\Content\ReferenceProtection;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class MediaController
 {
-    public function __invoke(Media $media, MediaStorage $storage, ContentUsage $usage): StreamedResponse
+    public function __invoke(Request $request, Media $media, MediaStorage $storage, ContentUsage $usage): StreamedResponse
     {
         abort_unless($media->isPubliclyReachable() && (! $media->isImage() || $media->hasAccessibleAlternative()), 404);
         $reachable = false;
@@ -34,6 +36,8 @@ class MediaController
         }
         abort_unless($reachable, 404);
 
-        return $storage->response($media);
+        $data = $request->validate(['width' => ['nullable', Rule::in([480, 960, 1440])]]);
+
+        return $storage->response($media, isset($data['width']) ? (int) $data['width'] : null);
     }
 }

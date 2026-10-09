@@ -41,7 +41,13 @@
     @if ($records->isEmpty())
         <p>Keine Einträge gefunden.</p>
     @else
-        <div class="table-wrapper">
+        @if ($resource->key() === 'media')
+            <div class="media-grid">@foreach ($records as $medium)<article class="media-card">
+                @if ($medium->isImage())<a aria-label="{{ $medium->title }} bearbeiten" href="{{ route('admin.media.edit', $medium->getKey()) }}"><img src="{{ route('admin.media.file', ['record'=>$medium->getKey(), 'width'=>480]) }}" alt="" width="{{ $medium->width }}" height="{{ $medium->height }}" loading="lazy"></a>@endif
+                <h2><a href="{{ route('admin.media.edit', $medium->getKey()) }}">{{ $medium->title }}</a></h2><p>{{ $medium->hasAccessibleAlternative() ? ($medium->is_decorative ? 'Dekoratives Bild' : 'Alternativtext vorhanden') : 'Alternativtext fehlt' }}</p><p class="form-hint">{{ $medium->width }} × {{ $medium->height }} · {{ number_format($medium->size_bytes/1024,0,',','.') }} KB</p>
+            </article>@endforeach</div>
+        @endif
+        <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
             <table class="data-table">
                 <caption class="visually-hidden">{{ $resource->pluralLabel() }}, {{ $records->total() }} Einträge</caption>
                 <thead>

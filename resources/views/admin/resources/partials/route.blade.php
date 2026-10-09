@@ -1,3 +1,4 @@
+<section class="cms-panel" id="public-route"><h2>Öffentliche Adresse</h2>
 {{-- Public URL path, independent of navigation and IDs. --}}
 @php
     $aliases = $model->exists ? $model->publicRoutes()->where('is_canonical', false)->orderBy('path')->pluck('path') : collect();
@@ -14,3 +15,5 @@
 @if ($aliases->isNotEmpty())
     <p class="form-hint">Frühere Adressen (leiten weiter): @foreach ($aliases as $alias)<code>{{ $alias }}</code>@if (! $loop->last), @endif @endforeach</p>
 @endif
+
+</section>

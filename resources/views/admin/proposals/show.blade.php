@@ -38,12 +38,12 @@
         <p>Der veröffentlichte Inhalt bleibt unverändert öffentlich, bis dieser Vorschlag von einer anderen berechtigten Person freigegeben wird.</p>
     </div>
 
-    <section aria-labelledby="diff-heading">
+    <section class="cms-panel" aria-labelledby="diff-heading">
         <h2 id="diff-heading">Änderungen gegenüber dem Ausgangsstand</h2>
         @if ($diff === [])
             <p>Noch keine Änderungen.</p>
         @else
-            <div class="table-wrapper">
+            <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
                 <table class="data-table">
                     <caption class="visually-hidden">Geänderte Felder</caption>
                     <thead><tr><th scope="col">Feld</th><th scope="col">Bisher</th><th scope="col">Vorschlag</th>@if ($conflicts !== [])<th scope="col">Inzwischen veröffentlicht</th>@endif</tr></thead>
@@ -65,7 +65,7 @@
     </section>
 
     @if ($canReview)
-        <section aria-labelledby="review-heading">
+        <section class="cms-panel" aria-labelledby="review-heading">
             <h2 id="review-heading">Prüfung</h2>
             @if ($conflicts !== [])
                 <div class="notice notice--warning" role="status">
@@ -92,12 +92,14 @@
     @endif
 
     @if ($canEdit)
-        <section aria-labelledby="edit-heading">
+        <section class="cms-panel" aria-labelledby="edit-heading">
             <h2 id="edit-heading">Vorschlag bearbeiten</h2>
             <form method="POST" action="{{ route('admin.proposals.update', $proposal) }}" novalidate>
                 @csrf @method('PUT')
                 <input type="hidden" name="_form_started" value="1">
-                @foreach ($fields as $field)
+                @foreach (\App\Support\Content\EditorSections::group($fields) as $section => $group)
+                    <details class="editor-section" open><summary>{{ $section }}</summary><div class="field-grid">
+                    @foreach ($group as $field)
                     @include($field->view(), [
                         'field' => $field,
                         'model' => $record,
@@ -105,6 +107,8 @@
                         'orderOverride' => $field instanceof \App\Admin\Fields\BelongsToMany ? $field->snapshotOrders($proposal->payload) : null,
                         'disabled' => false,
                     ])
+                @endforeach
+                    </div></details>
                 @endforeach
                 <x-form.field name="proposal_summary" label="Beschreibung der Änderung (für die Prüfung)" :value="old('proposal_summary', $proposal->summary)" maxlength="255" autocomplete="off" />
                 <input type="hidden" name="_form_complete" value="1">

@@ -6,7 +6,7 @@
 <p>Ihre Angaben werden zur Bearbeitung Ihrer Anfrage per E-Mail an die zuständige Stelle übermittelt. Bitte nennen Sie nur die dafür erforderlichen Informationen.</p>
 @if ($context)<p>Fehler melden zu „{{ $context['title'] }}“ ({{ $context['path'] }}). Bitte beschreiben Sie den Fehler in Ihrer Nachricht.</p>@endif
 <x-form.error-summary />
-<form id="general" tabindex="-1" method="POST" action="{{ route('public.contact.store', $context ? ['feedback' => $context['path']] : []) }}" novalidate>
+<form class="public-form" data-contact-form id="general" tabindex="-1" method="POST" action="{{ route('public.contact.store', $context ? ['feedback' => $context['path']] : []) }}" novalidate>
     @csrf
     <input type="hidden" name="form_nonce" value="{{ $nonce }}">
     @php $hasError=$errors->has('contact_route_id'); @endphp

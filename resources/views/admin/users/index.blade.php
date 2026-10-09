@@ -9,7 +9,7 @@
     @can('create', \App\Models\User::class)
         <p><a class="button" href="{{ route('admin.user.create') }}">Konto anlegen</a></p>
     @endcan
-    <div class="table-wrapper">
+    <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
         <table class="data-table">
             <caption class="visually-hidden">Benutzerkonten</caption>
             <thead><tr><th scope="col">Name</th><th scope="col">E-Mail</th><th scope="col">Rollen</th><th scope="col">Status</th><th scope="col">Zwei-Faktor</th></tr></thead>

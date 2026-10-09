@@ -58,7 +58,8 @@ MD;
         $html = (string) $this->get('/xss-test')->assertOk()->getContent();
 
         $this->assertStringNotContainsString('<script>alert', $html);
-        $this->assertStringNotContainsString('<img', $html);
+        $this->assertSame(1, preg_match('#<main\b[^>]*>(.*?)</main>#s', $html, $main));
+        $this->assertStringNotContainsString('<img', $main[1], 'Editor content cannot emit images; the trusted Wappen belongs to the header.');
         $this->assertDoesNotMatchRegularExpression('/<[a-z]+[^>]*\son[a-z]+=/i', $html);
         $this->assertDoesNotMatchRegularExpression('/<[a-z]+[^>]*(href|src)="javascript:/i', $html);
     }

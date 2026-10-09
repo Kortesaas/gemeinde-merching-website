@@ -1,3 +1,4 @@
+@php $location->loadMissing('mapResource'); @endphp
 @if ($location->isPubliclyReachable())
     <div>
         <p>{{ $location->displayTitle() }}@if ($location->street), {{ $location->street }}@endif @if ($location->postal_code || $location->city), {{ $location->postal_code }} {{ $location->city }}@endif</p>

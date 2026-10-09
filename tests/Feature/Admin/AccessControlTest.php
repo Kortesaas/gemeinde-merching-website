@@ -42,7 +42,7 @@ class AccessControlTest extends TestCase
         $this->actingAsAdmin($user)
             ->get($this->adminUrl('dashboard'))
             ->assertOk()
-            ->assertSee('Backend foundation operational')
+            ->assertSee('Was benötigt Ihre Aufmerksamkeit?')
             ->assertSee($user->name);
     }
 

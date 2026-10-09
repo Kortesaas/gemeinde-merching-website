@@ -8,6 +8,7 @@ use App\Models\PublicRoute;
 use App\Models\Redirect;
 use App\Services\Audit\AuditLogger;
 use App\Support\Routing\PublicPath;
+use App\Support\Routing\PublicSections;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -186,7 +187,7 @@ class RouteManager
             }
         }
 
-        return ['location' => PublicPath::withoutTrailingSlash(rawurldecode($requestPath)), 'status' => 301];
+        return ['location' => PublicSections::resolve($requestPath)['path'] ?? PublicPath::withoutTrailingSlash(rawurldecode($requestPath)), 'status' => 301];
     }
 
     /**

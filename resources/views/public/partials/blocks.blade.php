@@ -21,7 +21,7 @@
             @break
         @case ('image')
             @if ($publicTarget && $target->isImage() && $target->hasAccessibleAlternative())
-                <figure><img src="{{ route('public.media', $target->getKey()) }}" alt="{{ $target->is_decorative ? '' : $target->alt_text }}" width="{{ $target->width }}" height="{{ $target->height }}" loading="lazy">
+                <figure>@include('public.partials.image', ['medium' => $target])getKey()) }}" alt="{{ $target->is_decorative ? '' : $target->alt_text }}" width="{{ $target->width }}" height="{{ $target->height }}" loading="lazy">
                     @if ($target->caption || $target->copyright)<figcaption>{{ $target->caption }}@if ($target->copyright) – {{ $target->copyright }}
                     @endif
                     </figcaption>

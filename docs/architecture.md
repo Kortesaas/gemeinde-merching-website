@@ -1,8 +1,8 @@
 # Architecture
 
 Status: technical foundation (phase 1) and content/domain foundation
-(phase 2, see [content-model.md](content-model.md)). Real design, final CMS
-screens follow in later phases. [Site-wide functional services](site-foundation.md) and
+(phase 2, see [content-model.md](content-model.md)). The [public/CMS visual system](visual-system.md) is implemented; real-content
+migration remains a separate phase. [Site-wide functional services](site-foundation.md) and
 [controlled content composition/editor capability](content-parity.md) are implemented.
 
 ## Overview
@@ -52,7 +52,7 @@ app/
   Enums/                   PublicationStatus/State, AccessibilityStatus, CategoryContext, …
   Exceptions/              DomainRuleViolation (business rule → accessible form error)
   Http/
-    Controllers/Public/    placeholder, robots.txt, ContentController (DB routes & redirects)
+    Controllers/Public/    Home-, Search-, Catalog-, ContentController (DB routes & redirects), robots.txt
     Controllers/Admin/     Auth/, Account/, ResourceController (generic CRUD), Placement-, Revision-,
                            DocumentFile-, UserController
     Middleware/            security headers, admin headers, indexing, canonical URL, trailing slash, MFA, sessions

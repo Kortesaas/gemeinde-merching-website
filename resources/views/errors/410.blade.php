@@ -1,0 +1,4 @@
+@extends('errors.layout')
+@section('title', 'Inhalt nicht mehr verfügbar')
+@section('heading', 'Inhalt nicht mehr verfügbar')
+@section('message', 'Diese Information wurde dauerhaft entfernt. Über die Startseite oder die Suche finden Sie weitere Gemeindeinformationen.')

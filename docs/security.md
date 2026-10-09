@@ -188,7 +188,7 @@ only rendered in the backend form for users with `contact-route.edit`
 
 ## Uploads
 
-Implemented for documents and media (visual galleries follow)
+Implemented for documents and media (including visual galleries; see [visual-system.md](visual-system.md))
 (`config/uploads.php`, `App\Services\Uploads\UploadInspector`):
 
 1. Size limit (`UPLOADS_MAX_KILOBYTES`, default 20 MB; PHP's

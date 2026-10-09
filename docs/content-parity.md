@@ -1,5 +1,8 @@
 # Content composition and editor capability
 
+> Historical phase record: subsequent visual implementation is documented in
+> [visual-system.md](visual-system.md) and [visual-verification.md](visual-verification.md).
+
 This phase adds the approved content capabilities ahead of visual implementation.
 Laravel/PHP/MySQL, Blade, the security/privacy middleware and the existing editorial
 workflow remain the architecture. No real content was imported or seeded.

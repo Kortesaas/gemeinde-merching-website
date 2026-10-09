@@ -8,16 +8,18 @@ hosting (Apache; no Docker, Node.js, Composer or Redis in production).
 > **Status:** technical, content and site-wide functional foundations with admin
 > CRUD, proposals, media, MySQL search services, contact form, settings, SEO,
 > navigation, quality checks, controlled content blocks, galleries, structured
-> service/event/location details and council information. Final public/CMS design and public search UI follow later.
+> service/event/location details and council information. The final public/CMS visual system,
+> public search and responsive editorial workspace are implemented; real-content migration remains separate.
 
 ## What is there
 
 - Public area (stateless, no cookies, no third-party requests) with a
-  placeholder page; structured content, media and sitemap delivery. Only
+  homepage, managed navigation, public search, service A–Z, listings and
+  structured content, responsive media and sitemap delivery. Only
   contact-form routes opt into necessary cookies.
 - Employee backend under `/verwaltung`: login, TOTP two-factor authentication
-  with recovery codes, password reset, role/permission foundation, dashboard
-  placeholder.
+  with recovery codes, password reset, roles/permissions and an actionable
+  dashboard, grouped editors, media, quality, proposals and history.
 - Security headers with strict CSP, hardened sessions, rate limiting, audit
   log without network data, upload validation foundation.
 - Accessible base layout and forms (WCAG 2.2 AA target).
@@ -67,6 +69,9 @@ Native PHP/MySQL setup and details: [docs/local-development.md](docs/local-devel
 (With Docker, run PHP commands via `docker compose exec app …`.)
 
 ## Documentation
+
+- [Visual system](docs/visual-system.md) – identity, tokens, components, responsive behavior and reference adaptations
+- [Visual verification](docs/visual-verification.md) – final checks, screenshots and handoff gates
 
 - [Content parity and composition](docs/content-parity.md) – blocks, galleries, fees, operational details, feedback, council
 - [Site-wide foundation](docs/site-foundation.md) – media, search/statistics, contact, settings, SEO, navigation, quality

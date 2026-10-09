@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Public;
 use App\Contracts\Routable;
 use App\Http\Controllers\Controller;
 use App\Models\Document;
+use App\Models\Page;
 use App\Models\PublicRoute;
 use App\Models\Redirect;
 use App\Services\Content\DocumentStorage;
 use App\Services\Routing\RouteManager;
 use App\Services\Seo\SeoMetadata;
 use App\Support\Routing\PublicPath;
+use App\Support\Routing\PublicSections;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +28,7 @@ use Symfony\Component\HttpFoundation\Response;
  *    (301/302) or 410 Gone;
  * 3. otherwise 404.
  *
- * Rendering is a minimal placeholder until the design system is implemented.
+ * Managed content and legacy routes take precedence over configurable listing pages.
  */
 class ContentController extends Controller
 {
@@ -41,6 +43,14 @@ class ContentController extends Controller
         }
 
         if (! $target instanceof PublicRoute) {
+            $section = PublicSections::resolve($request->getPathInfo());
+            if ($section !== null) {
+                if (rawurldecode($request->getPathInfo()) !== $section['path']) {
+                    return $this->redirect($request, $section['path'], 301);
+                }
+
+                return app(CatalogController::class)->show($request, $section);
+            }
             abort(404);
         }
 
@@ -57,6 +67,12 @@ class ContentController extends Controller
 
         if (rawurldecode($request->getPathInfo()) !== $target->path) {
             return $this->redirect($request, $target->path, 301);
+        }
+
+        /** @var array{title:string,kind:string}|null $section */
+        $section = PublicSections::resolve($target->path);
+        if ($model instanceof Page && is_array($section)) {
+            return app(CatalogController::class)->show($request, $section, $model);
         }
 
         if ($model instanceof Document) {

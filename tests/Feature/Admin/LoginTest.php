@@ -24,7 +24,8 @@ class LoginTest extends TestCase
         $this->assertStringContainsString('<button type="submit" class="button">Anmelden</button>', $html);
         $this->assertStringNotContainsString('placeholder=', $html);
         $this->assertStringNotContainsString('onpaste', $html);
-        $this->assertStringNotContainsString('<script', $html);
+        $this->assertStringNotContainsString('onclick=', $html);
+        $this->assertDoesNotMatchRegularExpression('/<script(?![^>]*src=)/i', $html);
     }
 
     public function test_user_without_mfa_logs_in_and_must_enrol(): void

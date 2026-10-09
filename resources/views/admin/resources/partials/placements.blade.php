@@ -14,11 +14,11 @@
     <p class="form-hint">Dokumente und Links werden einmal gepflegt und hier nur zugeordnet. Entfernen löscht nichts.</p>
 
     @foreach ($kinds as $kind => $config)
-        <h3>{{ $config['label'] }}</h3>
+        <h3 id="{{ $kind === 'documents' ? 'documents' : 'externalResources' }}">{{ $config['label'] }}</h3>
         @if ($config['items']->isEmpty())
             <p>Keine Zuordnungen.</p>
         @else
-            <div class="table-wrapper">
+            <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
                 <table class="data-table">
                     <caption class="visually-hidden">{{ $config['label'] }}</caption>
                     <thead><tr><th scope="col">Eintrag</th><th scope="col">Bereich</th><th scope="col">Gruppe</th><th scope="col">Reihenfolge</th>@if ($canEdit)<th scope="col">Aktionen</th>@endif</tr></thead>
