@@ -2,6 +2,17 @@ import.meta.glob('../images/*', { eager: true, query: '?url', import: 'default' 
 // Small, same-origin enhancements. Native links, GET search and form fields remain the fallback.
 // Enhanced layouts (e.g. the overlay menu) only apply once this script runs.
 document.documentElement.classList.add('js');
+// Native overscroll reveals the page canvas: white at the top, footer blue below.
+const publicFooter = document.querySelector('.site-footer');
+if (publicFooter) {
+    const syncOverscroll = () => document.documentElement.classList.toggle('has-footer-overscroll',
+        window.scrollY > 0 && publicFooter.getBoundingClientRect().top < window.innerHeight);
+    syncOverscroll();
+    window.addEventListener('scroll', syncOverscroll, { passive: true });
+    window.addEventListener('resize', syncOverscroll);
+    window.addEventListener('pageshow', syncOverscroll);
+    new ResizeObserver(syncOverscroll).observe(document.body);
+}
 // Matches the CSS breakpoints: wide layouts start at 64rem (1024px).
 const narrow = matchMedia('(max-width: 63.99rem)');
 for (const menu of document.querySelectorAll('[data-navigation], [data-cms-navigation]')) {

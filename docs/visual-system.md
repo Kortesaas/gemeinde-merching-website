@@ -26,6 +26,7 @@ evidence, not pixel snapshots in CI; the browser suite checks reflow and axe.
 | Main text | `--color-text`, `#16202e` |
 | Secondary text | `--color-text-muted`, `#4b4f58` |
 | Identity surface | `--color-sky`, `#94c3f7`, dark text |
+| Landmark silhouette | `--color-landmark`, `#1b3e69`, on the dark footer |
 | Link/action | `--color-link`, `#0b5cc2`; hover `#0a4a9c` |
 | Footer | `--color-dark`, `#0f2d57`, white text |
 | Focus | 3 px black outline, yellow contrast halo; OS colors when forced |
@@ -58,6 +59,23 @@ municipality’s official SVG/EPS source before launch. Do not redraw or assume
 this raster is an authoritative heraldic master. `public.wappen` selects the
 asset; import it through Vite when replacing it so the manifest resolves it.
 The header has a fixed presentation box and requires no redesign for the swap.
+
+The supplied church-tower-and-trees cutout is stored unchanged in
+`resources/images/merching-landmark.png`. Its alpha channel is used as a CSS mask
+for a muted blue silhouette behind the existing public footer content, using
+a decorative CSS pseudo-element with no extra section or layout space.
+This preserves the recognisable outline without displaying the original colours.
+The motif scales with the viewport, sits at the footer's bottom-right corner with
+a softly blended left edge, is hidden from assistive technology, and disappears in
+forced-colours mode. Vite bundles the local image with the public stylesheet;
+the CMS and the coat of arms keep their existing visual treatment.
+
+The public page canvas is white at the top and switches to the footer's dark blue
+when the footer enters the viewport after scrolling, so native elastic overscroll
+continues the corresponding surface. The body retains its white background.
+This enhancement tracks scrolling, restored positions, resizing and content-height
+changes without changing native scrolling or adding layout space; forced colours
+use the system canvas colour. Without JavaScript the canvas remains white.
 
 ## Public components and content
 

@@ -1,6 +1,15 @@
 /* ==========================================================================
    Public page chrome: header, navigation, alerts, breadcrumbs, footer
    ========================================================================== */
+/* The canvas is exposed by native elastic overscroll; body keeps its white fill. */
+html {
+    background-color: var(--color-background);
+}
+
+html.has-footer-overscroll {
+    background-color: var(--color-dark);
+}
+
 body {
     border-top: var(--space-1) solid var(--color-sky);
 }
@@ -740,10 +749,37 @@ html:not(.js) .site-navigation {
 
 /* --- Footer --------------------------------------------------------------- */
 .site-footer {
+    position: relative;
+    isolation: isolate;
     padding-block: var(--space-7) var(--space-4);
     background: var(--color-dark);
     color: #fff;
     font-size: 1rem;
+}
+
+.site-footer > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* The supplied cutout's alpha preserves the local landmark's exact outline.
+   Only the mask is drawn; all original photographic colours are hidden. */
+.site-footer:not(.site-footer--simple)::before {
+    --landmark-height: clamp(12rem, 24vw, 22rem);
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: min(100%, calc(var(--landmark-height) * 1.7));
+    height: min(100%, var(--landmark-height));
+    pointer-events: none;
+    background: var(--color-landmark);
+    mask-image: url("../../images/merching-landmark.png"), linear-gradient(to right, transparent, #000 12%);
+    mask-mode: alpha;
+    mask-size: auto 100%, 100% 100%;
+    mask-position: left bottom;
+    mask-repeat: no-repeat;
+    mask-composite: intersect;
 }
 
 .site-footer a {
@@ -860,6 +896,15 @@ html:not(.js) .site-navigation {
 }
 
 @media (forced-colors: active) {
+    html,
+    html.has-footer-overscroll {
+        background-color: Canvas;
+    }
+
+    .site-footer::before {
+        display: none;
+    }
+
     .site-footer,
     .alert-band,
     .menu-contact {
