@@ -10,6 +10,7 @@ return [
         '/bekanntmachungen' => ['title' => 'Bekanntmachungen', 'kind' => 'notices'],
         '/dokumente' => ['title' => 'Dokumente und Formulare', 'kind' => 'documents'],
         '/verzeichnisse' => ['title' => 'Ansprechpartner und Einrichtungen', 'kind' => 'directory'],
+        '/vereine' => ['title' => 'Vereine und Organisationen', 'kind' => 'organizations'],
     ],
     'homepage' => ['services' => true, 'news' => true, 'events' => true, 'online' => true, 'greeting' => true, 'contact' => true],
     'wappen' => 'resources/images/wappen-merching-prototype.png',

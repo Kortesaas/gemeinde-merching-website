@@ -29,6 +29,14 @@
         transition: color .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease, text-decoration-color .15s ease;
     }
 
+    .main-nav__item {
+        transition: background-color .15s ease;
+    }
+
+    .nav-branch__chevron {
+        transition: transform .2s var(--ease-out);
+    }
+
     .button:active {
         transform: translateY(1px);
     }

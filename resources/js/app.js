@@ -23,32 +23,35 @@ for (const branch of document.querySelectorAll('[data-nav-branch]')) {
         if (event.key === 'Escape' && branch.open) { event.stopPropagation(); branch.open = false; branch.querySelector('summary').focus(); }
     });
 }
-// Wide screens: the expanded menu panel closes when focus or a click moves elsewhere.
+// Wide screens: an open panel closes when focus or a click moves outside its menu entry.
 const closeBranches = target => {
     if (narrow.matches) return;
-    for (const branch of document.querySelectorAll('.site-navigation [data-nav-branch][open]')) if (!branch.contains(target)) branch.open = false;
+    for (const branch of document.querySelectorAll('.site-navigation [data-nav-branch][open]')) {
+        if (!(branch.closest('[data-nav-item]') ?? branch).contains(target)) branch.open = false;
+    }
 };
 document.addEventListener('click', event => closeBranches(event.target));
-// Mouse users on wide screens: open a section after a short pause, close on leaving.
-// Keyboard and touch keep the native disclosure (Enter/Space, tap); nothing is hover-only.
+document.addEventListener('focusin', event => closeBranches(event.target));
+// Mouse users on wide screens: an entry opens after a short pause and closes on leaving.
+// The label stays a normal link to the overview; keyboard and touch use the toggle.
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-for (const branch of document.querySelectorAll('.site-navigation [data-nav-branch]')) {
+for (const item of document.querySelectorAll('.site-navigation [data-nav-item]')) {
+    const branch = item.querySelector('[data-nav-branch]');
     let timer;
-    branch.addEventListener('pointerenter', event => {
+    item.addEventListener('pointerenter', event => {
         if (event.pointerType !== 'mouse' || narrow.matches || !finePointer.matches) return;
         clearTimeout(timer); timer = setTimeout(() => { if (!branch.open) { branch.open = true; branch.dataset.hoverOpened = '1'; } }, 140);
     });
-    // A click right after hover-opening keeps the panel open instead of toggling it shut.
+    item.addEventListener('pointerleave', event => {
+        if (event.pointerType !== 'mouse' || narrow.matches) return;
+        clearTimeout(timer); timer = setTimeout(() => { if (!branch.contains(document.activeElement) || document.activeElement === branch.querySelector('summary')) { branch.open = false; delete branch.dataset.hoverOpened; } }, 220);
+    });
+    // A click on the toggle right after hover-opening keeps the panel open instead of closing it.
     branch.querySelector('summary').addEventListener('click', event => {
         if (branch.dataset.hoverOpened && branch.open) event.preventDefault();
         delete branch.dataset.hoverOpened;
     });
-    branch.addEventListener('pointerleave', event => {
-        if (event.pointerType !== 'mouse' || narrow.matches) return;
-        clearTimeout(timer); timer = setTimeout(() => { if (!branch.contains(document.activeElement) || document.activeElement === branch.querySelector('summary')) { branch.open = false; delete branch.dataset.hoverOpened; } }, 220);
-    });
 }
-document.addEventListener('focusin', event => closeBranches(event.target));
 // Site alerts can be hidden for the current page view (nothing is stored).
 for (const button of document.querySelectorAll('[data-alert-dismiss]')) {
     button.hidden = false;

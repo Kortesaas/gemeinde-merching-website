@@ -91,6 +91,7 @@ paths stay slashless, with production origin `https://www.gemeinde-merching.de`.
 | Service detail | Requirements, items, fees, duration, notice, online state, offices/people/locations, downloads and related services |
 | Article/event/notice | Dates, optional teaser/media, category, blocks, attachments, links and contacts; cancellation explicitly says “Abgesagt” |
 | Documents | Type, size, description, date/year, neutral accessibility state, available alternative and public replacement |
+| Vereine | `/vereine` lists active organisations grouped by category with contact data and website links; opt-in detail pages |
 | Directory | Active departments, employee contacts, organizations, locations and public council terms; opt-in detail routes only, no employee portraits |
 | Errors | Database-independent branded 403/404/410/429/maintenance shells and existing safe status handling |
 
@@ -114,20 +115,32 @@ continue to override templates.
 
 ## Header, menus, search and progressive enhancement
 
-The wide header is one row: Wappen and name, the main navigation, and the search
-button. There is no separate utility row; “Kontakt” lives in the narrow-screen
-menu, the footer and the contact sections. Between 64 and 80 rem the tagline and
-the search label collapse so the navigation stays on one line; below 64 rem the
-dedicated narrow layout (search icon + “Menü”) takes over.
+The wide header is one row: Wappen and name, the main navigation, and an
+icon-only search button (accessible name “Suchen”). There is no separate utility
+row; “Kontakt” lives in the narrow-screen menu, the footer and the contact
+sections. Between 64 and 80 rem the tagline yields and labels tighten so the
+navigation stays on one line down to 1024 px; below 64 rem the dedicated narrow
+layout (search icon + “Menü”) takes over.
 
-Native `details`/`summary` controls drive both the expanded desktop panel and the
-narrow-screen menu. With a mouse on wide screens a section opens after a short
-hover pause and closes on leaving; a click right after a hover-open keeps it open.
-Keyboard and touch use the native disclosure (Enter/Space, tap); Escape closes the
-nearest branch and returns focus to its summary; focus or clicks elsewhere close
-open panels. Nothing is reachable only by hover. Without JavaScript the narrow
-menu is rendered open in the page flow instead of as an overlay, so it never
-covers content. The overlay layout is enabled by a `js` class set by the script.
+Every top-level label is a normal link to its overview page. Sections with
+children add a separate chevron toggle (a native `details`/`summary`, at least
+24 px wide) that opens the expanded panel without leaving the page. With a mouse
+on wide screens the panel also opens after a short hover pause over the entry and
+closes on leaving; a click on the toggle right after a hover-open keeps it open.
+Keyboard and touch use the toggle (Enter/Space, tap); Escape closes the panel and
+returns focus to the toggle; focus or clicks outside the entry close it. Nothing is
+reachable only by hover. The current section is marked by a small dot under its
+label plus a visually hidden “(aktueller Bereich)”; the exact current page uses
+`aria-current="page"`. Hovered or open entries get a soft pill background.
+
+On narrow screens each label row links to the overview and ends in a +/− toggle
+for its children. Without JavaScript the narrow menu is rendered open in the page
+flow instead of as an overlay, so it never covers content.
+
+The breadcrumb trail follows the first menu entry that points to the current
+page. Each page should therefore appear once in the main menu; the demo gives
+“Vereine” its own listing (`/vereine`, organisations grouped by category) instead
+of reusing the directory page.
 
 The search link has a real GET destination. Where supported, JavaScript opens a
 native modal `dialog` (full-screen panel with brand bar), focuses the labelled

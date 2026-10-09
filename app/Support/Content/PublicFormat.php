@@ -15,7 +15,7 @@ final class PublicFormat
     private const SECTIONS = [
         Models\Service::class => 'services', Models\LifeSituation::class => 'services', Models\Article::class => 'articles',
         Models\Event::class => 'events', Models\PublicNotice::class => 'notices', Models\Department::class => 'directory',
-        Models\Organization::class => 'directory', Models\Location::class => 'directory', Models\CouncilTerm::class => 'directory',
+        Models\Organization::class => 'organizations', Models\Location::class => 'directory', Models\CouncilTerm::class => 'directory',
     ];
 
     /**

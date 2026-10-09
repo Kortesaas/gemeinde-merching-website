@@ -30,7 +30,12 @@ class CatalogController extends Controller
         $data = $request->validate(['q' => ['nullable', 'string', 'max:150'], 'archiv' => ['nullable', 'in:1'], 'online' => ['nullable', 'in:1'], 'category' => ['nullable', 'integer', 'min:1'], 'page' => ['nullable', 'integer', 'min:1', 'max:10000']]);
         $kind = $section['kind'];
         $catalog = app(PublicCatalog::class);
-        $items = $kind === 'directory' ? $catalog->directory() : $catalog->items($kind, $request->boolean('archiv'));
+        /** @var \Illuminate\Support\Collection<int, \Illuminate\Database\Eloquent\Model&\App\Contracts\Routable> $items */
+        $items = match ($kind) {
+            'directory' => $catalog->directory(),
+            'organizations' => $catalog->directory()->filter(fn ($m) => $m instanceof Organization)->values(),
+            default => $catalog->items($kind, $request->boolean('archiv')),
+        };
         $categories = $items->map(function ($m): ?Category {
             if (! method_exists($m, 'category')) {
                 return null;
@@ -46,7 +51,7 @@ class CatalogController extends Controller
             && (empty($data['online']) || ($m instanceof Service && $m->onlineService?->isPubliclyReachable())))->values();
         $groups = $kind === 'az' ? $items->sortBy(fn ($m) => self::letter($m->getAttribute('sort_title') ?: $m->displayTitle()).mb_strtolower($m->getAttribute('sort_title') ?: $m->displayTitle()))->groupBy(fn ($m) => self::letter($m->getAttribute('sort_title') ?: $m->displayTitle()))->sortKeys() : collect();
         $page = (int) ($data['page'] ?? 1);
-        $perPage = in_array($kind, ['directory', 'services'], true) ? max(1, $items->count()) : 20;
+        $perPage = in_array($kind, ['directory', 'organizations', 'services'], true) ? max(1, $items->count()) : 20;
         $records = new LengthAwarePaginator($items->forPage($page, $perPage)->values(), $items->count(), $perPage, $page, ['path' => $request->url(), 'query' => $request->query()]);
         $situations = $kind === 'services' ? LifeSituation::query()->with('canonicalRoute')->visible()->orderBy('sort_order')->orderBy('title')->get()->filter(fn ($m) => $m->publicPath() !== null) : collect();
         $filtered = $term !== '' || ! empty($data['category']) || ! empty($data['online']);

@@ -762,6 +762,7 @@ class DevelopmentDemoSeeder extends Seeder
             '/bekanntmachungen' => ['Bekanntmachungen', 'Amtliche Bekanntmachungen der Gemeinde.', 'Amtliche Bekanntmachungen werden zusätzlich an den Amtstafeln am Rathaus ausgehängt. *Musterinhalt.*'],
             '/dokumente' => ['Formulare und Dokumente', 'Formulare, Satzungen, Merkblätter und Pläne zum Herunterladen.', null],
             '/verzeichnisse' => ['Ansprechpersonen und Einrichtungen', 'Ämter, Ansprechpersonen, Vereine und Einrichtungen in Merching.', null],
+            '/vereine' => ['Vereine und Organisationen', 'Vereine, Initiativen, Gastronomie und Betriebe in Merching.', 'Die Einträge pflegen die Vereine gemeinsam mit der Gemeinde. *Musterinhalt.*'],
         ];
         foreach ($listing as $path => [$title, $summary, $body]) {
             $page = Page::create(['title' => $title, 'summary' => $summary, 'body' => $body]);
@@ -921,7 +922,7 @@ class DevelopmentDemoSeeder extends Seeder
             ['Bürgerservice', 'page./buergerservice', [['Leistungen von A bis Z', 'page./buergerservice/a-z'], ['Umzug nach Merching', 'life.umzug'], ['Geburt eines Kindes', 'life.geburt'], ['Bauen und Renovieren', 'life.bauen'], ['Formulare und Dokumente', 'page./dokumente'], ['Online-Anträge', null, 'portal'], ['Ansprechpersonen', 'page./verzeichnisse']]],
             ['Rathaus & Politik', 'page.rathaus', [['Gemeinderat', 'council.current'], ['Bekanntmachungen', 'page./bekanntmachungen'], ['Bürgerbüro', 'dep.buergerbuero'], ['Bauamt', 'dep.bauamt'], ['Ortsrecht und Satzungen', 'page.ortsrecht'], ['Rathaus und Öffnungszeiten', 'loc.rathaus']]],
             ['Aktuelles', 'page./aktuelles', [['Meldungen', 'page./aktuelles'], ['Veranstaltungen', 'page./veranstaltungen'], ['Bekanntmachungen', 'page./bekanntmachungen']]],
-            ['Leben & Freizeit', 'page.leben', [['Freizeit am See', 'page.see'], ['Kinderbetreuung', 'page.kinderbetreuung'], ['Vereine', 'page./verzeichnisse'], ['Wertstoffhof', 'loc.wertstoffhof'], ['Ortsansichten', 'gallery.ort']]],
+            ['Leben & Freizeit', 'page.leben', [['Freizeit am See', 'page.see'], ['Kinderbetreuung', 'page.kinderbetreuung'], ['Vereine', 'page./vereine'], ['Wertstoffhof', 'loc.wertstoffhof'], ['Ortsansichten', 'gallery.ort']]],
             ['Bauen & Wirtschaft', 'page.bauen', [['Bauantrag stellen', 'svc.bauantrag'], ['Gewerbe anmelden', 'svc.gewerbe'], ['Bebauungspläne', 'notice.bplan']]],
         ];
         foreach ($main as $index => [$label, $key, $children]) {

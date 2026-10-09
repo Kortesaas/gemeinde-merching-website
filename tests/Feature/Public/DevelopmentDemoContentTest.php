@@ -62,7 +62,7 @@ class DevelopmentDemoContentTest extends TestCase
 
         $paths = [
             '/', '/buergerservice', '/buergerservice/a-z', '/buergerservice?online=1', '/aktuelles', '/aktuelles?archiv=1', '/veranstaltungen', '/veranstaltungen?archiv=1',
-            '/bekanntmachungen', '/bekanntmachungen?archiv=1', '/dokumente', '/dokumente?archiv=1', '/verzeichnisse', '/suche?q=Hund', '/suche?q=Perso&type=service',
+            '/bekanntmachungen', '/bekanntmachungen?archiv=1', '/dokumente', '/dokumente?archiv=1', '/verzeichnisse', '/vereine', '/vereine?category=1', '/suche?q=Hund', '/suche?q=Perso&type=service',
             '/suche?q=nichtvorhandenerbegriff', '/rathaus', '/rathaus/buergerbuero', '/vereine/sportverein-gruen-weiss', '/gemeinderat', '/gemeinderat/2020-2026',
             '/galerie/ortsansichten', '/leben/freizeit-am-see', '/ortsrecht', '/buergerservice/lebenslagen/umzug-nach-merching',
         ];

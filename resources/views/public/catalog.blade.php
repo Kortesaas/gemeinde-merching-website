@@ -10,6 +10,7 @@
         'notices' => 'Amtliche Bekanntmachungen der Gemeinde.',
         'documents' => 'Formulare, Satzungen, Merkblätter und Pläne zum Herunterladen.',
         'directory' => 'Verwaltung, Ansprechpersonen, Einrichtungen und Vereine.',
+        'organizations' => 'Vereine, Initiativen, Gastronomie und Betriebe in der Gemeinde.',
     ];
     $archive = request()->boolean('archiv');
 @endphp

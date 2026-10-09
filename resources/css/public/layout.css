@@ -200,15 +200,13 @@ html:not(.js) .site-navigation {
 }
 
 .main-nav__item {
+    position: relative;
     border-bottom: 1px solid var(--color-rule);
 }
 
-.main-nav__link,
-.nav-branch__toggle {
+.main-nav__link {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-3);
     min-height: 3.5rem;
     padding: var(--space-2) var(--gutter);
     color: var(--color-text);
@@ -217,8 +215,29 @@ html:not(.js) .site-navigation {
     text-decoration: none;
 }
 
-.nav-branch__toggle .icon {
+.main-nav__item--branch > .main-nav__link {
+    padding-inline-end: calc(var(--gutter) + 3.5rem);
+}
+
+/* Narrow screens: the toggle sits at the end of the link row. */
+.nav-branch__toggle {
+    position: absolute;
+    top: 0;
+    right: var(--space-2);
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: var(--radius);
     color: var(--color-link);
+}
+
+.nav-branch__toggle:hover {
+    background: var(--color-surface);
+}
+
+.nav-branch__chevron {
+    display: none;
 }
 
 .nav-branch__minus,
@@ -232,6 +251,11 @@ html:not(.js) .site-navigation {
 
 .mega__inner {
     padding-bottom: var(--space-3);
+}
+
+/* The label is the overview link on narrow screens. */
+.mega__intro {
+    display: none;
 }
 
 .mega__title,
@@ -336,6 +360,18 @@ html:not(.js) .site-navigation {
 
     .search-trigger--wide {
         display: inline-flex;
+        padding: 0;
+        min-width: var(--control-height);
+    }
+
+    /* Icon-only search; “Suchen” remains the accessible name. */
+    .search-trigger--wide span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
     }
 
     .site-navigation {
@@ -361,16 +397,21 @@ html:not(.js) .site-navigation {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: 0;
+        gap: var(--space-1);
         border: 0;
     }
 
     .main-nav__item {
+        position: static;
+        display: flex;
+        align-items: center;
         border: 0;
+        border-radius: var(--radius);
     }
 
     .main-nav__link,
-    .nav-branch__toggle {
+    .main-nav__item--branch > .main-nav__link {
+        position: relative;
         min-height: var(--control-height);
         padding: var(--space-2) .75rem;
         font-size: 1rem;
@@ -379,25 +420,79 @@ html:not(.js) .site-navigation {
         white-space: nowrap;
     }
 
+    .main-nav__item--branch > .main-nav__link {
+        padding-inline-end: .25rem;
+    }
+
+    .nav-branch__toggle {
+        position: static;
+        right: auto;
+        width: 1.75rem;
+        height: var(--control-height);
+        color: var(--color-text-muted);
+    }
+
+    .nav-branch__plus,
+    .nav-branch__minus,
+    .nav-branch[open] .nav-branch__minus {
+        display: none;
+    }
+
+    .nav-branch__chevron {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .nav-branch[open] .nav-branch__chevron {
+        transform: rotate(180deg);
+    }
+
     .main-nav__link:hover,
     .nav-branch__toggle:hover {
         color: var(--color-link);
         text-decoration: none;
+        background: none;
+    }
+
+    /* One soft pill for the whole entry while its panel is open or hovered. */
+    .main-nav__item:hover,
+    .main-nav__item:has(.nav-branch[open]) {
         background: var(--color-surface);
     }
 
-    .nav-branch__toggle .icon {
-        display: none !important;
-    }
-
-    .nav-branch[open] > .nav-branch__toggle {
+    .main-nav__item:has(.nav-branch[open]) .main-nav__link,
+    .main-nav__item:has(.nav-branch[open]) .nav-branch__toggle {
         color: var(--color-link);
-        background: var(--color-sky-soft);
     }
 
-    .nav-branch__toggle.is-current,
-    .main-nav__link.is-current {
-        box-shadow: inset 0 -3px 0 var(--color-sky);
+    /* Current section: a small dot under the label. */
+    .main-nav__link.is-current::after,
+    .main-nav__link[aria-current="page"]::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: .125rem;
+        width: .375rem;
+        height: .375rem;
+        margin-left: -.1875rem;
+        border-radius: 50%;
+        background: var(--color-link);
+    }
+
+    .main-nav__item--branch > .main-nav__link.is-current::after,
+    .main-nav__item--branch > .main-nav__link[aria-current="page"]::after {
+        left: calc(50% + .25rem);
+    }
+
+    .main-nav__link.is-current,
+    .main-nav__link[aria-current="page"] {
+        color: var(--color-text);
+        font-weight: var(--weight-medium);
+    }
+
+    .mega__intro {
+        display: block;
     }
 
     .mega {
@@ -463,30 +558,19 @@ html:not(.js) .site-navigation {
         column-gap: var(--space-3);
     }
 
-    .main-nav__link,
-    .nav-branch__toggle {
-        padding-inline: .5rem;
+    .main-nav__link {
+        padding-inline-start: .5rem;
+    }
+
+    .main-nav__link:not(.main-nav__item--branch > *) {
+        padding-inline-end: .5rem;
     }
 }
 
-/* Medium-wide screens: keep one navigation row by using an icon-only search button. */
+/* Medium-wide screens: the tagline yields so the navigation keeps one row. */
 @media (min-width: 64rem) and (max-width: 80rem) {
     .brand__tagline {
         display: none;
-    }
-
-    .search-trigger--wide {
-        padding: 0;
-        min-width: var(--control-height);
-    }
-
-    .search-trigger--wide span {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
     }
 }
 
@@ -805,7 +889,7 @@ html:not(.js) .site-navigation {
 }
 
 /* Small laptops / tablets in landscape: keep the single row. */
-@media (min-width: 64rem) and (max-width: 70rem) {
+@media (min-width: 64rem) and (max-width: 80rem) {
     .site-header__inner {
         column-gap: var(--space-2);
     }
@@ -814,10 +898,46 @@ html:not(.js) .site-navigation {
         font-size: 1.125rem;
     }
 
+    .main-nav__list {
+        gap: 0;
+    }
+
     .main-nav__link,
-    .nav-branch__toggle {
-        padding-inline: .375rem;
+    .main-nav__item--branch > .main-nav__link {
+        padding-inline-start: .375rem;
         font-size: .9375rem;
+    }
+
+    /* Never below the 24 px minimum target size (WCAG 2.5.8). */
+    .nav-branch__toggle {
+        width: 1.5rem;
+    }
+}
+
+@media (min-width: 64rem) and (max-width: 67rem) {
+    .site-header__inner {
+        column-gap: var(--space-1);
+    }
+
+    .brand {
+        gap: var(--space-2);
+    }
+
+    .brand__wappen {
+        width: 2.25rem;
+    }
+
+    .brand__name {
+        font-size: 1rem;
+    }
+
+    .main-nav__link,
+    .main-nav__item--branch > .main-nav__link {
+        padding-inline-start: .25rem;
+    }
+
+    .main-nav__link:not(.main-nav__item--branch > *) {
+        padding-inline-end: .25rem;
     }
 }
 

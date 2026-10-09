@@ -31,7 +31,7 @@ class VisualUiTest extends TestCase
 
     public function test_home_and_configurable_empty_catalogs_are_stateless_and_do_not_invent_facts(): void
     {
-        foreach (['/', '/buergerservice', '/buergerservice/a-z', '/aktuelles', '/veranstaltungen', '/bekanntmachungen', '/dokumente', '/verzeichnisse', '/suche', '/suche?q=unbekannt'] as $path) {
+        foreach (['/', '/buergerservice', '/buergerservice/a-z', '/aktuelles', '/veranstaltungen', '/bekanntmachungen', '/dokumente', '/verzeichnisse', '/vereine', '/suche', '/suche?q=unbekannt'] as $path) {
             $response = $this->get($path)->assertOk()->assertSee('<main', false);
             $this->assertSame([], $response->headers->getCookies());
             $response->assertDontSee('Google Maps')->assertDontSee('Max Mustermann');
