@@ -26,7 +26,7 @@
 }
 
 .home-hero__image {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 2;
     object-fit: cover;
     border-radius: var(--radius-large);
 }
@@ -103,9 +103,5 @@
 @media (max-width: 40rem) {
     .contact-columns {
         grid-template-columns: minmax(0, 1fr);
-    }
-
-    .home-hero__image {
-        aspect-ratio: 3 / 2;
     }
 }

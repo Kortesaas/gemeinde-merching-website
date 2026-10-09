@@ -71,7 +71,7 @@
     --gutter: clamp(1rem, 4vw, 3rem);
 
     /* Layout */
-    --container-max: 76rem;
+    --container-max: 80rem;
     --container-narrow: 42rem;
     --reading-width: 46rem;
     --aside-width: 19rem;

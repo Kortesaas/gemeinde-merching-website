@@ -1,0 +1,181 @@
+/* ==========================================================================
+   Motion: short, functional transitions only. Everything here is skipped
+   for people who prefer reduced motion; nothing depends on it.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    :root {
+        --ease-out: cubic-bezier(.2, .7, .3, 1);
+    }
+
+    /* Colour and outline feedback on interactive elements. */
+    a,
+    .button,
+    .chip,
+    .search-trigger,
+    .menu-toggle,
+    .main-nav__link,
+    .nav-branch__toggle,
+    .mega__overview,
+    .alphabet a,
+    .jump-links a,
+    .search-form__field,
+    .search-form__field--pill,
+    .form-input,
+    .suggestions a {
+        transition: color .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease, text-decoration-color .15s ease;
+    }
+
+    .button:active {
+        transform: translateY(1px);
+    }
+
+    /* Expanded navigation panel and narrow-screen menu reveal gently. */
+    .nav-branch[open] > .mega {
+        animation: reveal-down .22s var(--ease-out);
+    }
+
+    @media (max-width: 63.99rem) {
+        .js .site-navigation[open] > .site-navigation__panel {
+            animation: reveal-down .24s var(--ease-out);
+        }
+    }
+
+    .nav-branch__toggle .icon,
+    .accordion > summary .icon {
+        transition: transform .2s var(--ease-out);
+    }
+
+    .nav-branch[open] .nav-branch__minus,
+    .accordion[open] .accordion__minus {
+        animation: turn-in .2s var(--ease-out);
+    }
+
+    /* Search overlay. */
+    .search-panel[open] {
+        animation: fade-in .2s ease-out;
+    }
+
+    .search-panel[open] .search-panel__body {
+        animation: reveal-down .28s var(--ease-out);
+    }
+
+    .search-panel[open]::backdrop {
+        animation: fade-in .2s ease-out;
+    }
+
+    .suggestions:not([hidden]) {
+        animation: fade-in .15s ease-out;
+    }
+
+    /* Disclosures. */
+    .accordion[open] > .accordion__body,
+    .accordion--panel[open] > .accordion__body {
+        animation: reveal-down .2s var(--ease-out);
+    }
+
+    /* Rows and cards: a small nudge of the arrow, a light image zoom. */
+    .link-row__arrow,
+    .more-link .icon,
+    .mega__overview .icon,
+    .external-link__icon {
+        transition: transform .18s var(--ease-out);
+    }
+
+    .link-row:hover .link-row__arrow,
+    .link-row:focus-visible .link-row__arrow,
+    .more-link:hover .icon,
+    .more-link:focus-visible .icon,
+    .mega__overview:hover .icon,
+    .mega__overview:focus-visible .icon {
+        transform: translateX(3px);
+    }
+
+    .external-link:hover .external-link__icon,
+    .external-link:focus-visible .external-link__icon {
+        transform: translate(2px, -2px);
+    }
+
+    .article-card__media img,
+    .news-item__media img,
+    .gallery img,
+    .home-hero__image {
+        transition: transform .45s var(--ease-out);
+    }
+
+    .article-card:hover .article-card__media img,
+    .article-card:focus-within .article-card__media img,
+    .news-item:hover .news-item__media img,
+    .news-item:focus-within .news-item__media img,
+    .gallery a:hover img,
+    .gallery a:focus-visible img {
+        transform: scale(1.03);
+    }
+
+    .directory-card,
+    .member-card,
+    .contact-grid .contact-card {
+        transition: border-color .15s ease, box-shadow .2s ease;
+    }
+
+    .directory-card:hover,
+    .directory-card:focus-within {
+        border-color: var(--color-sky);
+        box-shadow: 0 6px 18px rgb(15 45 87 / .08);
+    }
+
+    .date-badge {
+        transition: background-color .15s ease;
+    }
+
+    .event-item:hover .date-badge,
+    .event-item:focus-within .date-badge {
+        background: var(--color-sky);
+    }
+
+    .chip:hover,
+    .chip:focus-visible {
+        transform: translateY(-1px);
+    }
+
+    .chip {
+        transition: color .15s ease, background-color .15s ease, transform .15s var(--ease-out);
+    }
+
+    @keyframes reveal-down {
+        from {
+            opacity: 0;
+            transform: translateY(-6px);
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @keyframes turn-in {
+        from {
+            transform: rotate(-90deg);
+        }
+    }
+}
+
+/* Clipping keeps zoomed images inside their rounded frames. */
+.news-item__media,
+.gallery a {
+    overflow: hidden;
+    border-radius: var(--radius);
+}
+
+.news-item__media img {
+    margin-bottom: 0;
+}
+
+.news-item__media {
+    margin-bottom: var(--space-3);
+}

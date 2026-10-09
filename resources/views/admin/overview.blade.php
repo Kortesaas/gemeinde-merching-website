@@ -16,20 +16,20 @@
 </form>
 <p class="cms-count">{{ $records->total() }} {{ $records->total() === 1 ? 'Eintrag' : 'Einträge' }}</p>
 <div class="table-wrapper" role="region" aria-label="Inhaltsübersicht, Tabelle" tabindex="0">
-    <table class="data-table">
+    <table class="data-table data-table--stack" role="table">
         <caption class="visually-hidden">Inhalte nach letzter Änderung</caption>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Bereich</th><th scope="col">Status</th><th scope="col">Bearbeitet von</th><th scope="col">Geändert</th></tr></thead>
+        <thead><tr role="row"><th scope="col" role="columnheader">Titel</th><th scope="col" role="columnheader">Bereich</th><th scope="col" role="columnheader">Status</th><th scope="col" role="columnheader">Bearbeitet von</th><th scope="col" role="columnheader">Geändert</th></tr></thead>
         <tbody>
             @forelse ($records as $row)
-                <tr>
-                    <th scope="row"><a href="{{ route('admin.'.$row['resource']->key().'.edit', $row['record']->getKey()) }}">{{ $row['record']->displayTitle() }}</a></th>
-                    <td>{{ $row['resource']->label() }}</td>
-                    <td>@include('admin.partials.state-badge', ['model' => $row['record']])</td>
-                    <td>{{ method_exists($row['record'], 'editor') ? ($row['record']->editor?->name ?? '–') : '–' }}</td>
-                    <td class="data-table__date">{{ \App\Support\SiteTime::format($row['record']->updated_at) }}</td>
+                <tr role="row">
+                    <th scope="row" role="rowheader"><a href="{{ route('admin.'.$row['resource']->key().'.edit', $row['record']->getKey()) }}">{{ $row['record']->displayTitle() }}</a></th>
+                    <td role="cell" data-label="Bereich">{{ $row['resource']->label() }}</td>
+                    <td role="cell" data-label="Status">@include('admin.partials.state-badge', ['model' => $row['record']])</td>
+                    <td role="cell" data-label="Bearbeitet von">{{ method_exists($row['record'], 'editor') ? ($row['record']->editor?->name ?? '–') : '–' }}</td>
+                    <td role="cell" class="data-table__date" data-label="Geändert">{{ \App\Support\SiteTime::format($row['record']->updated_at) }}</td>
                 </tr>
             @empty
-                <tr><td colspan="5">Keine Einträge gefunden.</td></tr>
+                <tr role="row"><td role="cell" colspan="5">Keine Einträge gefunden.</td></tr>
             @endforelse
         </tbody>
     </table>

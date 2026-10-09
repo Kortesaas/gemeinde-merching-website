@@ -16,6 +16,8 @@ const pages = [
 ];
 
 async function expectNoViolations(page) {
+    // Scan the settled state once short UI transitions have finished.
+    await page.waitForFunction(() => document.getAnimations().every((animation) => animation.playState !== 'running'));
     const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
     const summary = results.violations.map((v) => `${v.id}: ${v.help} (${v.nodes.length}×)`);
     expect(summary, summary.join('\n')).toEqual([]);

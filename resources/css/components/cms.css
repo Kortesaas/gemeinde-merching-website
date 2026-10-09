@@ -711,6 +711,8 @@ a,
 }
 
 .table-wrapper {
+    /* Positioning context: visually hidden labels inside must not widen the page. */
+    position: relative;
     max-width: 100%;
     overflow-x: auto;
     margin-bottom: var(--space-4);
@@ -1710,6 +1712,53 @@ fieldset.editor-card > legend + * {
     }
 }
 
+/* Phones: list tables become stacked rows with inline labels. */
+@media (max-width: 40rem) {
+    .data-table--stack thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+    }
+
+    .data-table--stack,
+    .data-table--stack tbody,
+    .data-table--stack tr,
+    .data-table--stack th,
+    .data-table--stack td {
+        display: block;
+    }
+
+    .data-table--stack tr {
+        padding: var(--space-3) var(--space-3);
+        border-bottom: 1px solid var(--color-rule);
+    }
+
+    .data-table--stack th,
+    .data-table--stack td {
+        padding: var(--space-1) 0;
+        border: 0;
+        white-space: normal;
+    }
+
+    .data-table--stack td[data-label] {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 var(--space-2);
+        font-size: .875rem;
+    }
+
+    .data-table--stack td[data-label]::before {
+        content: attr(data-label) ":";
+        color: var(--color-text-muted);
+    }
+
+    .data-table--stack td:empty {
+        display: none;
+    }
+}
+
 @media (forced-colors: active) {
     .state,
     .cms-panel,
@@ -1727,4 +1776,9 @@ fieldset.editor-card > legend + * {
 
 [hidden] {
     display: none !important;
+}
+
+.auth-main form + p {
+    margin: var(--space-3) 0 0;
+    text-align: center;
 }

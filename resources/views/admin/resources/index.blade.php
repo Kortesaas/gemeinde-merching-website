@@ -79,23 +79,23 @@
             </ul>
         @endif
         <div class="table-wrapper" role="region" aria-label="{{ $resource->pluralLabel() }}, Tabelle" tabindex="0">
-            <table class="data-table">
+            <table class="data-table data-table--stack" role="table">
                 <caption class="visually-hidden">{{ $resource->pluralLabel() }}, {{ $records->total() }} Einträge</caption>
                 <thead>
-                    <tr>
-                        <th scope="col">Bezeichnung</th>
-                        @foreach ($columns as $column)<th scope="col">{{ $column }}</th>@endforeach
-                        <th scope="col">Status</th>
-                        <th scope="col">Zuletzt geändert</th>
+                    <tr role="row">
+                        <th scope="col" role="columnheader">Bezeichnung</th>
+                        @foreach ($columns as $column)<th scope="col" role="columnheader">{{ $column }}</th>@endforeach
+                        <th scope="col" role="columnheader">Status</th>
+                        <th scope="col" role="columnheader">Zuletzt geändert</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($records as $record)
-                        <tr>
-                            <th scope="row"><a href="{{ route('admin.'.$key.'.edit', $record->getKey()) }}">{{ $record->displayTitle() }}</a></th>
-                            @foreach ($resource->columns($record) as $value)<td>{{ $value }}</td>@endforeach
-                            <td>@include('admin.partials.state-badge', ['model' => $record])</td>
-                            <td class="data-table__date">{{ \App\Support\SiteTime::format($record->updated_at) }}</td>
+                        <tr role="row">
+                            <th scope="row" role="rowheader"><a href="{{ route('admin.'.$key.'.edit', $record->getKey()) }}">{{ $record->displayTitle() }}</a></th>
+                            @foreach ($resource->columns($record) as $column => $value)<td role="cell" data-label="{{ $column }}">{{ $value }}</td>@endforeach
+                            <td role="cell" data-label="Status">@include('admin.partials.state-badge', ['model' => $record])</td>
+                            <td role="cell" class="data-table__date" data-label="Geändert">{{ \App\Support\SiteTime::format($record->updated_at) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

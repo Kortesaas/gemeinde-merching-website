@@ -15,6 +15,8 @@ test.describe('local content composition', () => {
     });
 
     async function accessible(page) {
+        // Scan the settled state: short UI transitions (e.g. the search overlay fade) must finish first.
+        await page.waitForFunction(() => document.getAnimations().every(animation => animation.playState !== 'running'));
         const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa', 'best-practice']).analyze();
         expect(result.violations.map(v => `${v.id}: ${v.help}: ${v.nodes.map(n => n.html).join('; ')}`)).toEqual([]);
     }
@@ -68,7 +70,8 @@ test.describe('local content composition', () => {
         await page.keyboard.press('ControlOrMeta+A');
         await page.keyboard.type('0');
         await page.locator('#blocks_0_sort_order').fill('1');
-        await page.getByRole('button', { name: 'Speichern', exact: true }).click();
+        // The editor offers the same save action in the sticky bar and beside the fields.
+        await page.getByRole('button', { name: 'Speichern', exact: true }).first().click();
         await expect(page.getByText('Änderungen wurden gespeichert.')).toBeVisible();
         await expect(page.locator('#blocks_0_type')).toHaveValue('text');
         await context.close();

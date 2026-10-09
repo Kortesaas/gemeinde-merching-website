@@ -29,6 +29,25 @@ const closeBranches = target => {
     for (const branch of document.querySelectorAll('.site-navigation [data-nav-branch][open]')) if (!branch.contains(target)) branch.open = false;
 };
 document.addEventListener('click', event => closeBranches(event.target));
+// Mouse users on wide screens: open a section after a short pause, close on leaving.
+// Keyboard and touch keep the native disclosure (Enter/Space, tap); nothing is hover-only.
+const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+for (const branch of document.querySelectorAll('.site-navigation [data-nav-branch]')) {
+    let timer;
+    branch.addEventListener('pointerenter', event => {
+        if (event.pointerType !== 'mouse' || narrow.matches || !finePointer.matches) return;
+        clearTimeout(timer); timer = setTimeout(() => { if (!branch.open) { branch.open = true; branch.dataset.hoverOpened = '1'; } }, 140);
+    });
+    // A click right after hover-opening keeps the panel open instead of toggling it shut.
+    branch.querySelector('summary').addEventListener('click', event => {
+        if (branch.dataset.hoverOpened && branch.open) event.preventDefault();
+        delete branch.dataset.hoverOpened;
+    });
+    branch.addEventListener('pointerleave', event => {
+        if (event.pointerType !== 'mouse' || narrow.matches) return;
+        clearTimeout(timer); timer = setTimeout(() => { if (!branch.contains(document.activeElement) || document.activeElement === branch.querySelector('summary')) { branch.open = false; delete branch.dataset.hoverOpened; } }, 220);
+    });
+}
 document.addEventListener('focusin', event => closeBranches(event.target));
 // Site alerts can be hidden for the current page view (nothing is stored).
 for (const button of document.querySelectorAll('[data-alert-dismiss]')) {
