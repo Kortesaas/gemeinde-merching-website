@@ -63,7 +63,7 @@ class ContentCompositionTest extends TestCase
         $page = Page::query()->firstOrFail();
         $this->assertSame(['heading', 'text', 'accordion'], $page->blocks()->pluck('type')->all());
         $this->assertSame([0, 1, 2], $page->blocks()->pluck('sort_order')->all());
-        $response = $this->get('/testseite')->assertOk()->assertSee('Bestehender <strong>Text</strong>', false)->assertSeeInOrder(['Erster Abschnitt', 'Neuer zweiter Absatz', 'Weitere Information'])->assertSee('<details>', false);
+        $response = $this->get('/testseite')->assertOk()->assertSee('Bestehender <strong>Text</strong>', false)->assertSeeInOrder(['Erster Abschnitt', 'Neuer zweiter Absatz', 'Weitere Information'])->assertSee('<details class="accordion">', false);
         $this->assertSame([], $response->headers->getCookies());
         $this->assertDatabaseHas('search_entries', ['content_type' => 'page', 'content_id' => $page->id]);
         $this->assertStringContainsString('Neuer zweiter Absatz', DB::table('search_entries')->where('content_type', 'page')->value('body'));

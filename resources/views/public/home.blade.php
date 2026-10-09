@@ -1,35 +1,155 @@
 @extends('layouts.public')
 @section('title', 'Startseite')
+@php
+    $catalog = app(\App\Services\Content\PublicCatalog::class);
+    $chips = array_slice($shortcuts, 0, 5);
+    $hours = \App\Support\Content\PublicFormat::lines($townHall?->opening_hours);
+@endphp
 @section('content')
-    @foreach (\App\Models\SiteAlert::query()->visible()->orderByDesc('publish_at')->get() as $alert)
-        <aside class="alert-band" aria-label="Aktueller Hinweis"><strong>{{ $alert->title }}</strong><p>{{ $alert->body }}</p>@if ($alert->link_url)<a href="{{ $alert->link_url }}">{{ $alert->link_label ?: 'Weitere Informationen' }}</a>@endif</aside>
-    @endforeach
-    <section class="hero" aria-labelledby="home-heading">
-        <p class="eyebrow">Willkommen in {{ $siteTitle }}</p>
+<section class="home-hero {{ $hero ? '' : 'home-hero--text' }}" aria-labelledby="home-heading">
+    <div class="home-hero__main">
+        <p class="eyebrow">Willkommen in der {{ $siteTitle }}</p>
         <h1 id="home-heading">Wie können wir Ihnen helfen?</h1>
-        @include('public.partials.search-form', ['searchId' => 'home-search', 'hero' => true])
-        <a href="{{ app(\App\Services\Content\PublicCatalog::class)->sectionPath('services') }}">Bürgerservice entdecken →</a>
-    </section>
-    @if (config('public.homepage.services') && $shortcuts)
-        <section class="section" aria-labelledby="tasks-heading"><div class="section-heading"><h2 id="tasks-heading">Direkt zum Anliegen</h2><a href="{{ app(\App\Services\Content\PublicCatalog::class)->sectionPath('az') }}">Alle Leistungen A–Z</a></div>
-            <ul class="link-rows task-grid">@foreach ($shortcuts as $node)<li><a href="{{ $node->item->href() }}">{{ $node->item->label }}</a></li>@endforeach</ul>
-        </section>
-    @endif
-    <div class="columns">
-    @if (config('public.homepage.news') && $news->isNotEmpty())
-        <section class="section" aria-labelledby="news-heading"><div class="section-heading"><h2 id="news-heading">Aktuelles</h2><a href="{{ app(\App\Services\Content\PublicCatalog::class)->sectionPath('articles') }}">Alle Meldungen</a></div><ul class="link-rows">@foreach ($news as $record)<li>@include('public.partials.card', ['headingTag' => 'h3'])</li>@endforeach</ul></section>
-    @endif
-    @if (config('public.homepage.events') && $events->isNotEmpty())
-        <section class="section" aria-labelledby="events-heading"><div class="section-heading"><h2 id="events-heading">Veranstaltungen</h2><a href="{{ app(\App\Services\Content\PublicCatalog::class)->sectionPath('events') }}">Alle Veranstaltungen</a></div><ul class="link-rows">@foreach ($events as $record)<li>@include('public.partials.card', ['headingTag' => 'h3'])</li>@endforeach</ul></section>
-    @endif
+        @include('public.partials.search-form', ['searchId' => 'home-search', 'pill' => true, 'searchLabel' => 'Anliegen oder Suchbegriff'])
+        @if ($chips)
+            <nav class="chip-list" aria-label="Häufige Anliegen">
+                <ul>@foreach ($chips as $node)<li><a class="chip" href="{{ $node->href }}">{{ $node->item->label }}</a></li>@endforeach</ul>
+            </nav>
+        @endif
     </div>
-    @if (config('public.homepage.online') && $online->isNotEmpty())
-        <section class="section panel" aria-labelledby="online-heading"><h2 id="online-heading">Digitales Rathaus</h2><ul class="link-rows">@foreach ($online as $link)<li><a href="{{ $link->url }}">{{ $link->title }} ↗</a><p class="meta">Externer Dienst @if ($link->privacy_note) · {{ $link->privacy_note }}@endif</p></li>@endforeach</ul></section>
+    @if ($hero)
+        <figure class="home-hero__media">
+            @include('public.partials.image', ['medium' => $hero, 'imageSizes' => '(max-width: 64rem) calc(100vw - 2rem), 34rem', 'imageLoading' => 'eager', 'imageClass' => 'home-hero__image'])
+            @if ($townHall)
+                <figcaption class="home-hero__caption"><span>{{ $townHall->displayTitle() }} · {{ $townHall->street }}</span>@if ($hours)<span><x-icon name="clock" /> {{ $hours[0] }}</span>@endif</figcaption>
+            @endif
+        </figure>
+    @elseif ($townHall)
+        <aside class="home-hero__card" aria-label="{{ $townHall->displayTitle() }}">
+            <p class="home-hero__card-title">{{ $townHall->displayTitle() }}</p>
+            <p>{{ $townHall->street }}<br>{{ $townHall->postal_code }} {{ $townHall->city }}</p>
+            @if ($hours)<ul class="plain-list">@foreach ($hours as $line)<li>{{ $line }}</li>@endforeach</ul>@endif
+        </aside>
     @endif
-    @if (config('public.homepage.contact') && ($townHall?->isPubliclyReachable() || $central?->isPubliclyReachable()))
-        <section class="section" aria-labelledby="town-hall-heading"><h2 id="town-hall-heading">Rathaus und Kontakt</h2><div class="columns">
-            @if ($townHall?->isPubliclyReachable()) @include('public.partials.location', ['location' => $townHall]) @endif
-            @if ($central?->isPubliclyReachable())<div><h3>{{ $central->name }}</h3>@include('public.partials.contact-data', ['contact' => $central])<a href="{{ route('public.contact') }}">Nachricht schreiben</a></div>@endif
-        </div></section>
-    @endif
+</section>
+
+@if (config('public.homepage.services') && $shortcuts)
+    <section class="section" aria-labelledby="tasks-heading">
+        <div class="section-heading">
+            <h2 id="tasks-heading">Häufig gesucht</h2>
+            <a class="more-link" href="{{ $catalog->sectionPath('az') }}">Alle Leistungen A–Z <x-icon name="arrow-right" /></a>
+        </div>
+        <ul class="link-grid">
+            @foreach ($shortcuts as $node)
+                @php $target = $node->target; $service = $target instanceof \App\Models\Service ? $target : null; @endphp
+                <li>
+                    <a class="link-row" href="{{ $node->href }}">
+                        <span class="link-row__text">
+                            <span class="link-row__title">{{ $node->item->label }}@if ($service?->onlineService?->isPubliclyReachable() && in_array($service->online_service_mode, [\App\Enums\OnlineServiceMode::Application, \App\Enums\OnlineServiceMode::Appointment], true)) <span class="badge badge--online">Online</span>@endif</span>
+                            @if ($service && ($department = $service->departments()->where('is_active', true)->first()))<span class="link-row__meta">{{ $department->name }}</span>
+                            @elseif ($target instanceof \App\Models\Location && $target->opening_hours)<span class="link-row__meta">{{ implode(' · ', \App\Support\Content\PublicFormat::lines($target->opening_hours)) }}</span>@endif
+                        </span>
+                        <x-icon name="arrow-right" class="link-row__arrow" />
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </section>
+@endif
+
+@if ((config('public.homepage.news') && $news->isNotEmpty()) || (config('public.homepage.events') && $events->isNotEmpty()))
+    <div class="home-columns section">
+        @if (config('public.homepage.news'))
+            <section aria-labelledby="news-heading">
+                <div class="section-heading">
+                    <h2 id="news-heading">Aktuelles</h2>
+                    <a class="more-link" href="{{ $catalog->sectionPath('articles') }}">Alle Meldungen <x-icon name="arrow-right" /></a>
+                </div>
+                @if ($news->isEmpty())
+                    <p class="empty-note">Zurzeit gibt es keine neuen Meldungen.</p>
+                @else
+                    <ul class="news-list">
+                        @foreach ($news as $record)
+                            <li>@include('public.partials.news-item', ['record' => $record, 'withImage' => $loop->first, 'headingTag' => 'h3'])</li>
+                        @endforeach
+                    </ul>
+                @endif
+            </section>
+        @endif
+        @if (config('public.homepage.events'))
+            <section aria-labelledby="events-heading">
+                <div class="section-heading">
+                    <h2 id="events-heading">Veranstaltungen</h2>
+                    <a class="more-link" href="{{ $catalog->sectionPath('events') }}">Alle Termine <x-icon name="arrow-right" /></a>
+                </div>
+                @if ($events->isEmpty())
+                    <p class="empty-note">Zurzeit sind keine Veranstaltungen angekündigt.</p>
+                @else
+                    <ul class="event-list">
+                        @foreach ($events as $record)
+                            <li>@include('public.partials.event-item', ['record' => $record, 'headingTag' => 'h3'])</li>
+                        @endforeach
+                    </ul>
+                @endif
+            </section>
+        @endif
+    </div>
+@endif
+
+@if (config('public.homepage.online') && ($portal || $online->isNotEmpty()))
+    <section class="section panel panel--split" aria-labelledby="online-heading">
+        <div>
+            <h2 id="online-heading">Digitales Rathaus</h2>
+            <p>Viele Anträge stellen Sie rund um die Uhr online – unabhängig von den Öffnungszeiten.</p>
+            @if ($portal)
+                <a class="button" href="{{ $portal->url }}">{{ $portal->title }}<span class="visually-hidden"> (externer Link)</span> <x-icon name="external" /></a>
+                <p class="meta">Externer Dienst @if ($portal->provider_name) · {{ $portal->provider_name }}@endif</p>
+            @endif
+        </div>
+        @if ($online->isNotEmpty())
+            <ul class="link-list">
+                @foreach ($online as $link)
+                    <li>
+                        <a class="link-row" href="{{ $link->url }}">
+                            <span class="link-row__text"><span class="link-row__title">{{ $link->title }}<span class="visually-hidden"> (externer Link)</span></span>@if ($link->provider_name)<span class="link-row__meta">{{ $link->provider_name }} · extern</span>@endif</span>
+                            <x-icon name="external" class="link-row__arrow" />
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+    </section>
+@endif
+
+@if (config('public.homepage.contact') && ($townHall || $central || $works || $recycling))
+    <section class="section home-contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Kontakt</h2>
+        <div class="contact-columns">
+            @if ($townHall || $central)
+                <div>
+                    <h3>{{ $townHall?->displayTitle() ?? $central->name }}</h3>
+                    @if ($townHall)<p>{{ $townHall->street }}, {{ $townHall->postal_code }} {{ $townHall->city }}</p>@endif
+                    @if ($central) @include('public.partials.contact-data', ['contact' => $central]) @endif
+                    <p><a href="{{ route('public.contact') }}">Nachricht schreiben</a></p>
+                </div>
+            @endif
+            @if ($hours)
+                <div>
+                    <h3>Öffnungszeiten</h3>
+                    <ul class="plain-list">@foreach ($hours as $line)<li>{{ $line }}</li>@endforeach</ul>
+                </div>
+            @endif
+            @if ($works || $recycling)
+                <div>
+                    <h3>{{ $works?->name ?? $recycling->displayTitle() }}@if ($works && $recycling) und {{ $recycling->displayTitle() }}@endif</h3>
+                    @if ($recycling)
+                        <p>{{ $recycling->street }}</p>
+                        @if ($recycling->opening_hours)<p class="meta">{{ $recycling->displayTitle() }}: {{ implode(' · ', \App\Support\Content\PublicFormat::lines($recycling->opening_hours)) }}</p>@endif
+                    @endif
+                    @if ($works) @include('public.partials.contact-data', ['contact' => $works]) @endif
+                </div>
+            @endif
+        </div>
+    </section>
+@endif
 @endsection

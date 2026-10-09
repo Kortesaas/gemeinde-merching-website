@@ -27,8 +27,12 @@ class SearchController extends Controller
             $statistics->record($phrase, $result['total']);
         }
         $records = new LengthAwarePaginator($result['results'], $result['total'], 20, $page, ['path' => $request->url(), 'query' => $request->query()]);
+        // Per-type counts for the result tabs come from one unfiltered pass over the same visible results.
+        $all = $type === '' ? $result : $search->search($phrase, [], 1);
+        $counts = $all['counts'];
+        $alternatives = $search->alternatives($phrase);
 
-        return response()->view('public.search', compact('phrase', 'type', 'records'))->header('X-Robots-Tag', 'noindex, follow');
+        return response()->view('public.search', compact('phrase', 'type', 'records', 'counts', 'alternatives') + ['allTotal' => $all['total']])->header('X-Robots-Tag', 'noindex, follow');
     }
 
     public function suggestions(Request $request, SiteSearch $search): JsonResponse

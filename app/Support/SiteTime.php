@@ -50,6 +50,20 @@ final class SiteTime
     }
 
     /**
+     * Format with German month/day names, e.g. "Freitag, 9. Oktober 2026".
+     */
+    public static function formatLocalized(?DateTimeInterface $value, string $format = 'j. F Y'): string
+    {
+        if ($value === null) {
+            return '';
+        }
+        /** @var CarbonImmutable $local */
+        $local = self::fromUtc($value)->locale((string) config('app.locale', 'de'));
+
+        return $local->translatedFormat($format);
+    }
+
+    /**
      * Stored timestamp -> value for <input type="datetime-local">.
      */
     public static function toInput(?DateTimeInterface $value): string

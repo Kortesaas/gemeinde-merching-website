@@ -1,6 +1,9 @@
 import.meta.glob('../images/*', { eager: true, query: '?url', import: 'default' });
 // Small, same-origin enhancements. Native links, GET search and form fields remain the fallback.
-const narrow = matchMedia('(max-width: 64rem)');
+// Enhanced layouts (e.g. the overlay menu) only apply once this script runs.
+document.documentElement.classList.add('js');
+// Matches the CSS breakpoints: wide layouts start at 64rem (1024px).
+const narrow = matchMedia('(max-width: 63.99rem)');
 for (const menu of document.querySelectorAll('[data-navigation], [data-cms-navigation]')) {
     const sync = () => { menu.open = !narrow.matches; };
     sync(); narrow.addEventListener('change', sync);
@@ -20,6 +23,13 @@ for (const branch of document.querySelectorAll('[data-nav-branch]')) {
         if (event.key === 'Escape' && branch.open) { event.stopPropagation(); branch.open = false; branch.querySelector('summary').focus(); }
     });
 }
+// Wide screens: the expanded menu panel closes when focus or a click moves elsewhere.
+const closeBranches = target => {
+    if (narrow.matches) return;
+    for (const branch of document.querySelectorAll('.site-navigation [data-nav-branch][open]')) if (!branch.contains(target)) branch.open = false;
+};
+document.addEventListener('click', event => closeBranches(event.target));
+document.addEventListener('focusin', event => closeBranches(event.target));
 const searchDialog = document.querySelector('[data-search-dialog]');
 if (searchDialog?.showModal) {
     let opener;
@@ -28,6 +38,8 @@ if (searchDialog?.showModal) {
     });
     searchDialog.querySelector('[data-dialog-close]').addEventListener('click', () => searchDialog.close());
     searchDialog.addEventListener('close', () => opener?.focus());
+    const all = searchDialog.querySelector('[data-search-all]'), overlayInput = searchDialog.querySelector('[data-search-input]');
+    overlayInput.addEventListener('input', () => { all.href = '/suche' + (overlayInput.value.trim() ? '?q=' + encodeURIComponent(overlayInput.value.trim()) : ''); });
 }
 for (const form of document.querySelectorAll('[data-search-form]')) {
     const input = form.querySelector('[data-search-input]');
@@ -55,11 +67,15 @@ for (const form of document.querySelectorAll('[data-search-form]')) {
                     const li = document.createElement('li'), a = document.createElement('a'), title = document.createElement('span'), type = document.createElement('small');
                     const target = new URL(result.url, location.origin);
                     // Server URLs can use the configured canonical host; only navigate to their local path.
-                    a.href = target.pathname; a.id = list.id + '-' + list.children.length; a.setAttribute('role', 'option'); a.setAttribute('aria-selected', 'false'); a.tabIndex = -1; li.setAttribute('role', 'presentation'); title.textContent = result.title; type.textContent = result.type;
+                    a.href = target.pathname; a.id = list.id + '-' + list.children.length; a.setAttribute('role', 'option'); a.setAttribute('aria-selected', 'false'); a.tabIndex = -1; li.setAttribute('role', 'presentation'); type.textContent = result.type;
+                    // Emphasise the typed text without inserting markup from the response.
+                    const at = result.title.toLowerCase().indexOf(phrase.toLowerCase());
+                    if (at >= 0) { const mark = document.createElement('mark'); mark.textContent = result.title.slice(at, at + phrase.length); title.append(result.title.slice(0, at), mark, result.title.slice(at + phrase.length)); }
+                    else title.textContent = result.title;
                     a.append(title, type); li.append(a); list.append(li);
                 }
                 list.hidden = !list.children.length; input.setAttribute('aria-expanded', String(!list.hidden));
-                status.textContent = `${list.children.length} Vorschläge verfügbar. Mit Pfeil ab auswählen oder Enter zum Suchen.`;
+                status.textContent = list.children.length ? `${list.children.length} Vorschläge verfügbar. Mit Pfeil nach unten auswählen oder Eingabetaste zum Suchen.` : 'Keine Vorschläge. Mit der Eingabetaste alle Ergebnisse suchen.';
             } catch (error) { if (error.name !== 'AbortError') clear(); }
         }, 250);
     });

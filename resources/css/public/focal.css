@@ -1,0 +1,203 @@
+/* Focal point classes (CSP forbids inline styles); 1% steps, generated. */
+.focal-x-0 { object-position: 0% var(--focal-y, 50%); }
+.focal-y-0 { --focal-y: 0%; }
+.focal-x-1 { object-position: 1% var(--focal-y, 50%); }
+.focal-y-1 { --focal-y: 1%; }
+.focal-x-2 { object-position: 2% var(--focal-y, 50%); }
+.focal-y-2 { --focal-y: 2%; }
+.focal-x-3 { object-position: 3% var(--focal-y, 50%); }
+.focal-y-3 { --focal-y: 3%; }
+.focal-x-4 { object-position: 4% var(--focal-y, 50%); }
+.focal-y-4 { --focal-y: 4%; }
+.focal-x-5 { object-position: 5% var(--focal-y, 50%); }
+.focal-y-5 { --focal-y: 5%; }
+.focal-x-6 { object-position: 6% var(--focal-y, 50%); }
+.focal-y-6 { --focal-y: 6%; }
+.focal-x-7 { object-position: 7% var(--focal-y, 50%); }
+.focal-y-7 { --focal-y: 7%; }
+.focal-x-8 { object-position: 8% var(--focal-y, 50%); }
+.focal-y-8 { --focal-y: 8%; }
+.focal-x-9 { object-position: 9% var(--focal-y, 50%); }
+.focal-y-9 { --focal-y: 9%; }
+.focal-x-10 { object-position: 10% var(--focal-y, 50%); }
+.focal-y-10 { --focal-y: 10%; }
+.focal-x-11 { object-position: 11% var(--focal-y, 50%); }
+.focal-y-11 { --focal-y: 11%; }
+.focal-x-12 { object-position: 12% var(--focal-y, 50%); }
+.focal-y-12 { --focal-y: 12%; }
+.focal-x-13 { object-position: 13% var(--focal-y, 50%); }
+.focal-y-13 { --focal-y: 13%; }
+.focal-x-14 { object-position: 14% var(--focal-y, 50%); }
+.focal-y-14 { --focal-y: 14%; }
+.focal-x-15 { object-position: 15% var(--focal-y, 50%); }
+.focal-y-15 { --focal-y: 15%; }
+.focal-x-16 { object-position: 16% var(--focal-y, 50%); }
+.focal-y-16 { --focal-y: 16%; }
+.focal-x-17 { object-position: 17% var(--focal-y, 50%); }
+.focal-y-17 { --focal-y: 17%; }
+.focal-x-18 { object-position: 18% var(--focal-y, 50%); }
+.focal-y-18 { --focal-y: 18%; }
+.focal-x-19 { object-position: 19% var(--focal-y, 50%); }
+.focal-y-19 { --focal-y: 19%; }
+.focal-x-20 { object-position: 20% var(--focal-y, 50%); }
+.focal-y-20 { --focal-y: 20%; }
+.focal-x-21 { object-position: 21% var(--focal-y, 50%); }
+.focal-y-21 { --focal-y: 21%; }
+.focal-x-22 { object-position: 22% var(--focal-y, 50%); }
+.focal-y-22 { --focal-y: 22%; }
+.focal-x-23 { object-position: 23% var(--focal-y, 50%); }
+.focal-y-23 { --focal-y: 23%; }
+.focal-x-24 { object-position: 24% var(--focal-y, 50%); }
+.focal-y-24 { --focal-y: 24%; }
+.focal-x-25 { object-position: 25% var(--focal-y, 50%); }
+.focal-y-25 { --focal-y: 25%; }
+.focal-x-26 { object-position: 26% var(--focal-y, 50%); }
+.focal-y-26 { --focal-y: 26%; }
+.focal-x-27 { object-position: 27% var(--focal-y, 50%); }
+.focal-y-27 { --focal-y: 27%; }
+.focal-x-28 { object-position: 28% var(--focal-y, 50%); }
+.focal-y-28 { --focal-y: 28%; }
+.focal-x-29 { object-position: 29% var(--focal-y, 50%); }
+.focal-y-29 { --focal-y: 29%; }
+.focal-x-30 { object-position: 30% var(--focal-y, 50%); }
+.focal-y-30 { --focal-y: 30%; }
+.focal-x-31 { object-position: 31% var(--focal-y, 50%); }
+.focal-y-31 { --focal-y: 31%; }
+.focal-x-32 { object-position: 32% var(--focal-y, 50%); }
+.focal-y-32 { --focal-y: 32%; }
+.focal-x-33 { object-position: 33% var(--focal-y, 50%); }
+.focal-y-33 { --focal-y: 33%; }
+.focal-x-34 { object-position: 34% var(--focal-y, 50%); }
+.focal-y-34 { --focal-y: 34%; }
+.focal-x-35 { object-position: 35% var(--focal-y, 50%); }
+.focal-y-35 { --focal-y: 35%; }
+.focal-x-36 { object-position: 36% var(--focal-y, 50%); }
+.focal-y-36 { --focal-y: 36%; }
+.focal-x-37 { object-position: 37% var(--focal-y, 50%); }
+.focal-y-37 { --focal-y: 37%; }
+.focal-x-38 { object-position: 38% var(--focal-y, 50%); }
+.focal-y-38 { --focal-y: 38%; }
+.focal-x-39 { object-position: 39% var(--focal-y, 50%); }
+.focal-y-39 { --focal-y: 39%; }
+.focal-x-40 { object-position: 40% var(--focal-y, 50%); }
+.focal-y-40 { --focal-y: 40%; }
+.focal-x-41 { object-position: 41% var(--focal-y, 50%); }
+.focal-y-41 { --focal-y: 41%; }
+.focal-x-42 { object-position: 42% var(--focal-y, 50%); }
+.focal-y-42 { --focal-y: 42%; }
+.focal-x-43 { object-position: 43% var(--focal-y, 50%); }
+.focal-y-43 { --focal-y: 43%; }
+.focal-x-44 { object-position: 44% var(--focal-y, 50%); }
+.focal-y-44 { --focal-y: 44%; }
+.focal-x-45 { object-position: 45% var(--focal-y, 50%); }
+.focal-y-45 { --focal-y: 45%; }
+.focal-x-46 { object-position: 46% var(--focal-y, 50%); }
+.focal-y-46 { --focal-y: 46%; }
+.focal-x-47 { object-position: 47% var(--focal-y, 50%); }
+.focal-y-47 { --focal-y: 47%; }
+.focal-x-48 { object-position: 48% var(--focal-y, 50%); }
+.focal-y-48 { --focal-y: 48%; }
+.focal-x-49 { object-position: 49% var(--focal-y, 50%); }
+.focal-y-49 { --focal-y: 49%; }
+.focal-x-50 { object-position: 50% var(--focal-y, 50%); }
+.focal-y-50 { --focal-y: 50%; }
+.focal-x-51 { object-position: 51% var(--focal-y, 50%); }
+.focal-y-51 { --focal-y: 51%; }
+.focal-x-52 { object-position: 52% var(--focal-y, 50%); }
+.focal-y-52 { --focal-y: 52%; }
+.focal-x-53 { object-position: 53% var(--focal-y, 50%); }
+.focal-y-53 { --focal-y: 53%; }
+.focal-x-54 { object-position: 54% var(--focal-y, 50%); }
+.focal-y-54 { --focal-y: 54%; }
+.focal-x-55 { object-position: 55% var(--focal-y, 50%); }
+.focal-y-55 { --focal-y: 55%; }
+.focal-x-56 { object-position: 56% var(--focal-y, 50%); }
+.focal-y-56 { --focal-y: 56%; }
+.focal-x-57 { object-position: 57% var(--focal-y, 50%); }
+.focal-y-57 { --focal-y: 57%; }
+.focal-x-58 { object-position: 58% var(--focal-y, 50%); }
+.focal-y-58 { --focal-y: 58%; }
+.focal-x-59 { object-position: 59% var(--focal-y, 50%); }
+.focal-y-59 { --focal-y: 59%; }
+.focal-x-60 { object-position: 60% var(--focal-y, 50%); }
+.focal-y-60 { --focal-y: 60%; }
+.focal-x-61 { object-position: 61% var(--focal-y, 50%); }
+.focal-y-61 { --focal-y: 61%; }
+.focal-x-62 { object-position: 62% var(--focal-y, 50%); }
+.focal-y-62 { --focal-y: 62%; }
+.focal-x-63 { object-position: 63% var(--focal-y, 50%); }
+.focal-y-63 { --focal-y: 63%; }
+.focal-x-64 { object-position: 64% var(--focal-y, 50%); }
+.focal-y-64 { --focal-y: 64%; }
+.focal-x-65 { object-position: 65% var(--focal-y, 50%); }
+.focal-y-65 { --focal-y: 65%; }
+.focal-x-66 { object-position: 66% var(--focal-y, 50%); }
+.focal-y-66 { --focal-y: 66%; }
+.focal-x-67 { object-position: 67% var(--focal-y, 50%); }
+.focal-y-67 { --focal-y: 67%; }
+.focal-x-68 { object-position: 68% var(--focal-y, 50%); }
+.focal-y-68 { --focal-y: 68%; }
+.focal-x-69 { object-position: 69% var(--focal-y, 50%); }
+.focal-y-69 { --focal-y: 69%; }
+.focal-x-70 { object-position: 70% var(--focal-y, 50%); }
+.focal-y-70 { --focal-y: 70%; }
+.focal-x-71 { object-position: 71% var(--focal-y, 50%); }
+.focal-y-71 { --focal-y: 71%; }
+.focal-x-72 { object-position: 72% var(--focal-y, 50%); }
+.focal-y-72 { --focal-y: 72%; }
+.focal-x-73 { object-position: 73% var(--focal-y, 50%); }
+.focal-y-73 { --focal-y: 73%; }
+.focal-x-74 { object-position: 74% var(--focal-y, 50%); }
+.focal-y-74 { --focal-y: 74%; }
+.focal-x-75 { object-position: 75% var(--focal-y, 50%); }
+.focal-y-75 { --focal-y: 75%; }
+.focal-x-76 { object-position: 76% var(--focal-y, 50%); }
+.focal-y-76 { --focal-y: 76%; }
+.focal-x-77 { object-position: 77% var(--focal-y, 50%); }
+.focal-y-77 { --focal-y: 77%; }
+.focal-x-78 { object-position: 78% var(--focal-y, 50%); }
+.focal-y-78 { --focal-y: 78%; }
+.focal-x-79 { object-position: 79% var(--focal-y, 50%); }
+.focal-y-79 { --focal-y: 79%; }
+.focal-x-80 { object-position: 80% var(--focal-y, 50%); }
+.focal-y-80 { --focal-y: 80%; }
+.focal-x-81 { object-position: 81% var(--focal-y, 50%); }
+.focal-y-81 { --focal-y: 81%; }
+.focal-x-82 { object-position: 82% var(--focal-y, 50%); }
+.focal-y-82 { --focal-y: 82%; }
+.focal-x-83 { object-position: 83% var(--focal-y, 50%); }
+.focal-y-83 { --focal-y: 83%; }
+.focal-x-84 { object-position: 84% var(--focal-y, 50%); }
+.focal-y-84 { --focal-y: 84%; }
+.focal-x-85 { object-position: 85% var(--focal-y, 50%); }
+.focal-y-85 { --focal-y: 85%; }
+.focal-x-86 { object-position: 86% var(--focal-y, 50%); }
+.focal-y-86 { --focal-y: 86%; }
+.focal-x-87 { object-position: 87% var(--focal-y, 50%); }
+.focal-y-87 { --focal-y: 87%; }
+.focal-x-88 { object-position: 88% var(--focal-y, 50%); }
+.focal-y-88 { --focal-y: 88%; }
+.focal-x-89 { object-position: 89% var(--focal-y, 50%); }
+.focal-y-89 { --focal-y: 89%; }
+.focal-x-90 { object-position: 90% var(--focal-y, 50%); }
+.focal-y-90 { --focal-y: 90%; }
+.focal-x-91 { object-position: 91% var(--focal-y, 50%); }
+.focal-y-91 { --focal-y: 91%; }
+.focal-x-92 { object-position: 92% var(--focal-y, 50%); }
+.focal-y-92 { --focal-y: 92%; }
+.focal-x-93 { object-position: 93% var(--focal-y, 50%); }
+.focal-y-93 { --focal-y: 93%; }
+.focal-x-94 { object-position: 94% var(--focal-y, 50%); }
+.focal-y-94 { --focal-y: 94%; }
+.focal-x-95 { object-position: 95% var(--focal-y, 50%); }
+.focal-y-95 { --focal-y: 95%; }
+.focal-x-96 { object-position: 96% var(--focal-y, 50%); }
+.focal-y-96 { --focal-y: 96%; }
+.focal-x-97 { object-position: 97% var(--focal-y, 50%); }
+.focal-y-97 { --focal-y: 97%; }
+.focal-x-98 { object-position: 98% var(--focal-y, 50%); }
+.focal-y-98 { --focal-y: 98%; }
+.focal-x-99 { object-position: 99% var(--focal-y, 50%); }
+.focal-y-99 { --focal-y: 99%; }
+.focal-x-100 { object-position: 100% var(--focal-y, 50%); }
+.focal-y-100 { --focal-y: 100%; }

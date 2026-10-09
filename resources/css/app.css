@@ -1,13 +1,17 @@
 /*
  * Public website stylesheet (entry point).
- * Structure: tokens → base → components → pages. All self-hosted.
+ * Structure: tokens → base → shared components → public layers. All self-hosted.
  */
 @import "./tokens.css";
 @import "./base.css";
 @import "./components/skip-link.css";
-@import "./components/page-chrome.css";
-
 @import "./components/forms.css";
 @import "./components/buttons.css";
 @import "./components/notices.css";
-@import "./components/public.css";
+@import "./public/layout.css";
+@import "./public/components.css";
+@import "./public/search.css";
+@import "./public/home.css";
+@import "./public/content.css";
+@import "./public/listing.css";
+@import "./public/focal.css";

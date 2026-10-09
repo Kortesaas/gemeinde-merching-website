@@ -1,4 +1,5 @@
 @extends('errors.layout')
+@section('code', '419')
 
 @section('title', 'Sitzung abgelaufen')
 @section('heading', 'Sitzung abgelaufen')

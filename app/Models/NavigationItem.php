@@ -79,19 +79,30 @@ class NavigationItem extends Model implements Revisionable
 
     public function href(): ?string
     {
+        return $this->resolveTarget()['href'];
+    }
+
+    /**
+     * Current public target; menus resolve it once per render via NavigationNode.
+     *
+     * @return array{href:?string,target:?Model}
+     */
+    public function resolveTarget(): array
+    {
         $route = $this->publicRoute()->first();
 
         if ($route !== null) {
-            $model = $route->routable;
+            $model = $route->routable()->first();
+            $public = $route->is_active && $route->is_canonical && $model instanceof Routable && $model->isPubliclyReachable();
 
-            return $route->is_active && $route->is_canonical && $model instanceof Routable && $model->isPubliclyReachable() ? $route->path : null;
+            return ['href' => $public ? $route->path : null, 'target' => $public ? $model : null];
         }
         $resource = ExternalResource::query()->whereKey($this->getAttribute('external_resource_id'))->first();
         if ($resource !== null) {
-            return $resource->isPubliclyReachable() ? $resource->url : null;
+            return ['href' => $resource->isPubliclyReachable() ? $resource->url : null, 'target' => null];
         }
 
-        return $this->url !== null && SafeUrl::isSafe($this->url) ? $this->url : null;
+        return ['href' => $this->url !== null && SafeUrl::isSafe($this->url) ? $this->url : null, 'target' => null];
     }
 
     public function displayTitle(): string

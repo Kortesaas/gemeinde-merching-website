@@ -1,4 +1,5 @@
 @extends('errors.layout')
+@section('code', '500')
 
 @section('title', 'Technischer Fehler')
 @section('heading', 'Technischer Fehler')

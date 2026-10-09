@@ -33,9 +33,15 @@ video {
 
 h1,
 h2,
-h3 {
-    line-height: 1.25;
+h3,
+h4 {
+    line-height: var(--line-height-tight);
     margin: var(--space-5) 0 var(--space-3);
+    font-weight: var(--weight-bold);
+    /* Long German compounds wrap at syllables instead of overflowing. */
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-wrap: balance;
 }
 
 h1 {
@@ -45,6 +51,14 @@ h1 {
 
 h2 {
     font-size: 1.5rem;
+}
+
+h3 {
+    font-size: var(--text-h3);
+}
+
+h4 {
+    font-size: 1.0625rem;
 }
 
 p,
@@ -63,6 +77,11 @@ a {
 a:hover {
     color: var(--color-link-hover);
     text-decoration-thickness: 2px;
+}
+
+strong,
+b {
+    font-weight: var(--weight-bold);
 }
 
 code {

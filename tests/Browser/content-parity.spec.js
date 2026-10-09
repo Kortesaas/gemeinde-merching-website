@@ -35,7 +35,7 @@ test.describe('local content composition', () => {
         const context = await browser.newContext({ baseURL, javaScriptEnabled: false });
         const page = await context.newPage();
         await page.goto('/browser-test-composition');
-        await page.getByText('Testinformation aufklappen', { exact: true }).focus();
+        await page.locator('summary', { hasText: 'Testinformation aufklappen' }).focus();
         await page.keyboard.press('Enter');
         await expect(page.getByText('Zusätzliche Testinformation.')).toBeVisible();
         await context.close();
@@ -103,11 +103,11 @@ test.describe('local content composition', () => {
     test('desktop navigation and modal search manage keyboard focus', async ({ page }) => {
         await page.setViewportSize({ width: 1440, height: 960 });
         await page.goto('/');
-        const branch = page.getByText('Browser Test Navigation', { exact: true });
+        const branch = page.locator('#site-navigation summary', { hasText: 'Browser Test Navigation' });
         await branch.focus(); await page.keyboard.press('Enter');
         await expect(page.getByRole('link', { name: 'Browser Test Service Link' })).toBeVisible();
         await page.keyboard.press('Escape'); await expect(branch).toBeFocused();
-        const trigger = page.locator('[data-search-trigger]');
+        const trigger = page.locator('[data-search-trigger]:visible');
         await trigger.focus(); await page.keyboard.press('Enter');
         await expect(page.getByRole('dialog')).toBeVisible();
         const input = page.locator('#overlay-search'); await expect(input).toBeFocused();
@@ -130,23 +130,23 @@ test.describe('local content composition', () => {
         await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/');
         const menu = page.locator('#site-navigation > summary');
         await menu.focus(); await page.keyboard.press('Enter');
-        const branch = page.getByText('Browser Test Navigation', { exact: true });
+        const branch = page.locator('#site-navigation summary', { hasText: 'Browser Test Navigation' });
         await branch.focus(); await page.keyboard.press('Enter');
         await expect(page.getByRole('link', { name: 'Browser Test Service Link' })).toBeVisible();
         await page.keyboard.press('Escape'); await expect(branch).toBeFocused();
         await page.keyboard.press('Escape'); await expect(menu).toBeFocused();
         await expect(page.locator('#site-navigation')).not.toHaveAttribute('open');
-        await page.locator('[data-search-trigger]').click(); await accessible(page); await reflow(page);
+        await page.locator('[data-search-trigger]:visible').click(); await accessible(page); await reflow(page);
     });
 
     test('normal search and navigation work without JavaScript', async ({ browser, baseURL }) => {
         const context = await browser.newContext({ baseURL, javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
         const page = await context.newPage(); await page.goto('/');
-        await page.getByText('Browser Test Navigation', { exact: true }).click();
+        await page.locator('#site-navigation summary', { hasText: 'Browser Test Navigation' }).click();
         await expect(page.getByRole('link', { name: 'Browser Test Service Link' })).toBeVisible();
-        await page.locator('[data-search-trigger]').click();
+        await page.locator('[data-search-trigger]:visible').click();
         await page.locator('#results-search').fill('Browser Test Service');
-        await page.getByRole('button', { name: 'Suchen', exact: true }).click();
+        await page.locator('form:has(#results-search)').getByRole('button', { name: 'Suchen', exact: true }).click();
         await expect(page.getByRole('link', { name: 'Browser Test Service', exact: true }).last()).toBeVisible();
         expect(await context.cookies()).toEqual([]); await context.close();
     });
@@ -207,7 +207,7 @@ test.describe('local content composition', () => {
         await page.emulateMedia({ forcedColors: 'active', reducedMotion: 'reduce' });
         await page.goto('/'); await page.keyboard.press('Tab');
         await expect(page.getByRole('link', { name: 'Zum Inhalt springen' })).toBeFocused();
-        await page.locator('[data-search-trigger]').click();
+        await page.locator('[data-search-trigger]:visible').click();
         await expect(page.locator('#overlay-search')).toBeFocused();
         await accessible(page);
     });

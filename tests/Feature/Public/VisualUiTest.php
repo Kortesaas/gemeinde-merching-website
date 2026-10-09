@@ -48,7 +48,8 @@ class VisualUiTest extends TestCase
         $suggestions = $this->getJson('/suche/vorschlaege?q=Visueller')->assertOk()->assertJsonCount(1, 'results')->assertJsonPath('results.0.title', $page->title);
         $this->assertSame(['title', 'url', 'type'], array_keys($suggestions->json('results.0')));
         $this->assertSame([], $suggestions->headers->getCookies());
-        $this->get('/suche?q=Visueller')->assertOk()->assertSee($page->title)->assertDontSee('Suchtest privat');
+        // Matches are highlighted with <mark>, so compare the visible text.
+        $this->get('/suche?q=Visueller')->assertOk()->assertSeeText($page->title)->assertDontSeeText('Suchtest privat');
         $page->forceFill(['expires_at' => now()->subMinute()])->save();
         $this->getJson('/suche/vorschlaege?q=Visueller')->assertJsonCount(0, 'results');
         $this->assertDatabaseCount('search_statistics', 0);
@@ -61,7 +62,7 @@ class VisualUiTest extends TestCase
         $service->forceFill(['status' => PublicationStatus::Published, 'publish_at' => now()->subDay()])->save();
         app(RouteManager::class)->assign($service, '/testleistung');
         $this->get('/buergerservice?category='.$category->id)->assertOk()->assertSee($service->title)->assertSee('Testkategorie');
-        $this->get('/buergerservice/a-z')->assertSee('id="letter-0"', false)->assertSee('<h2>A</h2>', false);
+        $this->get('/buergerservice/a-z')->assertSee('id="letter-0"', false)->assertSee('class="az-letter">A</h2>', false);
         $this->get('/buergerservice?category=99999')->assertDontSee($service->title);
         $service->delete();
         $this->get('/buergerservice')->assertDontSee($service->title)->assertDontSee('Testkategorie');

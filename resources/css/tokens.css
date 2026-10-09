@@ -5,29 +5,60 @@
     font-style: normal;
     font-display: swap;
 }
+/*
+ * Design tokens shared by the public website and the CMS.
+ * Identity: light blue #94c3f7 (with dark text), action blue #0b5cc2,
+ * dark grey #4b4f58, dark blue for dark surfaces, restrained Wappen gold.
+ */
 :root {
+    /* Typography */
     --font-family-base: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
     --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --font-size-base: 1.125rem;
     --line-height-base: 1.6;
+    --line-height-tight: 1.2;
+    --text-xs: .8125rem;
     --text-small: .9375rem;
-    --text-heading: clamp(2rem, 3.6vw, 3.25rem);
+    --text-body: 1.125rem;
+    --text-lead: clamp(1.1875rem, 1.6vw, 1.375rem);
+    --text-h1: clamp(2.125rem, 4.2vw, 3.25rem);
+    --text-h2: clamp(1.5rem, 2.4vw, 2rem);
+    --text-h3: 1.25rem;
+    --text-card-title: 1.1875rem;
+    --text-nav: 1.0625rem;
+    --text-heading: var(--text-h1);
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-bold: 700;
+    --weight-heavy: 800;
+
+    /* Colour */
     --color-text: #16202e;
     --color-text-muted: #4b4f58;
     --color-background: #fff;
     --color-surface: #f4f7fb;
+    --color-surface-strong: #e8eef6;
     --color-sky: #94c3f7;
     --color-sky-soft: #e3effd;
     --color-dark: #0f2d57;
+    --color-dark-soft: #1d3f6e;
     --color-border: #66707e;
     --color-rule: #d6deea;
     --color-link: #0b5cc2;
     --color-link-hover: #0a4a9c;
+    --color-gold: #c99a06;
+    --color-gold-soft: #fbf3d5;
     --color-focus: #000;
     --color-focus-contrast: #fbe24f;
     --color-error: #a5300b;
+    --color-error-surface: #fdeee8;
+    --color-warning: #7a5600;
     --color-warning-surface: #fff7df;
+    --color-success: #146c43;
     --color-success-surface: #e3f3ed;
+    --color-info-surface: var(--color-sky-soft);
+
+    /* Spacing */
     --space-1: .25rem;
     --space-2: .5rem;
     --space-3: 1rem;
@@ -35,17 +66,27 @@
     --space-5: 2rem;
     --space-6: 3rem;
     --space-7: 4rem;
-    --space-section: clamp(3rem, 7vw, 6rem);
+    --space-8: 5rem;
+    --space-section: clamp(3rem, 7vw, 5.5rem);
+    --gutter: clamp(1rem, 4vw, 3rem);
+
+    /* Layout */
     --container-max: 76rem;
     --container-narrow: 42rem;
     --reading-width: 46rem;
+    --aside-width: 19rem;
+    --sidebar-width: 15.5rem;
+    --control-height: 2.75rem;
+
+    /* Shape */
+    --radius-small: .375rem;
     --radius: .5rem;
     --radius-large: 1rem;
+    --radius-pill: 999px;
     --shadow: 0 12px 32px rgb(15 45 87 / .12);
+    --shadow-soft: 0 1px 2px rgb(15 45 87 / .08);
     --focus-ring-width: 3px;
-    --sidebar-width: 15rem;
-    --aside-width: 19rem;
-    --control-height: 2.75rem;
+
     /* Native CSS breakpoints: narrow 40rem; medium 64rem; wide 80rem.
        Custom properties cannot be used in native media-query conditions. */
     --breakpoint-narrow: 40rem;

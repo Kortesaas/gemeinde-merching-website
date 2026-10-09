@@ -13,4 +13,6 @@ return [
     ],
     'homepage' => ['services' => true, 'news' => true, 'events' => true, 'online' => true, 'contact' => true],
     'wappen' => 'resources/images/wappen-merching-prototype.png',
+    // Short identity line under the municipality name in the header.
+    'tagline' => env('PUBLIC_TAGLINE', 'im Landkreis Aichach-Friedberg'),
 ];

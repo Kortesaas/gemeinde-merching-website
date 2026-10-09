@@ -81,7 +81,7 @@ class EditorialParityTest extends TestCase
         $this->assertSame('Voraussetzung A', $service->fresh()->prerequisites);
         $this->assertSame(['Variante A', 'Variante B'], $service->fees()->pluck('description')->all());
         $resource->save($service, ['status' => 'published', 'publish_at' => '2026-01-01T10:00'], Request::create('/'), $admin);
-        $this->get($service->fresh()->publicPath())->assertOk()->assertSee('12,50 EUR')->assertSee('Nach Aufwand')->assertSee('Voraussetzungen')->assertSee('Nachweis B')->assertSee('<caption>Gebühren</caption>', false)->assertSee('Kein Online-Dienst');
+        $this->get($service->fresh()->publicPath())->assertOk()->assertSee('12,50 €')->assertSee('Nach Aufwand')->assertSee('Voraussetzungen')->assertSee('Nachweis B')->assertSee('Gebühren</caption>', false)->assertSee('Kein Online-Dienst');
     }
 
     public function test_service_detail_proposal_includes_fees_and_preserves_live_values(): void

@@ -13,7 +13,7 @@ final class SiteSearch
 
     /**
      * @param list<string> $types
-     * @return array{total:int,results:list<array{type:string,id:int,title:string,summary:string,url:string,score:float}>} */
+     * @return array{total:int,counts:array<string,int>,results:list<array{type:string,id:int,title:string,summary:string,url:string,score:float}>} */
     public function search(string $phrase, array $types = [], int $limit = 20, int $offset = 0): array
     {
         if (array_diff($types, array_keys(SearchIndexer::TYPES)) !== []) {
@@ -21,7 +21,7 @@ final class SiteSearch
         }
         $phrase = mb_substr(trim(preg_replace('/\s+/u', ' ', $phrase) ?? ''), 0, 150);
         if ($phrase === '') {
-            return ['total' => 0, 'results' => []];
+            return ['total' => 0, 'counts' => [], 'results' => []];
         }
         $terms = $this->expand($phrase);
         $boolean = $this->booleanQuery($terms);
@@ -62,7 +62,12 @@ final class SiteSearch
         }
         usort($results, fn ($a, $b) => $b['score'] <=> $a['score'] ?: [$a['type'], $a['id']] <=> [$b['type'], $b['id']]);
 
-        return ['total' => count($results), 'results' => array_slice($results, max(0, $offset), max(1, min(100, $limit)))];
+        $counts = [];
+        foreach ($results as $result) {
+            $counts[(string) $result['type']] = ($counts[(string) $result['type']] ?? 0) + 1;
+        }
+
+        return ['total' => count($results), 'counts' => $counts, 'results' => array_slice($results, max(0, $offset), max(1, min(100, $limit)))];
     }
 
     /** @param list<string> $terms */
@@ -79,6 +84,19 @@ final class SiteSearch
         }
 
         return implode(' ', array_unique($words));
+    }
+
+    /** @return list<string> */
+    /**
+     * Managed synonyms that are also searched for a phrase (shown as a hint).
+     *
+     * @return list<string>
+     */
+    public function alternatives(string $phrase): array
+    {
+        $phrase = trim($phrase);
+
+        return $phrase === '' ? [] : array_values(array_filter($this->expand($phrase), fn ($term) => mb_strtolower($term) !== mb_strtolower($phrase)));
     }
 
     /** @return list<string> */

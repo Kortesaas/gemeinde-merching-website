@@ -33,8 +33,14 @@ final class PublicCatalog
         if ($class === Models\Document::class) {
             $query->with(['replacedBy.canonicalRoute', 'accessibleAlternative.canonicalRoute']);
         }
+        if ($class === Models\Event::class) {
+            $query->with(['location']);
+        }
+        if ($class === Models\Article::class) {
+            $query->with(['media']);
+        }
         if ($class === Models\Service::class) {
-            $query->with(['departments', 'onlineService']);
+            $query->with(['departments', 'onlineService', 'aliases', 'contacts']);
         }
         if (in_array($kind, ['events', 'documents'], true)) {
             $query->where(fn (Builder $q) => $q->visible()->orWhere(fn (Builder $q) => $q->publicArchive()));
@@ -72,8 +78,9 @@ final class PublicCatalog
     {
         /** @var Collection<int, Models\Department|Models\Person|Models\Organization|Models\Location|Models\CouncilTerm> $items */
         $items = collect();
-        foreach ([Models\Department::class, Models\Person::class, Models\Organization::class, Models\Location::class] as $class) {
-            $items = $items->concat($class::query()->with(method_exists($class, 'canonicalRoute') ? ['canonicalRoute'] : [])->where('is_active', true)->orderBy('sort_order')->get());
+        $relations = [Models\Department::class => ['canonicalRoute', 'location'], Models\Person::class => ['departments'], Models\Organization::class => ['canonicalRoute', 'category'], Models\Location::class => ['canonicalRoute', 'mapResource']];
+        foreach ($relations as $class => $with) {
+            $items = $items->concat($class::query()->with($with)->where('is_active', true)->orderBy('sort_order')->get());
         }
         $items = $items->concat(Models\CouncilTerm::query()->with('canonicalRoute')->get()->filter(fn ($m) => $m->isPubliclyReachable() && $m->publicPath() !== null));
 

@@ -68,7 +68,7 @@ final class NavigationManager
     public function trail(array $nodes, string $path): array
     {
         foreach ($nodes as $node) {
-            if (rawurldecode((string) parse_url((string) $node->item->href(), PHP_URL_PATH)) === $path) {
+            if (rawurldecode((string) parse_url((string) $node->href, PHP_URL_PATH)) === $path) {
                 return [$node];
             }
             $children = $this->trail($node->children, $path);
@@ -87,10 +87,14 @@ final class NavigationManager
         $build = function (?int $parent, array $seen = []) use (&$build, $items): array {
             $nodes = [];
             foreach ($items as $item) {
-                if ($item->getAttribute('parent_id') !== $parent || ! $item->getAttribute('is_active') || isset($seen[$item->getKey()]) || $item->href() === null) {
+                if ($item->getAttribute('parent_id') !== $parent || ! $item->getAttribute('is_active') || isset($seen[$item->getKey()])) {
                     continue;
                 }
-                $nodes[] = new NavigationNode($item, $build((int) $item->getKey(), $seen + [$item->getKey() => true]));
+                ['href' => $href, 'target' => $target] = $item->resolveTarget();
+                if ($href === null) {
+                    continue;
+                }
+                $nodes[] = new NavigationNode($item, $build((int) $item->getKey(), $seen + [$item->getKey() => true]), $href, $target);
             }
 
             return $nodes;

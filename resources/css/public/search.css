@@ -1,0 +1,362 @@
+/* ==========================================================================
+   Search: forms, suggestions, overlay panel, results page
+   ========================================================================== */
+.search-form {
+    position: relative;
+    margin-block: var(--space-4);
+}
+
+.search-form__label {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-weight: var(--weight-bold);
+}
+
+.search-form__field {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.search-form__icon {
+    display: none;
+}
+
+.search-form__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: var(--control-height);
+    padding: var(--space-2) var(--space-3);
+    font: inherit;
+    color: var(--color-text);
+    background: var(--color-background);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.search-form__input::-webkit-search-cancel-button {
+    cursor: pointer;
+}
+
+/* Pill variant: one rounded control with icon and inner button. */
+.search-form--pill {
+    max-width: 44rem;
+}
+
+.search-form--pill .search-form__field {
+    gap: 0;
+    padding: .3125rem;
+    padding-inline-start: var(--space-4);
+    border: 2px solid var(--color-text);
+    border-radius: var(--radius-pill);
+    background: var(--color-background);
+}
+
+.search-form--pill .search-form__field:focus-within {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 calc(var(--focus-ring-width) + 2px) var(--color-focus-contrast);
+}
+
+.search-form--pill .search-form__icon {
+    display: block;
+    color: var(--color-text-muted);
+}
+
+.search-form--pill .search-form__input {
+    min-height: 3rem;
+    padding-inline: var(--space-3);
+    border: 0;
+    font-size: 1.1875rem;
+    background: transparent;
+}
+
+/* The whole pill shows focus; the bare input does not need its own ring. */
+.search-form--pill .search-form__input:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.search-form--pill .search-form__submit {
+    min-height: 3rem;
+    padding-inline: var(--space-5);
+    border-radius: var(--radius-pill);
+}
+
+/* --- Suggestions (combobox listbox) -------------------------------------- */
+.suggestions {
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.search-form > .suggestions {
+    flex: 1 0 100%;
+}
+
+.suggestions a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 3rem;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius);
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.suggestions a:hover,
+.suggestions a[aria-selected="true"] {
+    background: var(--color-sky-soft);
+}
+
+.suggestions mark {
+    box-shadow: none;
+    background: none;
+    color: inherit;
+    font-weight: var(--weight-bold);
+}
+
+.suggestions small {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+}
+
+/* --- Overlay panel ------------------------------------------------------- */
+.search-panel {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: var(--color-text);
+    background: var(--color-background);
+}
+
+.search-panel[open] {
+    display: block;
+}
+
+.search-panel::backdrop {
+    background: rgb(10 22 40 / .5);
+}
+
+.search-panel__bar {
+    border-top: var(--space-1) solid var(--color-sky);
+}
+
+.search-panel__bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 5rem;
+}
+
+.search-panel__bar .button {
+    border-radius: var(--radius-pill);
+}
+
+.search-panel__body {
+    width: min(100% - 2 * var(--gutter), 46rem);
+    margin: var(--space-6) auto var(--space-7);
+}
+
+.search-panel__body h2 {
+    margin-top: 0;
+    font-size: var(--text-h2);
+}
+
+.search-panel__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-rule);
+    font-size: var(--text-small);
+}
+
+.search-panel__footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--control-height);
+    font-weight: var(--weight-bold);
+}
+
+.search-panel__hint {
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+@media (max-width: 40rem) {
+    .search-panel__bar .brand__text,
+    .search-panel__hint {
+        display: none;
+    }
+
+    .search-panel__body {
+        margin-top: var(--space-4);
+    }
+
+    .search-form--pill .search-form__field {
+        padding-inline-start: var(--space-3);
+    }
+
+    .search-form--pill .search-form__input {
+        padding-inline: var(--space-2);
+        font-size: 1.0625rem;
+    }
+
+    .search-form--pill .search-form__submit {
+        padding-inline: var(--space-4);
+    }
+
+    .suggestions a {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+    }
+}
+
+@media (max-width: 22rem) {
+    .search-form--pill .search-form__icon {
+        display: none;
+    }
+}
+
+/* --- Results page -------------------------------------------------------- */
+.search-header {
+    max-width: 52rem;
+}
+
+.search-header .search-form__label {
+    color: var(--color-text-muted);
+    font-weight: var(--weight-regular);
+    font-size: var(--text-small);
+}
+
+.search-summary {
+    color: var(--color-text-muted);
+}
+
+.type-tabs {
+    margin-block: var(--space-5) var(--space-4);
+    border-bottom: 1px solid var(--color-rule);
+}
+
+.type-tabs ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.type-tabs a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    min-height: var(--control-height);
+    padding-block: var(--space-2);
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+}
+
+.type-tabs a:hover {
+    color: var(--color-link);
+}
+
+.type-tabs a[aria-current="page"] {
+    font-weight: var(--weight-bold);
+    border-bottom-color: var(--color-link);
+}
+
+.type-tabs small {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+}
+
+.result-list {
+    max-width: 52rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.result-list > li {
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-rule);
+}
+
+.result-type {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-1);
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+}
+
+.result-type::before {
+    content: "";
+    width: .5rem;
+    height: .5rem;
+    border-radius: 2px;
+    background: var(--color-link);
+}
+
+.result-list h2 {
+    margin: 0 0 var(--space-2);
+    font-size: 1.3125rem;
+}
+
+.result-list h2 a {
+    color: var(--color-text);
+    text-decoration-color: var(--color-rule);
+}
+
+.result-list h2 a:hover {
+    color: var(--color-link);
+    text-decoration-color: currentColor;
+}
+
+.result-list p {
+    margin: 0;
+}
+
+.result-url {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    overflow-wrap: anywhere;
+}
+
+mark {
+    padding: 0;
+    background: var(--color-gold-soft);
+    color: inherit;
+    box-shadow: 0 0 0 1px var(--color-gold-soft);
+}
+
+@media (forced-colors: active) {
+    .search-form--pill .search-form__field {
+        border-color: CanvasText;
+    }
+
+    .suggestions a[aria-selected="true"] {
+        outline: 2px solid Highlight;
+    }
+
+    mark {
+        background: Mark;
+        color: MarkText;
+    }
+}
