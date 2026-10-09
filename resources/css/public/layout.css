@@ -32,20 +32,6 @@ summary::-webkit-details-marker {
     display: none;
 }
 
-.demo-ribbon p {
-    margin: 0;
-}
-
-.demo-ribbon {
-    margin: 0;
-    padding: var(--space-1) var(--gutter);
-    background: var(--color-gold-soft);
-    border-bottom: 1px solid #e6d18a;
-    color: var(--color-text);
-    font-size: var(--text-xs);
-    text-align: center;
-}
-
 /* --- Header ------------------------------------------------------------- */
 .site-header {
     position: relative;
@@ -101,13 +87,6 @@ summary::-webkit-details-marker {
     color: var(--color-text-muted);
 }
 
-.utility-nav {
-    display: none;
-    grid-area: utility;
-    font-size: var(--text-small);
-}
-
-.utility-nav ul,
 .mobile-utility {
     display: flex;
     flex-wrap: wrap;
@@ -115,13 +94,6 @@ summary::-webkit-details-marker {
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-.utility-nav a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2rem;
-    color: var(--color-text-muted);
 }
 
 .search-trigger {
@@ -346,18 +318,13 @@ html:not(.js) .site-navigation {
 
 /* --- Main navigation: wide screens (inline bar + expanded panel) --------- */
 @media (min-width: 64rem) {
+    /* One calm row: brand · navigation · search. */
     .site-header__inner {
         grid-template-columns: auto minmax(0, 1fr) auto;
-        grid-template-areas:
-            "brand utility utility"
-            "brand menu search";
-        row-gap: 0;
-        padding-block: var(--space-2) var(--space-3);
-    }
-
-    .utility-nav {
-        display: block;
-        justify-self: end;
+        grid-template-areas: "brand menu search";
+        column-gap: var(--space-4);
+        min-height: 5.5rem;
+        padding-block: var(--space-3);
     }
 
     .search-trigger--compact,
@@ -373,7 +340,6 @@ html:not(.js) .site-navigation {
 
     .site-navigation {
         justify-self: end;
-        margin-inline: 0 var(--space-2);
     }
 
     .site-navigation__panel,
@@ -406,7 +372,7 @@ html:not(.js) .site-navigation {
     .main-nav__link,
     .nav-branch__toggle {
         min-height: var(--control-height);
-        padding: var(--space-2) .5rem;
+        padding: var(--space-2) .75rem;
         font-size: 1rem;
         font-weight: var(--weight-medium);
         border-radius: var(--radius);
@@ -493,14 +459,13 @@ html:not(.js) .site-navigation {
 }
 
 @media (min-width: 64rem) and (max-width: 87.5rem) {
-    .main-nav__link,
-    .nav-branch__toggle {
-        padding-inline: .4375rem;
-        font-size: 1rem;
+    .site-header__inner {
+        column-gap: var(--space-3);
     }
 
-    .site-navigation {
-        margin-inline: 0;
+    .main-nav__link,
+    .nav-branch__toggle {
+        padding-inline: .5rem;
     }
 }
 
@@ -616,6 +581,41 @@ html:not(.js) .site-navigation {
     margin-inline-end: var(--space-2);
 }
 
+.alert-band__inner > p {
+    flex: 1 1 auto;
+}
+
+.alert-band__close {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: var(--control-height);
+    height: var(--control-height);
+    margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-2)) calc(-1 * var(--space-2)) 0;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color .15s ease;
+}
+
+.alert-band__close:hover {
+    background: rgb(22 32 46 / .08);
+}
+
+.alert-band.is-leaving {
+    animation: alert-out .2s ease-in forwards;
+}
+
+@keyframes alert-out {
+    to {
+        opacity: 0;
+        transform: translateY(-.5rem);
+    }
+}
+
 /* --- Main area and breadcrumbs ------------------------------------------ */
 .page-main {
     padding-block: var(--space-4) var(--space-section);
@@ -674,12 +674,15 @@ html:not(.js) .site-navigation {
 
 .site-footer a {
     color: #fff;
-    text-decoration-color: rgb(255 255 255 / .55);
+    text-decoration: none;
 }
 
-.site-footer a:hover {
+/* Lists of footer links are clearly navigation; underline on hover/focus. */
+.site-footer a:hover,
+.site-footer a:focus-visible {
     color: #fff;
-    text-decoration-color: #fff;
+    text-decoration: underline;
+    text-underline-offset: .2em;
 }
 
 .site-footer :focus-visible {
@@ -693,16 +696,42 @@ html:not(.js) .site-navigation {
 }
 
 .footer-heading {
+    display: flex;
+    align-items: center;
+    min-height: 1.75rem;
     margin: 0 0 var(--space-3);
     font-size: 1.0625rem;
 }
 
 .footer-heading a {
-    text-decoration: none;
+    display: inline;
+    min-height: 0;
 }
 
-.footer-heading a:hover {
-    text-decoration: underline;
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.footer-brand img {
+    width: 1.75rem;
+    height: auto;
+}
+
+.footer-contact p {
+    color: rgb(255 255 255 / .85);
+}
+
+.footer-contact__links {
+    margin-top: var(--space-3) !important;
+}
+
+.footer-contact__links .icon {
+    width: 1em;
+    height: 1em;
+    margin-inline-end: var(--space-2);
+    opacity: .8;
 }
 
 .footer-group ul,
@@ -712,11 +741,12 @@ html:not(.js) .site-navigation {
     list-style: none;
 }
 
-.footer-group a,
+.footer-group li a,
 .footer-contact__links a {
     display: inline-flex;
     align-items: center;
     min-height: 2.25rem;
+    color: rgb(255 255 255 / .88);
 }
 
 .footer-hours {
@@ -758,7 +788,6 @@ html:not(.js) .site-navigation {
 @media (forced-colors: active) {
     .site-footer,
     .alert-band,
-    .demo-ribbon,
     .menu-contact {
         background: Canvas;
         color: CanvasText;
@@ -772,5 +801,36 @@ html:not(.js) .site-navigation {
     .mega {
         border: 1px solid CanvasText;
         box-shadow: none;
+    }
+}
+
+/* Small laptops / tablets in landscape: keep the single row. */
+@media (min-width: 64rem) and (max-width: 70rem) {
+    .site-header__inner {
+        column-gap: var(--space-2);
+    }
+
+    .brand__name {
+        font-size: 1.125rem;
+    }
+
+    .main-nav__link,
+    .nav-branch__toggle {
+        padding-inline: .375rem;
+        font-size: .9375rem;
+    }
+}
+
+@media (max-width: 26rem) {
+    .site-header__inner {
+        column-gap: var(--space-2);
+    }
+
+    .brand__name {
+        font-size: 1rem;
+    }
+
+    .brand__wappen {
+        width: 1.875rem;
     }
 }

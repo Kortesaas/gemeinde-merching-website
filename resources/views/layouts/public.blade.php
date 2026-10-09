@@ -15,24 +15,14 @@
     $isHome = $currentPath === '/';
     $alerts = \App\Models\SiteAlert::query()->visible()->orderByDesc('publish_at')->get()
         ->filter(fn ($alert) => $isHome || $alert->severity === \App\Enums\AlertSeverity::Critical);
-    // Development-only hint: never rendered in production or without demo records.
-    $demoContent = app()->environment(['local', 'development']) && \App\Models\SourceReference::query()->where('source_system', 'development-demo')->exists();
     $sectionCrumb = isset($model) && $trail === [] ? \App\Support\Content\PublicFormat::section($model) : null;
     $pageLabel = ($model ?? null)?->displayTitle() ?? ($section['title'] ?? trim($__env->yieldContent('title')));
 @endphp
 @extends('layouts.base', ['viteEntries' => ['resources/css/app.css', 'resources/js/app.js'], 'robots' => $robots])
 @section('body')
-@if ($demoContent)
-    <aside class="demo-ribbon" aria-label="Demonstrationsumgebung"><p>Demonstrationsumgebung: Alle Inhalte, Namen, Telefonnummern, Termine und Beträge sind frei erfundene Beispieldaten.</p></aside>
-@endif
 <header class="site-header" data-site-header>
     <div class="container site-header__inner">
         @include('public.partials.brand')
-        <nav class="utility-nav" aria-label="Service">
-            <ul>
-                <li><a href="{{ route('public.contact') }}">Kontakt</a></li>
-            </ul>
-        </nav>
         <a class="search-trigger search-trigger--compact" href="{{ route('public.search') }}" data-search-trigger><x-icon name="search" /><span class="visually-hidden">Suchen</span></a>
         <details class="site-navigation" id="site-navigation" open data-navigation>
             <summary class="menu-toggle"><x-icon name="menu" class="menu-toggle__open" /><x-icon name="close" class="menu-toggle__close" /><span class="menu-toggle__label">Menü</span></summary>
@@ -61,11 +51,13 @@
     </div>
 </header>
 @foreach ($alerts as $alert)
-    <aside class="alert-band alert-band--{{ $alert->severity->value }}" aria-label="Aktueller Hinweis">
+    <aside class="alert-band alert-band--{{ $alert->severity->value }}" aria-label="Aktueller Hinweis" data-alert>
         <div class="container alert-band__inner">
             <x-icon :name="$alert->severity === \App\Enums\AlertSeverity::Info ? 'info' : 'warning'" />
             <p><strong>{{ $alert->title }}</strong> @if ($alert->body)<span class="alert-band__body">{{ $alert->body }}</span>@endif
                 @if ($alert->link_url)<a href="{{ $alert->link_url }}">{{ $alert->link_label ?: 'Weitere Informationen' }}</a>@endif</p>
+            {{-- Shown by JavaScript only; hides the notice for this page view without storing anything. --}}
+            <button class="alert-band__close" type="button" data-alert-dismiss hidden><x-icon name="close" /><span class="visually-hidden">Hinweis „{{ $alert->title }}“ ausblenden</span></button>
         </div>
     </aside>
 @endforeach
@@ -88,15 +80,14 @@
     <div class="container">
         <div class="footer-grid">
             <section class="footer-contact" aria-labelledby="footer-contact-heading">
-                <h2 id="footer-contact-heading" class="footer-heading">{{ $siteTitle }}</h2>
+                <h2 id="footer-contact-heading" class="footer-heading footer-brand"><img src="{{ \Illuminate\Support\Facades\Vite::asset(config('public.wappen')) }}" alt="" width="667" height="693">{{ $siteTitle }}</h2>
                 @if ($townHall)
                     <p>{{ $townHall->displayTitle() }} · {{ $townHall->street }}<br>{{ $townHall->postal_code }} {{ $townHall->city }}</p>
                     @if ($townHall->opening_hours)<p class="footer-hours">@foreach (\App\Support\Content\PublicFormat::lines($townHall->opening_hours) as $line){{ $line }}@if (! $loop->last)<br>@endif @endforeach</p>@endif
                 @endif
                 <ul class="footer-contact__links">
-                    @if ($central?->phone)<li><a href="{{ \App\Support\Content\PublicFormat::phoneHref($central->phone) }}">{{ $central->phone }}</a></li>@endif
-                    @if ($central?->email)<li><a href="mailto:{{ $central->email }}">{{ $central->email }}</a></li>@endif
-                    <li><a href="{{ route('public.contact') }}">Nachricht schreiben</a></li>
+                    @if ($central?->phone)<li><a href="{{ \App\Support\Content\PublicFormat::phoneHref($central->phone) }}"><x-icon name="phone" /> {{ $central->phone }}</a></li>@endif
+                    <li><a href="{{ route('public.contact') }}"><x-icon name="mail" /> Nachricht schreiben</a></li>
                 </ul>
             </section>
             @foreach ($footerNav as $group)
