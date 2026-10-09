@@ -199,14 +199,16 @@ physical deletion of referenced records.
 
 Routable resources expose optional `seo_title`, `meta_description`,
 `seo_noindex`, included in revisions and proposals. `SeoMetadata` supplies an
-escaped title/description, canonical URL, robots and Open Graph basics through
-the existing server-rendered layout. Summary/default description is the
-fallback; no fabricated description is required. Downloads also send canonical
+escaped title/description, canonical URL, robots, Open Graph and X cards through
+the existing server-rendered layout. Public Media overrides and a branded default
+sharing image are supported; page-specific descriptions have safe text fallbacks.
+See [site-identity-seo.md](site-identity-seo.md). Downloads also send canonical
 Link and robots headers. The global production/indexing switch and backend
 noindex remain stronger than a record's setting.
 
 `/sitemap.xml` uses canonical active PublicRoutes plus reachable downloads
-without their own route, on `APP_URL`. It excludes drafts, scheduled entries,
+without their own route, plus unshadowed fallback listing pages, on the fixed
+production metadata origin. It excludes drafts, scheduled entries,
 expired content without public archives, inactive/deleted records, private
 proposals, contact routes/pages, admin routes, aliases, redirects and per-record
 noindex. Intentionally public archives for articles/notices/events/documents

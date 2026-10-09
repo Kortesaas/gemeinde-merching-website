@@ -77,7 +77,7 @@ class SiteFoundationTest extends TestCase
         $p->forceFill(['seo_title' => 'Seitentitel', 'meta_description' => 'Beschreibung <script>', 'seo_noindex' => true])->save();
         app(RouteManager::class)->assign($p, '/testseite/');
         $r = $this->get('/testseite')->assertOk();
-        $r->assertSee('<title>Seitentitel – ', false)->assertSee('content="Beschreibung &lt;script&gt;"', false)->assertSee('rel="canonical" href="http://localhost/testseite"', false)->assertSee('property="og:type"', false);
+        $r->assertSee('<title>Seitentitel – ', false)->assertSee('content="Beschreibung &lt;script&gt;"', false)->assertSee('rel="canonical" href="https://www.gemeinde-merching.de/testseite"', false)->assertSee('property="og:type"', false);
         $this->assertSame([], $r->headers->getCookies());
     }
 
@@ -108,7 +108,7 @@ class SiteFoundationTest extends TestCase
         $hidden = $this->page();
         $hidden->forceFill(['seo_noindex' => true])->save();
         $routes->assign($hidden, '/nicht-indexieren');
-        $r = $this->get('/sitemap.xml')->assertOk()->assertHeader('Content-Type', 'application/xml; charset=UTF-8')->assertSee('http://localhost/kanonisch', false)
+        $r = $this->get('/sitemap.xml')->assertOk()->assertHeader('Content-Type', 'application/xml; charset=UTF-8')->assertSee('https://www.gemeinde-merching.de/kanonisch', false)
             ->assertDontSee('/alt</loc>', false)->assertDontSee('/entwurf')->assertDontSee('/geplant')->assertDontSee('/nicht-indexieren')->assertDontSee('/verwaltung')->assertDontSee('/freigaben')->assertDontSee('/kontakt');
         $this->assertSame([], $r->headers->getCookies());
         $xml = simplexml_load_string($r->getContent());
@@ -305,6 +305,6 @@ class SiteFoundationTest extends TestCase
     {
         SiteSettings::create(['municipality_name' => 'Testgemeinde', 'default_seo_title' => 'Startseite']);
         $this->get('/')->assertSee('<title>Startseite – Testgemeinde</title>', false);
-        $this->get('/kontakt')->assertSee('<title>Kontakt – Testgemeinde</title>', false)->assertSee('property="og:url" content="http://localhost/kontakt"', false);
+        $this->get('/kontakt')->assertSee('<title>Kontakt – Testgemeinde</title>', false)->assertSee('property="og:url" content="https://www.gemeinde-merching.de/kontakt"', false);
     }
 }

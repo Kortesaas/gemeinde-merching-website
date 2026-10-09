@@ -196,8 +196,11 @@ next `publish_at`/`expires_at`.
 - `robots.txt` is dynamic (`RobotsController`): `Disallow: /` unless
   `APP_ENV=production` **and** `PUBLIC_INDEXING=true`. There is deliberately no
   static `public/robots.txt`.
-- Open Graph is rendered server-side. A `StructuredDataProvider` contract
-  prepares later Schema.org output from verified records; no data is invented.
+- Open Graph, X cards and escaped Schema.org microdata are rendered server-side
+  by the SEO services. Metadata/sitemap URLs use the fixed production origin
+  independently of local `APP_URL`; ordinary links keep their existing behavior.
+  See [site-identity-seo.md](site-identity-seo.md) for assets, Media fallbacks and
+  structured types. No inline scripts or external assets are introduced.
 
 ## Search (implemented foundation)
 

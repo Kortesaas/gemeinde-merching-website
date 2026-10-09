@@ -4,6 +4,10 @@
 Options -Indexes -MultiViews
 ServerSignature Off
 
+<IfModule mod_mime.c>
+    AddType application/manifest+json .webmanifest
+</IfModule>
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
@@ -37,7 +41,7 @@ ServerSignature Off
 # Headers for static files served directly by Apache (Laravel adds its own
 # headers to every response it generates).
 <IfModule mod_headers.c>
-    <FilesMatch "\.(css|js|mjs|map|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|avif|ico|txt|xml|json|pdf)$">
+    <FilesMatch "\.(css|js|mjs|map|woff2?|ttf|otf|svg|png|jpe?g|gif|webp|avif|ico|txt|xml|json|webmanifest|pdf)$">
         Header set X-Content-Type-Options "nosniff"
         Header set Referrer-Policy "strict-origin-when-cross-origin"
     </FilesMatch>

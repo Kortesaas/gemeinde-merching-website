@@ -1,6 +1,6 @@
 @extends('layouts.public', ['robots'=>'noindex, nofollow'])
 @section('title','Kontakt')
-@section('canonical', \App\Support\Routing\PublicPath::absoluteUrl('/kontakt'))
+@section('canonical', \App\Support\Content\SeoUrl::path('/kontakt'))
 @section('content')
 @php
     $settings = app(\App\Services\Settings\SiteConfiguration::class)->current();

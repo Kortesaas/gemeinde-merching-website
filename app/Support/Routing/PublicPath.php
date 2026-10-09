@@ -86,7 +86,7 @@ final class PublicPath
      */
     public static function isReserved(string $key): bool
     {
-        $reserved = ['/', '/'.config('admin.path'), '/build', '/suche', '/download', '/robots.txt', '/kontakt', '/medien', '/sitemap.xml', '/sitemap', '/index.php', '/storage', '/.well-known', '/up'];
+        $reserved = ['/', '/'.config('admin.path'), '/build', '/suche', '/download', '/robots.txt', '/kontakt', '/medien', '/sitemap.xml', '/sitemap', '/favicon.ico', '/identity', '/site.webmanifest', '/index.php', '/storage', '/.well-known', '/up'];
 
         foreach ($reserved as $prefix) {
             if ($key === $prefix || ($prefix !== '/' && str_starts_with($key, $prefix.'/'))) {
@@ -106,9 +106,9 @@ final class PublicPath
     }
 
     /**
-     * Absolute canonical URL on the canonical origin (APP_URL), e.g. for
-     * <link rel="canonical"> and XML sitemaps. Never has a trailing slash
-     * (except the root).
+     * Absolute application URL on APP_URL (including a local development origin).
+     * Production identity metadata and sitemaps use SeoUrl::path instead.
+     * Never has a trailing slash except the root.
      */
     public static function absoluteUrl(string $path): string
     {

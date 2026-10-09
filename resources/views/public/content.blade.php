@@ -11,7 +11,7 @@
     $view = view()->exists('public.types.'.$type) ? 'public.types.'.$type : 'public.types.page';
 @endphp
 @section('title', $model->displayTitle())
-@section('canonical', \App\Support\Routing\PublicPath::absoluteUrl((string) $model->publicPath()))
+@section('canonical', \App\Support\Content\SeoUrl::path((string) $model->publicPath()))
 @section('content')
 <article class="content content--{{ $type }}">
     @include($view)

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Services\Seo\Sitemap;
-use App\Support\Routing\PublicPath;
+use App\Support\Content\SeoUrl;
 use Illuminate\Http\Response;
 
 class SitemapController
@@ -17,7 +17,7 @@ class SitemapController
         if ($pages > 1 && $page === null) {
             $xml .= '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
             for ($i = 1; $i <= $pages; $i++) {
-                $xml .= '<sitemap><loc>'.$escape(PublicPath::absoluteUrl('/sitemap/'.$i.'.xml')).'</loc></sitemap>';
+                $xml .= '<sitemap><loc>'.$escape(SeoUrl::path('/sitemap/'.$i.'.xml')).'</loc></sitemap>';
             }
             $xml .= '</sitemapindex>';
         } else {

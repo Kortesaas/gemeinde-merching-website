@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Public;
 
+use DOMDocument;
+use DOMXPath;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
@@ -32,6 +34,20 @@ class NoThirdPartyResourcesTest extends TestCase
     public function test_page_loads_no_external_resources(string $path): void
     {
         $html = (string) $this->get($path)->getContent();
+
+        // Canonical/sitemap and microdata links are passive identifiers, not
+        // browser-loaded assets. They deliberately identify the production site.
+        $document = new DOMDocument;
+        @$document->loadHTML($html);
+        $dom = new DOMXPath($document);
+        foreach ($dom->query('//link[@rel="canonical" or @rel="sitemap" or (not(@rel) and (@itemprop="url" or @itemprop="logo" or @itemprop="image" or @itemprop="eventStatus"))]') as $link) {
+            $this->assertSame(
+                $link->getAttribute('itemprop') === 'eventStatus' ? 'schema.org' : parse_url(config('seo.origin'), PHP_URL_HOST),
+                parse_url($link->getAttribute('href'), PHP_URL_HOST),
+            );
+            $link->parentNode->removeChild($link);
+        }
+        $html = $document->saveHTML();
 
         preg_match_all('/\b(?:src|href|action|srcset|data)\s*=\s*"([^"]+)"/i', $html, $matches);
 

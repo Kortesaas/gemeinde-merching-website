@@ -3,6 +3,23 @@
 Implementation and reference adaptations: [visual-system.md](visual-system.md).
 No real content was imported, nothing was deployed and nothing was pushed.
 
+## Identity and SEO verification — 2026-10-09
+
+The [identity and metadata implementation](site-identity-seo.md) was checked with:
+
+| Check | Result |
+|---|---|
+| `docker compose exec -T app composer check` | Pint: 351 files; PHPStan level 8: no errors; PHPUnit: 435 tests / 2,756 assertions; Composer audit: no advisories |
+| `npm run build` / `npm run audit` | Build passed with unchanged bundle sizes; 0 vulnerabilities |
+| `PARITY_BROWSER_FIXTURES=docker npm test` | All 64 tests passed, including the 3 new metadata browser tests and all optional public/CMS fixtures |
+| Final pinned-icon check | 3 metadata browser tests and 16 relevant PHP tests passed after adding the deterministic monochrome SVG |
+| Rendered metadata | Home, page, article, event, service, gallery, listings, admin/error; fixed production URLs, escaped editorial overrides, Media eligibility and safe image fallbacks |
+| Assets / privacy | Static icons and manifest delivered with correct MIME types; image/manifest dimensions checked; no extra foreign requests, CSP errors, cookies or default browser storage writes |
+
+The default social image and browser/Apple/maskable/pinned icon variants were
+visually reviewed. Temporary fixture content was removed and its navigation link
+confirmed absent. No content was submitted to external preview validators.
+
 ## Display preferences verification — 2026-10-09
 
 The optional [display preferences](display-preferences.md) use a fixed bottom-right

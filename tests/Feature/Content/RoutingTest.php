@@ -42,7 +42,7 @@ class RoutingTest extends TestCase
 
         $response = $this->rawGet('/veranstaltungskalender');
         $response->assertOk()->assertSee('<h1>Veranstaltungskalender</h1>', false)
-            ->assertSee('<link rel="canonical" href="http://localhost/veranstaltungskalender">', false);
+            ->assertSee('<link rel="canonical" href="https://www.gemeinde-merching.de/veranstaltungskalender">', false);
         $this->assertSame([], $response->headers->getCookies(), 'Public content pages stay cookie-free.');
 
         // Legacy slash URL and case variants: one 301 to the slashless canonical URL, query preserved.
@@ -88,7 +88,7 @@ class RoutingTest extends TestCase
     {
         $this->rawGet('/verwaltung/login/')->assertStatus(301)->assertRedirect('http://localhost/verwaltung/login');
         $this->rawGet('/robots.txt/')->assertStatus(301)->assertRedirect('http://localhost/robots.txt');
-        $this->rawGet('/')->assertOk()->assertSee('<link rel="canonical" href="http://localhost/">', false);
+        $this->rawGet('/')->assertOk()->assertSee('<link rel="canonical" href="https://www.gemeinde-merching.de/">', false);
     }
 
     public function test_stored_paths_never_have_a_trailing_slash(): void

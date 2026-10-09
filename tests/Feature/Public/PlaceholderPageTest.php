@@ -14,7 +14,7 @@ class PlaceholderPageTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertSee('<html lang="de">', false)
-            ->assertSee('<title>Startseite – Gemeinde Merching</title>', false)
+            ->assertSee('<title>Gemeinde Merching</title>', false)
             ->assertSee('<h1 id="home-heading">Wie können wir Ihnen helfen?</h1>', false);
     }
 

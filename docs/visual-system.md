@@ -128,8 +128,9 @@ fees, missing images, archived notices and empty collections are exercised by
 the synthetic checks.
 
 The existing SEO metadata supplies title, description, canonical, robots and
-Open Graph values. Existing structured-data hooks and sitemap generation remain
-unchanged. Search results/suggestions stay noindex; staging indexing restrictions
+Open Graph values, with local icon/share assets and X cards. Escaped Schema.org
+microdata and live sitemap entries are described in [site-identity-seo.md](site-identity-seo.md).
+Search results/suggestions stay noindex; staging indexing restrictions
 continue to override templates.
 
 ## Header, menus, search and progressive enhancement
