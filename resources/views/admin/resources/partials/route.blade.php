@@ -1,19 +1,19 @@
-<section class="cms-panel" id="public-route"><h2>Öffentliche Adresse</h2>
 {{-- Public URL path, independent of navigation and IDs. --}}
 @php
     $aliases = $model->exists ? $model->publicRoutes()->where('is_canonical', false)->orderBy('path')->pluck('path') : collect();
-@endphp
-@php
     $auto = $model::createsRouteAutomatically();
     $hint = $auto
-        ? 'z. B. '.($model::defaultPathPrefix() ?: '').'/beispiel – ohne Schrägstrich am Ende. Leer lassen für einen automatischen Vorschlag; bestehende Adressen bleiben erhalten. Bei einer Änderung leitet die bisherige Adresse automatisch weiter.'
-        : 'Optional. Nur ausfüllen, wenn dieser Eintrag eine eigene öffentliche Seite benötigt (z. B. eine übernommene alte Adresse). Leer lassen bzw. leeren = keine eigene Seite.';
+        ? 'z. B. '.($model::defaultPathPrefix() ?: '').'/beispiel – ohne Schrägstrich am Ende. Leer lassen für einen Vorschlag aus dem Titel. Bei einer Änderung leitet die bisherige Adresse automatisch weiter.'
+        : 'Optional. Nur ausfüllen, wenn dieser Eintrag eine eigene öffentliche Seite braucht (z. B. eine übernommene alte Adresse). Leer = keine eigene Seite.';
 @endphp
-<x-form.field name="public_path" :label="$auto ? 'Öffentliche Adresse (Pfad)' : 'Eigene öffentliche Seite (Pfad, optional)'"
-    :value="old('public_path', $model->exists ? $model->publicPath() : '')" :hint="$hint"
-    maxlength="255" autocomplete="off" spellcheck="false" :disabled="$disabled" />
-@if ($aliases->isNotEmpty())
-    <p class="form-hint">Frühere Adressen (leiten weiter): @foreach ($aliases as $alias)<code>{{ $alias }}</code>@if (! $loop->last), @endif @endforeach</p>
-@endif
-
+<section class="editor-card" id="public-route" aria-labelledby="route-heading">
+    <h2 class="editor-card__title" id="route-heading">URL</h2>
+    <div class="editor-card__body">
+        <x-form.field name="public_path" :label="$auto ? 'Öffentliche Adresse' : 'Eigene öffentliche Seite (optional)'"
+            :value="old('public_path', $model->exists ? $model->publicPath() : '')" :hint="$hint"
+            maxlength="255" autocomplete="off" spellcheck="false" :disabled="$disabled" />
+        @if ($aliases->isNotEmpty())
+            <p class="form-hint">Frühere Adressen leiten weiter: @foreach ($aliases as $alias)<code>{{ $alias }}</code>@if (! $loop->last), @endif @endforeach</p>
+        @endif
+    </div>
 </section>

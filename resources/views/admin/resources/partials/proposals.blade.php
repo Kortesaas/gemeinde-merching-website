@@ -4,14 +4,15 @@
     $open = $model->proposals()->open()->with('author')->get()
         ->filter(fn ($p) => $p->status === \App\Enums\ProposalStatus::Submitted || $p->author_id === $user->getKey());
 @endphp
-<section aria-labelledby="proposals-heading">
-    <h2 id="proposals-heading">Änderungsvorschläge</h2>
+<section class="editor-card" id="vorschlaege" aria-labelledby="proposals-heading">
+    <h2 class="editor-card__title" id="proposals-heading">Änderungsvorschläge</h2>
+    <div class="editor-card__body">
     @if ($open->isEmpty())
-        <p>Keine offenen Vorschläge.</p>
+        <p class="meta">Keine offenen Vorschläge.</p>
     @else
-        <ul>
+        <ul class="cms-rows">
             @foreach ($open as $proposal)
-                <li><a href="{{ route('admin.proposals.show', $proposal) }}">{{ $proposal->displayTitle() }}</a> von {{ $proposal->author?->name ?? 'unbekannt' }} – {{ $proposal->status->label() }}</li>
+                <li class="cms-row"><span class="state state--proposal-{{ $proposal->status->value }}">{{ $proposal->status->label() }}</span><div class="cms-row__body"><a class="cms-row__title" href="{{ route('admin.proposals.show', $proposal) }}">{{ $proposal->displayTitle() }}</a><p class="cms-row__meta">von {{ $proposal->author?->name ?? 'unbekannt' }}</p></div></li>
             @endforeach
         </ul>
     @endif
@@ -22,4 +23,5 @@
             <button type="submit" class="button">Änderung vorschlagen</button>
         </form>
     @endcan
+    </div>
 </section>

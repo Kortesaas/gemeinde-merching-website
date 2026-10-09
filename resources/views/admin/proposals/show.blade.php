@@ -10,95 +10,92 @@
 @section('title', $proposal->displayTitle().' – '.$record->displayTitle())
 
 @section('content')
-    <p><a href="{{ route('admin.proposals.index') }}">Zu den Freigaben</a> · <a href="{{ $recordUrl }}">Zum veröffentlichten Inhalt</a></p>
-    <h1>{{ $proposal->displayTitle() }}: {{ $record->displayTitle() }}</h1>
+    <div class="editor-bar">
+        <a class="editor-bar__back" href="{{ route('admin.proposals.index') }}"><x-icon name="arrow-left" /> Freigaben</a>
+        <span class="state state--proposal-{{ $proposal->status->value }}">{{ $proposal->status->label() }}</span>
+        <span class="editor-bar__meta">von {{ $proposal->author?->name ?? 'unbekannt' }} · {{ \App\Support\SiteTime::format($proposal->submitted_at ?? $proposal->created_at) }}</span>
+        <div class="editor-bar__actions"><a class="button button--secondary" href="{{ $recordUrl }}">Veröffentlichten Inhalt öffnen</a></div>
+    </div>
+    <p class="cms-eyebrow">{{ $proposal->displayTitle() }} · {{ $resource->label() }}</p>
+    <h1 class="editor-title">{{ $record->displayTitle() }}</h1>
 
     <x-status />
     <x-form.error-summary />
 
-    <dl class="summary-list summary-list--inline">
-        <dt>Status</dt><dd>{{ $proposal->status->label() }}</dd>
-        <dt>{{ $resource->label() }}</dt><dd><a href="{{ $recordUrl }}">{{ $record->displayTitle() }}</a> ({{ $record->publicationState()->label() }})</dd>
-        <dt>Vorgeschlagen von</dt><dd>{{ $proposal->author?->name ?? 'unbekannt' }}, {{ \App\Support\SiteTime::format($proposal->created_at) }}</dd>
-        @if ($proposal->submitted_at)
-            <dt>Eingereicht</dt><dd>{{ \App\Support\SiteTime::format($proposal->submitted_at) }}</dd>
-        @endif
-        @if ($proposal->reviewed_at)
-            <dt>Entschieden</dt><dd>{{ \App\Support\SiteTime::format($proposal->reviewed_at) }} durch {{ $proposal->reviewer?->name ?? 'unbekannt' }}</dd>
-        @endif
-        @if ($proposal->summary)
-            <dt>Beschreibung</dt><dd>{{ $proposal->summary }}</dd>
-        @endif
-        @if ($proposal->review_comment)
-            <dt>Begründung der Ablehnung</dt><dd class="preserve-lines">{{ $proposal->review_comment }}</dd>
-        @endif
+    <dl class="proposal-facts">
+        <div><dt>Veröffentlichter Inhalt</dt><dd>@include('admin.partials.state-badge', ['model' => $record])</dd></div>
+        <div><dt>Vorgeschlagen von</dt><dd>{{ $proposal->author?->name ?? 'unbekannt' }}, {{ \App\Support\SiteTime::format($proposal->created_at) }}</dd></div>
+        @if ($proposal->submitted_at)<div><dt>Eingereicht</dt><dd>{{ \App\Support\SiteTime::format($proposal->submitted_at) }}</dd></div>@endif
+        @if ($proposal->reviewed_at)<div><dt>Entschieden</dt><dd>{{ \App\Support\SiteTime::format($proposal->reviewed_at) }} durch {{ $proposal->reviewer?->name ?? 'unbekannt' }}</dd></div>@endif
+        @if ($proposal->summary)<div class="proposal-facts__wide"><dt>Beschreibung der Änderung</dt><dd>„{{ $proposal->summary }}“</dd></div>@endif
+        @if ($proposal->review_comment)<div class="proposal-facts__wide"><dt>Begründung der Ablehnung</dt><dd class="preserve-lines">{{ $proposal->review_comment }}</dd></div>@endif
     </dl>
 
-    <div class="notice" role="note">
-        <p>Der veröffentlichte Inhalt bleibt unverändert öffentlich, bis dieser Vorschlag von einer anderen berechtigten Person freigegeben wird.</p>
-    </div>
+    <p class="notice" role="note">Der veröffentlichte Inhalt bleibt unverändert öffentlich, bis eine andere berechtigte Person diesen Vorschlag freigibt.</p>
+
+    @if ($conflicts !== [])
+        <div class="notice notice--warning conflict-notice" role="status">
+            <p class="notice__title"><x-icon name="warning" /> {{ count($conflicts) }} {{ count($conflicts) === 1 ? 'Konflikt' : 'Konflikte' }}</p>
+            <p>Diese Felder wurden nach dem Vorschlag auch im veröffentlichten Inhalt geändert. Bei Freigabe ersetzt der Vorschlag die neueren Änderungen.</p>
+        </div>
+    @endif
 
     <section class="cms-panel" aria-labelledby="diff-heading">
-        <h2 id="diff-heading">Änderungen gegenüber dem Ausgangsstand</h2>
+        <header class="cms-panel__header"><h2 id="diff-heading">Vergleich: veröffentlicht und vorgeschlagen</h2><span class="cms-row__meta">{{ count($diff) }} {{ count($diff) === 1 ? 'Änderung' : 'Änderungen' }}</span></header>
         @if ($diff === [])
-            <p>Noch keine Änderungen.</p>
+            <p class="cms-empty">Noch keine Änderungen.</p>
         @else
-            <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
-                <table class="data-table">
-                    <caption class="visually-hidden">Geänderte Felder</caption>
-                    <thead><tr><th scope="col">Feld</th><th scope="col">Bisher</th><th scope="col">Vorschlag</th>@if ($conflicts !== [])<th scope="col">Inzwischen veröffentlicht</th>@endif</tr></thead>
-                    <tbody>
-                        @foreach ($diff as $row)
-                            <tr>
-                                <th scope="row">{{ $row['label'] }}</th>
-                                <td class="preserve-lines">{{ $row['before'] }}</td>
-                                <td class="preserve-lines">{{ $row['after'] }}</td>
-                                @if ($conflicts !== [])
-                                    <td class="preserve-lines">{{ $row['live'] === null ? '–' : 'Konflikt: '.$row['live'] }}</td>
-                                @endif
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="diff-list">
+                @foreach ($diff as $row)
+                    <section class="diff-item {{ $row['live'] !== null ? 'diff-item--conflict' : '' }}" aria-labelledby="diff-{{ $loop->index }}">
+                        <h3 id="diff-{{ $loop->index }}">{{ $row['label'] }}</h3>
+                        <div class="diff-columns">
+                            <div class="diff-before"><p class="diff-label">Ausgangsstand</p><div class="preserve-lines">{{ $row['before'] !== '' ? $row['before'] : '– leer –' }}</div></div>
+                            <div class="diff-after"><p class="diff-label">Vorschlag</p><div class="preserve-lines">{{ $row['after'] !== '' ? $row['after'] : '– leer –' }}</div></div>
+                            @if ($row['live'] !== null)
+                                <div class="diff-live"><p class="diff-label"><x-icon name="warning" /> Inzwischen veröffentlicht</p><div class="preserve-lines">Konflikt: {{ $row['live'] }}</div></div>
+                            @endif
+                        </div>
+                    </section>
+                @endforeach
             </div>
         @endif
     </section>
 
     @if ($canReview)
-        <section class="cms-panel" aria-labelledby="review-heading">
-            <h2 id="review-heading">Prüfung</h2>
-            @if ($conflicts !== [])
-                <div class="notice notice--warning" role="status">
-                    <p>Achtung: {{ count($conflicts) }} Feld(er) wurden seit dem Vorschlag auch im veröffentlichten Inhalt geändert. Bei Freigabe gilt der Vorschlag.</p>
-                </div>
-            @endif
+        <section class="cms-panel review-panel" aria-labelledby="review-heading">
+            <header class="cms-panel__header"><h2 id="review-heading">Entscheidung</h2></header>
+            <div class="review-panel__body">
             @if ($canApply)
                 <form method="POST" action="{{ route('admin.proposals.apply', $proposal) }}">
                     @csrf
                     @if ($conflicts !== [])
                         <x-form.checkbox name="confirm_conflicts" label="Ich habe die Konflikte geprüft; der Vorschlag soll die neueren Änderungen ersetzen." />
                     @endif
+                    <p class="form-hint">Die geänderten Teile werden übernommen und sofort veröffentlicht; es entsteht eine neue Version.</p>
                     <button type="submit" class="button">Freigeben und veröffentlichen</button>
                 </form>
             @else
                 <p>Der zugehörige Inhalt liegt im Papierkorb; der Vorschlag kann nur abgelehnt werden.</p>
             @endif
-            <form method="POST" action="{{ route('admin.proposals.reject', $proposal) }}">
+            <form method="POST" action="{{ route('admin.proposals.reject', $proposal) }}" class="review-panel__reject">
                 @csrf
-                <x-form.textarea name="review_comment" label="Begründung (Pflichtfeld bei Ablehnung)" :value="old('review_comment')" rows="3" />
-                <button type="submit" class="button button--secondary">Ablehnen</button>
+                <x-form.textarea name="review_comment" label="Begründung (Pflichtfeld bei Ablehnung)" :value="old('review_comment')" rows="3" hint="Die Begründung sieht die Person, die den Vorschlag eingereicht hat." />
+                <button type="submit" class="button button--secondary">Zurück an Autor/in (ablehnen)</button>
             </form>
+            </div>
         </section>
     @endif
 
     @if ($canEdit)
         <section class="cms-panel" aria-labelledby="edit-heading">
-            <h2 id="edit-heading">Vorschlag bearbeiten</h2>
+            <header class="cms-panel__header"><h2 id="edit-heading">Vorschlag bearbeiten</h2></header>
+            <div class="cms-panel__body">
             <form method="POST" action="{{ route('admin.proposals.update', $proposal) }}" novalidate>
                 @csrf @method('PUT')
                 <input type="hidden" name="_form_started" value="1">
                 @foreach (\App\Support\Content\EditorSections::group($fields) as $section => $group)
-                    <details class="editor-section" open><summary>{{ $section }}</summary><div class="field-grid">
+                    <details class="editor-section" open><summary><span>{{ $section }}</span><x-icon name="chevron-down" class="editor-section__chevron" /></summary><div class="field-grid">
                     @foreach ($group as $field)
                     @include($field->view(), [
                         'field' => $field,
@@ -135,7 +132,7 @@
                         @endforeach
                     </ul>
                 @endif
-                <form method="POST" action="{{ route('admin.proposals.placements.store', $proposal) }}" class="filter-form">
+                <form method="POST" action="{{ route('admin.proposals.placements.store', $proposal) }}" class="placement-add">
                     @csrf
                     <input type="hidden" name="kind" value="{{ $kind }}">
                     <x-form.select name="item_id" id="{{ $kind }}-item" label="{{ $kind === 'documents' ? 'Dokument' : 'Link' }} hinzufügen" :options="$config['options']" placeholder="– auswählen –" />
@@ -145,6 +142,7 @@
                     <button type="submit" class="button button--secondary">Zuordnen</button>
                 </form>
             @endforeach
+            </div>
         </section>
     @endif
 

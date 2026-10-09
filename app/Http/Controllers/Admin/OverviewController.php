@@ -33,7 +33,7 @@ class OverviewController extends Controller
                 });
             }
             // Bounded editorial overview. Full pagination remains available per entity.
-            foreach ($query->latest('updated_at')->limit(50)->get() as $record) {
+            foreach ($query->latest('updated_at')->limit(50)->get()->withRelationshipAutoloading() as $record) {
                 $items->push(['resource' => $resource, 'record' => $record]);
             }
         }

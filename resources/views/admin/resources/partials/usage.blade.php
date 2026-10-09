@@ -1,11 +1,12 @@
 {{-- "Wo wird dieser Eintrag verwendet?" --}}
 @php $usages = ($model instanceof \App\Models\Document || $model instanceof \App\Models\ExternalResource || $model instanceof \App\Models\Media) ? app(\App\Services\Content\ContentUsage::class)->of($model) : app(\App\Services\Content\ReferenceProtection::class)->usages($model); @endphp
-<section aria-labelledby="usage-heading">
-    <h2 id="usage-heading">Verwendung</h2>
+<section class="editor-card" aria-labelledby="usage-heading">
+    <h2 class="editor-card__title" id="usage-heading">Wo wird dieser Eintrag verwendet?</h2>
+    <div class="editor-card__body">
     @if ($usages === [])
-        <p>Dieser Eintrag wird derzeit nirgends verwendet.</p>
+        <p class="meta">Derzeit nirgends verwendet.</p>
     @else
-        <ul>
+        <ul class="usage-list">
             @foreach ($usages as $usage)
                 @php $ownerResource = \App\Admin\ResourceRegistry::forModel($usage['owner']); @endphp
                 <li>
@@ -20,4 +21,5 @@
             @endforeach
         </ul>
     @endif
+    </div>
 </section>

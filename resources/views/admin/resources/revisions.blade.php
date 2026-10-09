@@ -3,27 +3,29 @@
 @section('title', 'Versionen – '.$model->displayTitle())
 
 @section('content')
-    <p><a href="{{ route('admin.'.$resource->key().'.edit', $model->getKey()) }}">Zurück zu „{{ $model->displayTitle() }}“</a></p>
-    <h1>Versionsgeschichte: {{ $model->displayTitle() }}</h1>
+    <div class="editor-bar">
+        <a class="editor-bar__back" href="{{ route('admin.'.$resource->key().'.edit', $model->getKey()) }}"><x-icon name="arrow-left" /> Zurück zum Bearbeiten</a>
+        @include('admin.partials.state-badge', ['model' => $model])
+    </div>
+    <p class="cms-eyebrow">Historie · {{ $resource->label() }}</p>
+    <h1 class="editor-title">{{ $model->displayTitle() }}</h1>
+    <p class="cms-lead">Jede gespeicherte Änderung bleibt erhalten. Eine ältere Version lässt sich als neue Version wiederherstellen; der Veröffentlichungsstatus ändert sich dabei nicht.</p>
 
     @if ($revisions->isEmpty())
-        <p>Noch keine Versionen vorhanden.</p>
+        <div class="cms-empty-state"><p>Noch keine Versionen vorhanden.</p></div>
     @else
-        <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
-            <table class="data-table">
-                <caption class="visually-hidden">Versionen, neueste zuerst</caption>
-                <thead><tr><th scope="col">Version</th><th scope="col">Zeitpunkt</th><th scope="col">Bearbeitet von</th><th scope="col">Notiz</th></tr></thead>
-                <tbody>
-                    @foreach ($revisions as $revision)
-                        <tr>
-                            <td><a href="{{ route('admin.'.$resource->key().'.revisions.show', [$model->getKey(), $revision->revision_number]) }}">Version {{ $revision->revision_number }}</a></td>
-                            <td>{{ \App\Support\SiteTime::format($revision->created_at) }}</td>
-                            <td>{{ $revision->user?->name ?? 'System' }}</td>
-                            <td>{{ $revision->summary }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+        <ol class="timeline" aria-label="Versionen, neueste zuerst">
+            @foreach ($revisions as $revision)
+                <li class="timeline__item {{ $loop->first ? 'is-current' : '' }}">
+                    <span class="timeline__marker" aria-hidden="true">{{ $revision->revision_number }}</span>
+                    <div class="timeline__body">
+                        <p class="timeline__title"><a href="{{ route('admin.'.$resource->key().'.revisions.show', [$model->getKey(), $revision->revision_number]) }}">Version {{ $revision->revision_number }}</a>@if ($loop->first) <span class="state state--published">Aktueller Stand</span>@endif</p>
+                        <p class="timeline__summary">{{ $revision->summary ?: 'Ohne Änderungsnotiz' }}</p>
+                        <p class="cms-row__meta"><time datetime="{{ $revision->created_at->toIso8601String() }}">{{ \App\Support\SiteTime::format($revision->created_at) }}</time> · {{ $revision->user?->name ?? 'System' }}</p>
+                    </div>
+                    <a class="button button--secondary button--small" href="{{ route('admin.'.$resource->key().'.revisions.show', [$model->getKey(), $revision->revision_number]) }}">Ansehen<span class="visually-hidden">: Version {{ $revision->revision_number }}</span></a>
+                </li>
+            @endforeach
+        </ol>
     @endif
 @endsection

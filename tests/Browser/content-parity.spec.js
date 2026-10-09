@@ -173,7 +173,7 @@ test.describe('local content composition', () => {
 
     test('block controls add, reorder and mark removal with keyboard and confirmation', async ({ page, context, baseURL }) => {
         await login(context, baseURL); await page.goto(`/verwaltung/seiten/${fixture.pageId}`);
-        await page.locator('details.editor-section').filter({ has: page.locator('#blocks') }).locator('summary').click();
+        await page.locator('details.editor-section').filter({ has: page.locator('#blocks') }).evaluate(section => { section.open = true; });
         const editor = page.locator('[data-row-editor=blocks]');
         const first = editor.locator('[data-editor-row]').filter({ has: page.locator('#blocks_0_type') });
         const down = first.getByRole('button', { name: 'Nach unten', exact: true });

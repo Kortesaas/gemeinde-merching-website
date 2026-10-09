@@ -1,7 +1,25 @@
-@php $issues=app(\App\Services\Quality\QualityChecks::class)->inspect($model); $blocking=collect($issues)->contains(fn($i)=>$i->severity === \App\Enums\QualitySeverity::Error); @endphp
-<section class="cms-panel quality-panel {{ $blocking ? 'quality-error' : '' }}" aria-labelledby="quality-heading" id="quality">
-    <h2 id="quality-heading">Qualität vor Veröffentlichung</h2>
-    <p>{{ $blocking ? 'Fehler blockieren die Veröffentlichung. Bitte beheben Sie die folgenden Punkte.' : 'Keine blockierenden Fehler. Warnungen bitte prüfen; Empfehlungen sind optional.' }}</p>
-    @if ($issues !== [])<ul>@foreach($issues as $issue)<li><span class="quality-label">{{ $issue->severity->label() }}:</span> {{ $issue->message }} @if($issue->field)<a href="#{{ $issue->field }}">Feld prüfen</a>@endif</li>@endforeach</ul>@else<p>Die automatischen Prüfungen haben keine Hinweise ergeben.</p>@endif
-    <p class="form-hint">Automatische Hinweise ersetzen keine manuelle Prüfung von Inhalt und Barrierefreiheit.</p>
+@php
+    $issues = app(\App\Services\Quality\QualityChecks::class)->inspect($model);
+    $blocking = collect($issues)->contains(fn ($i) => $i->severity === \App\Enums\QualitySeverity::Error);
+@endphp
+<section class="editor-card quality-panel {{ $blocking ? 'quality-panel--error' : '' }}" aria-labelledby="quality-heading" id="quality">
+    <h2 class="editor-card__title" id="quality-heading">Qualität</h2>
+    <div class="editor-card__body">
+        <p class="quality-summary">
+            @if ($blocking)<x-icon name="error" /> Fehler blockieren die Veröffentlichung.
+            @elseif ($issues !== [])<x-icon name="info" /> Keine blockierenden Fehler.
+            @else<x-icon name="check" /> Keine Hinweise der automatischen Prüfung.@endif
+        </p>
+        @if ($issues !== [])
+            <ul class="quality-list">
+                @foreach ($issues as $issue)
+                    <li>
+                        @include('admin.partials.severity', ['severity' => $issue->severity])
+                        <span>{{ $issue->message }} @if ($issue->field)<a href="#{{ $issue->field }}">Zum Feld</a>@endif</span>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+        <p class="form-hint">Automatische Hinweise ersetzen keine manuelle Prüfung von Inhalt und Barrierefreiheit.</p>
+    </div>
 </section>

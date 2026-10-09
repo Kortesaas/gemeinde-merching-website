@@ -6,20 +6,24 @@
         ->mapWithKeys(fn ($s) => [$s->value => $s->label()])->all();
     $dateField = fn (string $name, string $label) => \App\Admin\Fields\DateTime::make($name, $label);
 @endphp
-<fieldset class="form-fieldset cms-panel" id="publication">
-    <legend class="form-label">Veröffentlichung</legend>
-    <p>Aktueller Status: <strong>@include('admin.resources.partials.state', ['model' => $model])</strong></p>
-    @if ($canPublish && ! $disabled)
-        <x-form.select name="status" label="Status" :options="$targets" :value="old('status', $current->value)"
-            hint="„Veröffentlicht“ wird ab dem Veröffentlichungsdatum sichtbar (sofort, wenn leer) und endet automatisch am Enddatum." />
-    @elseif (! $disabled)
-        <p class="form-hint">Sie können Entwürfe speichern. Die Veröffentlichung erfolgt durch eine Person mit Veröffentlichungsrecht.</p>
-    @endif
-    @foreach (['publish_at' => 'Veröffentlichen ab', 'expires_at' => 'Veröffentlichen bis'] as $name => $label)
-        @include('admin.fields.datetime', [
-            'field' => $dateField($name, $label),
-            'value' => old($name, $model->exists && $model->{$name} ? \App\Support\SiteTime::toInput($model->{$name}) : ''),
-            'disabled' => $disabled || ($model->exists && $model->isPublicationLocked() && ! $canPublish),
-        ])
-    @endforeach
+<fieldset class="editor-card" id="publication">
+    <legend class="editor-card__title">Veröffentlichung</legend>
+    <div class="editor-card__body">
+        <p class="publication-state">Aktuell: @include('admin.partials.state-badge', ['model' => $model])</p>
+        @if ($canPublish && ! $disabled)
+            <x-form.select name="status" label="Status" :options="$targets" :value="old('status', $current->value)"
+                hint="„Veröffentlicht“ wird ab dem Startdatum sichtbar (sofort, wenn leer) und endet automatisch am Enddatum." />
+        @elseif (! $disabled)
+            <p class="form-hint">Sie können Entwürfe speichern. Veröffentlichen kann eine Person mit Veröffentlichungsrecht.</p>
+        @endif
+        <div class="field-pair">
+            @foreach (['publish_at' => 'Sichtbar ab', 'expires_at' => 'Sichtbar bis'] as $name => $label)
+                @include('admin.fields.datetime', [
+                    'field' => $dateField($name, $label),
+                    'value' => old($name, $model->exists && $model->{$name} ? \App\Support\SiteTime::toInput($model->{$name}) : ''),
+                    'disabled' => $disabled || ($model->exists && $model->isPublicationLocked() && ! $canPublish),
+                ])
+            @endforeach
+        </div>
+    </div>
 </fieldset>

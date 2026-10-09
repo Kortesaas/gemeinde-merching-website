@@ -50,9 +50,13 @@ class ResourceController extends Controller
             $query->where('status', $status->value);
         }
 
+        $records = $query->paginate(25)->withQueryString();
+        // List columns read relations (category, location …); load them once for the page.
+        $records->getCollection()->withRelationshipAutoloading();
+
         return view('admin.resources.index', [
             'resource' => $resource,
-            'records' => $query->paginate(25)->withQueryString(),
+            'records' => $records,
             'trash' => $trash,
             'search' => $search,
             'status' => $status,

@@ -9,14 +9,15 @@
     }
     $canEdit = $editable && ! $trashed;
 @endphp
-<section aria-labelledby="placements-heading">
-    <h2 id="placements-heading">Zugeordnete Dokumente und Links</h2>
-    <p class="form-hint">Dokumente und Links werden einmal gepflegt und hier nur zugeordnet. Entfernen löscht nichts.</p>
+<section class="editor-card" aria-labelledby="placements-heading">
+    <h2 class="editor-card__title" id="placements-heading">Downloads &amp; Links</h2>
+    <div class="editor-card__body">
+    <p class="form-hint">Dokumente und Links werden einmal zentral gepflegt und hier nur zugeordnet. Entfernen löscht keine Datei.</p>
 
     @foreach ($kinds as $kind => $config)
-        <h3 id="{{ $kind === 'documents' ? 'documents' : 'externalResources' }}">{{ $config['label'] }}</h3>
+        <h3 class="editor-subheading" id="{{ $kind === 'documents' ? 'documents' : 'externalResources' }}">{{ $config['label'] }}</h3>
         @if ($config['items']->isEmpty())
-            <p>Keine Zuordnungen.</p>
+            <p class="meta">Noch nichts zugeordnet.</p>
         @else
             <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
                 <table class="data-table">
@@ -59,15 +60,16 @@
         @endif
 
         @if ($canEdit)
-            <form method="POST" action="{{ route('admin.'.$resource->key().'.placements.store', $model->getKey()) }}" class="filter-form">
+            <form method="POST" action="{{ route('admin.'.$resource->key().'.placements.store', $model->getKey()) }}" class="placement-add">
                 @csrf
                 <input type="hidden" name="kind" value="{{ $kind }}">
                 <x-form.select name="item_id" id="{{ $kind }}-item" label="{{ $kind === 'documents' ? 'Dokument' : 'Link' }} hinzufügen" :options="$config['options']" placeholder="– auswählen –" />
                 <x-form.select name="slot" id="{{ $kind }}-slot" label="Bereich" :options="$config['slots']" />
                 <x-form.field name="group_label" id="{{ $kind }}-group" label="Gruppe (optional)" hint="z. B. 2026" maxlength="120" autocomplete="off" />
                 <x-form.field name="sort_order" id="{{ $kind }}-sort" label="Reihenfolge" type="number" min="0" max="65535" value="0" />
-                <button type="submit" class="button button--secondary">Zuordnen</button>
+                <button type="submit" class="button button--secondary"><x-icon name="plus" /> Zuordnen</button>
             </form>
         @endif
     @endforeach
+    </div>
 </section>

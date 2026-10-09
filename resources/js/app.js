@@ -30,6 +30,16 @@ const closeBranches = target => {
 };
 document.addEventListener('click', event => closeBranches(event.target));
 document.addEventListener('focusin', event => closeBranches(event.target));
+// Site alerts can be hidden for the current page view (nothing is stored).
+for (const button of document.querySelectorAll('[data-alert-dismiss]')) {
+    button.hidden = false;
+    button.addEventListener('click', () => {
+        const alert = button.closest('[data-alert]');
+        alert.classList.add('is-leaving');
+        const done = () => { alert.hidden = true; document.getElementById('inhalt')?.focus({ preventScroll: true }); };
+        matchMedia('(prefers-reduced-motion: reduce)').matches ? done() : alert.addEventListener('animationend', done, { once: true });
+    });
+}
 const searchDialog = document.querySelector('[data-search-dialog]');
 if (searchDialog?.showModal) {
     let opener;
@@ -94,7 +104,8 @@ for (const form of document.querySelectorAll('[data-search-form]')) {
 }
 // Keep the primary content and media metadata visible; optional groups are native disclosures.
 for (const section of document.querySelectorAll('details.editor-section')) {
-    if (['Suchmaschinen', 'Zuständigkeit und Beziehungen', 'Inhaltsbausteine'].includes(section.querySelector('summary')?.textContent.trim()) && !section.querySelector('[aria-invalid=true], .form-error')) section.open = false;
+    // Rarely edited search-engine fields start collapsed unless they contain errors.
+    if (section.querySelector('summary')?.textContent.trim() === 'SEO' && !section.querySelector('[aria-invalid=true], .form-error')) section.open = false;
 }
 for (const editor of document.querySelectorAll('[data-row-editor]')) {
     const rows = [...editor.querySelectorAll('[data-editor-row]')];
@@ -102,7 +113,19 @@ for (const editor of document.querySelectorAll('[data-row-editor]')) {
     const normalize = () => [...editor.querySelectorAll('[data-editor-row]')].forEach((row, index) => {
         row.querySelector('[data-row-column="sort_order"] input').value = String(index);
     });
-    const button = (text, action) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'button button--secondary'; b.textContent = text; b.addEventListener('click', action); return b; };
+    // Icon buttons keep their full text as accessible name; paths are static constants.
+    const icons = { 'Nach oben': 'M12 19V5M6 11l6-6 6 6', 'Nach unten': 'M12 5v14M18 13l-6 6-6-6', 'Entfernen': 'M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3' };
+    const button = (text, action) => {
+        const b = document.createElement('button'); b.type = 'button'; b.addEventListener('click', action);
+        if (icons[text]) {
+            b.className = 'icon-button'; b.title = text;
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('aria-hidden', 'true');
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path'); path.setAttribute('d', icons[text]); svg.append(path);
+            const label = document.createElement('span'); label.className = 'visually-hidden'; label.textContent = text;
+            b.append(svg, label);
+        } else { b.className = 'chip-button'; b.textContent = text; }
+        return b;
+    };
     const references = { image: 'media_id', gallery: 'gallery_id', downloads: 'document_id', contact: 'person_id', department: 'department_id', services: 'service_id', events: 'event_id', external: 'external_resource_id', location: 'location_id' };
     for (const row of rows) {
         const toolbar = document.createElement('div'); toolbar.className = 'row-toolbar';
@@ -123,7 +146,9 @@ for (const editor of document.querySelectorAll('[data-row-editor]')) {
                     column.hidden = !show;
                 }
             };
+            const title = row.querySelector('[data-row-title]');
             type.addEventListener('change', () => {
+                if (title) title.textContent = type.value ? type.selectedOptions[0].textContent : 'Neuer Eintrag';
                 for (const column of row.querySelectorAll('[data-row-column]')) if (column.dataset.rowColumn.endsWith('_id') && column.dataset.rowColumn !== references[type.value]) column.querySelector('select').value = '';
                 if (type.value !== 'heading') row.querySelector('[data-row-column="heading_level"] select').value = '';
                 adapt();
@@ -132,7 +157,8 @@ for (const editor of document.querySelectorAll('[data-row-editor]')) {
         }
     }
     if (editor.dataset.rowEditor === 'blocks' && rows.some(r => r.classList.contains('row-add-slot'))) {
-        const add = document.createElement('div'); add.className = 'row-toolbar';
+        const add = document.createElement('div'); add.className = 'row-add-bar';
+        const addLabel = document.createElement('span'); addLabel.className = 'row-add-bar__label'; addLabel.textContent = 'Baustein hinzufügen:'; add.append(addLabel);
         for (const option of rows[0].querySelector('[data-row-column="type"] select').options) if (option.value) add.append(button('+ ' + option.textContent, () => {
             const row = rows.find(r => r.hidden); if (!row) { announcement.textContent = 'Bitte speichern, um weitere freie Einträge hinzuzufügen.'; return; }
             row.hidden = false; const type = row.querySelector('[data-row-column="type"] select'); type.value = option.value; type.dispatchEvent(new Event('change')); type.focus(); announcement.textContent = option.textContent + ' hinzugefügt. Änderungen anschließend speichern.';

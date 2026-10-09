@@ -4,6 +4,8 @@
     $selected = array_map('intval', (array) $value);
     $orders = (array) old($field->name.'_order', $orderOverride ?? ($field->sortable ? $field->orderValues($model) : []));
     $hasError = $errors->has($field->name) || $errors->has($field->name.'.*');
+    // The central media library shows thumbnails so editors pick images visually.
+    $thumbnails = $field->name === 'media' ? \App\Models\Media::query()->whereIn('id', array_keys($options))->get()->filter->isImage()->keyBy('id') : collect();
 @endphp
 <fieldset id="{{ $field->name }}" @class(['form-field', 'form-fieldset', 'form-field--error' => $hasError]) @if ($hasError) aria-describedby="{{ $field->name }}-error" @endif>
     <legend class="form-label">{{ $field->label }}</legend>
@@ -14,18 +16,22 @@
         <p class="form-error" id="{{ $field->name }}-error"><span class="form-error__prefix">Fehler:</span> {{ $errors->first($field->name) ?: $errors->first($field->name.'.*') }}</p>
     @endif
     <input type="hidden" name="{{ $field->name }}__present" value="1" @disabled($disabled)>
+    @if ($field->sortable && $options !== [])<p class="form-hint">Auswahl ankreuzen; die Zahl bestimmt die Reihenfolge der ausgewählten Einträge.</p>@endif
+    <div class="option-list {{ $thumbnails->isNotEmpty() ? 'option-list--media' : '' }}">
     @forelse ($options as $id => $label)
-        <div class="form-option">
+        <div class="form-option {{ in_array($id, $selected, true) ? 'is-selected' : '' }}">
+            @if ($thumbnails->has($id))<img class="form-option__thumb" src="{{ route('admin.media.file', ['record' => $id, 'width' => 480]) }}" alt="" loading="lazy" width="96" height="72">@endif
             <input class="form-checkbox" type="checkbox" id="{{ $field->name }}-{{ $id }}" name="{{ $field->name }}[]" value="{{ $id }}"
                 @checked(in_array($id, $selected, true)) @disabled($disabled)>
             <label class="form-checkbox-label" for="{{ $field->name }}-{{ $id }}">{{ $label }}</label>
             @if ($field->sortable)
                 <label class="visually-hidden" for="{{ $field->name }}-order-{{ $id }}">Reihenfolge für {{ $label }}</label>
-                <input class="form-input form-input--small" type="number" min="0" max="65535" id="{{ $field->name }}-order-{{ $id }}"
-                    name="{{ $field->name }}_order[{{ $id }}]" value="{{ $orders[$id] ?? '' }}" @disabled($disabled)>
+                <input class="form-input form-input--order" type="number" min="0" max="65535" id="{{ $field->name }}-order-{{ $id }}"
+                    name="{{ $field->name }}_order[{{ $id }}]" value="{{ $orders[$id] ?? '' }}" placeholder="Pos." @disabled($disabled)>
             @endif
         </div>
     @empty
         <p class="form-hint">Noch keine Einträge vorhanden.</p>
     @endforelse
+    </div>
 </fieldset>

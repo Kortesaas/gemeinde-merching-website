@@ -3,44 +3,41 @@
 @section('title', 'Freigaben')
 
 @section('content')
-    <p><a href="{{ route('admin.dashboard') }}">Zur Übersicht</a></p>
-    <h1>Freigaben und Änderungsvorschläge</h1>
+    <header class="cms-page-header">
+        <div><p class="cms-eyebrow"><a href="{{ route('admin.dashboard') }}">Dashboard</a></p><h1>Freigaben und Änderungsvorschläge</h1></div>
+    </header>
     <x-status />
+    <p class="cms-lead">Änderungen an veröffentlichten Inhalten werden als Vorschlag geprüft. Niemand gibt eigene Vorschläge frei.</p>
 
-    <section aria-labelledby="review-queue-heading">
-        <h2 id="review-queue-heading">Zur Prüfung ({{ $toReview->count() }})</h2>
-        @if ($toReview->isEmpty())
-            <p>Keine Vorschläge zur Prüfung.</p>
-        @else
-            <div class="table-wrapper" role="region" aria-label="Datentabelle, horizontal verschiebbar" tabindex="0">
-                <table class="data-table">
-                    <caption class="visually-hidden">Eingereichte Vorschläge, älteste zuerst</caption>
-                    <thead><tr><th scope="col">Vorschlag</th><th scope="col">Inhalt</th><th scope="col">Von</th><th scope="col">Eingereicht</th></tr></thead>
-                    <tbody>
-                        @foreach ($toReview as $proposal)
-                            <tr>
-                                <td><a href="{{ route('admin.proposals.show', $proposal) }}">{{ $proposal->displayTitle() }}</a></td>
-                                <td>{{ $proposal->proposable?->displayTitle() }}</td>
-                                <td>{{ $proposal->author?->name }}</td>
-                                <td>{{ \App\Support\SiteTime::format($proposal->submitted_at) }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        @endif
+    <section class="cms-panel" aria-labelledby="review-queue-heading">
+        <header class="cms-panel__header"><h2 id="review-queue-heading">Zur Prüfung</h2><span class="nav-count">{{ $toReview->count() }}</span></header>
+        <ul class="cms-rows">
+            @forelse ($toReview as $proposal)
+                <li class="cms-row">
+                    <span class="state state--review">In Prüfung</span>
+                    <div class="cms-row__body">
+                        <a class="cms-row__title" href="{{ route('admin.proposals.show', $proposal) }}">{{ $proposal->proposable?->displayTitle() ?? $proposal->displayTitle() }}</a>
+                        <p class="cms-row__meta">{{ $proposal->displayTitle() }} · von {{ $proposal->author?->name ?? 'unbekannt' }} · eingereicht {{ \App\Support\SiteTime::format($proposal->submitted_at) }}@if ($proposal->summary) · „{{ $proposal->summary }}“@endif</p>
+                    </div>
+                    <a class="button button--secondary button--small" href="{{ route('admin.proposals.show', $proposal) }}">Prüfen<span class="visually-hidden">: {{ $proposal->proposable?->displayTitle() }}</span></a>
+                </li>
+            @empty
+                <li class="cms-empty">Keine Vorschläge zur Prüfung.</li>
+            @endforelse
+        </ul>
     </section>
 
-    <section aria-labelledby="mine-heading">
-        <h2 id="mine-heading">Meine Vorschläge</h2>
-        @if ($mine->isEmpty())
-            <p>Sie haben noch keine Änderungen vorgeschlagen.</p>
-        @else
-            <ul>
-                @foreach ($mine as $proposal)
-                    <li><a href="{{ route('admin.proposals.show', $proposal) }}">{{ $proposal->displayTitle() }}: {{ $proposal->proposable?->displayTitle() }}</a> – {{ $proposal->status->label() }}</li>
-                @endforeach
-            </ul>
-        @endif
+    <section class="cms-panel" aria-labelledby="mine-heading">
+        <header class="cms-panel__header"><h2 id="mine-heading">Meine Vorschläge</h2></header>
+        <ul class="cms-rows">
+            @forelse ($mine as $proposal)
+                <li class="cms-row">
+                    <span class="state state--proposal-{{ $proposal->status->value }}">{{ $proposal->status->label() }}</span>
+                    <div class="cms-row__body"><a class="cms-row__title" href="{{ route('admin.proposals.show', $proposal) }}">{{ $proposal->proposable?->displayTitle() ?? $proposal->displayTitle() }}</a>@if ($proposal->summary)<p class="cms-row__meta">{{ $proposal->summary }}</p>@endif</div>
+                </li>
+            @empty
+                <li class="cms-empty">Sie haben noch keine Änderungen vorgeschlagen.</li>
+            @endforelse
+        </ul>
     </section>
 @endsection
