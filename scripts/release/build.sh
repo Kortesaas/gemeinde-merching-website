@@ -63,7 +63,8 @@ rm -rf "$WORK"/{node_modules,tests,docker,docs,.github} \
     "$WORK"/resources/{css,js} \
     "$WORK"/scripts/release/build.sh \
     "$WORK"/{compose.yaml,phpunit.xml,phpstan.neon,pint.json,playwright.config.js,vite.config.js} \
-    "$WORK"/{package.json,package-lock.json,.editorconfig,.gitattributes,.npmrc,README.md}
+    "$WORK"/{package.json,package-lock.json,.editorconfig,.gitattributes,.npmrc,README.md} \
+    "$WORK"/database/demo "$WORK"/database/seeders/Demo "$WORK"/database/seeders/DevelopmentDemoSeeder.php
 
 cat > "$WORK/RELEASE" <<META
 release=$NAME
