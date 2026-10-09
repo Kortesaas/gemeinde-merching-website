@@ -48,8 +48,9 @@ Drafts may remain incomplete. Publishing a meaningful image requires nonempty
 alt text; publishing content with media requires publicly reachable media.
 The same checks run on approved proposals and restoration of live revisions.
 Copyright/source, creator, caption and language are separate metadata. The
-current alt is shared across placements; contextual alternatives/cropping and
-visual galleries remain future work.
+central alt is shared across ordinary placements. Gallery placements now allow
+justified contextual overrides, and optional focal coordinates prepare future
+cropping. Visual gallery design remains future work; see [content-parity.md](content-parity.md).
 
 Accessible functional CRUD is at `/verwaltung/medien`. Content forms select
 media and their order using native checkbox groups. These relations and media
@@ -278,3 +279,11 @@ and structured settings, statistics collection/retention decision if desired,
 audit/mailbox retention policy and manual accessibility review. None are
 required to implement the technical foundation or start the later authorized
 visual phase; no visual work starts automatically.
+
+## Content capability extension
+
+The approved follow-up adds relational content blocks, galleries and focal points,
+structured service fees/details, event operational status, location accessibility,
+safe contact feedback context and separate council/committee records.
+See [content-parity.md](content-parity.md) for decisions, revision compatibility
+and reference protection. The established foundation guarantees remain in force.

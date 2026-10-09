@@ -290,3 +290,15 @@ be required.
 - SMTP host/port/encryption of the goneo mailbox.
 - Versioned PHP CLI binary name.
 - GNU `mv -T` is used for the atomic switch (standard on Linux hosting).
+
+## Content capability migration
+
+The additive `2026_10_09_100800_create_content_composition_tables` migration adds
+blocks, galleries, fees, council rosters and nullable/defaulted editorial metadata.
+It does not convert or overwrite existing Markdown/content. Run the normal
+migrations, permission sync and search rebuild in the established activation
+process; no extra worker, service, dependency or production runtime is needed.
+For large editor forms check PHP `max_input_vars`/request limits. A completion
+marker detects truncated browser submissions and prevents silently dropping rows.
+The disposable `tests/Browser/parity-fixtures.php` helper is local-test-only and
+refuses production. See [content-parity.md](content-parity.md).

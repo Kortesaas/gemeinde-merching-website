@@ -3,7 +3,9 @@
 Status: domain foundation (phase 2). Functional admin CRUD exists under
 `/verwaltung`; the final CMS/public design and WordPress import follow later. Media, search
 services, contact, settings, SEO, navigation and quality checks are described
-in [site-foundation.md](site-foundation.md).
+in [site-foundation.md](site-foundation.md). Controlled content composition, galleries,
+service/event/location details and council records are described in
+[content-parity.md](content-parity.md).
 
 ## Core principle: structured data, stored once
 
@@ -389,15 +391,14 @@ directly, audited). Accounts are never deleted (deactivated).
 
 ## Content safety (XSS)
 
-- Rich text is temporarily **Markdown** rendered by `SafeMarkdown`
+- Legacy rich text and text blocks use **Markdown** rendered by `SafeMarkdown`
   (league/commonmark): raw HTML escaped, unsafe link schemes removed, images not
   rendered (no external requests), headings start at h2. Never output editor
   text with `{!! !!}` except through `SafeMarkdown`.
 - All other fields are plain text, escaped by Blade.
-- Planned: a controlled **block editor** storing typed blocks (paragraph,
-  heading, list, quote, table, info box, placement reference, media reference
-  with mandatory alt text) as validated JSON, rendered only through allowlisted
-  Blade components. No raw HTML block.
+- Implemented: a controlled **block editor** with ordered relational child rows,
+  named foreign keys and allowlisted Blade components. No arbitrary HTML, scripts,
+  iframes or editor style controls. See [content-parity.md](content-parity.md).
 - Links are validated with `SafeUrl` (http/https only, no credentials, no
   control characters); the strict CSP is the second line of defence.
 
@@ -408,6 +409,7 @@ infrastructure rather than domain data. Each is covered by tests.
 
 | Table | Why polymorphic | Integrity measures |
 |---|---|---|
+| `content_blocks.owner` | one bounded composition for six editorial types | allowlisted owner aliases, named FK targets, ownership checked on persistence, cleanup on owner purge |
 | `public_routes.routable` | one URL space for 10 content types; uniqueness must hold across all types | morph-map aliases; unique `path_key` and `canonical_for`; rows removed on force delete |
 | `content_revisions.revisionable` | generic history for 13 types | morph-map aliases; unique (type, id, number); immutable |
 | `source_references.referenceable` | optional provenance for any record | unique (system, source id, type); removed on force delete |

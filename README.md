@@ -7,7 +7,8 @@ hosting (Apache; no Docker, Node.js, Composer or Redis in production).
 
 > **Status:** technical, content and site-wide functional foundations with admin
 > CRUD, proposals, media, MySQL search services, contact form, settings, SEO,
-> navigation and quality checks. Final public/CMS design and public search UI follow later.
+> navigation, quality checks, controlled content blocks, galleries, structured
+> service/event/location details and council information. Final public/CMS design and public search UI follow later.
 
 ## What is there
 
@@ -67,6 +68,7 @@ Native PHP/MySQL setup and details: [docs/local-development.md](docs/local-devel
 
 ## Documentation
 
+- [Content parity and composition](docs/content-parity.md) – blocks, galleries, fees, operational details, feedback, council
 - [Site-wide foundation](docs/site-foundation.md) – media, search/statistics, contact, settings, SEO, navigation, quality
 - [Architecture](docs/architecture.md) – decisions, structure, database, routing
 - [Content model](docs/content-model.md) – entities, lifecycle, URLs, revisions, permissions

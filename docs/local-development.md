@@ -127,3 +127,24 @@ Prefix with `docker compose exec app` when using Docker.
   do not modify or commit it.
 - Time: internal/database time is UTC; everything citizens and editors see or
   enter uses `SITE_TIMEZONE` (Europe/Berlin) via `App\Support\SiteTime`.
+
+## Content capability browser fixtures
+
+`PARITY_BROWSER_FIXTURES=docker npm test` runs the existing browser checks plus
+four new content/gallery/fees/feedback/editor checks. This opt-in helper targets
+the local Docker application, refuses any non-local APP_ENV, creates only
+synthetic test content and a disposable test employee/session, and cleans them
+and its image file afterward. Default `npm test` skips these fixture-dependent
+checks so native/alternative test targets continue to work.
+If a runner is killed, clean its recorded fixtures with:
+
+```bash
+docker compose exec -T app php tests/Browser/parity-fixtures.php cleanup
+```
+
+No fixture code runs as part of production application requests or deployment.
+
+Repeated browser runs can exhaust the normal local contact rate limit. If a local
+validation check receives HTTP 429, clear only the disposable development cache
+with `docker compose exec -T app php artisan cache:clear` before rerunning.
+Production throttling is not changed by the tests.

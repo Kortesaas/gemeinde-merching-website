@@ -2,7 +2,8 @@
 
 Status: technical foundation (phase 1) and content/domain foundation
 (phase 2, see [content-model.md](content-model.md)). Real design, final CMS
-screens follow in later phases. [Site-wide functional services](site-foundation.md) are now implemented.
+screens follow in later phases. [Site-wide functional services](site-foundation.md) and
+[controlled content composition/editor capability](content-parity.md) are implemented.
 
 ## Overview
 
@@ -237,3 +238,11 @@ SQL. Content and routing tables (phase 2) are described in
 Charset `utf8mb4`, collation `utf8mb4_unicode_ci` (portable to MySQL 5.7/8.x
 and MariaDB), engine InnoDB, foreign keys with explicit delete behaviour.
 Polymorphic columns store morph-map aliases (`user`), not class names.
+
+## Controlled editorial composition
+
+Bounded blocks use relational child records and explicit target foreign keys,
+sharing existing resource validation, child-collection revisions and proposals.
+No page-builder runtime or client dependency is needed. Galleries, fee rows and
+council rosters use the same ordered-child approach. Read
+[content-parity.md](content-parity.md) before extending component types or schemas.

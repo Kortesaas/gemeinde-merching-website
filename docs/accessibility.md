@@ -100,3 +100,15 @@ Every new page/component must be added to these tests.
   page.
 - Check whether additional content in Leichte Sprache / Deutsche
   Gebärdensprache is required or desired.
+
+## Controlled components
+
+Block headings are restricted to H2–H4 after the page H1; skipped levels are
+publishing errors. Images use central reviewed alternatives, with justified
+gallery context overrides. Native details/summary implements accordions.
+Row editors provide labelled fields, numeric keyboard ordering and explicit
+removal; adding/reordering works without JavaScript. Fee tables have captions
+and scoped headers. Unchecked documents still warn rather than falsely claiming
+accessibility. Location notes appear only when entered, without inferred claims.
+See [content-parity.md](content-parity.md) and the optional local Docker browser
+checks described in [local-development.md](local-development.md).

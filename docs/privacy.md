@@ -77,3 +77,15 @@ municipal mailbox retention need an operational policy.
 4. What is logged? No personal data or secrets.
 5. How long is it kept, and how is it deleted?
 6. Update this document and the privacy policy.
+
+## Content feedback and composition
+
+Content feedback reuses the existing contact flow. Context is derived from a
+public canonical record, held with the short-lived form nonce and rechecked
+before mail delivery. Browser-supplied URL/title fields cannot override it.
+The mail includes that context; audit metadata does not. No message-body table,
+extra persistent identifier or third-party service was introduced.
+External-resource/map blocks remain explicit outbound links. Media focal metadata
+never restores removed EXIF/GPS data. Council information is separate from employee
+records and is published only through the ordinary editorial workflow. No demo
+municipal content or portraits were seeded. See [content-parity.md](content-parity.md).
