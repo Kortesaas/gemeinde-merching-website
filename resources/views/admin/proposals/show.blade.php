@@ -96,6 +96,7 @@
             <h2 id="edit-heading">Vorschlag bearbeiten</h2>
             <form method="POST" action="{{ route('admin.proposals.update', $proposal) }}" novalidate>
                 @csrf @method('PUT')
+                <input type="hidden" name="_form_started" value="1">
                 @foreach ($fields as $field)
                     @include($field->view(), [
                         'field' => $field,
@@ -106,6 +107,7 @@
                     ])
                 @endforeach
                 <x-form.field name="proposal_summary" label="Beschreibung der Änderung (für die Prüfung)" :value="old('proposal_summary', $proposal->summary)" maxlength="255" autocomplete="off" />
+                <input type="hidden" name="_form_complete" value="1">
                 <button type="submit" class="button button--secondary" name="action" value="save">Vorschlag speichern</button>
                 @can('submit', $proposal)
                     <button type="submit" class="button" name="action" value="submit">Speichern und zur Prüfung einreichen</button>

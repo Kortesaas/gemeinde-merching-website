@@ -13,9 +13,9 @@ final class QualityChecks
     /** @var list<QualityCheck> */
     private array $checks;
 
-    public function __construct(ContentBasics $basics, ReferencedAssets $assets)
+    public function __construct(ContentBasics $basics, ReferencedAssets $assets, ContentComposition $composition)
     {
-        $this->checks = [$basics, $assets];
+        $this->checks = [$basics, $assets, $composition];
     }
 
     public function add(QualityCheck $check): void

@@ -57,7 +57,7 @@ enum Role: string
                 ...$access,
                 ...self::grant([ContentType::Event], [Ability::View, Ability::Create, Ability::Edit, Ability::Publish, Ability::Archive, Ability::Delete]),
                 ...self::grant([ContentType::Media, ContentType::Location, ContentType::Organization, ContentType::Document, ContentType::ExternalResource], [Ability::View, Ability::Create, Ability::Edit]),
-                ...self::grant([ContentType::Person, ContentType::Department, ContentType::Taxonomy], [Ability::View]),
+                ...self::grant([ContentType::Person, ContentType::Department, ContentType::Taxonomy, ContentType::Gallery], [Ability::View]),
             ],
 
             // Read-only for now; prepared for a later approval workflow.
@@ -74,7 +74,7 @@ enum Role: string
     private static function editorialTypes(): array
     {
         return [
-            ContentType::Media, ContentType::Article, ContentType::Event, ContentType::Document, ContentType::ExternalResource,
+            ContentType::Gallery, ContentType::CouncilTerm, ContentType::CouncilMember, ContentType::Committee, ContentType::Media, ContentType::Article, ContentType::Event, ContentType::Document, ContentType::ExternalResource,
             ContentType::PublicNotice, ContentType::Service, ContentType::LifeSituation, ContentType::Page,
             ContentType::Person, ContentType::Department, ContentType::Organization, ContentType::Location,
         ];

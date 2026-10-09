@@ -56,6 +56,11 @@ class Person extends Model implements Revisionable, Searchable
         return $this->belongsToMany(Service::class)->withPivot('sort_order')->withTimestamps();
     }
 
+    public function isPubliclyReachable(): bool
+    {
+        return $this->is_active && ! $this->trashed();
+    }
+
     public function displayTitle(): string
     {
         if ($this->display_name) {

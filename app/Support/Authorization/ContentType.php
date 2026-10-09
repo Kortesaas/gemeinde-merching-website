@@ -9,6 +9,10 @@ namespace App\Support\Authorization;
  */
 enum ContentType: string
 {
+    case Gallery = 'gallery';
+    case CouncilTerm = 'wahlperioden';
+    case CouncilMember = 'ratsmitglieder';
+    case Committee = 'ausschuesse';
     case Media = 'media';
     case SearchSynonym = 'search-synonym';
     case SiteSettings = 'site-settings';
@@ -37,7 +41,7 @@ enum ContentType: string
     public function isPublishable(): bool
     {
         return in_array($this, [
-            self::Media, self::Article, self::Event, self::Document, self::ExternalResource, self::PublicNotice,
+            self::Gallery, self::CouncilTerm, self::CouncilMember, self::Committee, self::Media, self::Article, self::Event, self::Document, self::ExternalResource, self::PublicNotice,
             self::Service, self::LifeSituation, self::Page, self::SiteAlert,
         ], true);
     }
@@ -93,6 +97,10 @@ enum ContentType: string
     public function label(): string
     {
         return match ($this) {
+            self::Gallery => 'Galerie',
+            self::CouncilTerm => 'Wahlperiode',
+            self::CouncilMember => 'Ratsmitglied',
+            self::Committee => 'Ausschuss',
             self::Media => 'Medien',
             self::SearchSynonym => 'Suchbegriffe',
             self::SiteSettings => 'Website-Einstellungen',

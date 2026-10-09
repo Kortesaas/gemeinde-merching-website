@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
+use App\Enums\OnlineServiceMode;
+use App\Models\Concerns\HasContentBlocks;
 use App\Models\Concerns\HasDocumentPlacements;
 use App\Models\Concerns\HasMedia;
 use App\Models\Concerns\HasProposals;
@@ -26,20 +28,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Bürgerservice-Leistung (A–Z, detail pages, Lebenslagen, search).
  * Its URL is independent of category or navigation.
  *
+ * @property OnlineServiceMode $online_service_mode
+ * @property string|null $prerequisites
+ * @property string|null $required_items
+ * @property string|null $processing_duration
+ * @property string|null $important_notice
  * @property int $id
  * @property string $title
  * @property string|null $sort_title
  * @property string|null $summary
  * @property string|null $body
  */
-#[Fillable(['title', 'sort_title', 'summary', 'body', 'category_id', 'online_service_resource_id', 'sort_order'])]
+#[Fillable(['title', 'sort_title', 'summary', 'body', 'category_id', 'online_service_resource_id', 'sort_order', 'prerequisites', 'required_items', 'processing_duration', 'important_notice', 'online_service_mode'])]
 class Service extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasContentBlocks, HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+
+    protected $attributes = ['online_service_mode' => 'not_specified'];
 
     protected function casts(): array
     {
-        return ['sort_order' => 'integer'];
+        return ['online_service_mode' => OnlineServiceMode::class, 'sort_order' => 'integer'];
     }
 
     /**
@@ -124,7 +133,7 @@ class Service extends Model implements Proposable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'sort_title', 'summary', 'body', 'category_id', 'online_service_resource_id', 'sort_order'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'sort_title', 'summary', 'body', 'category_id', 'online_service_resource_id', 'sort_order', 'prerequisites', 'required_items', 'processing_duration', 'important_notice', 'online_service_mode'];
     }
 
     /**
@@ -147,7 +156,13 @@ class Service extends Model implements Proposable, Routable, Searchable
      */
     public function revisionCollections(): array
     {
-        return ['aliases' => ['alias']];
+        return ['blocks' => ContentBlock::COLUMNS, 'aliases' => ['alias'], 'fees' => ServiceFee::COLUMNS];
+    }
+
+    /** @return HasMany<ServiceFee, $this> */
+    public function fees(): HasMany
+    {
+        return $this->hasMany(ServiceFee::class)->orderBy('sort_order')->orderBy('id');
     }
 
     public function toSearchDocument(): SearchDocument
@@ -156,7 +171,7 @@ class Service extends Model implements Proposable, Routable, Searchable
             $this->title,
             (string) $this->summary,
             array_values(array_filter([...$this->aliases->pluck('alias')->all(), $this->category?->name])),
-            (string) $this->body,
+            implode(' ', [$this->body, $this->prerequisites, $this->required_items, $this->processing_duration, $this->important_notice, $this->fees()->get()->map(fn ($fee) => implode(' ', [$fee->description, $fee->context, $fee->amount, $fee->note]))->implode(' ')]),
         );
     }
 }

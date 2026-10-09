@@ -55,6 +55,7 @@ class ExternalResourceResource extends ContentResource
 
     public function beforeForceDelete(Model $model): void
     {
+        parent::beforeForceDelete($model);
         /** @var ExternalResource $model */
         if (app(ContentUsage::class)->isUsed($model)) {
             throw new DomainRuleViolation('Der Link wird noch verwendet und kann nicht endgültig gelöscht werden.');

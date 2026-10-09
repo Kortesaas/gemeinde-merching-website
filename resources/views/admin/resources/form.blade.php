@@ -37,6 +37,7 @@
     <form method="POST" action="{{ $isNew ? route('admin.'.$key.'.store') : route('admin.'.$key.'.update', $model->getKey()) }}"
           @if (in_array($key, ['document','media'], true)) enctype="multipart/form-data" @endif novalidate>
         @csrf
+        <input type="hidden" name="_form_started" value="1">
         @unless ($isNew) @method('PUT') @endunless
 
         @if (in_array($key, ['document','media'], true))
@@ -60,6 +61,7 @@
                 hint="Kurze Beschreibung der Änderung für die Versionsgeschichte." autocomplete="off" />
         @endif
 
+        <input type="hidden" name="_form_complete" value="1">
         @unless ($disabled)
             <button type="submit" class="button">{{ $isNew ? 'Anlegen' : 'Speichern' }}</button>
         @endunless
@@ -74,7 +76,7 @@
             @include('admin.resources.partials.placements')
         @endif
 
-        @if (in_array($key, ['document', 'external-resource','media'], true))
+        @if (in_array($key, ['document', 'external-resource', 'media', 'gallery', 'wahlperioden', 'ratsmitglieder', 'ausschuesse'], true))
             @include('admin.resources.partials.usage')
         @endif
 

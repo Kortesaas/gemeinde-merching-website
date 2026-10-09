@@ -30,12 +30,24 @@
             </p>
         @endif
 
+        @if ($model instanceof \App\Models\Event)
+            @if ($model->operational_status === \App\Enums\EventOperationalStatus::Cancelled)<p><strong>Abgesagt</strong></p>@endif
+            @if ($model->schedule_notice)<p>{{ $model->schedule_notice }}</p>@endif
+            @if ($model->location)@include('public.partials.location', ['location' => $model->location])@endif
+        @endif
+        @if ($model instanceof \App\Models\Location)@include('public.partials.location', ['location' => $model])@endif
+
         @if (! empty($attributes['summary']))
             <p>{{ $attributes['summary'] }}</p>
         @endif
 
         {{-- Editor text is rendered only through SafeMarkdown (escaped HTML, safe links, no images). --}}
         {!! \App\Support\Content\SafeMarkdown::toHtml($attributes['body'] ?? $attributes['description'] ?? null) !!}
+
+        @if (method_exists($model, 'blocks'))@include('public.partials.blocks')@endif
+        @if ($model instanceof \App\Models\Gallery)@include('public.partials.gallery', ['gallery' => $model])@endif
+        @if ($model instanceof \App\Models\Service)@include('public.partials.service-details')@endif
+        @if ($model instanceof \App\Models\CouncilTerm)@include('public.partials.council')@endif
 
         @if (method_exists($model,'media'))
             @foreach ($model->media()->get() as $medium)

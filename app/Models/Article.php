@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
+use App\Models\Concerns\HasContentBlocks;
 use App\Models\Concerns\HasDocumentPlacements;
 use App\Models\Concerns\HasMedia;
 use App\Models\Concerns\HasProposals;
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Fillable(['title', 'summary', 'body', 'category_id', 'department_id', 'author_name', 'is_featured'])]
 class Article extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasContentBlocks, HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected function casts(): array
     {
@@ -118,6 +119,12 @@ class Article extends Model implements Proposable, Routable, Searchable
             'documents' => ['slot', 'group_label', 'sort_order'],
             'externalResources' => ['slot', 'group_label', 'sort_order'],
         ];
+    }
+
+    /** @return array<string, list<string>> */
+    public function revisionCollections(): array
+    {
+        return ['blocks' => ContentBlock::COLUMNS];
     }
 
     public function toSearchDocument(): SearchDocument

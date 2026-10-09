@@ -7,6 +7,7 @@ use App\Admin\Fields;
 use App\Admin\Options;
 use App\Enums\LocationType;
 use App\Models\Location;
+use App\Rules\ControlledText;
 use App\Support\Authorization\ContentType;
 use Illuminate\Database\Eloquent\Model;
 
@@ -57,6 +58,7 @@ class LocationResource extends ContentResource
             Fields\Phone::make('phone', 'Telefon'),
             Fields\Email::make('email', 'E-Mail'),
             Fields\Textarea::make('opening_hours', 'Öffnungszeiten'),
+            Fields\Textarea::make('accessibility_note', 'Zugänglichkeit / Barrierefreiheit')->rules(['max:5000', new ControlledText])->hint('Nur überprüfte Informationen eintragen; leer bedeutet unbekannt.'),
             Fields\Number::make('latitude', 'Breitengrad')->between(-90, 90, 'any'),
             Fields\Number::make('longitude', 'Längengrad')->between(-180, 180, 'any'),
             Fields\BelongsTo::make('map_resource_id', 'Kartenlink (externer Link)')->options(fn () => Options::externalResources())

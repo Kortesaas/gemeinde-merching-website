@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property LocationType $type
  * @property bool $is_active
  */
-#[Fillable(['name', 'type', 'description', 'street', 'postal_code', 'city', 'phone', 'email', 'opening_hours', 'latitude', 'longitude', 'map_resource_id', 'is_active', 'sort_order'])]
+#[Fillable(['name', 'type', 'description', 'street', 'postal_code', 'city', 'phone', 'email', 'opening_hours', 'accessibility_note', 'latitude', 'longitude', 'map_resource_id', 'is_active', 'sort_order'])]
 class Location extends Model implements Revisionable, Routable, Searchable
 {
     use HasPublicRoute, HasRevisions, HasSourceReferences, SoftDeletes;
@@ -87,7 +87,7 @@ class Location extends Model implements Revisionable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['seo_title', 'meta_description', 'seo_noindex', 'name', 'type', 'description', 'street', 'postal_code', 'city', 'phone', 'email', 'opening_hours', 'latitude', 'longitude', 'map_resource_id', 'is_active', 'sort_order'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'name', 'type', 'description', 'street', 'postal_code', 'city', 'phone', 'email', 'opening_hours', 'accessibility_note', 'latitude', 'longitude', 'map_resource_id', 'is_active', 'sort_order'];
     }
 
     public function toSearchDocument(): SearchDocument

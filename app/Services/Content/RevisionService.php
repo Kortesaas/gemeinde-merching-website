@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -32,8 +33,8 @@ use LogicException;
  */
 class RevisionService
 {
-    /** 2 = snapshots also contain child collections (e.g. service aliases). */
-    private const SCHEMA = 2;
+    /** 3 = ordered content compositions; schema 1/2 snapshots remain readable. */
+    private const SCHEMA = 3;
 
     public const PUBLICATION_FIELDS = ['status', 'publish_at', 'expires_at', 'archived_at'];
 
@@ -149,9 +150,10 @@ class RevisionService
             }
         }
 
-        foreach ((array) ($snapshot['collections'] ?? []) as $relation => $rows) {
-            if (array_key_exists($relation, $model->revisionCollections()) && ($onlyCollections === null || in_array($relation, $onlyCollections, true))) {
-                $this->restoreCollection($model, $relation, $model->revisionCollections()[$relation], $rows);
+        foreach ($model->revisionCollections() as $relation => $columns) {
+            $rows = array_values((array) ($snapshot['collections'][$relation] ?? []));
+            if ($onlyCollections === null || in_array($relation, $onlyCollections, true)) {
+                $this->restoreCollection($model, $relation, $columns, $rows);
             }
         }
         app(SearchIndexer::class)->sync($model);
@@ -165,7 +167,7 @@ class RevisionService
      */
     private function collectionRows(Model&Revisionable $model, string $relation, array $columns): array
     {
-        /** @var HasMany<Model, Model> $query */
+        /** @var HasMany<Model, Model>|MorphMany<Model, Model> $query */
         $query = $model->{$relation}();
 
         $rows = $query->get()->map(function (Model $child) use ($columns) {
@@ -177,7 +179,12 @@ class RevisionService
             return $row;
         })->all();
 
-        usort($rows, fn (array $a, array $b) => array_values($a) <=> array_values($b));
+        if (in_array('sort_order', $columns, true)) {
+            // Stable sort preserves the explicit query's ID tie order.
+            usort($rows, fn (array $a, array $b) => $a['sort_order'] <=> $b['sort_order']);
+        } else {
+            usort($rows, fn (array $a, array $b) => array_values($a) <=> array_values($b));
+        }
 
         return $rows;
     }
@@ -188,7 +195,7 @@ class RevisionService
      */
     private function restoreCollection(Model&Revisionable $model, string $relation, array $columns, array $rows): void
     {
-        /** @var HasMany<Model, Model> $query */
+        /** @var HasMany<Model, Model>|MorphMany<Model, Model> $query */
         $query = $model->{$relation}();
         $query->delete();
 

@@ -23,18 +23,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $alt_text
  * @property bool $is_decorative
  */
-#[Fillable(['title', 'alt_text', 'is_decorative', 'caption', 'copyright', 'creator', 'language'])]
+#[Fillable(['title', 'alt_text', 'is_decorative', 'caption', 'copyright', 'creator', 'language', 'focal_x', 'focal_y'])]
 class Media extends Model implements Proposable
 {
     use HasProposals, HasPublication, HasRevisions, SoftDeletes, TracksEditors;
 
     protected $table = 'media';
 
-    protected $attributes = ['language' => 'de', 'is_decorative' => false];
+    protected $attributes = ['language' => 'de', 'is_decorative' => false, 'focal_x' => 50, 'focal_y' => 50];
 
     protected function casts(): array
     {
-        return ['is_decorative' => 'boolean', 'size_bytes' => 'integer', 'width' => 'integer', 'height' => 'integer'];
+        return ['focal_x' => 'decimal:2', 'focal_y' => 'decimal:2', 'is_decorative' => 'boolean', 'size_bytes' => 'integer', 'width' => 'integer', 'height' => 'integer'];
     }
 
     public function displayTitle(): string
@@ -47,6 +47,12 @@ class Media extends Model implements Proposable
         return str_starts_with($this->mime_type, 'image/');
     }
 
+    /** @return array{x:float,y:float} */
+    public function focalPoint(): array
+    {
+        return ['x' => (float) ($this->getAttribute('focal_x') ?? 50), 'y' => (float) ($this->getAttribute('focal_y') ?? 50)];
+    }
+
     public function hasAccessibleAlternative(): bool
     {
         return $this->is_decorative || ($this->alt_text !== null && trim($this->alt_text) !== '');
@@ -55,6 +61,6 @@ class Media extends Model implements Proposable
     /** @return list<string> */
     public function revisionAttributes(): array
     {
-        return ['title', 'alt_text', 'is_decorative', 'caption', 'copyright', 'creator', 'language'];
+        return ['title', 'alt_text', 'is_decorative', 'caption', 'copyright', 'creator', 'language', 'focal_x', 'focal_y'];
     }
 }

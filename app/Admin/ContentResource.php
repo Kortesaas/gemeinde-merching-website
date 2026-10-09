@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Rules\SiteDateTime;
 use App\Services\Audit\AuditLogger;
 use App\Services\Content\PublicationService;
+use App\Services\Content\ReferenceProtection;
 use App\Services\Content\RevisionService;
 use App\Services\Quality\QualityChecks;
 use App\Services\Routing\RouteManager;
@@ -77,6 +78,10 @@ abstract class ContentResource
         }
         if (method_exists($this->model(), 'media')) {
             $fields[] = Fields\BelongsToMany::make('media', 'Medien')->options(fn () => Media::query()->pluck('title', 'id')->all())->sortable();
+        }
+
+        if (method_exists($this->model(), 'blocks')) {
+            $fields[] = Fields\Rows::make('blocks', 'Inhaltsbausteine')->definition('blocks');
         }
 
         return $fields;
@@ -197,7 +202,10 @@ abstract class ContentResource
      *
      * @throws DomainRuleViolation
      */
-    public function beforeForceDelete(Model $model): void {}
+    public function beforeForceDelete(Model $model): void
+    {
+        app(ReferenceProtection::class)->guard($model);
+    }
 
     /**
      * @param  TModel  $model
@@ -210,7 +218,7 @@ abstract class ContentResource
      */
     public function validationRules(?Model $model): array
     {
-        $rules = [];
+        $rules = ['_form_started' => ['nullable'], '_form_complete' => ['required_with:_form_started', 'in:1']];
         foreach ($this->formFields($model) as $field) {
             $rules += $field->validationRules($model);
         }

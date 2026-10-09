@@ -17,6 +17,11 @@
             <dt>{{ $labels[$relation] ?? $relation }}</dt>
             <dd>{{ count($rows) }} Verknüpfung(en)</dd>
         @endforeach
+        @foreach (($revision->snapshot['collections'] ?? []) as $collection => $rows)
+            <dt>{{ $labels[$collection] ?? $collection }}</dt>
+            @php $collectionField = collect($resource->formFields($model))->first(fn ($field) => $field->name === $collection); @endphp
+            <dd class="preserve-lines">{{ $collectionField ? $collectionField->snapshotDisplay(app(\App\Services\Content\ProposalDiff::class)->preview($model, $revision->snapshot), $revision->snapshot) : count($rows).' Einträge' }}</dd>
+        @endforeach
     </dl>
 
     @can('restoreRevision', $model)

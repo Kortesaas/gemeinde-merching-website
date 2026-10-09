@@ -30,7 +30,8 @@ class ContentUsage
     public function of(Document|ExternalResource|Media $item): array
     {
         if ($item instanceof Media) {
-            $usages = array_map(fn (Model $owner) => ['owner' => $owner, 'context' => 'Medienzuordnung'], $this->mediaOwners($item));
+            $usages = app(ReferenceProtection::class)->usages($item);
+            $usages = [...$usages, ...array_map(fn (Model $owner) => ['owner' => $owner, 'context' => 'Medienzuordnung'], $this->mediaOwners($item, false))];
             foreach (ContentRevision::query()->cursor() as $revision) {
                 if ($this->snapshotUsesMedia($revision->snapshot, (int) $item->getKey())) {
                     $usages[] = ['owner' => $item, 'context' => 'Versionsgeschichte #'.$revision->getKey()];
@@ -44,7 +45,7 @@ class ContentUsage
 
             return $usages;
         }
-        $usages = [];
+        $usages = app(ReferenceProtection::class)->usages($item);
 
         foreach ($item->placementRelations() as $relation) {
             foreach ($relation->get() as $owner) {
@@ -82,11 +83,17 @@ class ContentUsage
     }
 
     /** @return list<Model> */
-    public function mediaOwners(Media $media): array
+    public function mediaOwners(Media $media, bool $includeCompositions = true): array
     {
         $owners = [];
         foreach ([Page::class, Article::class, Event::class, PublicNotice::class, Service::class, LifeSituation::class] as $class) {
             foreach ($class::withTrashed()->whereHas('media', fn ($q) => $q->where('media.id', $media->getKey()))->get() as $owner) {
+                $owners[] = $owner;
+            }
+        }
+
+        if ($includeCompositions) {
+            foreach (app(ReferenceProtection::class)->liveOwners($media) as $owner) {
                 $owners[] = $owner;
             }
         }

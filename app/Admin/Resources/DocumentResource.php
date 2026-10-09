@@ -121,6 +121,7 @@ class DocumentResource extends ContentResource
 
     public function beforeForceDelete(Model $model): void
     {
+        parent::beforeForceDelete($model);
         /** @var Document $model */
         $usages = app(ContentUsage::class)->of($model);
         if ($usages !== []) {

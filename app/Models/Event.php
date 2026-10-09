@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Contracts\Proposable;
 use App\Contracts\Routable;
 use App\Contracts\Searchable;
+use App\Enums\EventOperationalStatus;
+use App\Models\Concerns\HasContentBlocks;
 use App\Models\Concerns\HasDocumentPlacements;
 use App\Models\Concerns\HasMedia;
 use App\Models\Concerns\HasProposals;
@@ -31,6 +33,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * auto_archive: expires_at is derived from the end of the event on every save,
  * so the event leaves current listings automatically – no cron job.
  *
+ * @property EventOperationalStatus|null $operational_status
+ * @property string|null $schedule_notice
  * @property int $id
  * @property string $title
  * @property string|null $description
@@ -40,10 +44,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $recurrence_rule
  * @property bool $auto_archive
  */
-#[Fillable(['title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive'])]
+#[Fillable(['title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive', 'operational_status', 'schedule_notice'])]
 class Event extends Model implements Proposable, Routable, Searchable
 {
-    use HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
+    use HasContentBlocks, HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
     protected static function booted(): void
     {
@@ -54,9 +58,12 @@ class Event extends Model implements Proposable, Routable, Searchable
         });
     }
 
+    protected $attributes = ['operational_status' => 'scheduled'];
+
     protected function casts(): array
     {
         return [
+            'operational_status' => EventOperationalStatus::class,
             'starts_at' => 'immutable_datetime',
             'ends_at' => 'immutable_datetime',
             'all_day' => 'boolean',
@@ -146,7 +153,7 @@ class Event extends Model implements Proposable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive', 'operational_status', 'schedule_notice'];
     }
 
     /**
@@ -161,8 +168,14 @@ class Event extends Model implements Proposable, Routable, Searchable
         ];
     }
 
+    /** @return array<string, list<string>> */
+    public function revisionCollections(): array
+    {
+        return ['blocks' => ContentBlock::COLUMNS];
+    }
+
     public function toSearchDocument(): SearchDocument
     {
-        return new SearchDocument($this->title, '', array_values(array_filter([$this->category?->name, $this->venue, $this->organizer_name])), (string) $this->description);
+        return new SearchDocument($this->title, '', array_values(array_filter([$this->category?->name, $this->venue, $this->organizer_name])), (string) $this->description.' '.($this->operational_status?->label() ?? '').' '.(string) $this->schedule_notice);
     }
 }

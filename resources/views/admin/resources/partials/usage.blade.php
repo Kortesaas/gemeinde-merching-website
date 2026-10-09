@@ -1,5 +1,5 @@
 {{-- "Wo wird dieser Eintrag verwendet?" --}}
-@php $usages = app(\App\Services\Content\ContentUsage::class)->of($model); @endphp
+@php $usages = ($model instanceof \App\Models\Document || $model instanceof \App\Models\ExternalResource || $model instanceof \App\Models\Media) ? app(\App\Services\Content\ContentUsage::class)->of($model) : app(\App\Services\Content\ReferenceProtection::class)->usages($model); @endphp
 <section aria-labelledby="usage-heading">
     <h2 id="usage-heading">Verwendung</h2>
     @if ($usages === [])

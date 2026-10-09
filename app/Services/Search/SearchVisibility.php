@@ -4,6 +4,7 @@ namespace App\Services\Search;
 
 use App\Contracts\Routable;
 use App\Models\Article;
+use App\Models\ContentBlock;
 use App\Models\Department;
 use App\Models\Document;
 use App\Models\Page;
@@ -23,6 +24,12 @@ final class SearchVisibility
         }
         if (! $model instanceof Person || ! $model->is_active || $model->trashed()) {
             return null;
+        }
+        foreach (ContentBlock::query()->where('person_id', $model->getKey())->get() as $block) {
+            $owner = $block->owner;
+            if ($owner instanceof Routable && $owner->isPubliclyReachable() && $owner->publicPath() !== null) {
+                return $owner->publicPath();
+            }
         }
         // People have no profile URL; results link to a public context where they are referenced.
         foreach ([Service::class, Department::class, Page::class, Article::class] as $class) {

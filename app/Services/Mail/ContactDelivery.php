@@ -9,7 +9,7 @@ use RuntimeException;
 
 class ContactDelivery
 {
-    /** @param array{contact_name:string,contact_email:string,contact_message:string,contact_phone?:string|null} $data */
+    /** @param array{contact_name:string,contact_email:string,contact_message:string,contact_phone?:string|null,contact_context?:array{path:string,title:string,type:string}|null} $data */
     public function send(ContactRoute $route, array $data): void
     {
         $mailer = (string) config('mail.default');

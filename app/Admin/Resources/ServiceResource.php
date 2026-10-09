@@ -6,8 +6,10 @@ use App\Admin\ContentResource;
 use App\Admin\Fields;
 use App\Admin\Options;
 use App\Enums\CategoryContext;
+use App\Enums\OnlineServiceMode;
 use App\Models\Service;
 use App\Models\Service as ServiceModel;
+use App\Rules\ControlledText;
 use App\Support\Authorization\ContentType;
 use Illuminate\Database\Eloquent\Model;
 
@@ -60,6 +62,12 @@ class ServiceResource extends ContentResource
                 ),
             Fields\Textarea::make('summary', 'Kurzbeschreibung')->rules(['max:1000']),
             Fields\Markdown::make('body', 'Beschreibung / Ablauf'),
+            Fields\Textarea::make('prerequisites', 'Voraussetzungen')->rules(['max:10000', new ControlledText]),
+            Fields\Textarea::make('required_items', 'Benötigte Unterlagen / Gegenstände')->rules(['max:10000', new ControlledText]),
+            Fields\Textarea::make('processing_duration', 'Bearbeitungsdauer')->rules(['max:2000', new ControlledText]),
+            Fields\Textarea::make('important_notice', 'Wichtiger Hinweis')->rules(['max:5000', new ControlledText]),
+            Fields\Select::make('online_service_mode', 'Art des Online-Dienstes')->enum(OnlineServiceMode::class),
+            Fields\Rows::make('fees', 'Gebühren')->definition('fees'),
             Fields\BelongsTo::make('category_id', 'Kategorie')->options(fn () => Options::categories(CategoryContext::Service)),
             Fields\BelongsTo::make('online_service_resource_id', 'Online-Dienst')->options(fn () => Options::externalResources()),
             Fields\BelongsToMany::make('departments', 'Zuständige Stellen')->options(fn () => Options::departments())->sortable(),

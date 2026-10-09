@@ -6,7 +6,9 @@ use App\Admin\ContentResource;
 use App\Admin\Fields;
 use App\Admin\Options;
 use App\Enums\CategoryContext;
+use App\Enums\EventOperationalStatus;
 use App\Models\Event;
+use App\Rules\ControlledText;
 use App\Rules\RecurrenceRule;
 use App\Support\Authorization\ContentType;
 use App\Support\SiteTime;
@@ -48,6 +50,8 @@ class EventResource extends ContentResource
     {
         return [
             Fields\Text::make('title', 'Titel')->required(),
+            Fields\Select::make('operational_status', 'Veranstaltungsstatus')->enum(EventOperationalStatus::class),
+            Fields\Textarea::make('schedule_notice', 'Hinweis zur Terminänderung')->rules(['max:2000', new ControlledText]),
             Fields\DateTime::make('starts_at', 'Beginn')->required(),
             Fields\DateTime::make('ends_at', 'Ende'),
             Fields\Checkbox::make('all_day', 'Ganztägig')->hint('Uhrzeiten werden ignoriert; die Veranstaltung gilt von Tagesbeginn bis Tagesende.'),
@@ -84,6 +88,9 @@ class EventResource extends ContentResource
     protected function beforeSave(Model $model, array $data, Request $request): void
     {
         /** @var Event $model */
+        if ($model->operational_status === null) {
+            $model->operational_status = EventOperationalStatus::Scheduled;
+        }
         if ($model->all_day) {
             $start = SiteTime::fromUtc($model->starts_at)->startOfDay();
             $end = SiteTime::fromUtc($model->ends_at ?? $model->starts_at)->endOfDay();

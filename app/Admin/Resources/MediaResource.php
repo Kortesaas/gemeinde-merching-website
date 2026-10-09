@@ -46,6 +46,8 @@ class MediaResource extends ContentResource
     {
         return [
             Fields\Text::make('title', 'Titel')->required(),
+            Fields\Number::make('focal_x', 'Bildfokus X (%)')->between(0, 100, '0.01')->hint('Ohne Angabe: Bildmitte (50 %). Ändert die Bilddatei nicht.'),
+            Fields\Number::make('focal_y', 'Bildfokus Y (%)')->between(0, 100, '0.01'),
             Fields\Textarea::make('alt_text', 'Alternativtext')->hint('Für bedeutungstragende Bilder erforderlich. Ohne Text bleibt der Bildzweck ungeprüft.'),
             Fields\Checkbox::make('is_decorative', 'Bild ist rein dekorativ')->hint('Dekorative Bilder werden mit ausdrücklich leerem Alternativtext ausgegeben.'),
             Fields\Textarea::make('caption', 'Bildunterschrift'), Fields\Text::make('copyright', 'Urheberrecht / Quelle'),
@@ -84,6 +86,7 @@ class MediaResource extends ContentResource
 
     public function beforeForceDelete(Model $model): void
     {
+        parent::beforeForceDelete($model);
         if (app(ContentUsage::class)->of($model) !== []) {
             throw new DomainRuleViolation('Das Medium wird noch verwendet (einschließlich Versionen oder Vorschlägen).');
         }

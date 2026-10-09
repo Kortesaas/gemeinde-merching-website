@@ -14,13 +14,13 @@ use League\CommonMark\Renderer\NodeRendererInterface;
 use League\CommonMark\Util\HtmlElement;
 
 /**
- * Renders editor text (Markdown) to safe HTML. Temporary content format until
- * the controlled block editor exists (docs/content-model.md#content-safety).
+ * Renders editor text (Markdown) to safe HTML. Text renderer for legacy
+ * bodies and controlled text blocks (docs/content-parity.md).
  *
  * - Raw HTML is escaped, never passed through (no <script>, no on*= handlers).
  * - Unsafe link schemes (javascript:, vbscript:, file:, data:) are removed.
  * - Images are NOT rendered (their alt text is shown instead): no external
- *   requests, no untracked media; images will come from the media library.
+ *   requests, no untracked media; structured image/gallery blocks use the media library.
  * - Headings start at h2 (the page title is the only h1).
  */
 final class SafeMarkdown

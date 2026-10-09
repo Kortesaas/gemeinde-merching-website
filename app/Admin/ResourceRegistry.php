@@ -11,6 +11,10 @@ final class ResourceRegistry
 {
     /** @var list<class-string> */
     public const RESOURCES = [
+        Resources\GalleryResource::class,
+        Resources\CouncilTermResource::class,
+        Resources\CouncilMemberResource::class,
+        Resources\CommitteeResource::class,
         Resources\MediaResource::class,
         Resources\SearchSynonymResource::class,
         Resources\SiteSettingsResource::class,

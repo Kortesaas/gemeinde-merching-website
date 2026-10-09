@@ -11,6 +11,10 @@ use App\Models;
 final class MorphMap
 {
     public const MAP = [
+        'gallery' => Models\Gallery::class,
+        'wahlperioden' => Models\CouncilTerm::class,
+        'ratsmitglieder' => Models\CouncilMember::class,
+        'ausschuesse' => Models\Committee::class,
         'media' => Models\Media::class,
         'search-synonym' => Models\SearchSynonym::class,
         'site-settings' => Models\SiteSettings::class,

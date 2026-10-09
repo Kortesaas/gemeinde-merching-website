@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Public;
 
+use App\Contracts\Routable;
+use App\Models\Gallery;
 use App\Models\Media;
 use App\Services\Content\ContentUsage;
 use App\Services\Content\MediaStorage;
+use App\Services\Content\ReferenceProtection;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class MediaController
@@ -14,6 +17,16 @@ class MediaController
         abort_unless($media->isPubliclyReachable() && (! $media->isImage() || $media->hasAccessibleAlternative()), 404);
         $reachable = false;
         foreach ($usage->mediaOwners($media) as $owner) {
+            if ($owner instanceof Gallery && $owner->publicPath() === null) {
+                $contexts = app(ReferenceProtection::class)->liveOwners($owner);
+                $hasContext = $owner->isPubliclyReachable() && collect($contexts)->contains(fn ($context) => $context instanceof Routable && $context->isPubliclyReachable() && $context->publicPath() !== null);
+                if ($hasContext) {
+                    $reachable = true;
+                    break;
+                }
+
+                continue;
+            }
             if (method_exists($owner, 'isPubliclyReachable') && $owner->isPubliclyReachable()) {
                 $reachable = true;
                 break;

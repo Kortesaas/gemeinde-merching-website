@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 final class SearchIndexer
 {
     public const TYPES = [
+        'gallery' => Models\Gallery::class,
+        'wahlperioden' => Models\CouncilTerm::class,
         'page' => Models\Page::class, 'article' => Models\Article::class, 'service' => Models\Service::class,
         'life-situation' => Models\LifeSituation::class, 'event' => Models\Event::class, 'notice' => Models\PublicNotice::class,
         'document' => Models\Document::class, 'person' => Models\Person::class, 'department' => Models\Department::class,
@@ -31,8 +33,9 @@ final class SearchIndexer
             return;
         }
         $d = $fresh->toSearchDocument();
+        $composition = method_exists($fresh, 'blocks') ? $fresh->blocks()->get()->map(fn ($b) => trim((string) $b->heading.' '.(string) $b->text))->implode(' ') : '';
         DB::table('search_entries')->updateOrInsert(['content_type' => $model->getMorphClass(), 'content_id' => $model->getKey()], [
-            'title' => $d->title, 'summary' => $d->summary, 'keywords' => implode(' ', $d->keywords), 'body' => strip_tags($d->body), 'created_at' => now(), 'updated_at' => now(),
+            'title' => $d->title, 'summary' => $d->summary, 'keywords' => implode(' ', $d->keywords), 'body' => strip_tags($d->body.' '.$composition), 'created_at' => now(), 'updated_at' => now(),
         ]);
     }
 

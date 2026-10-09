@@ -3,10 +3,19 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Committee;
+use App\Models\ContentBlock;
+use App\Models\CouncilTerm;
+use App\Models\Event;
+use App\Models\Location;
+use App\Models\Media;
 use App\Models\Service;
 use App\Models\ServiceAlias;
+use App\Models\ServiceFee;
 use App\Models\Tag;
 use App\Models\User;
+use App\Services\Content\EditorialDetails;
+use App\Services\Content\ReferenceProtection;
 use App\Services\Search\SearchIndexer;
 use App\Session\PrivacyDatabaseSessionHandler;
 use App\Support\MorphMap;
@@ -68,6 +77,16 @@ class AppServiceProvider extends ServiceProvider
             $class::saved($sync);
             $class::deleted($sync);
         }
+        foreach ([ContentBlock::class => [null, null], ServiceFee::class => [Service::class, 'service_id']] as $child => [$parent, $foreignKey]) {
+            $sync = function (Model $row) use ($parent, $foreignKey): void {
+                $owner = $parent === null ? $row->getRelationValue('owner') : $parent::query()->find($row->getAttribute($foreignKey));
+                if ($owner instanceof Model) {
+                    app(SearchIndexer::class)->sync($owner);
+                }
+            };
+            $child::saved($sync);
+            $child::deleted($sync);
+        }
         foreach ([Category::class, Tag::class] as $class) {
             $class::saved(fn () => app(SearchIndexer::class)->rebuild());
             $class::deleted(fn () => app(SearchIndexer::class)->rebuild());
@@ -77,6 +96,12 @@ class AppServiceProvider extends ServiceProvider
     private function configureModels(): void
     {
         Date::use(CarbonImmutable::class);
+        foreach ([Media::class, Service::class, Event::class, Location::class, CouncilTerm::class, Committee::class] as $class) {
+            $class::saving(fn (Model $model) => app(EditorialDetails::class)->validate($model));
+        }
+        foreach (array_unique(ReferenceProtection::REFERENCES) as $class) {
+            $class::forceDeleting(fn (Model $model) => app(ReferenceProtection::class)->guard($model));
+        }
 
         // Fail loudly during development on lazy loading, silently discarded
         // attributes and access to missing attributes.
