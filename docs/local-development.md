@@ -110,6 +110,49 @@ Prefix with `docker compose exec app` when using Docker.
 `npm test` needs the Playwright browser once: `npx playwright install chromium`
 (or `--only-shell chromium`).
 
+## Development demo content (local only)
+
+To review the design with realistic, clearly fictional content, load the
+development demo data into a **fresh** local database:
+
+```bash
+docker compose exec app php artisan migrate:fresh --seed
+docker compose exec app php artisan db:seed --class=DevelopmentDemoSeeder
+```
+
+`DevelopmentDemoSeeder` refuses to run outside `local`/`development`/`testing`
+and on a database that already contains pages, articles or services. All names,
+addresses, phone numbers (Bundesnetzagentur fiction block 089 99998 …), fees,
+dates and texts are invented; demo records carry the source reference
+`development-demo`. Images are artificial illustrations from `database/demo/media`
+(rendered by `database/demo/source/render-images.mjs`); documents are generated
+PDF/DOCX placeholders. Nothing here is Gemeinde Merching information. The demo
+seeder, its files and `database/demo` are removed from release artifacts.
+
+### Demo administrator (local only)
+
+| | |
+|---|---|
+| Login | <http://localhost:8088/verwaltung/login> |
+| E-Mail | `admin@demo.localhost` |
+| Passwort | `Merching-Demo-2026` |
+| TOTP-Schlüssel (MFA) | `MERCHINGDEMOVERWALTUNGLOKAL23456` |
+
+MFA stays required. Add the key to any authenticator app (manual entry, type
+TOTP/time-based, SHA-1, 6 digits, 30 seconds) or scan a QR code generated from
+`otpauth://totp/Merching%20Demo:admin@demo.localhost?secret=MERCHINGDEMOVERWALTUNGLOKAL23456&issuer=Merching%20Demo`.
+For a quick look without an authenticator you may set `MFA_REQUIRED=false` in
+your **local** `.env`; the demo admin still has MFA enabled and is asked for a code.
+
+The demo editors (`sabine.probe@`, `petra.beispiel@`, `tobias.muster@`,
+`jana.exempel@demo.localhost`) have random passwords; they exist so that the
+dashboard shows proposals and revisions from other people.
+
+**Production safety:** accounts on the reserved `demo.localhost` domain cannot
+be created (`User` model guard) or sign in (`AdminAuthenticator`) outside
+local/development/testing, and `php artisan deploy:check` fails while any such
+account exists. The seeder itself is not shipped in releases.
+
 ## Backend accounts locally
 
 - `php artisan admin:create` – interactive; never pass passwords as arguments.

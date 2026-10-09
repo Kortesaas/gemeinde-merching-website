@@ -8,20 +8,14 @@ proposals, history and the goneo release pipeline remain authoritative.
 ## Reference review
 
 Both ignored HTML exports in `designsystem-inspiration/` were examined offline.
-Their nested source and assets were inspected, and all 13 public and 10 CMS
-reference screens were rendered locally with external network access blocked.
-The reference runtime was used only for inspection, never copied into the app.
+Their nested page bundles were extracted and all 13 public and 10 CMS reference
+screens were rendered with external network access blocked. The reference runtime
+was used only for inspection, never copied into the app.
 
-The review covers public desktop/mobile home, navigation, search panel,
-suggestions, results, header/footer, service landing, service detail and A–Z;
-and CMS dashboard, overview/navigation, article/event/service editors,
-documents, people/departments, media and publication quality.
-
-Local implementation screenshots are in `build/visual-review/2026-10-09/`
-(ignored): 46 captures, public screens at 390/1440 px and CMS screens at
-768/1440 px. They contain disposable synthetic fixtures, not verified official
-information. Fixture records, private files and temporary login sessions are
-removed after capture. Screenshots are review evidence, not pixel snapshots in CI.
+Implementation screens are reviewed against those renders with the development
+demo content (see [local-development.md](local-development.md#development-demo-content-local-only))
+at 320, 390, 768, 1024 and 1440 px, public and CMS. Screenshots are review
+evidence, not pixel snapshots in CI; the browser suite checks reflow and axe.
 
 ## Identity, typography and tokens
 
@@ -39,7 +33,7 @@ removed after capture. Screenshots are review evidence, not pixel snapshots in C
 | Borders | `#66707e` on controls; `#d6deea` decorative rules |
 | Type | Atkinson Hyperlegible, public base 1.125 rem, line height 1.6 |
 | Spacing | Named 0.25–4 rem steps; section spacing fluid 3–6 rem |
-| Widths | Outer 76 rem, reading 46 rem, sidebar 15 rem, aside 19 rem |
+| Widths | Outer 80 rem, reading 46 rem, CMS sidebar 15.5 rem, aside 19 rem |
 | Corners/shadow | 0.5/1 rem corners; one restrained panel shadow |
 | Breakpoints | 40, 64 and 80 rem |
 
@@ -118,89 +112,104 @@ Open Graph values. Existing structured-data hooks and sitemap generation remain
 unchanged. Search results/suggestions stay noindex; staging indexing restrictions
 continue to override templates.
 
-## Menus, search and progressive enhancement
+## Header, menus, search and progressive enhancement
 
-Native `details`/`summary` controls support desktop expanded menus and a separate
-narrow-screen menu. With JavaScript, the narrow menu begins collapsed; desktop
-branches close their peers. Escape closes the nearest open branch, then the
-mobile menu, returning focus to the corresponding summary. There is no hover-only
-navigation or menu-role imitation.
+The wide header is one row: Wappen and name, the main navigation, and the search
+button. There is no separate utility row; “Kontakt” lives in the narrow-screen
+menu, the footer and the contact sections. Between 64 and 80 rem the tagline and
+the search label collapse so the navigation stays on one line; below 64 rem the
+dedicated narrow layout (search icon + “Menü”) takes over.
+
+Native `details`/`summary` controls drive both the expanded desktop panel and the
+narrow-screen menu. With a mouse on wide screens a section opens after a short
+hover pause and closes on leaving; a click right after a hover-open keeps it open.
+Keyboard and touch use the native disclosure (Enter/Space, tap); Escape closes the
+nearest branch and returns focus to its summary; focus or clicks elsewhere close
+open panels. Nothing is reachable only by hover. Without JavaScript the narrow
+menu is rendered open in the page flow instead of as an overlay, so it never
+covers content. The overlay layout is enabled by a `js` class set by the script.
 
 The search link has a real GET destination. Where supported, JavaScript opens a
-native modal `dialog`, focuses the labelled search input and returns focus on
-close. Narrow screens use the full-height panel. Native dialog behavior provides
-focus containment and Escape.
+native modal `dialog` (full-screen panel with brand bar), focuses the labelled
+input and returns focus on close; “Alle Ergebnisse anzeigen” follows the typed
+phrase. Suggestions use the existing `SiteSearch` service through
+`/suche/vorschlaege`: debounced, abortable, same-origin, credential-free and
+rate-limited; the typed text is emphasised with DOM text nodes only. The combobox
+uses `aria-activedescendant`; arrows select, Enter opens or searches, Escape
+clears suggestions first. Results show type tabs with counts, the managed synonym
+hint and highlighted matches (escaped server-side before marking).
 
-Suggestions use the existing `SiteSearch` service through `/suche/vorschlaege`,
-not a copied browser dataset. Requests are debounced, abortable, same-origin,
-credential-free, rate-limited and never logged as search statistics. Service-only
-entry points retain their type filter. The combobox/listbox uses input focus and
-`aria-activedescendant`; arrows select, Enter follows a selected suggestion or
-submits normal GET search, and Escape clears suggestions first. Text is inserted
-with `textContent`. Publication is checked on every backend result.
-
-Managed synonyms continue to work through the real backend. No fictional typo
-engine or mockup “did you mean” claim is introduced. Full-result statistics are
-recorded only when existing configuration explicitly enables them.
+Site alerts render as a band below the header (warning/info on the homepage,
+critical on every page). With JavaScript each band has a labelled close button
+that hides it for the current page view; nothing is stored, so anonymous visits
+stay free of cookies and browser storage.
 
 Contact and feedback reuse existing CSRF, nonce, rate limiting, routing and
 privacy behavior. Labels, required indicators, summary focus and field errors
 remain server-rendered. JavaScript preserves valid contact details only in page
-memory after server errors; it clears the message and stores nothing in browser
-storage or flashed session input. The native no-JavaScript POST remains usable
-and retains the stricter existing input-clearing behavior. Network failure gives
-an inline alert and enables retry. Recipients stay private.
+memory after server errors; it clears the message and stores nothing. The native
+no-JavaScript POST remains usable. Recipients stay private.
+
+## Motion
+
+`resources/css/public/motion.css` contains all public motion and applies only
+under `prefers-reduced-motion: no-preference` (the base stylesheet additionally
+neutralises durations for reduced motion). Durations are 150–450 ms with an
+ease-out curve: colour/border transitions on links, buttons, chips and inputs;
+the expanded navigation panel, narrow-screen menu, search overlay, suggestion
+list and accordions fade/slide in by a few pixels; row arrows nudge on hover and
+focus; card and gallery images zoom by 3 % inside clipped frames; event date
+badges tint on hover/focus. The always-open desktop navigation is never animated
+on page load. The CMS uses the same restraint (section chevrons, panel reveals,
+account menu, tile/card hover lift). Browser tests wait for running animations to
+finish before axe scans, so contrast is checked in the settled state.
+
 
 ## CMS components and editorial workflows
 
-`layouts.admin` uses a 15 rem sidebar, permission-filtered resource groups, account
-and logout controls, a light main surface and white panels. Narrow layouts use a
-native navigation disclosure rather than compressing the sidebar.
+`layouts.admin` has a sticky white sidebar (Wappen, “Redaktion”, permission-filtered
+groups, open-review count) and a topbar with content search (to “Alle Inhalte”),
+“Website ansehen” and an account menu (initials, name, role, account security,
+logout). Narrow layouts use a native navigation disclosure instead of compressing
+the sidebar. All CMS colours, badges and panels come from the shared tokens.
 
-Dashboard panels show real permitted review requests, own proposals, recently
-changed records, scheduled/expiring content, unchecked documents, missing media
-alternatives and upcoming cancelled events. Queries are bounded; review types
-are selected by publication rights before loading, and policy checks still run.
-The additive `100900` migration indexes editorial ordering and quality queries.
-No decorative counts imply completeness.
+The dashboard shows four real summary tiles (open reviews, scheduled publications,
+items expiring within 14 days, documents with unchecked accessibility), the review
+queue with “Prüfen” actions, scheduled/expiring items, the next events, quality
+issues (errors from automatic checks on recent drafts, missing image alternatives,
+unchecked documents, cancelled events) and recent editorial work. Queries are
+bounded and limited to permitted types; create actions appear only with permission.
 
-The cross-entity overview is deliberately bounded to the latest 50 matching
-records per permitted type, with an explicit explanation and links to the full
-per-entity lists. Native GET search/type filters and pagination remain available.
-Entity lists retain publication filters, recycle bin and existing authorized
-actions. Data tables retain captions/headers and named controlled scroll regions;
-hidden labels stay inside that region so they do not cause viewport overflow.
+Lists share one pattern: page header with eyebrow and primary action, a filter
+card, a result count, status badges (text plus colour) and a table with captions
+and scoped headers inside a labelled, focusable scroll region. Below 40 rem list
+tables stack into labelled rows (explicit table roles keep semantics). Paginated
+lists auto-load the relations their columns read. The media list adds a thumbnail
+grid with alternative-text state.
 
-`EditorSections` groups the real field definitions into content, relationships,
-media/accessibility, search-engine fields and blocks. No database fields are
-silently removed. Publication/URL/revision note use a separate column at 80 rem.
-Optional groups collapse progressively with JavaScript, except validation errors;
-without JavaScript all groups begin open and remain native disclosures. Editor
-and quality anchors open enclosing groups. Uploads and document/link placements
-retain their server forms and resource authorization.
+Editors: a sticky bar (back to list, status badge, last change, “Ansehen”,
+“Versionen”, “Speichern”), section tabs and card sections in a stable order —
+Datei, Inhalt, Medien, Inhaltsbausteine, Beziehungen, SEO — with an aside for
+Qualität, Veröffentlichung, URL and the change note plus a second save button.
+Downloads & Links, Änderungsvorschläge, usage and a danger zone (recycle bin,
+restore, permanent deletion with confirmation) follow. SEO starts collapsed unless
+it contains errors. The form element wraps exactly the editable fields (it was
+previously malformed, which dropped the multipart encoding for uploads; covered by
+`EditorMarkupTest`). Relation checklists are selectable cards with an order field
+and, for media, thumbnails.
 
-Row controls add allowed block types, reorder with up/down buttons while retaining
-focus, and mark removal after confirmation. A live message explains the action.
-The selected block type shows relevant controls and clears incompatible reference
-IDs/heading levels. Three blank slots are provided by the backend; saving supplies
-more. Without JavaScript, numeric position and labelled removal checkboxes remain
-usable. This is a controlled editor, without colors/fonts/CSS/layout choices.
+The block editor renders each row as a numbered card with its type as title,
+icon buttons “Nach oben”, “Nach unten”, “Entfernen” (full text as accessible
+name and tooltip), a live status message and an “add block” bar. Without
+JavaScript, position numbers and removal checkboxes remain usable.
 
-The central media screen has a thumbnail grid plus a full metadata table, upload
-and edit links, alt/decorative state, dimensions/size, copyright/source, focal point,
-where-used and existing safe deletion feedback. It adds no portraits.
+Quality distinguishes “Fehler”, “Warnung” and “Empfehlung” by icon and word,
+explains whether publication is blocked and links to fields. Proposal review shows
+facts, a conflict notice, and per field the start value, the proposal and any newer
+live value side by side, then the decision panel (approve with explicit conflict
+confirmation; reject with a required reason). History is a timeline of versions
+with author, date, note and a confirmed restore that creates a new version.
 
-Quality appears at the top of existing editors. “Fehler”, “Warnung” and
-“Empfehlung” are textual, publication blocking is explained, and links identify
-fields or placements. These are the existing automated checks, not a claim that
-PDFs, prose, every link or every accessibility requirement have been verified.
-
-Proposal screens distinguish the published record, starting version, proposed
-field/relation/block differences and any newer live conflicts. Grouped proposal
-editing, submit/withdraw, review, required rejection reason and approval retain
-all existing policy and self-approval rules. History shows dates, editors, notes,
-readable collection snapshots and an explicit restore disclosure; progressive
-confirmation protects the action. Restore still creates a new revision.
 
 ## Media delivery and performance
 
@@ -245,6 +254,13 @@ text-spacing/zoom tests and content/PDF accessibility review remain required bef
 launch, as described in `docs/accessibility.md`.
 
 ## Intentional adaptations from the mockups
+
+- The header has no utility row (“Leichte Sprache”/“Gebärdensprache” links in the
+  reference point to content that does not exist yet); add them as footer or menu
+  entries once the pages exist.
+- News listings use image cards (featured first card, designed fallback without
+  image) instead of the reference's text list, so editorial images are visible;
+  the homepage keeps a compact list with one lead image.
 
 - Dark-blue footer follows the approved written identity direction instead of the
   reference’s light-gray footer.

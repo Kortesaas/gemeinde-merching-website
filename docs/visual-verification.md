@@ -1,91 +1,59 @@
-# Final visual verification — 2026-10-09
+# Visual verification — 2026-10-09
 
 Implementation and reference adaptations: [visual-system.md](visual-system.md).
-No real content was imported and no release was activated.
+No real content was imported, nothing was deployed and nothing was pushed.
 
 | Check | Result |
 |---|---|
-| Complete PHPUnit / MySQL | 412 tests, 2,309 assertions passed |
-| Laravel Pint | Passed, 334 files |
-| Larastan level 8 | Passed, no errors |
-| Composer audit | No vulnerability advisories |
-| npm audit, moderate threshold | No vulnerabilities |
-| Production Vite build | Passed |
-| Config / route / view caches | Built successfully; cached public requests returned 200 without cookies; development caches then cleared |
-| Browser / axe | Full 40-test Chromium suite; public/CMS journeys, keyboard, no-JS, reflow, contact, privacy, forced colors and reduced motion |
-| Whitespace check | `git diff --check` passed |
+| PHPUnit (MySQL) | 422 tests, 2,539 assertions passed |
+| Laravel Pint | Passed, 343 files |
+| Larastan level 8 | No errors (including `database/seeders`) |
+| Composer audit | No advisories |
+| npm audit (moderate) | 0 vulnerabilities |
+| Production Vite build | Passed — app CSS 65.4 kB (11.7 kB gzip), CMS CSS 35.7 kB (7.3 kB gzip), JS 10.5 kB (3.7 kB gzip), font 58 kB |
+| Config / route / view cache | Built; cached public requests returned 200 with no `Set-Cookie`; caches cleared afterwards |
+| Playwright + axe (Chromium) | 40 of 40 passed with `PARITY_BROWSER_FIXTURES=docker` (keyboard, no-JS, reflow 320–1440, forced colours, reduced motion, privacy, CMS) |
+| Fresh database | `migrate:fresh --seed` → `DevelopmentDemoSeeder` succeeded; also covered by `DevelopmentDemoContentTest` |
+| Demo admin | Password + documented TOTP reach the dashboard locally; refused in production (tests) |
 
-The final browser result is checked before handoff. Disposable local fixture
-creation is opt-in, refuses non-local environments, and removes its records,
-private files and temporary session after the suite. Local contact rate-limit
-cache was reset between repeated browser runs; application limits were retained.
-Existing tests were retained. Obsolete placeholder labels and assertions rejecting
-any script/image anywhere were scoped to their original safety purpose: no inline
-scripts, no executable editorial markup, and no editorial Markdown images.
-
-Commands:
+## Commands
 
 ```sh
 docker compose exec -T app composer check
 npm audit --audit-level=moderate
 npm run build
+docker compose exec -T app php artisan migrate:fresh --seed
+docker compose exec -T app php artisan db:seed --class=DevelopmentDemoSeeder
+docker compose exec -T app php artisan cache:clear   # resets local contact rate limits
 PARITY_BROWSER_FIXTURES=docker npx playwright test --workers=2
-docker compose exec -T app php artisan config:cache
-docker compose exec -T app php artisan route:cache
-docker compose exec -T app php artisan view:cache
-scripts/release/build.sh
 ```
 
-The release script runs from the clean committed tree, installs production PHP
-dependencies, checks the platform, builds assets in Linux, strips development
-files and produces a local tarball plus SHA-256 sidecar in `build/releases/`.
-It does not deploy. Its resulting artifact is the final packaging evidence.
+## Manual visual review
 
-## Visual and accessibility evidence
+Public pages and CMS screens were rendered with the demo content and compared
+with the reference renders at 320, 390, 768, 1024 and 1440 px: homepage (with and
+without the dismissed alert), expanded navigation (hover and keyboard), narrow
+menu, search overlay with suggestions, results, Bürgerservice landing, A–Z,
+service detail, life situation, news grid and detail, events, notices, documents,
+directory, council, gallery, contact and error pages; CMS dashboard, lists,
+article/service editors, proposal review, history and media. An automated sweep
+found no page-level horizontal overflow and no non-200 responses on these routes.
 
-46 local screenshots are retained in ignored `build/visual-review/2026-10-09/`.
-Public: home, navigation, search panel/results, service landing/A–Z/detail,
-article/event, documents/notices, directory, contact and 404 at 390/1440 px.
-CMS: dashboard, overview, article/event/service editors, media, proposal, history
-and expanded blocks at 768/1440 px. Reference sources were inspected offline;
-major layouts, type, whitespace and hierarchy were compared manually.
+Issues found and fixed during this review include: lazy-loading crashes (life
+situations on the Bürgerservice page, person search results, images placed in
+two galleries, CMS lists with category columns), a malformed editor `<form>` tag
+that dropped the upload encoding, a broken image block template, the overlay menu
+covering content without JavaScript, desktop navigation fading in on every page
+load, and visually hidden table labels widening phone layouts.
 
-Reflow checks cover 320/390/768/1024/1440 px, including synthetic long titles,
-compound words, long filenames, seven contacts/downloads, multiple fee rows,
-missing images and expired notices. Tables use controlled, named scroll regions.
+Axe scans run after short UI animations settle. Automated checks do not replace
+the screen-reader, zoom/text-spacing and content/PDF reviews listed in
+[accessibility.md](accessibility.md).
 
-Calculated sRGB contrast ratios:
+## Before launch
 
-| Pair | Ratio |
-|---|---|
-| Main text / white | 16.40:1 |
-| Secondary text / white | 8.21:1 |
-| Action/link blue / white | 6.32:1 |
-| White / dark footer | 13.70:1 |
-| Dark text / identity sky | 8.91:1 |
-| Control border / white | 5.02:1 |
-
-Automated axe scans are supplemented by keyboard/focus, local visual/reflow and
-contrast review. They do not certify accessibility. Native screen-reader,
-text-spacing/browser-zoom, real-content/PDF and formal accessibility review
-remain launch gates in [accessibility.md](accessibility.md).
-
-## Asset budget
-
-The build contains one 58.26 kB self-hosted variable font, the supplied 17.02 kB
-Wappen raster, approximately 23 kB public CSS / 14 kB CMS CSS and 7.94 kB JavaScript
-(2.91 kB gzip). No external runtime or always-running Node service is introduced.
-Public images use authorized in-memory responsive variants and lazy loading.
-Real-world resize CPU/memory should be measured on the target hosting package.
-
-## Next-phase gates
-
-Before controlled migration, agree the real managed navigation/footer tree,
-collection-page addresses and verified structured settings. No code blocker is
-known from these checks. Migration and deployment require a separate instruction.
-
-Before production launch: obtain and verify the official Wappen SVG/EPS source,
-replace the documented prototype raster, supply approved legal/privacy and
-accessibility content/links, verify municipal contact/opening-hours facts and
-complete the manual accessibility and production operational checks. No mockup
-facts or legal text were invented to conceal missing content.
+Replace the prototype Wappen with the verified official source, supply approved
+legal, privacy and accessibility pages and links, verify all municipal facts
+during the separate migration, and benchmark image derivation on the goneo
+package. Never run the demo seeder on staging or production; `deploy:check`
+fails if demo accounts exist.
