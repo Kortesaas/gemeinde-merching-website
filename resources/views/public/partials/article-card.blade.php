@@ -1,14 +1,16 @@
 @php
     $image = $record->media->first(fn ($m) => $m->isPubliclyReachable() && $m->isImage() && $m->hasAccessibleAlternative());
+    $crest = $image === null || preg_match('/wappen|beitragsbild_logo_merching/i', $image->original_filename.' '.$image->title);
+    $municipalCrest = $image === null || preg_match('/beitragsbild_logo_merching|wappen-merching|wappen-alternativ/i', $image->original_filename);
     $tag = $headingTag ?? 'h2';
     $featured = $featured ?? false;
 @endphp
 <article class="article-card {{ $featured ? 'article-card--featured' : '' }}">
-    <div class="article-card__media">
-        @if ($image)
-            @include('public.partials.image', ['medium' => $image, 'imageAlt' => '', 'imageSizes' => $featured ? '(max-width: 48rem) calc(100vw - 2rem), 44rem' : '(max-width: 48rem) calc(100vw - 2rem), 24rem', 'imageLoading' => $featured ? 'eager' : 'lazy'])
+    <div class="article-card__media {{ $crest ? 'news-preview-crest' : '' }}">
+        @if ($image && ! $municipalCrest)
+            @include('public.partials.image', ['medium' => $image, 'imageAlt' => '', 'imageClass' => $crest ? 'news-preview-crest__image' : '', 'imageSizes' => $featured ? '(max-width: 48rem) calc(100vw - 2rem), 44rem' : '(max-width: 48rem) calc(100vw - 2rem), 24rem', 'imageLoading' => $featured ? 'eager' : 'lazy'])
         @else
-            <div class="article-card__placeholder" aria-hidden="true"><x-icon name="file" /><span>{{ $record->category?->name ?? 'Meldung' }}</span></div>
+            <img class="news-preview-crest__image" src="{{ \Illuminate\Support\Facades\Vite::asset(config('public.wappen')) }}" alt="" width="667" height="693">
         @endif
     </div>
     <div class="article-card__body">

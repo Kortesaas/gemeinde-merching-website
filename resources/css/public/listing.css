@@ -894,3 +894,17 @@
         width: 100%;
     }
 }
+
+/* Crest previews keep the photo frame and use a quiet municipal background. */
+.article-card__media.news-preview-crest, .news-item__media.news-preview-crest {
+    display: grid;
+    place-items: center;
+    background: #f2f1ed;
+}
+.news-preview-crest img.news-preview-crest__image {
+    width: 32%;
+    height: 64%;
+    object-fit: contain;
+    object-position: center;
+    margin: auto;
+}
