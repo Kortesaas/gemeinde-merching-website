@@ -6,6 +6,7 @@ use App\Admin\ContentResource;
 use App\Contracts\Proposable;
 use App\Enums\ProposalStatus;
 use App\Exceptions\DomainRuleViolation;
+use App\Models\BudgetPlan;
 use App\Models\ContentProposal;
 use App\Models\ContentRevision;
 use App\Models\User;
@@ -153,9 +154,19 @@ class ProposalService
         }
 
         try {
-            return DB::transaction(function () use ($proposal, $record, $reviewer, $changes, $conflicts) {
+            return app(BudgetWorkflow::class)->transaction(function () use ($proposal, $record, $reviewer, $changes, $conflicts, $confirmConflicts) {
+                app(BudgetWorkflow::class)->lock($record);
+                if ($record instanceof BudgetPlan) {
+                    ContentProposal::query()->whereKey($proposal->getKey())->lockForUpdate()->firstOrFail();
+                    $proposal->refresh();
+                    $this->assertStatus($proposal, ProposalStatus::Submitted);
+                    if (! $confirmConflicts && $this->conflicts($proposal) !== []) {
+                        throw new DomainRuleViolation('Der Haushaltsplan wurde inzwischen geändert. Bitte den Vergleich erneut prüfen und die Konflikte bestätigen.', 'confirm_conflicts');
+                    }
+                }
                 $this->revisions->applySnapshot($record, $proposal->payload, $changes['attributes'], $changes['relations'], $changes['collections']);
 
+                app(BudgetWorkflow::class)->finish($record, $reviewer);
                 app(QualityChecks::class)->enforcePublicAssets($record);
 
                 $author = $proposal->author !== null ? $proposal->author->name : 'unbekannt';

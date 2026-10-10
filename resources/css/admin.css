@@ -12,3 +12,8 @@
 @import "./components/admin-tables.css";
 
 @import "./components/cms.css";
+
+.budget-package { display: grid; gap: 1rem; }
+.budget-package p { margin: 0; }
+
+.budget-package .form-field > .button { order: 4; margin-top: .75rem; }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\TwoFactorChallengeController;
+use App\Http\Controllers\Admin\BudgetController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentFileController;
 use App\Http\Controllers\Admin\MediaFileController;
@@ -105,6 +106,13 @@ Route::middleware(['auth', 'auth.session', 'admin.session'])->group(function () 
             Route::post('{proposal}/zuordnungen', 'storePlacement')->name('placements.store');
             Route::delete('{proposal}/zuordnungen/{kind}/{index}', 'destroyPlacement')->whereNumber('index')->name('placements.destroy');
         })->whereNumber('proposal');
+
+        Route::prefix('haushaltsplaene/{record}')->whereNumber('record')->name('budget-plan.')->controller(BudgetController::class)->group(function () {
+            Route::post('pdfs', 'upload')->name('upload');
+            Route::post('gesamt-pdf', 'generate')->name('generate');
+            Route::get('dateien/{kind}/{file}', 'file')->where('kind', 'quelle|gesamt')->whereNumber('file')->name('file');
+            Route::get('nachweis/{publication}', 'proof')->whereNumber('publication')->name('proof');
+        });
 
         Route::get('medien/{record}/datei', MediaFileController::class)->whereNumber('record')->name('media.file');
 

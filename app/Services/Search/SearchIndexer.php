@@ -14,7 +14,7 @@ final class SearchIndexer
         'wahlperioden' => Models\CouncilTerm::class,
         'page' => Models\Page::class, 'article' => Models\Article::class, 'service' => Models\Service::class,
         'life-situation' => Models\LifeSituation::class, 'event' => Models\Event::class, 'notice' => Models\PublicNotice::class,
-        'document' => Models\Document::class, 'person' => Models\Person::class, 'department' => Models\Department::class,
+        'budget-plan' => Models\BudgetPlan::class, 'document' => Models\Document::class, 'person' => Models\Person::class, 'department' => Models\Department::class,
         'organization' => Models\Organization::class, 'location' => Models\Location::class,
     ];
 

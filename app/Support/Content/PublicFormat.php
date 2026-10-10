@@ -13,7 +13,7 @@ final class PublicFormat
 {
     /** Listing section that contains records of a type, used for fallback breadcrumbs. */
     private const SECTIONS = [
-        Models\Service::class => 'services', Models\LifeSituation::class => 'services', Models\Article::class => 'articles',
+        Models\BudgetPlan::class => 'budgets', Models\Service::class => 'services', Models\LifeSituation::class => 'services', Models\Article::class => 'articles',
         Models\Event::class => 'events', Models\PublicNotice::class => 'notices', Models\Department::class => 'directory',
         Models\Organization::class => 'organizations', Models\Location::class => 'directory', Models\CouncilTerm::class => 'directory',
     ];

@@ -29,6 +29,7 @@ final class RowDefinitions
         $order = ['sort_order' => ['label' => 'Position', 'rules' => ['required', 'integer', 'min:0', 'max:65535'], 'type' => 'number']];
 
         return match ($definition) {
+            'budgetComponents' => $order + ['budget_source_id' => ['label' => 'PDF-Datei', 'rules' => ['required', 'integer', Rule::exists('budget_sources', 'id')]]],
             'fees' => $order + ['description' => $text('Beschreibung', required: true), 'context' => $text('Gültigkeit / Kontext'), 'amount' => ['label' => 'Betrag in EUR (optional)', 'rules' => ['nullable', 'numeric', 'decimal:0,2', 'min:0', 'max:99999999.99'], 'type' => 'number'], 'note' => $text('Hinweis')],
             'items' => $order + ['media_id' => $reference('Bild aus der Medienbibliothek', 'media', Models\Media::class, true), 'caption' => $text('Abweichende Bildunterschrift', 5000) + ['multiline' => true], 'alt_override' => $text('Alternativtext für diesen Kontext', 2000), 'alt_context' => $text('Begründung des abweichenden Bildkontexts')],
             'memberships' => $order + ['council_member_id' => $reference('Ratsmitglied', 'council_members', Models\CouncilMember::class, true), 'role' => $text('Rolle in der Wahlperiode', required: true), 'grouping' => $text('Liste / Gruppierung / Partei (optional)')],

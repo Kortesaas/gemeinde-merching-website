@@ -3,7 +3,9 @@
 namespace App\Services\Content;
 
 use App\Contracts\Revisionable;
+use App\Models\BudgetPlan;
 use App\Models\ContentRevision;
+use App\Models\CouncilMember;
 use App\Models\User;
 use App\Services\Audit\AuditLogger;
 use App\Services\Quality\QualityChecks;
@@ -15,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use LogicException;
 
 /**
@@ -108,9 +110,14 @@ class RevisionService
             throw new LogicException('Revision target does not support revisions.');
         }
 
-        return DB::transaction(function () use ($model, $revision, $editor) {
+        return app(BudgetWorkflow::class)->transaction(function () use ($model, $revision, $editor) {
+            app(BudgetWorkflow::class)->lock($model);
+            if ($model instanceof BudgetPlan) {
+                Gate::forUser($editor)->authorize('restoreRevision', $model);
+            }
             $this->applySnapshot($model, $revision->snapshot);
 
+            app(BudgetWorkflow::class)->finish($model, $editor);
             app(QualityChecks::class)->enforcePublicAssets($model);
 
             $new = $this->record($model->refresh(), $editor, "Version {$revision->revision_number} wiederhergestellt")
@@ -142,6 +149,10 @@ class RevisionService
         $allowed = array_values(array_diff($model->revisionAttributes(), self::PUBLICATION_FIELDS));
         $attributes = Arr::only((array) ($snapshot['attributes'] ?? []), $onlyAttributes === null ? $allowed : array_intersect($allowed, $onlyAttributes));
 
+        // Revisions created before portrait support represented a member without a portrait.
+        if ($model instanceof CouncilMember && $onlyAttributes === null && ! array_key_exists('portrait_id', $snapshot['attributes'] ?? [])) {
+            $attributes['portrait_id'] = null;
+        }
         $model->forceFill($attributes)->save();
 
         foreach ((array) ($snapshot['relations'] ?? []) as $relation => $rows) {

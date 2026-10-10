@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Public\BudgetDownloadController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\ContentController;
 use App\Http\Controllers\Public\DocumentDownloadController;
@@ -44,6 +45,9 @@ Route::get('/robots.txt', RobotsController::class)->name('public.robots');
 // Download URL of documents without their own (legacy) route.
 Route::get('/download/{document}/{filename}', DocumentDownloadController::class)
     ->whereNumber('document')->where('filename', '[^/]+')->name('public.document.download');
+
+Route::get('/haushaltsplaene/{year}/gesamt.pdf', BudgetDownloadController::class)->whereNumber('year')->name('public.budget.download');
+Route::get('/haushaltsplaene/{year}/quelle/{source}.pdf', BudgetDownloadController::class)->whereNumber(['year', 'source'])->name('public.budget.source');
 
 // Everything else: content routes and redirects from the database
 // (App\Services\Routing\RouteManager). Must stay the last public route.

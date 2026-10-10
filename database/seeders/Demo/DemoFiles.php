@@ -56,6 +56,30 @@ final class DemoFiles
         return $pdf.'trailer << /Size '.(count($objects) + 1)." /Root 1 0 R /Info 7 0 R >>\nstartxref\n".$xref."\n%%EOF\n";
     }
 
+    /** Local vector-like raster portrait, intentionally abstract and fictional. */
+    public static function portrait(int $variant): string
+    {
+        $image = imagecreatetruecolor(400, 500);
+        $background = (int) imagecolorallocate($image, $variant === 1 ? 220 : 230, 235, 240);
+        $skin = (int) imagecolorallocate($image, 223, 177, 145);
+        $hair = (int) imagecolorallocate($image, $variant === 1 ? 87 : 119, 81, 65);
+        $coat = (int) imagecolorallocate($image, $variant === 1 ? 42 : 63, 99, 130);
+        imagefill($image, 0, 0, $background);
+        imagefilledellipse($image, 200, 430, 320, 320, $coat);
+        imagefilledellipse($image, 200, 178, 166, 204, $hair);
+        imagefilledellipse($image, 200, 200, 138, 168, $skin);
+        imagefilledrectangle($image, 133, 111, 265, 149, $hair);
+        imagefilledellipse($image, 172, 200, 9, 9, $hair);
+        imagefilledellipse($image, 227, 200, 9, 9, $hair);
+        imagearc($image, 200, 225, 54, 40, 10, 170, $hair);
+        ob_start();
+        imagepng($image);
+        $bytes = (string) ob_get_clean();
+        imagedestroy($image);
+
+        return $bytes;
+    }
+
     /**
      * A minimal Word document (Office Open XML) with demo paragraphs.
      *

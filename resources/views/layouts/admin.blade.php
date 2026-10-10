@@ -9,7 +9,7 @@
     $groups = [
         'Inhalte' => ['article', 'event', 'notice', 'page', 'site-alert'],
         'Verwaltungsdaten' => ['service', 'life-situation', 'department', 'person', 'organization', 'location', 'wahlperioden', 'ratsmitglieder', 'ausschuesse'],
-        'Dateien' => ['document', 'media', 'gallery', 'external-resource'],
+        'Dateien' => ['document', 'budget-plan', 'media', 'gallery', 'external-resource'],
         'System' => ['navigation', 'redirect', 'kategorien', 'schlagwoerter', 'search-synonym', 'site-settings', 'contact-route'],
     ];
     $allResources = \App\Admin\ResourceRegistry::all();

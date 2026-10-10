@@ -63,7 +63,7 @@ class Rows extends Field
             $rows[] = $values;
         }
         foreach (match ($this->rowDefinition) {
-            'items' => ['media_id'], 'memberships', 'committeeMemberships' => ['council_member_id'], default => []
+            'budgetComponents' => ['budget_source_id'], 'items' => ['media_id'], 'memberships', 'committeeMemberships' => ['council_member_id'], default => []
         } as $unique) {
             $ids = array_column($rows, $unique);
             if (count($ids) !== count(array_unique($ids))) {

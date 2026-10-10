@@ -1,5 +1,5 @@
 @php
-    $memberships = $model->memberships()->with('member')->get()->filter(fn ($m) => $m->member && $m->member->isPubliclyReachable());
+    $memberships = $model->memberships()->with('member.portrait')->get()->filter(fn ($m) => $m->member && $m->member->isPubliclyReachable());
     $grouped = $memberships->groupBy(fn ($m) => $m->grouping ?: 'Ohne Gruppierung');
     $memberIds = $memberships->pluck('council_member_id')->all();
     $committees = $model->committees()->get()->filter(fn ($c) => $c->isPubliclyReachable());
@@ -18,7 +18,14 @@
                 <h3 class="group-label">{{ $group }} <span class="meta">({{ $members->count() }})</span></h3>
                 <ul class="member-grid">
                     @foreach ($members as $membership)
-                        <li class="member-card"><span class="member-card__name">{{ $membership->member->title }}</span><span class="member-card__role">{{ $membership->role }}</span></li>
+                        <li class="member-card"><div class="member-card__portrait" aria-hidden="true">
+                            @php $portrait = $membership->member->portrait; @endphp
+                            @if ($portrait && $portrait->isImage() && $portrait->isPubliclyReachable())
+                                @include('public.partials.image', ['medium' => $portrait, 'imageAlt' => '', 'imageSizes' => '(max-width: 40rem) 40vw, 15rem'])
+                            @else
+                                <img src="{{ asset('images/council-placeholder.svg') }}" alt="" width="400" height="500" loading="lazy">
+                            @endif
+                        </div><span class="member-card__name">{{ $membership->member->title }}</span><span class="member-card__role">{{ $membership->role }}</span></li>
                     @endforeach
                 </ul>
             @endforeach
@@ -26,7 +33,7 @@
         @if ($committees->isNotEmpty())
             <section class="content-section" aria-labelledby="committees"><h2 id="committees">Ausschüsse</h2>
                 @foreach ($committees as $committee)
-                    @php $rows = $committee->committeeMemberships()->with('member')->get()->filter(fn ($m) => $m->member && $m->member->isPubliclyReachable() && in_array($m->council_member_id, $memberIds, true)); @endphp
+                    @php $rows = $committee->committeeMemberships()->with('member.portrait')->get()->filter(fn ($m) => $m->member && $m->member->isPubliclyReachable() && in_array($m->council_member_id, $memberIds, true)); @endphp
                     <details class="accordion">
                         <summary><span>{{ $committee->title }} <span class="meta">· {{ $rows->count() }} Mitglieder</span></span><x-icon name="plus" class="accordion__plus" /><x-icon name="minus" class="accordion__minus" /></summary>
                         <div class="accordion__body">

@@ -149,6 +149,7 @@ class DevelopmentDemoSeeder extends Seeder
             $this->notices();
             $this->pages();
             $this->council();
+            $this->call(BudgetPortraitDemoSeeder::class);
             $this->alertsAndSynonyms();
             $this->navigation();
             $this->redirects();

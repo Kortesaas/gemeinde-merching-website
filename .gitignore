@@ -8,6 +8,9 @@
 # --- Design system export (reference only, never commit) -------------------
 /designsystem-inspiration/
 
+# --- Local migration source files -----------------------------------------
+/migration-source/
+
 # --- Dependencies -----------------------------------------------------------
 /vendor/
 /node_modules/

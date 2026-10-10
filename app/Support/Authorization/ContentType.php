@@ -19,6 +19,7 @@ enum ContentType: string
     case Article = 'article';
     case Event = 'event';
     case Document = 'document';
+    case BudgetPlan = 'budget-plan';
     case ExternalResource = 'external-resource';
     case PublicNotice = 'notice';
     case Service = 'service';
@@ -41,7 +42,7 @@ enum ContentType: string
     public function isPublishable(): bool
     {
         return in_array($this, [
-            self::Gallery, self::CouncilTerm, self::CouncilMember, self::Committee, self::Media, self::Article, self::Event, self::Document, self::ExternalResource, self::PublicNotice,
+            self::Gallery, self::CouncilTerm, self::CouncilMember, self::Committee, self::Media, self::Article, self::Event, self::Document, self::BudgetPlan, self::ExternalResource, self::PublicNotice,
             self::Service, self::LifeSituation, self::Page, self::SiteAlert,
         ], true);
     }
@@ -107,6 +108,7 @@ enum ContentType: string
             self::Article => 'Artikel (Aktuelles)',
             self::Event => 'Veranstaltungen',
             self::Document => 'Dokumente',
+            self::BudgetPlan => 'Haushaltspläne',
             self::ExternalResource => 'Externe Links & Online-Dienste',
             self::PublicNotice => 'Bekanntmachungen',
             self::Service => 'Bürgerservice-Leistungen',

@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SearchController extends Controller
 {
-    public const LABELS = ['service' => 'Bürgerservice', 'article' => 'Meldung', 'event' => 'Veranstaltung', 'notice' => 'Bekanntmachung', 'document' => 'Dokument', 'person' => 'Ansprechpartner', 'department' => 'Abteilung', 'life-situation' => 'Lebenslage', 'location' => 'Ort', 'organization' => 'Organisation', 'page' => 'Seite', 'gallery' => 'Galerie', 'wahlperioden' => 'Gemeinderat'];
+    public const LABELS = ['service' => 'Bürgerservice', 'article' => 'Meldung', 'event' => 'Veranstaltung', 'notice' => 'Bekanntmachung', 'document' => 'Dokument', 'budget-plan' => 'Haushaltsplan', 'person' => 'Ansprechpartner', 'department' => 'Abteilung', 'life-situation' => 'Lebenslage', 'location' => 'Ort', 'organization' => 'Organisation', 'page' => 'Seite', 'gallery' => 'Galerie', 'wahlperioden' => 'Gemeinderat'];
 
     public function index(Request $request, SiteSearch $search, SearchStatistics $statistics): Response
     {

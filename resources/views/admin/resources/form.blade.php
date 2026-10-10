@@ -68,12 +68,13 @@
         </ul>
     </nav></details>
 
-    <form id="editor-form" class="editor-layout" method="POST" action="{{ $isNew ? route('admin.'.$key.'.store') : route('admin.'.$key.'.update', $model->getKey()) }}" @if ($multipart) enctype="multipart/form-data" @endif novalidate>
+    <form id="editor-form" class="editor-layout" @if ($key === 'budget-plan') data-budget-editor @if (old('_form_started')) data-budget-save-required @endif @endif method="POST" action="{{ $isNew ? route('admin.'.$key.'.store') : route('admin.'.$key.'.update', $model->getKey()) }}" @if ($multipart) enctype="multipart/form-data" @endif novalidate>
         @csrf
         <input type="hidden" name="_form_started" value="1">
         @unless ($isNew) @method('PUT') @endunless
 
         <div class="editor-main">
+            @if ($key === 'budget-plan') @include('admin.budgets.package') @endif
             @if ($multipart)
                 <section class="editor-card" id="datei" aria-labelledby="datei-heading">
                     <h2 class="editor-card__title" id="datei-heading">Datei</h2>
@@ -122,6 +123,10 @@
         <input type="hidden" name="_form_complete" value="1">
     </form>
 
+    @if ($key === 'budget-plan' && ! $isNew)
+        <form id="budget-upload" method="POST" enctype="multipart/form-data" action="{{ route('admin.budget-plan.upload', $model->id) }}">@csrf</form>
+        <form id="budget-generate" method="POST" action="{{ route('admin.budget-plan.generate', $model->id) }}">@csrf</form>
+    @endif
     @unless ($isNew)
         <div class="editor-after">
             @if ($model instanceof \App\Contracts\Proposable && $model->isPublicationLocked())

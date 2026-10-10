@@ -74,7 +74,7 @@ enum Role: string
     private static function editorialTypes(): array
     {
         return [
-            ContentType::Gallery, ContentType::CouncilTerm, ContentType::CouncilMember, ContentType::Committee, ContentType::Media, ContentType::Article, ContentType::Event, ContentType::Document, ContentType::ExternalResource,
+            ContentType::Gallery, ContentType::CouncilTerm, ContentType::CouncilMember, ContentType::Committee, ContentType::Media, ContentType::Article, ContentType::Event, ContentType::Document, ContentType::BudgetPlan, ContentType::ExternalResource,
             ContentType::PublicNotice, ContentType::Service, ContentType::LifeSituation, ContentType::Page,
             ContentType::Person, ContentType::Department, ContentType::Organization, ContentType::Location,
         ];

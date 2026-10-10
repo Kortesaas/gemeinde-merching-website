@@ -8,6 +8,7 @@ return [
         '/aktuelles' => ['title' => 'Aktuelles', 'kind' => 'articles'],
         '/veranstaltungen' => ['title' => 'Veranstaltungen', 'kind' => 'events'],
         '/bekanntmachungen' => ['title' => 'Bekanntmachungen', 'kind' => 'notices'],
+        '/haushaltsplaene' => ['title' => 'Haushaltspläne', 'kind' => 'budgets'],
         '/dokumente' => ['title' => 'Dokumente und Formulare', 'kind' => 'documents'],
         '/verzeichnisse' => ['title' => 'Ansprechpartner und Einrichtungen', 'kind' => 'directory'],
         '/vereine' => ['title' => 'Vereine und Organisationen', 'kind' => 'organizations'],

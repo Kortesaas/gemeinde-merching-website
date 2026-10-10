@@ -5,6 +5,7 @@ namespace App\Admin\Resources;
 use App\Admin\ContentResource;
 use App\Admin\Fields;
 use App\Models\CouncilMember;
+use App\Models\Media;
 use App\Rules\ControlledText;
 use App\Support\Authorization\ContentType;
 use Illuminate\Database\Eloquent\Model;
@@ -39,6 +40,10 @@ class CouncilMemberResource extends ContentResource
 
     public function fields(?Model $model): array
     {
-        return [Fields\Text::make('title', 'Name')->required(), Fields\Textarea::make('description', 'Beschreibung')->rules(['max:10000', new ControlledText])];
+        return [
+            Fields\Text::make('title', 'Name')->required(),
+            Fields\BelongsTo::make('portrait_id', 'Porträt (optional)')->options(fn () => Media::query()->where('mime_type', 'like', 'image/%')->pluck('title', 'id')->all())->hint('Bild in der Medienbibliothek hochladen und hier auswählen. Ohne Bild erscheint ein neutrales Personenmotiv. Der Bildfokus wird übernommen.'),
+            Fields\Textarea::make('description', 'Beschreibung')->rules(['max:10000', new ControlledText]),
+        ];
     }
 }

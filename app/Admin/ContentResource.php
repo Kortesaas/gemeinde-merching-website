@@ -8,10 +8,12 @@ use App\Contracts\Revisionable;
 use App\Contracts\Routable;
 use App\Enums\PublicationStatus;
 use App\Exceptions\DomainRuleViolation;
+use App\Models\BudgetPlan;
 use App\Models\Media;
 use App\Models\User;
 use App\Rules\SiteDateTime;
 use App\Services\Audit\AuditLogger;
+use App\Services\Content\BudgetWorkflow;
 use App\Services\Content\PublicationService;
 use App\Services\Content\ReferenceProtection;
 use App\Services\Content\RevisionService;
@@ -24,7 +26,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 use Throwable;
@@ -352,7 +354,11 @@ abstract class ContentResource
         $model ??= $this->newModel();
 
         try {
-            return DB::transaction(function () use ($model, $data, $request, $editor, $isNew) {
+            return app(BudgetWorkflow::class)->transaction(function () use ($model, $data, $request, $editor, $isNew) {
+                app(BudgetWorkflow::class)->lock($model);
+                if ($model instanceof BudgetPlan && ! $isNew) {
+                    Gate::forUser($editor)->authorize('update', $model);
+                }
                 foreach ($this->formFields($model) as $field) {
                     $field->fill($model, $data);
                 }
@@ -380,6 +386,7 @@ abstract class ContentResource
                     $this->syncPublicRoute($model, $data);
                 }
 
+                app(BudgetWorkflow::class)->finish($model, $editor, in_array($transition, ['content.published', 'content.unarchived'], true));
                 app(QualityChecks::class)->enforcePublicAssets($model);
                 app(SearchIndexer::class)->sync($model);
 

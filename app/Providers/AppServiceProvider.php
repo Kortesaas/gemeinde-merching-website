@@ -14,6 +14,7 @@ use App\Models\ServiceAlias;
 use App\Models\ServiceFee;
 use App\Models\Tag;
 use App\Models\User;
+use App\Services\Content\BudgetWorkflow;
 use App\Services\Content\EditorialDetails;
 use App\Services\Content\ReferenceProtection;
 use App\Services\Search\SearchIndexer;
@@ -37,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->app->singleton(BudgetWorkflow::class);
         if ($this->app->isProduction()) {
             // Hard guarantee: debug output (stack traces, SQL, paths, config)
             // is never shown in production, even if APP_DEBUG is set by mistake.

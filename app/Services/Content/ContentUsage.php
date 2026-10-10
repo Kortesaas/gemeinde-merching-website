@@ -5,6 +5,7 @@ namespace App\Services\Content;
 use App\Models\Article;
 use App\Models\ContentProposal;
 use App\Models\ContentRevision;
+use App\Models\CouncilMember;
 use App\Models\Document;
 use App\Models\Event;
 use App\Models\ExternalResource;
@@ -87,6 +88,9 @@ class ContentUsage
     public function mediaOwners(Media $media, bool $includeCompositions = true): array
     {
         $owners = [];
+        foreach (CouncilMember::withTrashed()->where('portrait_id', $media->getKey())->get() as $member) {
+            $owners[] = $member;
+        }
         foreach ([Page::class, Article::class, Event::class, PublicNotice::class, Service::class, LifeSituation::class] as $class) {
             foreach ($class::withTrashed()->whereHas('media', fn ($q) => $q->where('media.id', $media->getKey()))->get() as $owner) {
                 $owners[] = $owner;
@@ -109,7 +113,7 @@ class ContentUsage
     /** @param array<string,mixed> $snapshot */
     private function snapshotUsesMedia(array $snapshot, int $id): bool
     {
-        if ((int) ($snapshot['attributes']['homepage_media_id'] ?? 0) === $id || (int) ($snapshot['attributes']['greeting_media_id'] ?? 0) === $id) {
+        if ((int) ($snapshot['attributes']['portrait_id'] ?? 0) === $id || (int) ($snapshot['attributes']['homepage_media_id'] ?? 0) === $id || (int) ($snapshot['attributes']['greeting_media_id'] ?? 0) === $id) {
             return true;
         }
         foreach ($snapshot['relations']['media'] ?? [] as $row) {

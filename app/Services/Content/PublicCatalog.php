@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
 final class PublicCatalog
 {
     /** @var array<string,class-string<Model&Routable>> */
-    public const TYPES = ['services' => Models\Service::class, 'az' => Models\Service::class, 'articles' => Models\Article::class, 'events' => Models\Event::class, 'notices' => Models\PublicNotice::class, 'documents' => Models\Document::class];
+    public const TYPES = ['services' => Models\Service::class, 'az' => Models\Service::class, 'articles' => Models\Article::class, 'events' => Models\Event::class, 'notices' => Models\PublicNotice::class, 'documents' => Models\Document::class, 'budgets' => Models\BudgetPlan::class];
 
     public function sectionPath(string $kind): string
     {
@@ -29,7 +29,7 @@ final class PublicCatalog
     public function items(string $kind, bool $archive = false): Collection
     {
         $class = self::TYPES[$kind];
-        $query = $class::query()->with(['category', 'canonicalRoute']);
+        $query = $class::query()->with($kind === 'budgets' ? ['canonicalRoute', 'publications.generation'] : ['category', 'canonicalRoute']);
         if ($class === Models\Document::class) {
             $query->with(['replacedBy.canonicalRoute', 'accessibleAlternative.canonicalRoute']);
         }
@@ -42,12 +42,15 @@ final class PublicCatalog
         if ($class === Models\Service::class) {
             $query->with(['departments', 'onlineService', 'aliases', 'contacts']);
         }
-        if (in_array($kind, ['events', 'documents'], true)) {
+        if (in_array($kind, ['events', 'documents', 'budgets'], true)) {
             $query->where(fn (Builder $q) => $q->visible()->orWhere(fn (Builder $q) => $q->publicArchive()));
         } elseif ($archive && in_array($kind, ['articles', 'notices'], true)) {
             $query->publicArchive();
         } else {
             $query->visible();
+        }
+        if ($kind === 'budgets') {
+            $query->orderBy('year', 'desc');
         }
         $query->orderBy(in_array($kind, ['services', 'az'], true) ? 'title' : ($kind === 'events' ? 'starts_at' : 'publish_at'), in_array($kind, ['services', 'az', 'events'], true) ? 'asc' : 'desc');
 
@@ -67,6 +70,10 @@ final class PublicCatalog
                 $superseded = $replacement !== null && $replacement->isPubliclyReachable() && app(DocumentStorage::class)->exists($replacement);
 
                 return $archive === ($model->isInPublicArchive() || $superseded) && $model->isPubliclyReachable() && app(DocumentStorage::class)->exists($model);
+            }
+
+            if ($model instanceof Models\BudgetPlan && $model->publications->isEmpty()) {
+                return false;
             }
 
             return $model->isPubliclyReachable() && $model->publicPath() !== null;

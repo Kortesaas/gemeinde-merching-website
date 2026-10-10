@@ -22,6 +22,7 @@ final class ResourceRegistry
         Resources\EventResource::class,
         Resources\PublicNoticeResource::class,
         Resources\DocumentResource::class,
+        Resources\BudgetPlanResource::class,
         Resources\ExternalResourceResource::class,
         Resources\ServiceResource::class,
         Resources\LifeSituationResource::class,

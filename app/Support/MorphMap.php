@@ -22,6 +22,7 @@ final class MorphMap
         'article' => Models\Article::class,
         'event' => Models\Event::class,
         'document' => Models\Document::class,
+        'budget-plan' => Models\BudgetPlan::class,
         'external-resource' => Models\ExternalResource::class,
         'notice' => Models\PublicNotice::class,
         'service' => Models\Service::class,

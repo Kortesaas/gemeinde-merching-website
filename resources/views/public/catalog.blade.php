@@ -8,6 +8,7 @@
         'articles' => 'Meldungen aus dem Rathaus und der Gemeinde.',
         'events' => 'Termine von Gemeinde, Vereinen und Einrichtungen.',
         'notices' => 'Amtliche Bekanntmachungen der Gemeinde.',
+        'budgets' => 'Der Haushaltsplan für jedes Jahr als vollständiges PDF zum Herunterladen.',
         'documents' => 'Formulare, Satzungen, Merkblätter und Pläne zum Herunterladen.',
         'directory' => 'Verwaltung, Ansprechpersonen, Einrichtungen und Vereine.',
         'organizations' => 'Vereine, Initiativen, Gastronomie und Betriebe in der Gemeinde.',

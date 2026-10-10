@@ -400,3 +400,27 @@ if (navigationHint) {
         field.append(label, select); navigationHint.after(field); sync();
     }
 }
+
+// Printable stored upload records use the browser's local print dialog.
+document.querySelectorAll('[data-print]').forEach((button) => {
+    button.addEventListener('click', () => window.print());
+});
+
+// Package actions use persisted content; prevent silently losing unsaved editorial changes.
+const budgetEditor = document.querySelector('[data-budget-editor]');
+if (budgetEditor) {
+    const state = () => JSON.stringify([...new FormData(budgetEditor).entries()]);
+    const initial = state();
+    const actions = document.querySelectorAll('[form="budget-generate"], button[form="budget-upload"]');
+    const note = document.querySelector('[data-budget-unsaved]');
+    const syncActions = () => {
+        const changed = budgetEditor.hasAttribute('data-budget-save-required') || state() !== initial;
+        for (const action of actions) action.disabled = changed;
+        if (note) note.hidden = !changed;
+    };
+    syncActions();
+    for (const event of ['input', 'change', 'click']) budgetEditor.addEventListener(event, () => {
+        // Row controls can move their DOM nodes during the current event.
+        queueMicrotask(syncActions);
+    });
+}

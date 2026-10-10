@@ -5,6 +5,8 @@ namespace App\Services\Quality;
 use App\Contracts\QualityCheck;
 use App\Enums\AccessibilityStatus;
 use App\Enums\QualitySeverity as S;
+use App\Models\BudgetPlan;
+use App\Models\CouncilMember;
 use App\Models\Document;
 use App\Models\Media;
 use App\Rules\SafeUrl;
@@ -22,14 +24,29 @@ class ReferencedAssets implements QualityCheck
     {
         $issues = [];
         $images = $model instanceof Media ? [$model] : (method_exists($model, 'media') ? $model->media()->withTrashed()->get()->all() : []);
+        if ($model instanceof CouncilMember && $model->portrait_id !== null) {
+            $portrait = $model->portrait()->withTrashed()->first();
+            if ($portrait) {
+                $images[] = $portrait;
+            }
+        }
+        if ($model instanceof BudgetPlan) {
+            if ($model->generation_status !== 'ready') {
+                $issues[] = new QualityIssue('budget.generation', S::Error, 'Das Gesamt-PDF muss vor der Veröffentlichung erfolgreich erstellt werden.', 'components');
+            }
+            if ($model->accessibility_status !== AccessibilityStatus::Accessible) {
+                $issues[] = new QualityIssue('budget.accessibility', S::Warning, 'Das Gesamt-PDF muss separat auf Barrierefreiheit geprüft werden.', 'accessibility_status');
+            }
+        }
+        $assetField = $model instanceof CouncilMember ? 'portrait_id' : 'media';
         foreach ($images as $media) {
             if ($media->trashed()) {
-                $issues[] = new QualityIssue('media.deleted', S::Error, 'Ein verwendetes Medium liegt im Papierkorb.', 'media');
+                $issues[] = new QualityIssue('media.deleted', S::Error, 'Ein verwendetes Medium liegt im Papierkorb.', $assetField);
             } elseif ($model !== $media && ! $media->isPubliclyReachable()) {
-                $issues[] = new QualityIssue('media.private', S::Error, 'Ein verwendetes Medium ist nicht veröffentlicht.', 'media');
+                $issues[] = new QualityIssue('media.private', S::Error, 'Ein verwendetes Medium ist nicht veröffentlicht.', $assetField);
             }
             if ($media->isImage() && ! $media->hasAccessibleAlternative()) {
-                $issues[] = new QualityIssue('media.alt', S::Error, 'Ein bedeutungstragendes Bild benötigt Alternativtext oder muss ausdrücklich als dekorativ markiert sein.', $model instanceof Media ? 'alt_text' : 'media');
+                $issues[] = new QualityIssue('media.alt', S::Error, 'Ein bedeutungstragendes Bild benötigt Alternativtext oder muss ausdrücklich als dekorativ markiert sein.', $model instanceof Media ? 'alt_text' : $assetField);
             }
         }
         $documents = $model instanceof Document ? [$model] : (method_exists($model, 'documents') ? $model->documents()->withTrashed()->get()->all() : []);
