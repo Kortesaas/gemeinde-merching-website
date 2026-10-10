@@ -1,0 +1,41 @@
+# Separate local review server; the demo app/database on :8088 remain intact.
+services:
+    migration-app:
+        build: docker/php
+        image: merching-php-dev
+        ports:
+            - "127.0.0.1:8089:80"
+        volumes:
+            - .:/var/www/html
+        environment:
+            APP_URL: http://localhost:8089
+            DB_HOST: migration-mysql
+            DB_PORT: 3306
+            DB_DATABASE: merching_migration
+            MAIL_HOST: mailpit
+            MAIL_PORT: 1025
+            MAIL_MAILER: smtp
+        depends_on:
+            migration-mysql:
+                condition: service_healthy
+
+    migration-mysql:
+        build: docker/mysql
+        image: merching-mysql-dev
+        command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+        environment:
+            MYSQL_DATABASE: merching_migration
+            MYSQL_USER: ${DB_USERNAME:-merching}
+            MYSQL_PASSWORD: ${DB_PASSWORD:?Set the local DB_PASSWORD in .env}
+            MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+            TZ: UTC
+        volumes:
+            - migration-mysql-data:/var/lib/mysql
+        healthcheck:
+            test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u\"$$MYSQL_USER\" -p\"$$MYSQL_PASSWORD\" --silent"]
+            interval: 5s
+            timeout: 5s
+            retries: 20
+
+volumes:
+    migration-mysql-data:
