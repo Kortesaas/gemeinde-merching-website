@@ -61,7 +61,6 @@ Thumbs.db
 /.zed
 /.nova
 /.cursor/
-/.codex
 /.fleet
 .phpactor.json
 _ide_helper.php
