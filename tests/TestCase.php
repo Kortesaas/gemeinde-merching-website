@@ -7,12 +7,26 @@ use App\Services\Auth\AdminAuthenticator;
 use App\Services\Authorization\RoleSynchronizer;
 use App\Support\Authorization\Role;
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Http\Request;
 use Illuminate\Testing\TestResponse;
 
 abstract class TestCase extends BaseTestCase
 {
+    public function createApplication(): Application
+    {
+        $app = parent::createApplication();
+        // Container environment variables can override phpunit.xml defaults.
+        // Refuse before RefreshDatabase or any test can mutate a review database.
+        $database = (string) $app->make('db')->connection()->getDatabaseName();
+        if (! str_ends_with($database, '_testing')) {
+            throw new \RuntimeException('Tests require a separate *_testing database; refusing '.$database);
+        }
+
+        return $app;
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
