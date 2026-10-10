@@ -1,0 +1,16 @@
+priority,area,decision
+blocking,PDF merge compatibility,3 actual main 2026 budget PDFs rejected by existing FPDI parser; obtain compatible exports or select a hosting-compatible supported parser before importing budgets
+blocking,Legacy URL delivery,Root query download URLs (?wpdmdl=...) and direct /wp-content/ paths need reviewed secure compatibility delivery. Existing Redirect/PublicRoute only match paths; no query redirect rules implemented
+blocking,TablePress conversion,No generic controlled table block; map contacts/services/council/events/organizations to structured records; decide accessible alternatives for remaining statistics tables
+high,Incomplete filesystem backup,61 NextGEN originals absent from backup but live image GETs succeed; recover original bytes before cutover
+high,Private attachment boundaries,WordPress inherit attachment status does not authorize public exposure; validate parent/public references before publishing any orphan
+high,Source/model semantics,"61 Link Library CPT records, 64 legacy links and 26 Connections records can overlap; deduplicate using public URLs/legacy IDs without importing submitters/internal emails"
+high,Category semantics,Choose one context category for each record; map Topaktuell to featured status and review additional category/tag relationships rather than dropping them
+high,Expiry,21 enabled Future actions on published posts; timezone Europe/Berlin and newStatus/action must be mapped. Historical disabled jobs and private/draft records are not public data
+high,Media upload compatibility,"4 GIFs, 2 DOC files and 7 ZIPs in content backup; current secure uploads do not accept these formats. Preserve safe convertible content or explicitly review legacy-file handling; do not widen allowlist blindly"
+medium,Calendar parsing,"83 TablePress rows after header include headings/separators/date ranges, not 83 guaranteed events. Confirm parsed dates, organizers, venues and duplicates"
+medium,Forms,"2 Contact Form 7 definitions; migrate public workflow/labels to existing form, configure internal recipients privately; no submissions, credentials or mail templates in reports"
+medium,Council,"26 nonblank council entries/portrait references; separator rows are not members; review term dates, functions and committee memberships; employees remain without portraits"
+medium,External services,"Portal/BayernAtlas/captcha/widget embeds must become managed links or existing privacy-safe UI, rather than carrying plugin scripts/iframes"
+medium,Drafts and historical data,"17 nonpublished pages, 33 nonpublished posts, 6 nonpublished download packages and inactive-prefix content require an explicit retention decision; do not publish automatically"
+medium,Accessibility,No PDF accessibility claims inferred from Tagged=yes or source labels. All 770 PDFs remain not verified; merged output requires independent review

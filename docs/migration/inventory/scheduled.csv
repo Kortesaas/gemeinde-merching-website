@@ -1,0 +1,69 @@
+source_id,title,metadata_keys,mapping
+6,Über Merching,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+8,Aktuelles,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+10,Bürgerservice,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+12,Handel & Gewerbe,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+14,Freizeit,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+22,Lage & Anfahrt,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+24,Impressum,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+4631,Fundsachen,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+212,Gemeinderat,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+251,Infrastruktur,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+257,Formulare,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+296,"Eheschließung, Geburt, Sterbefall",_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+300,Ein Umzug steht bevor,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+302,Wertstoffsammlung,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+310,Personalausweis,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+344,BayernAtlas,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+382,Aus Merching,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+385,Aus dem Landratsamt und anderen Behörden,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+390,Aus dem Rathaus,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+810,Reisepass,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+547,Bildergalerien aus Merching,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+10931,"Unterstützung für Menschen mit Pfegebedarf - Tagesschulung zur ""Ehrenamtlich tätigen Einzelperson""",_pp_future_metadata_hash|_expiration-date-options|_expiration-date-type|_expiration-date-post-status|_expiration-date-categories|_expiration-date-taxonomy|_expiration-date-status|_expiration-date,manual review expiry/timezone/action; private raw values excluded
+10928,E-Rechnung im Verein: Online-Seminar des Landratsamtes informiert über neue Anforderungen,_pp_future_metadata_hash|_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options,manual review expiry/timezone/action; private raw values excluded
+3658,Datenschutzerklärung,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3851,Hundesteuer: Anmeldung und Abmeldung,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3842,Antrag auf Erstattung von Verdienstausfall im Feuerwehrdienst,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3841,Antrag auf Gastschul-Besuch,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3821,Antrag auf Gestattung eines vorübergehenden Gaststättenbetriebes aus besonderem Anlass nach § 12 Gaststättengesetz,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3820,Antrag auf Genehmigung zum Abbrennen eines Feuerwerks gem. § 24 Abs. 1 der Ersten Verordnung zum Sprengstoffgesetz,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3815,Das Wittelsbacher Land,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3814,Antrag auf Anordnung verkehrsregelnder Maßnahmen nach §45 Straßenverkehrs-Ordnung (StVO),_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3861,SEPA-Mandat Mittelschulverband,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3862,SEPA-Mandat Grundschulverband,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3867,Unternehmens- und Gründerberatung im Landratsamt Aichach-Friedberg,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3869,Antrag auf Wasserbezug - Einbau eines Wasserzählers,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+3872,https://www.gemeinde-merching.de/buergerservice/gemeinderat/,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+4096,Wittelsbacher Land e.V.,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+4149,Energieberatung Landkreis Aichach-Friedberg,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+4401,Antrag auf Erteilung einer Ausnahmegenehmigung gem. § 46 Abs. 1 Nr. 8 StVO für Inanspruchnahme von öffentl. Verkehrsgrund (§ 32 StVO),_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+4610,"Gewerbeanzeige, Gewerbeanmeldung online über das Bayernportal",_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+4765,Ausschreibungen,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+4787,Standortfaktoren Leben und Wohnen in Merching,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+5157,Planfeststellung,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+5152,Covid-19,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+5194,"Formulare des Bay. Staatsministeriums für Wohnen, Bau und Verkehr rund um das Baurecht",_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+5226,Rattenproblematik in der Gemeinde Merching,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+5372,Fragebogen der Gemeinde Merching zur Selbstauskunft wegen der Corona-Pandemie,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+5492,Gemeindebroschüre,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+5783,Antrag auf Erteilung einer verkehrsrechtlichen Anordnung gem. § 45 Abs. 6 StVO,_expiration-date-status,manual review expiry/timezone/action; private raw values excluded
+10940,DB InfraGO AG führt am 20.10.26 Bauarbeiten durch (Bf Kissing - Bf Augsburg Hbf u. Bf Mammendorf - Bf Mering),_pp_future_metadata_hash|_expiration-date|_expiration-date-type|_expiration-date-status|_expiration-date-options|_expiration-date-categories|_expiration-date-taxonomy|_expiration-date-post-status,manual review expiry/timezone/action; private raw values excluded
+10942,DB InfraGO AG führt am 13.10. u. 14.10.26 Bauarbeiten durch (Bf Mering - Bf Egling),_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash|_expiration-date-post-status|_expiration-date-status|_expiration-date-type|_expiration-date,manual review expiry/timezone/action; private raw values excluded
+10944,Workshop Freiwilligenagentur: Wie gewinnen wir neue Freiwillige? Alle im Blick - Ehrenamt neu gestalten,_pp_future_metadata_hash|_expiration-date-options|_expiration-date-categories|_expiration-date-taxonomy|_expiration-date-post-status|_expiration-date-type|_expiration-date-status|_expiration-date,manual review expiry/timezone/action; private raw values excluded
+10833,Neue Termine für kostenlose Rückgabe von Pflanzenschutz-Verpackungen - Entsorgungssystem PAMIRA,_pp_future_metadata_hash|_expiration-date-categories|_expiration-date-options|_expiration-date-taxonomy|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date,manual review expiry/timezone/action; private raw values excluded
+6749,Kommunale IT-Sicherheit,_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10515,Pressemitteilung Landratsamt Aichach-Friedberg : Bündnis f. Demokratie spricht Förderempfehlungen für 2026 aus,_expiration-date-post-status|_expiration-date-type|_expiration-date-status|_expiration-date|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10485,Solaroffensive Wittelsbacher Land,_expiration-date-options|_expiration-date-categories|_expiration-date-taxonomy|_expiration-date-post-status|_expiration-date-type|_expiration-date-status|_expiration-date|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10477,Balkonkraftwerk o. klassiche Photovoltaikanlage - Sonnenstrom für jeden Bedarf,_pp_future_metadata_hash|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-status|_expiration-date|_expiration-date-options,manual review expiry/timezone/action; private raw values excluded
+10844,Urlaub trotz Pflege,_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10508,Pressemitteilung Landratsamt Aichach-Friedberg - Geflügelpest: Sperrzone aufgehoben,_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10848,Fachstelle f. pflegende Angehörige - Tageskurs für ehrenamtlich tätige Einzelperson am 27.10.2026 in Aichach,_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10890,Suizidprävention - Pressemitteilung Landratsamt Aichach-Friedberg,_pp_future_metadata_hash|_expiration-date-options|_expiration-date-categories|_expiration-date-taxonomy|_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status,manual review expiry/timezone/action; private raw values excluded
+10826,"Fotowettbewerb ""Ein Herz für regionale Lebensmittel""",_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10867,Pressemitteilung: Region wehrt sich gegen geplante Ausdünnung des Regionalverkehrs zwischen Augsburg und München,_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10881,Fundsache,_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10925,Fundsache,_expiration-date-options|_expiration-date-categories|_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10914,Fundfahrrad,_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10947,Veranstaltung Landratsamt Aichach-Friedberg: Ratschen über Photovoltaik - SolarTreffs in verschiedenen Gemeinden,_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded
+10952,Vollsperrung Bahnübergang zwischen Brunnen und St. 2052 im Zeitraum vom 13.10.2026 - 15.10.2026,_expiration-date|_expiration-date-status|_expiration-date-type|_expiration-date-post-status|_expiration-date-taxonomy|_expiration-date-categories|_expiration-date-options|_pp_future_metadata_hash,manual review expiry/timezone/action; private raw values excluded

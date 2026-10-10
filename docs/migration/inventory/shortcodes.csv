@@ -1,0 +1,184 @@
+source_id,title,shortcode,content_arguments,mapping
+4,Veranstaltungen,table,"{""id"": ""15""}",resolve TablePress; prefer structured records
+6,Über Merching,html-sitemap,{},new sitemap/index
+8,Aktuelles,html-sitemap,{},new sitemap/index
+10,Bürgerservice,html-sitemap,{},new sitemap/index
+12,Handel & Gewerbe,html-sitemap,{},new sitemap/index
+12,Handel & Gewerbe,table,"{""id"": ""8""}",resolve TablePress; prefer structured records
+12,Handel & Gewerbe,connections,{},Organization directory
+14,Freizeit,ngg,"{""src"": ""galleries"", ""ids"": ""2"", ""display"": ""basic_slideshow""}",Gallery / ordered Media
+14,Freizeit,html-sitemap,{},new sitemap/index
+14,Freizeit,table,"{""id"": ""10""}",resolve TablePress; prefer structured records
+20,Verwaltung: Adressen und Öffnungszeiten,table,"{""id"": ""1""}",resolve TablePress; prefer structured records
+26,Inhaltsverzeichnis,html-sitemap,{},new sitemap/index
+56,Weitere Downloads,wpdm_category,"{""id"": ""203"", ""template"": ""link-template-default""}",category-filtered Document catalog
+138,eMail-Formular,contact-form-7,"{""id"": ""1087""}",existing contact workflow; recipients configured separately
+212,Gemeinderat,table,"{""id"": ""7""}",resolve TablePress; prefer structured records
+222,Bürgerservice von A-Z,table,"{""id"": ""5""}",resolve TablePress; prefer structured records
+224,Lebenslagen,html-sitemap,{},new sitemap/index
+227,Ortsrecht,wpdm_category,"{""id"": ""198"", ""template"": ""link-template-default""}",category-filtered Document catalog
+227,Ortsrecht,wpdm_category,"{""id"": ""199"", ""template"": ""link-template-default""}",category-filtered Document catalog
+227,Ortsrecht,wpdm_category,"{""id"": ""200"", ""template"": ""link-template-default""}",category-filtered Document catalog
+249,Vereine,wpdm_category,"{""id"": ""213"", ""template"": ""link-template-default""}",category-filtered Document catalog
+249,Vereine,table,"{""id"": ""4""}",resolve TablePress; prefer structured records
+255,Badeseen,pdf-embedder,{},"Document block / download, not iframe"
+257,Formulare,link-library,{},ExternalResource catalog
+257,Formulare,link-library,{},ExternalResource catalog
+273,Interessante Links im Web,link-library,{},ExternalResource catalog
+353,Gemeindekurier und Bürgerinformationen,wpdm_category,"{""id"": ""201"", ""template"": ""link-template-default""}",category-filtered Document catalog
+441,Ratsinformation Gemeinderat und Schulverbände,wpdm_category,"{""id"": ""197"", ""template"": ""link-template-default""}",category-filtered Document catalog
+2316,Kinder und Jugend,wpdm_category,"{""id"": ""205""}",category-filtered Document catalog
+542,Unsere Stellenanzeigen,wpdm_category,"{""id"": ""206""}",category-filtered Document catalog
+670,Öffentliche Bekanntmachungen,catlist,"{""id"": ""122"", ""template"": ""template""}",Article catalog
+670,Öffentliche Bekanntmachungen,wpdm_category,"{""id"": ""209""}",category-filtered Document catalog
+1087,Kontaktformular 1_copy,select,{},manual review
+1087,Kontaktformular 1_copy,text,{},manual review
+1087,Kontaktformular 1_copy,email,{},manual review
+1087,Kontaktformular 1_copy,text,{},manual review
+1087,Kontaktformular 1_copy,text,{},manual review
+1087,Kontaktformular 1_copy,text,{},manual review
+1087,Kontaktformular 1_copy,text,{},manual review
+1087,Kontaktformular 1_copy,textarea,{},manual review
+1087,Kontaktformular 1_copy,radio,{},manual review
+1087,Kontaktformular 1_copy,captchac,{},manual review
+1087,Kontaktformular 1_copy,captchar,{},manual review
+1087,Kontaktformular 1_copy,acceptance,{},manual review
+1087,Kontaktformular 1_copy,submit,{},manual review
+1087,Kontaktformular 1_copy,your-subject,{},manual review
+1087,Kontaktformular 1_copy,your-name,{},manual review
+1087,Kontaktformular 1_copy,recipient,{},manual review
+1087,Kontaktformular 1_copy,your-name,{},manual review
+1087,Kontaktformular 1_copy,your-email,{},manual review
+1087,Kontaktformular 1_copy,your-subject,{},manual review
+1087,Kontaktformular 1_copy,your-message,{},manual review
+1087,Kontaktformular 1_copy,your-name,{},manual review
+1087,Kontaktformular 1_copy,radio-897,{},manual review
+1087,Kontaktformular 1_copy,PLZ,{},manual review
+1087,Kontaktformular 1_copy,Ort,{},manual review
+1087,Kontaktformular 1_copy,StrasseHausnummer,{},manual review
+1087,Kontaktformular 1_copy,your-email,{},manual review
+1087,Kontaktformular 1_copy,your-subject,{},manual review
+1087,Kontaktformular 1_copy,your-name,{},manual review
+1087,Kontaktformular 1_copy,your-email,{},manual review
+1087,Kontaktformular 1_copy,your-message,{},manual review
+1087,Kontaktformular 1_copy,recipient,{},manual review
+1087,Kontaktformular 1_copy,your-email,{},manual review
+1087,Kontaktformular 1_copy,radio-897,{},manual review
+1087,Kontaktformular 1_copy,PLZ,{},manual review
+1087,Kontaktformular 1_copy,Ort,{},manual review
+1087,Kontaktformular 1_copy,StrasseHausnummer,{},manual review
+1087,Kontaktformular 1_copy,your-email,{},manual review
+10790,Bestattung - Satzung über die öffentl. Bestattungseinrichtung der Gemeinde Merching vom 17.07.2026 - gültig ab 01.01.2027,pdf-embedder,{},"Document block / download, not iframe"
+1999,Flächennutzungsplan - Bebauungspläne,wpdm_category,"{""id"": ""204"", ""template"": ""link-template-default""}",category-filtered Document catalog
+10788,Bekanntmachung der Gebührensatzung zur Friedhofs- und Bestattungssatzung ab 01.01.2027,pdf-embedder,{},"Document block / download, not iframe"
+3658,Datenschutzerklärung,cc-edit,{},manual review
+10245,Bürgertelefon Krebs,pdf-embedder,{},"Document block / download, not iframe"
+8134,Abschaffung des Kinderreisepasses zum 1. Januar 2024,pdf-embedder,{},"Document block / download, not iframe"
+8132,Abschaffung des Kinderreisepasses zum 01.01.2024,pdf-embedder,{},"Document block / download, not iframe"
+7608,"Satzung über das besondere Vorkaufsrecht d. Gemeinde Merching f. den Bereich d. Fl.Nr. 88/1, 90 und 93/3 d. Gemarkung Merching",pdf-embedder,{},"Document block / download, not iframe"
+9976,Bekanntmachung Unternehmenssatzung für das Kommunalunternehmen Merching vom 16.09.2026,pdf-embedder,{},"Document block / download, not iframe"
+9972,Stellplatzsatzung der Gemeinde Merching vom 08.09.2025,pdf-embedder,{},"Document block / download, not iframe"
+10179,Bekanntmachung Beschwerdeausschuss,pdf-embedder,{},"Document block / download, not iframe"
+4697,PDF direkt auf Seite anzeigen (nicht-wp-Filebase!),pdf-embedder,{},"Document block / download, not iframe"
+4787,Standortfaktoren Leben und Wohnen in Merching,table,"{""id"": ""9""}",resolve TablePress; prefer structured records
+4787,Standortfaktoren Leben und Wohnen in Merching,table,"{""id"": ""10""}",resolve TablePress; prefer structured records
+4787,Standortfaktoren Leben und Wohnen in Merching,table,"{""id"": ""8""}",resolve TablePress; prefer structured records
+10430,Bekanntmachung des abschließenden Ergebnisses der Wahl des Gemeinderats am 08. März 2026,pdf-embedder,{},"Document block / download, not iframe"
+9075,Bekanntmachung Grundsteuer und Hundesteuer 2025,pdf-embedder,{},"Document block / download, not iframe"
+10091,Merkblatt zum richtigen Verhalten gegenüber Wasser-/Zugvögeln,pdf-embedder,{},"Document block / download, not iframe"
+10033,Satzung zur Einführung einer Pflicht zum Nachweis eines Spielplatzes für Kinder - Spielplatzsatzung,pdf-embedder,{},"Document block / download, not iframe"
+9922,Feuerwehr - Satzung über Aufwendungs- und Kostenersatz für Einsätze und andere Leistungen gemeindlicher Feuerwehren ab 01.01.2026,pdf-embedder,{},"Document block / download, not iframe"
+10027,Hundesteuer - Satzung der Gemeinde Merching für die Erhebung der Hundesteuer (Hundesteuersatzung - HStS) ab 2026,pdf-embedder,{},"Document block / download, not iframe"
+10453,Gemeindekurier Ostern 2026,pdf-embedder,{},"Document block / download, not iframe"
+10426,Bekanntmachung des abschließenden Ergebnisses der Wahl des ersten Bürgermeisters am 08.03.2026,pdf-embedder,{},"Document block / download, not iframe"
+8020,"Flyer ""Stromausfall"" - Vorbereitungsmaßnahmen und Anlaufstellen",pdf-embedder,{},"Document block / download, not iframe"
+10568,Bekanntmachung Vergabe von gemeindlichen Wohnbaugrundstücken,pdf-embedder,{},"Document block / download, not iframe"
+7085,Alle Downloads in der Übersicht,wpdm_tree,{},manual review
+9913,Entwässerung - Beitrags- und Gebührensatzung zur Entwässerungsatzung ab 01.01.2026,pdf-embedder,{},"Document block / download, not iframe"
+9915,Ehrungen - Satzung über die Verleihung von Ehrungen durch die Gemeinde Merching,pdf-embedder,{},"Document block / download, not iframe"
+9939,Ausschreibung Architekturpreis Bezirk Schwaben 2026,pdf-embedder,{},"Document block / download, not iframe"
+7862,Pflegestützpunkt Landkreis Aichach-Friedberg,pdf-embedder,{},"Document block / download, not iframe"
+8785,Was soll ich tun bei Hochwasser?,pdf-embedder,{},"Document block / download, not iframe"
+8088,Wasserabgabesatzung 01.01.2022,pdf-embedder,{},"Document block / download, not iframe"
+8090,Entwässerungssatzung 01.01.2022,pdf-embedder,{},"Document block / download, not iframe"
+9925,Feuerwehr - Satzung über Aufwendungs- und Kostenersatz für Einsätze und andere Leistungen gemeindlicher Feuerwehren ab 01.01.2026,pdf-embedder,{},"Document block / download, not iframe"
+9911,Wasser - Beitrags- und Gebührensatzung zur Wasserabgabesatzung ab 01.01.2026,pdf-embedder,{},"Document block / download, not iframe"
+9968,Bekanntmachung Stellplatzsatzung vom 08.09.2025,pdf-embedder,{},"Document block / download, not iframe"
+8659,Beste Ausbildungs- und Studienchanchen in der öffentlichen Verwaltung Bayerns,pdf-embedder,{},"Document block / download, not iframe"
+8567,Abschaffung Kinderreisepass zum 01.01.2024,pdf-embedder,{},"Document block / download, not iframe"
+10532,Verkündung des Ergebnisses der Wahl des Ortssprechers für den Ortsteil Hochdorf,pdf-embedder,{},"Document block / download, not iframe"
+10515,Pressemitteilung Landratsamt Aichach-Friedberg : Bündnis f. Demokratie spricht Förderempfehlungen für 2026 aus,pdf-embedder,{},"Document block / download, not iframe"
+10376,Prüfbericht Trinkwasser November 2025,pdf-embedder,{},"Document block / download, not iframe"
+8722,"Schäden oder Störungen an Straßenlampen mit dem ""bayernwerk SchadensMelder"" an die Kommune melden",pdf-embedder,{},"Document block / download, not iframe"
+9222,Haushaltspläne,wpdm_category,"{""id"": ""212"", ""template"": ""link-template-default""}",category-filtered Document catalog
+9417,Plakatierungsverordnung vom 14.12.2023,pdf-embedder,{},"Document block / download, not iframe"
+9511,Bekanntmachung Kostensatzung,pdf-embedder,{},"Document block / download, not iframe"
+9489,Kontaktformular 1_copy_copy,select,{},manual review
+9489,Kontaktformular 1_copy_copy,text,{},manual review
+9489,Kontaktformular 1_copy_copy,email,{},manual review
+9489,Kontaktformular 1_copy_copy,text,{},manual review
+9489,Kontaktformular 1_copy_copy,text,{},manual review
+9489,Kontaktformular 1_copy_copy,text,{},manual review
+9489,Kontaktformular 1_copy_copy,text,{},manual review
+9489,Kontaktformular 1_copy_copy,textarea,{},manual review
+9489,Kontaktformular 1_copy_copy,radio,{},manual review
+9489,Kontaktformular 1_copy_copy,captchac,{},manual review
+9489,Kontaktformular 1_copy_copy,captchar,{},manual review
+9489,Kontaktformular 1_copy_copy,acceptance,{},manual review
+9489,Kontaktformular 1_copy_copy,submit,{},manual review
+9489,Kontaktformular 1_copy_copy,your-subject,{},manual review
+9489,Kontaktformular 1_copy_copy,your-name,{},manual review
+9489,Kontaktformular 1_copy_copy,recipient,{},manual review
+9489,Kontaktformular 1_copy_copy,your-name,{},manual review
+9489,Kontaktformular 1_copy_copy,your-email,{},manual review
+9489,Kontaktformular 1_copy_copy,your-subject,{},manual review
+9489,Kontaktformular 1_copy_copy,your-message,{},manual review
+9489,Kontaktformular 1_copy_copy,your-name,{},manual review
+9489,Kontaktformular 1_copy_copy,radio-897,{},manual review
+9489,Kontaktformular 1_copy_copy,PLZ,{},manual review
+9489,Kontaktformular 1_copy_copy,Ort,{},manual review
+9489,Kontaktformular 1_copy_copy,StrasseHausnummer,{},manual review
+9489,Kontaktformular 1_copy_copy,your-email,{},manual review
+9489,Kontaktformular 1_copy_copy,your-subject,{},manual review
+9489,Kontaktformular 1_copy_copy,your-name,{},manual review
+9489,Kontaktformular 1_copy_copy,your-email,{},manual review
+9489,Kontaktformular 1_copy_copy,your-message,{},manual review
+9489,Kontaktformular 1_copy_copy,recipient,{},manual review
+9489,Kontaktformular 1_copy_copy,your-email,{},manual review
+9489,Kontaktformular 1_copy_copy,radio-897,{},manual review
+9489,Kontaktformular 1_copy_copy,PLZ,{},manual review
+9489,Kontaktformular 1_copy_copy,Ort,{},manual review
+9489,Kontaktformular 1_copy_copy,StrasseHausnummer,{},manual review
+9489,Kontaktformular 1_copy_copy,your-email,{},manual review
+10803,Gemeindekurier Sommer 2026,pdf-embedder,{},"Document block / download, not iframe"
+10508,Pressemitteilung Landratsamt Aichach-Friedberg - Geflügelpest: Sperrzone aufgehoben,pdf-embedder,{},"Document block / download, not iframe"
+10793,Bestattung - Gebührensatzung zur Satzung für öffentl. Bestattungseinrichtung (GBS/BES) der Gemeinde Merching ab 01.01.2027,pdf-embedder,{},"Document block / download, not iframe"
+10316,Bekanntmachung Kommunale Wärmeplanung Merching,pdf-embedder,{},"Document block / download, not iframe"
+10326,Pressemitteilung Mikrozensus 2026,pdf-embedder,{},"Document block / download, not iframe"
+10772,"Bekanntmachung Eröffnung Vergabeverfahren für Baugrundstücke, Baugebiet 34 ""Östlich der Nebelhornstraße""",pdf-embedder,{},"Document block / download, not iframe"
+10455,Ortssprecherwahl Steinach u. Hochdorf - Beilage Gemeindekurier zu Ostern f. die Ortsteile,pdf-embedder,{},"Document block / download, not iframe"
+10463,Bekanntmachung für den Erörterungstermin Licca Liber I,pdf-embedder,{},"Document block / download, not iframe"
+10485,Solaroffensive Wittelsbacher Land,pdf-embedder,{},"Document block / download, not iframe"
+10521,Grundsteuer - Änderungen am Grundbesitz bis 30.04.2026 dem Finanzamt anzeigen,pdf-embedder,{},"Document block / download, not iframe"
+10570,Bekanntmachung v. 12.05.2026 - Vergabe von gemeindlichen Wohnbaugrundstücken,pdf-embedder,{},"Document block / download, not iframe"
+10624,Satzung zur Regelung von Fragen des örtlichen Gemeindeverfassungsrechts vom 19.05.2026,pdf-embedder,{},"Document block / download, not iframe"
+10662,Pressemitteilung Finanzamt Augsburg Land - Erinnerung an Steuervorauszahlung,pdf-embedder,{},"Document block / download, not iframe"
+10848,Fachstelle f. pflegende Angehörige - Tageskurs für ehrenamtlich tätige Einzelperson am 27.10.2026 in Aichach,pdf-embedder,{},"Document block / download, not iframe"
+10683,Geschäftsordnung ab Mai 2026,pdf-embedder,{},"Document block / download, not iframe"
+10867,Pressemitteilung: Region wehrt sich gegen geplante Ausdünnung des Regionalverkehrs zwischen Augsburg und München,pdf-embedder,{},"Document block / download, not iframe"
+10844,Urlaub trotz Pflege,pdf-embedder,{},"Document block / download, not iframe"
+10931,"Unterstützung für Menschen mit Pfegebedarf - Tagesschulung zur ""Ehrenamtlich tätigen Einzelperson""",pdf-embedder,{},"Document block / download, not iframe"
+10737,Bekanntmachung Einladung Verbandsversammlung Adelburggruppe 24.06.2026,pdf-embedder,{},"Document block / download, not iframe"
+10785,Bekanntmachung Friedhofs- und Bestattungssatzung ab 01.01.2027,pdf-embedder,{},"Document block / download, not iframe"
+10741,Rechtsverordnung über die Zulassung des Betriebs von Autowaschanlagen an Sonn- und Feiertagen,pdf-embedder,{},"Document block / download, not iframe"
+10748,Amtsblatt Landkreis Aichach-Friedberg vom 02.06.2026 m. Bekanntmachung Haushaltssatzung f.d. Haushalt 2026 des Zweckverband zur Wasserversorgung d. Adelburggruppe,pdf-embedder,{},"Document block / download, not iframe"
+10928,E-Rechnung im Verein: Online-Seminar des Landratsamtes informiert über neue Anforderungen,pdf-embedder,{},"Document block / download, not iframe"
+10833,Neue Termine für kostenlose Rückgabe von Pflanzenschutz-Verpackungen - Entsorgungssystem PAMIRA,pdf-embedder,{},"Document block / download, not iframe"
+10870,Bodenrichtwerte ab 01.01.2026 für Merching,pdf-embedder,{},"Document block / download, not iframe"
+10872,Bodenrichtwerte ab 01.01.2026 für Steinach und Hochdorf,pdf-embedder,{},"Document block / download, not iframe"
+10874,Bodenrichtwerte f. landwirtschaftliche Flächen ab 01.01.2026,pdf-embedder,{},"Document block / download, not iframe"
+10887,Pressemitteilung Landratsamt Aichach-Friedberg: Tychonema in mehreren Badeseen nachgewiesen,pdf-embedder,{},"Document block / download, not iframe"
+10896,Pressemitteilung Landratsamt Aichach-Friedberg: Blaualgen im Uferbereich des Auensees bei Kissing,pdf-embedder,{},"Document block / download, not iframe"
+10917,Übernahme Papiertonne v. REMONDIS durch den Landkreis - Erfassung der Tonnen in Merching ab 19.10.2026,pdf-embedder,{},"Document block / download, not iframe"
+10944,Workshop Freiwilligenagentur: Wie gewinnen wir neue Freiwillige? Alle im Blick - Ehrenamt neu gestalten,pdf-embedder,{},"Document block / download, not iframe"
+10947,Veranstaltung Landratsamt Aichach-Friedberg: Ratschen über Photovoltaik - SolarTreffs in verschiedenen Gemeinden,pdf-embedder,{},"Document block / download, not iframe"

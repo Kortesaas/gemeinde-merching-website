@@ -39,6 +39,10 @@ storage/framework/testing/*
 *.sql.gz
 /backups/
 
+# --- Python inventory tooling caches ---------------------------------------
+__pycache__/
+*.py[cod]
+
 # --- Test & tooling output --------------------------------------------------
 .phpunit.result.cache
 /.phpunit.cache

@@ -1,0 +1,190 @@
+term_id,taxonomy,name,slug,parent_id,assigned_count
+3,link_category,Nützliche und hilfreiche Links,nuetzliche-links,0,16
+28,category,Ausschreibungen,ausschreibungen,0,0
+5,category,Aus Merching,aus-merching,0,13
+6,category,Aus anderen Behörden,andere-behoerden,0,5
+8,category,Aus dem Rathaus,rathaus,0,37
+9,category,Schule und Kinderbetreuung,schule-kinderbetreuung,0,0
+10,events_categories,Gemeinderat,gemeinderat,0,26
+11,events_categories,Kulturelle Termine,kulturelle-termine,0,236
+12,nav_menu,Main,main,0,47
+13,category,Topaktuell,topaktuell,0,61
+14,link_category,Straßenverkehrsrecht,strassenverkehrsrecht,0,1
+15,link_category,Einwohnermeldewesen/Fischereirecht,einwohnermeldewesen-fischereirecht,0,7
+19,link_category,Öffentliche Sicherheit und Ordnung,oeffentliche-sicherheit-und-ordnung,0,5
+20,link_category,Baurecht,baurecht,0,10
+21,link_category,Gewerberecht,gewerberecht,0,6
+22,link_category,Schulwesen,schulwesen,0,1
+23,link_category,Feuerwehr,feuerwehr,0,1
+24,link_category,Bestattungswesen,bestattungswesen,0,1
+25,link_category,Miete/ Wohngeld,miete-wohngeld,0,6
+26,link_category,Finanzwesen/ Kasse,finanzwesen-kasse,0,7
+27,link_category,Sonstiges,sonstiges,0,0
+29,events_tags,Musik,musik,0,0
+30,events_tags,Serenade,serenade,0,0
+31,events_tags,Konzert,konzert,0,0
+32,events_tags,Trachtenverein,trachtenverein,0,0
+33,events_tags,Bayermünching,bayermuenching,0,0
+34,events_tags,Grillfest,grillfest,0,0
+35,events_tags,Musikantenstammtisch,musikantenstammtisch,0,0
+36,events_tags,Mandichosee,mandichosee,0,0
+37,events_tags,Sommerserenade,sommerserenade,0,0
+38,events_tags,Merching,merching,0,0
+39,events_tags,Gartenfest,gartenfest,0,0
+40,events_tags,Trachtenverein D`Paartaler,trachtenverein-dpaartaler,0,0
+41,events_tags,Trachtenheim,trachtenheim,0,0
+42,events_tags,Tennisclub Merching,tennisclub-merching,0,0
+43,events_tags,Tennisverein,tennisverein,0,0
+44,events_tags,Tenniscamp,tenniscamp,0,0
+45,events_tags,Jungend-Tenniscamp,jungend-tenniscamp,0,0
+46,events_tags,Tennis,tennis,0,0
+47,events_tags,Bocciaturnier,bocciaturnier,0,0
+48,events_tags,Krieger und Soldatenverein,krieger-und-soldatenverein,0,0
+49,events_tags,Sommernachtsfest,sommernachtsfest,0,0
+50,events_tags,Trachtenverein Bayermünching,trachtenverein-bayermuenching,0,0
+51,events_tags,Prag,prag,0,0
+52,events_tags,Vereinsausflug,vereinsausflug,0,0
+53,events_tags,VDK,vdk,0,0
+54,events_tags,Tagesausflug,tagesausflug,0,0
+55,events_tags,Flohmarkt,flohmarkt,0,0
+56,events_tags,Altpapiersammlung,altpapiersammlung,0,0
+57,events_tags,Burschenverein,burschenverein,0,0
+58,events_tags,Papiersammlung,papiersammlung,0,0
+59,events_tags,Schützenverein Bacherleh,schuetzenverein-bacherleh,0,0
+60,events_tags,Turnier,turnier,0,0
+61,events_tags,CSU,csu,0,0
+62,events_tags,Stammtisch,stammtisch,0,0
+63,events_tags,Senioren,senioren,0,0
+64,events_tags,Peißenberg,peissenberg,0,0
+65,events_tags,Ausflug,ausflug,0,0
+66,events_tags,Klimaschutz Merching eV,klimaschutz-merching-ev,0,0
+67,events_tags,Klimaschutz,klimaschutz,0,0
+68,events_tags,Agendatreffen,agendatreffen,0,0
+69,events_tags,Segelvereinigung Merching eV,segelvereinigung-merching-ev,0,0
+70,events_tags,Lechfeldmeisterschaften,lechfeldmeisterschaften,0,0
+71,events_tags,SVM,svm,0,0
+72,events_tags,Varianta-Cup,varianta-cup,0,0
+73,events_tags,Frühschoppen,fruehschoppen,0,0
+74,events_tags,Paartaler,paartaler,0,0
+75,events_tags,Jahreshauptversammlung,jahreshauptversammlung,0,0
+76,events_tags,Kinderflohmarkt,kinderflohmarkt,0,0
+77,events_tags,Aktion guter Zweck,aktion-guter-zweck,0,0
+78,events_tags,Südtirol,suedtirol,0,0
+79,events_tags,Meran,meran,0,0
+80,events_tags,Schützenverein,schuetzenverein,0,0
+81,events_tags,Südtiroler Abend,suedtiroler-abend,0,0
+82,events_tags,Freiwillige Feuerwehr Steinach,freiwillige-feuerwehr-steinach,0,0
+83,events_tags,Pfarrgemeinde Merching,pfarrgemeinde-merching,0,0
+84,events_tags,Filmvortrag,filmvortrag,0,0
+85,events_tags,Abschlussturnier,abschlussturnier,0,0
+86,events_tags,Aktion ktion Hoffnung,aktion-ktion-hoffnung,0,0
+87,events_tags,Kleidersammlung,kleidersammlung,0,0
+88,events_tags,Pfarrgemeinderat,pfarrgemeinderat,0,0
+89,events_tags,D´Paartaler,d%c2%b4paartaler,0,0
+90,events_tags,Weinfest,weinfest,0,0
+91,events_tags,Merchinger Senioren,merchinger-senioren,0,0
+92,events_tags,Trio Mandicho,trio-mandicho,0,0
+93,events_tags,Kameradschaftsabend,kameradschaftsabend,0,0
+94,events_tags,Kirchweihschießen,kirchweihschiessen,0,0
+95,events_tags,Frauenfrühstück,frauenfruehstueck,0,0
+96,events_tags,Trachtenverein Bayermüching,trachtenverein-bayermueching,0,0
+97,events_tags,Musikverein Merching,musikverein-merching,0,0
+98,events_tags,Heimatabend,heimatabend,0,0
+99,events_tags,Trachtenverein D´Paartaler,trachtenverein-d%c2%b4paartaler,0,0
+100,events_tags,Aktion Hoffnung,aktion-hoffnung,0,0
+101,events_tags,Tennisclub,tennisclub,0,0
+102,events_tags,Volkstrauertag,volkstrauertag,0,0
+103,events_tags,Gottesdienst,gottesdienst,0,0
+104,events_tags,Aumiller,aumiller,0,0
+105,events_tags,FACE,face,0,0
+106,events_tags,Adventsmeditation,adventsmeditation,0,0
+107,events_tags,Pfarrgemeinderat Merching,pfarrgemeinderat-merching,0,0
+108,events_tags,Pfarrsaal,pfarrsaal,0,0
+109,events_tags,Merchinger Advent,merchinger-advent,0,0
+110,events_tags,Merchinger Vereine,merchinger-vereine,0,0
+111,events_tags,Nikolausaktion,nikolausaktion,0,0
+112,events_tags,Mandicho Schützen,mandicho-schuetzen,0,0
+113,events_tags,Königsproklamation,koenigsproklamation,0,0
+114,events_tags,Weihnachtsfeier,weihnachtsfeier,0,0
+115,events_tags,Trachenverein,trachenverein,0,0
+116,events_tags,Seglervereinigung Merching,seglervereinigung-merching,0,0
+117,events_tags,Nikolausfeier,nikolausfeier,0,0
+118,events_tags,Christkindlmarkt,christkindlmarkt,0,0
+119,events_tags,Adventsfeier,adventsfeier,0,0
+120,events_tags,Wanderung,wanderung,0,0
+121,events_tags,Advents-Stammtisch,advents-stammtisch,0,0
+122,category,Öffentliche Bekanntmachungen,oeffentliche-bekanntmachungen,0,1
+123,events_tags,Kugelschießen,kugelschiessen,0,0
+124,events_tags,Weihnachten,weihnachten,0,0
+125,events_tags,Kerzenlichtstunde,kerzenlichtstunde,0,0
+126,events_tags,Hirtenfeuer,hirtenfeuer,0,0
+127,events_tags,Heilige Nacht,heilige-nacht,0,0
+128,events_tags,Weißwurstessen,weisswurstessen,0,0
+129,events_tags,Neujahrsschießen,neujahrsschiessen,0,0
+130,events_tags,Neuwahlen,neuwahlen,0,0
+131,events_tags,Freiwillige Feuerwehr Merching,freiwillige-feuerwehr-merching,0,0
+132,events_tags,Merching tanzt,merching-tanzt,0,0
+133,events_tags,Bürgerball,buergerball,0,0
+134,events_tags,Kaffeekränzchen,kaffeekraenzchen,0,0
+135,events_tags,Männertag,maennertag,0,0
+136,events_tags,Generalsversammlung,generalsversammlung,0,0
+137,events_tags,Feuerwehrball,feuerwehrball,0,0
+138,events_tags,Schützenball,schuetzenball,0,0
+139,events_tags,Kinderfasching,kinderfasching,0,0
+140,events_tags,CDK,cdk,0,0
+141,events_tags,Trachtenstube Bayermünching,trachtenstube-bayermuenching,0,0
+142,events_tags,Kehraus,kehraus,0,0
+143,events_tags,Starkbierfest,starkbierfest,0,0
+144,events_tags,Musikverein,musikverein,0,0
+145,events_tags,Frühjahrskonzert,fruehjahrskonzert,0,0
+146,events_tags,FFW Merching,ffw-merching,0,0
+147,events_tags,Christbaumsammlung,christbaumsammlung,0,0
+148,events_categories,Soziales,soziales,0,99
+156,post_tag,Klimaschutz,klimaschutz,0,0
+149,events_tags,Pfarrbühne,pfarrbuehne,0,0
+150,events_tags,Theater,theater,0,0
+151,link_category,Ferienprogramm 2013,ferienprogramm-2013,0,0
+153,events_categories,Gemeindeverwaltung,gemeindeverwaltung,0,28
+154,events_categories,Vereinstermin,vereinstermin,0,52
+155,events_categories,politischer Termin,politischer-termin,0,14
+157,cn_log_type,cn-email,cn-email,0,0
+158,cn_log_type,cn-system-info,cn-system-info,0,0
+159,link_category,Wasserversorgung,wasserversorgung,0,3
+186,link_library_category,Ferienprogramm 2013,ferienprogramm-2013,0,0
+175,link_library_category,Straßenverkehrsrecht,strassenverkehrsrecht,0,1
+176,link_library_category,Einwohnermeldewesen,einwohnermeldewesen-fischereirecht,0,7
+177,link_library_category,Öffentliche Sicherheit und Ordnung,oeffentliche-sicherheit-und-ordnung,0,3
+178,link_library_category,Baurecht,baurecht,0,1
+179,link_library_category,Gewerberecht,gewerberecht,0,7
+180,link_library_category,Schulwesen,schulwesen,0,1
+181,link_library_category,Feuerwehr,feuerwehr,0,0
+182,link_library_category,Bestattungswesen,bestattungswesen,0,1
+183,link_library_category,Miete/ Wohngeld,miete-wohngeld,0,6
+184,link_library_category,Finanzwesen/ Kasse,finanzwesen-kasse,0,4
+185,link_library_category,Sonstiges,sonstiges,0,2
+174,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,0,17
+187,link_library_category,Wasserversorgung,wasserversorgung,0,0
+188,link_library_category,Neue Cat,new-cat,0,0
+189,category,Fundsachen,fundsachen,0,3
+211,post_format,post-format-image,post-format-image,0,0
+191,encyclopedia-tag,Bürgerservice,buergerservice,0,0
+192,encyclopedia-tag,Onlineportal,onlineportal,0,0
+193,encyclopedia-tag,Verwaltung,verwaltung,0,0
+194,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,0,10
+195,nav_menu,Footer,footer,0,4
+196,wp_theme,astra,astra,0,1
+197,wpdmcategory,Gemeinderat,gemeinderat,0,0
+198,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,0,28
+199,wpdmcategory,Richtlinien der Gemeinde Merching,richtlinien-gemeinde-merching,0,0
+200,wpdmcategory,Satzungen und Verordnungen der Schulverbände Merching,satzungen-verordnungen-schulverbaende-merching,0,0
+201,wpdmcategory,Gemeinde-Kurier Merching,gemeinde-kurier-merching,0,3
+203,wpdmcategory,Informationsmaterial,informationsmaterial,0,19
+204,wpdmcategory,Flächennutzungsplan - Bebauungspläne,flaechennutzungsplan-bebauungsplaene,0,1
+205,wpdmcategory,Kinder und Jugend,kinder-und-jugend,0,1
+206,wpdmcategory,Ausschreibungen - Stellenanzeigen,ausschreibungen-stellenanzeigen,0,1
+207,wpdmcategory,Wasserversorgung,wasserversorgung,0,4
+208,wpdmcategory,Allgemeine Formulare,allgemeine-formulare,0,1
+209,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,0,16
+210,wp_theme,twentytwentytwo,twentytwentytwo,0,1
+212,wpdmcategory,Haushaltspläne,haushaltsplaene,0,25
+213,wpdmcategory,Vereine,vereine,0,0

@@ -1,0 +1,23 @@
+{
+  "physical_content_files": 3071,
+  "unique_sha256_files": 2715,
+  "image_files": 2284,
+  "pdf_files": 770,
+  "source_media_records": 893,
+  "unique_document_paths": 787,
+  "duplicate_groups": 308,
+  "redundant_identical_copies": 356,
+  "missing_backup_originals": 61,
+  "missing_dynamic_references": 1,
+  "filebase_missing": 0,
+  "seed_only_page_candidates": 0,
+  "broken_link_edges": 74,
+  "uncrawled_url_candidates": 409,
+  "event_rows": 83,
+  "event_rows_with_full_date_candidate": 81,
+  "source_hashes_verified_unchanged": true,
+  "managed_downloads_checked": 96,
+  "managed_pdf_responses": 95,
+  "postmeta_discrepancies": 307,
+  "readiness": "Ready to design importer; not ready to run a complete production import until blocking decisions/preflights are resolved"
+}

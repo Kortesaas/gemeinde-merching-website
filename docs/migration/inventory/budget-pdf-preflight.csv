@@ -1,0 +1,26 @@
+source_id,path,pages,tagged,encrypted,pdf_version,compressed_object_streams,fpdi_parse
+9230,wp-content/uploads/download-manager-files/GSV-0-HH-Deckblatt.pdf,1,yes,no,1.7,True,supported
+9234,wp-content/uploads/download-manager-files/GSV-1-HH-Inhaltsverzeichnis.pdf,1,yes,no,1.7,True,supported
+9235,wp-content/uploads/download-manager-files/GSV-2-HH-Haushaltssatzung.pdf,2,yes,no,1.7,True,supported
+9236,wp-content/uploads/download-manager-files/GSV-3-HH-Schulverbandsumlage.pdf,2,yes,no,1.7,True,supported
+9237,wp-content/uploads/download-manager-files/GSV-4-HH-Vorbericht.pdf,4,yes,no,1.7,True,supported
+9238,wp-content/uploads/download-manager-files/GSV-5-HH-Haushaltsplan-mit-Finanzplanung.pdf,94,no,no,1.7,True,unsupported / parser rejected
+9239,wp-content/uploads/download-manager-files/GSV-6-HH-Anlagen.pdf,2,yes,no,1.7,True,supported
+9307,wp-content/uploads/download-manager-files/Gde-0-HH-Deckblatt.pdf,1,yes,no,1.7,True,supported
+9308,wp-content/uploads/download-manager-files/Gde-1-HH-Inhaltsverzeichnis.pdf,2,yes,no,1.7,True,supported
+9309,wp-content/uploads/download-manager-files/Gde-2-HH-Haushaltssatzung.pdf,2,yes,no,1.7,True,supported
+9310,wp-content/uploads/download-manager-files/Gde-3-HH-Vorbericht.pdf,17,yes,no,1.7,True,supported
+9311,wp-content/uploads/download-manager-files/Gde-4-HH-Uebersicht-Darlehen.pdf,2,yes,no,1.7,True,supported
+9312,wp-content/uploads/download-manager-files/Gde-5-HH-Darlehensermaechtigungen.pdf,2,yes,no,1.7,True,supported
+9313,wp-content/uploads/download-manager-files/Gde-6-HH-Haushaltsplan-mit-Finanzplan-und-Deckungsringen.pdf,232,no,no,1.7,True,unsupported / parser rejected
+9314,wp-content/uploads/download-manager-files/Gde-7-HH-Stellenplan.pdf,4,yes,no,1.7,True,supported
+9315,wp-content/uploads/download-manager-files/Gde-8-HH-Anlagen.pdf,3,yes,no,1.7,True,supported
+9316,wp-content/uploads/download-manager-files/Gde-9-HH-VMH-Finanzplan-Einzelaufstellung.pdf,5,yes,no,1.7,True,supported
+9240,wp-content/uploads/download-manager-files/MSV-0-HH-Deckblatt.pdf,1,yes,no,1.7,True,supported
+9241,wp-content/uploads/download-manager-files/MSV-1-HH-Inhaltsverzeichnis.pdf,1,yes,no,1.7,True,supported
+9242,wp-content/uploads/download-manager-files/MSV-2-HH-Haushaltssatzung.pdf,2,yes,no,1.7,True,supported
+9243,wp-content/uploads/download-manager-files/MSV-3-HH-Schulverbandsumlage.pdf,3,yes,no,1.7,True,supported
+9244,wp-content/uploads/download-manager-files/MSV-4-HH-Vorbericht.pdf,8,no,no,1.7,False,supported
+9245,wp-content/uploads/download-manager-files/MSV-5-HH-Haushaltsplan-mit-Finanzplan-und-Deckungsringen.pdf,102,no,no,1.7,True,unsupported / parser rejected
+9246,wp-content/uploads/download-manager-files/MSV-6-HH-Stellenplan.pdf,2,yes,no,1.7,True,supported
+9247,wp-content/uploads/download-manager-files/MSV-7-HH-Anlagen.pdf,2,yes,no,1.7,True,supported

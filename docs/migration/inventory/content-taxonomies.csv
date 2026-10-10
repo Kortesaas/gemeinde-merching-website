@@ -1,0 +1,338 @@
+source_id,type,taxonomy,name,slug,proposed_mapping
+12,page,link_category,Straßenverkehrsrecht,strassenverkehrsrecht,context Category / article Tag; old event taxonomies require review
+14,page,link_category,Nützliche und hilfreiche Links,nuetzliche-links,context Category / article Tag; old event taxonomies require review
+10,page,link_category,Nützliche und hilfreiche Links,nuetzliche-links,context Category / article Tag; old event taxonomies require review
+6866,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6936,wp_global_styles,wp_theme,astra,astra,Navigation / operational style
+6860,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6859,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6865,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+10662,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10662,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+51,page,link_category,Miete/ Wohngeld,miete-wohngeld,context Category / article Tag; old event taxonomies require review
+56,page,link_category,Finanzwesen/ Kasse,finanzwesen-kasse,context Category / article Tag; old event taxonomies require review
+9238,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+2284,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+2284,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+10938,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10181,post,category,Aus anderen Behörden,andere-behoerden,context Category / article Tag; old event taxonomies require review
+10181,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9014,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+9014,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9055,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+9055,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+8722,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+3874,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3814,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+3868,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+3851,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+3867,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3866,link_library_links,link_library_category,Einwohnermeldewesen,einwohnermeldewesen-fischereirecht,context Category / article Tag; old event taxonomies require review
+3865,link_library_links,link_library_category,Einwohnermeldewesen,einwohnermeldewesen-fischereirecht,context Category / article Tag; old event taxonomies require review
+3864,link_library_links,link_library_category,Einwohnermeldewesen,einwohnermeldewesen-fischereirecht,context Category / article Tag; old event taxonomies require review
+3863,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3862,link_library_links,link_library_category,Finanzwesen/ Kasse,finanzwesen-kasse,context Category / article Tag; old event taxonomies require review
+3861,link_library_links,link_library_category,Finanzwesen/ Kasse,finanzwesen-kasse,context Category / article Tag; old event taxonomies require review
+3860,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3859,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3857,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3856,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3855,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3854,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3853,link_library_links,link_library_category,Miete/ Wohngeld,miete-wohngeld,context Category / article Tag; old event taxonomies require review
+3849,link_library_links,link_library_category,Finanzwesen/ Kasse,finanzwesen-kasse,context Category / article Tag; old event taxonomies require review
+3848,link_library_links,link_library_category,Miete/ Wohngeld,miete-wohngeld,context Category / article Tag; old event taxonomies require review
+3847,link_library_links,link_library_category,Miete/ Wohngeld,miete-wohngeld,context Category / article Tag; old event taxonomies require review
+3846,link_library_links,link_library_category,Miete/ Wohngeld,miete-wohngeld,context Category / article Tag; old event taxonomies require review
+3845,link_library_links,link_library_category,Miete/ Wohngeld,miete-wohngeld,context Category / article Tag; old event taxonomies require review
+3844,link_library_links,link_library_category,Miete/ Wohngeld,miete-wohngeld,context Category / article Tag; old event taxonomies require review
+3843,link_library_links,link_library_category,Bestattungswesen,bestattungswesen,context Category / article Tag; old event taxonomies require review
+5783,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+3820,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+3840,link_library_links,link_library_category,Gewerberecht,gewerberecht,context Category / article Tag; old event taxonomies require review
+3839,link_library_links,link_library_category,Gewerberecht,gewerberecht,context Category / article Tag; old event taxonomies require review
+3838,link_library_links,link_library_category,Gewerberecht,gewerberecht,context Category / article Tag; old event taxonomies require review
+3837,link_library_links,link_library_category,Gewerberecht,gewerberecht,context Category / article Tag; old event taxonomies require review
+3836,link_library_links,link_library_category,Gewerberecht,gewerberecht,context Category / article Tag; old event taxonomies require review
+3835,link_library_links,link_library_category,Gewerberecht,gewerberecht,context Category / article Tag; old event taxonomies require review
+3824,link_library_links,link_library_category,Öffentliche Sicherheit und Ordnung,oeffentliche-sicherheit-und-ordnung,context Category / article Tag; old event taxonomies require review
+3823,link_library_links,link_library_category,Öffentliche Sicherheit und Ordnung,oeffentliche-sicherheit-und-ordnung,context Category / article Tag; old event taxonomies require review
+3822,link_library_links,link_library_category,Öffentliche Sicherheit und Ordnung,oeffentliche-sicherheit-und-ordnung,context Category / article Tag; old event taxonomies require review
+3869,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+3821,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+3819,link_library_links,link_library_category,Einwohnermeldewesen,einwohnermeldewesen-fischereirecht,context Category / article Tag; old event taxonomies require review
+3818,link_library_links,link_library_category,Einwohnermeldewesen,einwohnermeldewesen-fischereirecht,context Category / article Tag; old event taxonomies require review
+3817,link_library_links,link_library_category,Einwohnermeldewesen,einwohnermeldewesen-fischereirecht,context Category / article Tag; old event taxonomies require review
+3816,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3815,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+3842,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+3813,link_library_links,link_library_category,Einwohnermeldewesen,einwohnermeldewesen-fischereirecht,context Category / article Tag; old event taxonomies require review
+3812,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+9925,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+10485,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10485,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+4096,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+7608,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10942,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+10942,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+4149,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+10737,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+10928,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10928,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+10477,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10477,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10152,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9911,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10754,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10754,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+4401,link_library_links,link_library_category,Straßenverkehrsrecht,strassenverkehrsrecht,context Category / article Tag; old event taxonomies require review
+10940,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10940,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+9231,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+10790,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10521,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10521,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+9234,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9240,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+10508,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10508,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10088,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10088,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10156,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+4610,link_library_links,link_library_category,Gewerberecht,gewerberecht,context Category / article Tag; old event taxonomies require review
+5194,link_library_links,link_library_category,Baurecht,baurecht,context Category / article Tag; old event taxonomies require review
+5226,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+5226,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+9197,post,category,Aus anderen Behörden,andere-behoerden,context Category / article Tag; old event taxonomies require review
+9197,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9197,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+9939,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+5372,link_library_links,link_library_category,Sonstiges,sonstiges,context Category / article Tag; old event taxonomies require review
+10326,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+10826,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10826,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10050,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10050,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10833,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10833,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+5607,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+9243,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+7042,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10426,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+10947,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10947,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+3873,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+3841,link_library_links,link_library_category,Z-Bitte benutzen Sie für folgende Anliegen künftig die aktuellen Formulare im Bürgerserviceportal/Formularcenter,kuenftigelektronisch,context Category / article Tag; old event taxonomies require review
+5811,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+10844,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+10844,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+8785,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+9237,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+6564,link_library_links,link_library_category,Schulwesen,schulwesen,context Category / article Tag; old event taxonomies require review
+7031,wpdmpro,wpdmcategory,Allgemeine Formulare,allgemeine-formulare,context Category / article Tag; old event taxonomies require review
+10803,wpdmpro,wpdmcategory,Gemeinde-Kurier Merching,gemeinde-kurier-merching,context Category / article Tag; old event taxonomies require review
+10896,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10896,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10887,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10887,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10570,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10570,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9077,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9247,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+6749,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+6749,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+6807,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6808,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6809,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6810,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6811,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6812,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6813,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6814,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6815,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+10254,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10254,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+6817,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+8659,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+8659,wpdmpro,wpdmcategory,Ausschreibungen - Stellenanzeigen,ausschreibungen-stellenanzeigen,context Category / article Tag; old event taxonomies require review
+6819,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6820,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6821,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6822,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6823,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6824,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6825,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6826,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6827,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6828,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6829,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6830,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6831,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6832,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+9244,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+6834,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6835,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6836,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6837,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6838,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6839,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6840,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6841,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6842,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6843,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6844,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6845,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6871,nav_menu_item,nav_menu,Footer,footer,Navigation / operational style
+6870,nav_menu_item,nav_menu,Footer,footer,Navigation / operational style
+6869,nav_menu_item,nav_menu,Footer,footer,Navigation / operational style
+6868,nav_menu_item,nav_menu,Footer,footer,Navigation / operational style
+10432,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+6855,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6856,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6857,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+6858,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+7034,wpdmpro,wpdmcategory,Wasserversorgung,wasserversorgung,context Category / article Tag; old event taxonomies require review
+7028,wpdmpro,wpdmcategory,Wasserversorgung,wasserversorgung,context Category / article Tag; old event taxonomies require review
+7029,wpdmpro,wpdmcategory,Wasserversorgung,wasserversorgung,context Category / article Tag; old event taxonomies require review
+7059,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+7043,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+7040,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+7030,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10925,post,category,Fundsachen,fundsachen,context Category / article Tag; old event taxonomies require review
+7017,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+7020,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10534,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+7041,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10532,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+7064,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+7052,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+7021,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10931,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+10931,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+7022,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+7024,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+7049,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+7051,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+7025,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+7087,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+10952,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10245,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+7151,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+7151,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10461,post,category,Aus anderen Behörden,andere-behoerden,context Category / article Tag; old event taxonomies require review
+10461,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10463,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+10867,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10867,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+7721,link_library_links,link_library_category,Sonstiges,sonstiges,context Category / article Tag; old event taxonomies require review
+10874,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+10872,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+10881,post,category,Fundsachen,fundsachen,context Category / article Tag; old event taxonomies require review
+10455,wpdmpro,wpdmcategory,Gemeinde-Kurier Merching,gemeinde-kurier-merching,context Category / article Tag; old event taxonomies require review
+7862,link_library_links,link_library_category,Nützliche und hilfreiche Links,nuetzliche-und-hilfreiche-links,context Category / article Tag; old event taxonomies require review
+10890,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+10890,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10744,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10744,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+8824,post,category,Aus anderen Behörden,andere-behoerden,context Category / article Tag; old event taxonomies require review
+7894,link_library_links,link_library_category,Finanzwesen/ Kasse,finanzwesen-kasse,context Category / article Tag; old event taxonomies require review
+9075,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+8132,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+8132,wpdmpro,wpdmcategory,Kinder und Jugend,kinder-und-jugend,context Category / article Tag; old event taxonomies require review
+9236,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9246,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9241,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+10418,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9913,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+8971,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+8971,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+8971,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+9242,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+10870,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+9239,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+10748,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+9235,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+10917,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10917,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+8018,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+8018,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+8018,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+8020,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+9307,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+8088,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+8090,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+8962,wpdmpro,wpdmcategory,Flächennutzungsplan - Bebauungspläne,flaechennutzungsplan-bebauungsplaene,context Category / article Tag; old event taxonomies require review
+10914,post,category,Fundsachen,fundsachen,context Category / article Tag; old event taxonomies require review
+8134,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+8134,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+8149,wp_global_styles,wp_theme,twentytwentytwo,twentytwentytwo,Navigation / operational style
+10876,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10876,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10173,post,category,Aus anderen Behörden,andere-behoerden,context Category / article Tag; old event taxonomies require review
+10173,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10428,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9230,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9245,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+10848,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10848,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+8787,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+8787,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10171,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10171,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10515,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10515,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+10179,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+10944,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+10944,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+8567,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+8567,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10042,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10808,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10808,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10741,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10091,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+9978,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10796,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10453,wpdmpro,wpdmcategory,Gemeinde-Kurier Merching,gemeinde-kurier-merching,context Category / article Tag; old event taxonomies require review
+10399,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9513,post,category,Öffentliche Bekanntmachungen,oeffentliche-bekanntmachungen,context Category / article Tag; old event taxonomies require review
+9513,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9513,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+9417,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+9508,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9508,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+10798,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9308,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9309,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9310,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9311,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9312,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9313,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9314,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9315,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+9316,wpdmpro,wpdmcategory,Haushaltspläne,haushaltsplaene,context Category / article Tag; old event taxonomies require review
+10430,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+9644,nav_menu_item,nav_menu,Main,main,Navigation / operational style
+9915,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+9922,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10376,wpdmpro,wpdmcategory,Informationsmaterial,informationsmaterial,context Category / article Tag; old event taxonomies require review
+10376,wpdmpro,wpdmcategory,Wasserversorgung,wasserversorgung,context Category / article Tag; old event taxonomies require review
+10568,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+10316,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+9968,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+9511,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+10683,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10793,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10027,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10033,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+9562,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+9562,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+9972,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+9976,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+9600,post,category,Aus dem Rathaus,rathaus,context Category / article Tag; old event taxonomies require review
+9600,post,category,Aus Merching,aus-merching,context Category / article Tag; old event taxonomies require review
+9600,post,category,Topaktuell,topaktuell,context Category / article Tag; old event taxonomies require review
+10624,wpdmpro,wpdmcategory,Satzungen und Verordnungen der Gemeinde Merching,satzungen-verordnungen-gemeinde-merching,context Category / article Tag; old event taxonomies require review
+10788,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+10785,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review
+10772,wpdmpro,wpdmcategory,Öffentliche Bekanntmachungen,oeffentliche-bekannmachungen,context Category / article Tag; old event taxonomies require review

@@ -1,0 +1,48 @@
+{
+  "tablepress_shortcode_map": {
+    "1": 2025,
+    "2": 2026,
+    "3": 2027,
+    "4": 2028,
+    "5": 2029,
+    "7": 4582,
+    "8": 4656,
+    "9": 4791,
+    "10": 4793,
+    "11": 4851,
+    "12": 4856,
+    "13": 4863,
+    "15": 8634
+  },
+  "council_rows": 26,
+  "council_separator_rows": 4,
+  "council_photo_rows": 26,
+  "event_candidate_rows": 83,
+  "connections_public": 26,
+  "forms": 2,
+  "budgets": {
+    "GSV:2026": 7,
+    "Gde:2026": 10,
+    "MSV:2026": 8
+  },
+  "budget_bytes": {
+    "Gde:2026": 2925997,
+    "MSV:2026": 1976324,
+    "GSV:2026": 1477167
+  },
+  "budget_pdf_parser": {
+    "supported": 22,
+    "unsupported / parser rejected": 3
+  },
+  "future_enabled_published": 21,
+  "sql_prefix_summary": {
+    "wp_": {
+      "posts": 3517,
+      "latest_modified": "2026-10-09 06:56:36"
+    },
+    "wpd754ae": {
+      "posts": 3676,
+      "latest_modified": "2025-02-20 10:55:36"
+    }
+  }
+}

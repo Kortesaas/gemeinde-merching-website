@@ -1,0 +1,27 @@
+source,name,entry_type,public_address_rows,public_phone_rows,taxonomy_ids,mapping
+connections:1,Vareille - Architekturbüro,organization,1,2,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:2,Sparkasse Merching,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:3,Bayernblock GmbH - Holzhäuser,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:4,"Storch – Bäckerei, Konditorei, Stehcafe",organization,1,2,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:5,"Ostermeir, Elektro",organization,1,2,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:6,"Pfannes, Julia Friseur",organization,1,1,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:7,Teifelhart – Schreinerei,organization,1,1,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:8,Raiffeisenbank Merching,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:9,Marita M. Müller Rechtsanwaltskanzlei,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:10,Jahn Alexandra - Nageldesign,organization,1,1,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:12,Dagdasolutions GmbH & Co. KG,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:13,"Kerber, Andreas - Elektromeister",organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:14,Frisur aktuell,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:15,Bodo Böhnke,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:16,Haus- und Betriebstechnik - Jürgen Schweiger,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:17,Luichtl Wasser und Wärme GmbH,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:18,"FreiLacke, Emil Frei GmbH & Co",organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:19,"Buchanzow, Kirsten - Maklerin für Immobilien und Finanzdienstleistungen",organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:20,"Weiß, Metallbau",organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:21,Outdoor-Production - Merchings Weltreisende,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:22,Holzbau Ringenberger,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:23,Schreinerei Meidert,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:24,Lachenmair Unternehmensberatung,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:25,Forum Verlag Herkert GmbH,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:26,"Grad, Hermann Versicherungen",organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication
+connections:27,Sedlmair Wassertechnik GmbH & Co. KG,organization,0,0,2,Organization; cross-check against TablePress trade/club rows before deduplication

@@ -1,0 +1,2 @@
+album_id,name,gallery_order,page_id,mapping
+1,Merching,8|6|7|5|4|3|2|1,0,Page with ordered Gallery blocks; nested albums need explicit review

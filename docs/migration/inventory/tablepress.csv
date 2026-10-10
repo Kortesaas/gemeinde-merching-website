@@ -1,0 +1,14 @@
+source_id,shortcode_id,title,rows,columns,headers,used_on_posts,mapping
+2025,1,Adressen,21,4,Funktion|Foto|Name|Kontakt,20,Person / Department
+2026,2,!! Buergerservice-obsolet,108,3,Bereich|Sachbearbeiter|Tel.Nr.,,manual review; controlled table block currently unavailable
+2027,3,Gewerbetreibende,30,2,Branche|Gewerbebetrieb,,Organization directory
+2028,4,Vereine,54,2,Verein|Zusätzliche Info/ Ansprechpartner,249,Organization directory
+2029,5,Bürgerservice von A-Z,151,3,Bereich|zuständige Stelle|Tel.Nr.,222,Service + Person/Department
+4582,7,Gemeinderat 2026-2032,31,5,Foto|Name|Vorname|Gruppierung|Funktion,212,CouncilMember / CouncilTerm
+4656,8,Standortfaktoren Gewerbe,1,3,Gewerbesteuer- Hebesatz|340 %|,12|4787,manual review; controlled table block currently unavailable
+4851,11,Startseite-Intro,1,2,"Liebe Mitbürgerinnen, liebe Mitbürger, liebe Besucher, als 1. Bürgermeister freue ich mich, dass sie uns auf dem digitalen Weg besuchen. Auf unserer Internetseite finden Sie viel Wissenswertes und Interessantes über Merching, es stehen Ihnen auch aktuelle Informationen zu verschiedenen Themen rund um unsere Gemeinde Merching zur Verfügung. Ihr 1. Bürgermeister Helmut Luichtl|",,manual review; controlled table block currently unavailable
+4791,9,Standortfaktoren Allgemein,10,3,Breitbandversorgung|gigabitfähige Infrastruktur nahezu im gesamten Ortsgebiet (bis zu 1.000 MBit/s)|,4787,manual review; controlled table block currently unavailable
+4793,10,Standortfaktoren Freizeit,7,3,"Unterkünfte, Gaststätten|Gaststätten Pensionen, Hotels|",14|4787,manual review; controlled table block currently unavailable
+4856,12,Startseite-Intro-2,4,1,,,manual review; controlled table block currently unavailable
+4863,13,Startseite-Intro-3,1,2,"|Liebe Mitbürgerinnen, liebe Mitbürger, liebe Besucher, als 1. Bürgermeister freue ich mich, dass sie uns auf dem digitalen Weg besuchen. Auf unserer Internetseite finden Sie viel Wissenswertes und Interessantes über Merching, es stehen Ihnen auch aktuelle Informationen zu verschiedenen Themen rund um unsere Gemeinde Merching zur Verfügung. Ihr 1. Bürgermeister Helmut Luichtl",,manual review; controlled table block currently unavailable
+8634,15,Veranstaltungskalender,84,6,Datum|Uhrzeit|Ort|Veranstaltung|Veranstalter|Bemerkung,4,Event rows

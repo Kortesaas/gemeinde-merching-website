@@ -1,0 +1,504 @@
+source_table,shortcode_id,row,source_title,label,columns,links,nonempty_cells,mapped_by_table,review
+2025,1,0,Adressen,Funktion,4,0,4,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,1,Adressen,1. Bürgermeister,4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,2,Adressen,Vorzimmer,4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,3,Adressen,"Pforte, Sperrmüll-, Kühlgeräteabholung, Friedhof, Plakatierung, vorübergehende Gaststättenerlaubnisse",4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,4,Adressen,"Einwohnermeldewesen, Ausgabe von Ausweisen, Fundbüro",4,2,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,5,Adressen,"Standesamt, Gewerbe",4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,6,Adressen,"Ordnung und Soziales, Sitzungsdienst",4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,7,Adressen,"Geschäftsleitung, Planen und Bauen",4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,8,Adressen,"Planen und Bauen, Zuschusswesen",4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,9,Adressen,"Hauptamt, Personalwesen, Wahlen",4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,10,Adressen,"Finanzverwaltung, EDV",4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,11,Adressen,"Mieten, Pachten, Kindergarten, Schule, Offene Ganztagsschule (OGS)",4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,12,Adressen,"Steueramt, Gebühren",4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,13,Adressen,Kassenverwaltung,4,2,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,14,Adressen,Kassenverwaltung,4,0,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,15,Adressen,Bauhof-Leitung,4,1,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,16,Adressen,Bauhof,4,3,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,17,Adressen,"Wasserhaus, Fachkräfte für Wassertechnik",4,2,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,18,Adressen,Wertstoffsammelstelle am Bauhof Di 17:00 - 19:00 Uhr Sa 09:00 - 12:00 Uhr,4,0,2,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,19,Adressen,"Grasschnitt- und Grüngutabgabe auf dem Gelände der ehemaligen Bauschuttdeponie Fr 16-18 Uhr, Sa 9-12 Uhr (nur bis 31.10.2015)",4,0,1,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2025,1,20,Adressen,"Grund- und Mittelschule Mitglieder Schulverbände: Gemeinde Merching, Gemeinde Steindorf, Gemeinde Schmiechen Markt Mering (nur Mittelschulverband)",4,2,3,Person / Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,0,!! Buergerservice-obsolet,Bereich,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,1,!! Buergerservice-obsolet,Abbuchungen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,2,!! Buergerservice-obsolet,Abfallbeseitigung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,3,!! Buergerservice-obsolet,Abwasserbeseitigung (Gebühren),3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,4,!! Buergerservice-obsolet,"Abwasserbeseitigung (Satzungsfragen, Beiträge)",3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,5,!! Buergerservice-obsolet,Abwasserbeseitigung (technische Fragen),3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,6,!! Buergerservice-obsolet,Anmeldung zur Eheschließung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,7,!! Buergerservice-obsolet,Aufgrabungen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,8,!! Buergerservice-obsolet,"An-, Ab-, Ummeldungen",3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,9,!! Buergerservice-obsolet,Ausländerangelegenheiten,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,10,!! Buergerservice-obsolet,Ausweise,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,11,!! Buergerservice-obsolet,Bauanträge,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,12,!! Buergerservice-obsolet,Baulandumlegungsverfahren,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,13,!! Buergerservice-obsolet,Bauvoranfragen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,14,!! Buergerservice-obsolet,Bebauungsplan,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,15,!! Buergerservice-obsolet,Beglaubigungen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,16,!! Buergerservice-obsolet,Bestattungswesen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,17,!! Buergerservice-obsolet,"Beurkundungen (Geburten, Eheschließungen, Sterbefälle)",3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,18,!! Buergerservice-obsolet,Buchhaltung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,19,!! Buergerservice-obsolet,"Bürgerauskunft, elektronisch",3,1,1,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,20,!! Buergerservice-obsolet,Bürgermeister,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,21,!! Buergerservice-obsolet,Datenschutz,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,22,!! Buergerservice-obsolet,Eheschließung,3,1,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,23,!! Buergerservice-obsolet,Einwohnermeldeamt,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,24,!! Buergerservice-obsolet,Enteignungsverfahren,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,25,!! Buergerservice-obsolet,Erschließungsbeiträge,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,26,!! Buergerservice-obsolet,Ferienprogramm,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,27,!! Buergerservice-obsolet,Finanzplanung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,28,!! Buergerservice-obsolet,Fischereiwesen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,29,!! Buergerservice-obsolet,Flächennutzungsplan,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,30,!! Buergerservice-obsolet,Friedhofsangelegenheiten,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,31,!! Buergerservice-obsolet,Führungszeugnisse,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,32,!! Buergerservice-obsolet,Fundsachen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,33,!! Buergerservice-obsolet,Gastschulverhältnisse,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,34,!! Buergerservice-obsolet,"Gaststättenerlaubnis, vorübergehend",3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,35,!! Buergerservice-obsolet,Gebührenbefreiung für Rundfunk und Fernsehen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,36,!! Buergerservice-obsolet,Gemeinderatsangelegenheiten,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,37,!! Buergerservice-obsolet,Gewerbean- und abmeldung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,38,!! Buergerservice-obsolet,Gewerbesteuer,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,39,!! Buergerservice-obsolet,Grünanlagen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,40,!! Buergerservice-obsolet,Grundsteuer,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,41,!! Buergerservice-obsolet,Grundstücksan- und verkäufe,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,42,!! Buergerservice-obsolet,Haushaltsplan,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,43,!! Buergerservice-obsolet,Hausnummernzuteilung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,44,!! Buergerservice-obsolet,Herstellungsbeiträge für Kanal,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,45,!! Buergerservice-obsolet,Herstellungsbeiträge für Wasser,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,46,!! Buergerservice-obsolet,Hort,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,47,!! Buergerservice-obsolet,Hundesteuer,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,48,!! Buergerservice-obsolet,Immissionsschutz,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,49,!! Buergerservice-obsolet,Internet,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,50,!! Buergerservice-obsolet,Jagdrecht,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,51,!! Buergerservice-obsolet,Jugendangelegenheiten,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,52,!! Buergerservice-obsolet,Kanalgebühren,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,53,!! Buergerservice-obsolet,Kasse,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,54,!! Buergerservice-obsolet,Kinderausweise,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,55,!! Buergerservice-obsolet,Kindergarten,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,56,!! Buergerservice-obsolet,Kinderkrippe,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,57,!! Buergerservice-obsolet,Kirchenaustritte,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,58,!! Buergerservice-obsolet,Kühlgeräteabholung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,59,!! Buergerservice-obsolet,Landschaftsplan,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,60,!! Buergerservice-obsolet,Liegenschaftsverwaltung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,61,!! Buergerservice-obsolet,Mahnungen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,62,!! Buergerservice-obsolet,Manöverschäden,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,63,!! Buergerservice-obsolet,Mehrzweckhalle,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,64,!! Buergerservice-obsolet,Meldewesen,3,1,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,65,!! Buergerservice-obsolet,Mietbeihilfe,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,66,!! Buergerservice-obsolet,Müllabfuhr (Müllgebühren),3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,67,!! Buergerservice-obsolet,Öffentlichkeitsarbeit,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,68,!! Buergerservice-obsolet,Öko-Konto (Planungsfragen),3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,69,!! Buergerservice-obsolet,Personalangelegenheiten,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,70,!! Buergerservice-obsolet,Personalausweise,3,1,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,71,!! Buergerservice-obsolet,Personenstandswesen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,72,!! Buergerservice-obsolet,Pressestelle,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,73,!! Buergerservice-obsolet,Reisepässe,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,74,!! Buergerservice-obsolet,Rentenangelegenheiten,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,75,!! Buergerservice-obsolet,Schadenersatzansprüche,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,76,!! Buergerservice-obsolet,Schülerbeförderung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,77,!! Buergerservice-obsolet,Schulwesen/Schulverband,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,78,!! Buergerservice-obsolet,Sondernutzungen allgemein,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,79,!! Buergerservice-obsolet,"Sondernutzungen, Plakatierung",3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,80,!! Buergerservice-obsolet,Sozialhilfe,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,81,!! Buergerservice-obsolet,Sperrmüll,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,82,!! Buergerservice-obsolet,Spielplätze,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,83,!! Buergerservice-obsolet,Sportangelegenheiten (Förderung),3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,84,!! Buergerservice-obsolet,Staatsangehörigkeitsrecht,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,85,!! Buergerservice-obsolet,Standesamt,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,86,!! Buergerservice-obsolet,Sterbefall,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,87,!! Buergerservice-obsolet,Straßenausbaubeiträge,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,88,!! Buergerservice-obsolet,Straßenbeleuchtung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,89,!! Buergerservice-obsolet,Straßenreinigung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,90,!! Buergerservice-obsolet,"Stundung, Niederschlagung, Erlass",3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,91,!! Buergerservice-obsolet,Sühneverfahren,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,92,!! Buergerservice-obsolet,Trinkwasser (aktuelle Werte),3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,93,!! Buergerservice-obsolet,Verbrauchsgebühren,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,94,!! Buergerservice-obsolet,Vereine und Verbände,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,95,!! Buergerservice-obsolet,Verkehrsrecht,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,96,!! Buergerservice-obsolet,(Arbeiten im Straßenraum),3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,97,!! Buergerservice-obsolet,Vermessungen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,98,!! Buergerservice-obsolet,Vermietungen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,99,!! Buergerservice-obsolet,Verpachtungen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,100,!! Buergerservice-obsolet,Volkshochschule,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,101,!! Buergerservice-obsolet,Wahlen,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,102,!! Buergerservice-obsolet,Wasserversorgung (Gebühren),3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,103,!! Buergerservice-obsolet,"Wasserversorgung (Satzungsfragen, Beiträge)",3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,104,!! Buergerservice-obsolet,Wasserversorgung/ -qualität (techn. Fragen),3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,105,!! Buergerservice-obsolet,Wehrerfassung,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,106,!! Buergerservice-obsolet,Wertstoffsammelstelle,3,1,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2026,2,107,!! Buergerservice-obsolet,Winterdienst,3,0,3,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,0,Gewerbetreibende,Branche,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,1,Gewerbetreibende,Architekten,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,2,Gewerbetreibende,Bank/Sparkasse,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,3,Gewerbetreibende,Bank/Sparkasse,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,4,Gewerbetreibende,Baubetriebe,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,5,Gewerbetreibende,Baugewerbe,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,6,Gewerbetreibende,"Bekleidung, Kunsthandwerk",2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,7,Gewerbetreibende,Bäckereien/Konditoreien,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,8,Gewerbetreibende,"EDV, Softwarelösungen, Apps, Webseiten",2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,9,Gewerbetreibende,Elektrotechnik,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,10,Gewerbetreibende,Elektro,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,11,Gewerbetreibende,Friseure,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,12,Gewerbetreibende,Friseure,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,13,Gewerbetreibende,Handelsunternehmen/Vertriebsförderung,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,14,Gewerbetreibende,Haus- und Betriebstechnik,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,15,Gewerbetreibende,Heizung/Sanitär,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,16,Gewerbetreibende,Industrieanlagen,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,17,Gewerbetreibende,Lacke,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,18,Gewerbetreibende,Metallbau,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,19,Gewerbetreibende,Nageldesign,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,20,Gewerbetreibende,Rechtsanwalt,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,21,Gewerbetreibende,"Reise, Freizeit",2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,22,Gewerbetreibende,Schreinerei/Holzbau,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,23,Gewerbetreibende,Schreinerei/Holzbau,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,24,Gewerbetreibende,Schreinerei/Holzbau,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,25,Gewerbetreibende,Unternehmensberatung,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,26,Gewerbetreibende,Verlage,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,27,Gewerbetreibende,Versicherungen,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,28,Gewerbetreibende,Wassertechnik,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2027,3,29,Gewerbetreibende,"Werbung, Grafikdesign",2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,0,Vereine,Verein,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,1,Vereine,Bauernverband Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,2,Vereine,Bayermünchinger Stubenmusik,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,3,Vereine,Bund Naturschutz in Bayern e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,4,Vereine,Bündnis 90/Die Grünen Ortsverband Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,5,Vereine,Bürgernetz Mering/Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,6,Vereine,Chor Alondra,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,7,Vereine,Chorgemeinschaft Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,8,Vereine,Christian Dreigesang,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,9,Vereine,CSU-Ortsverband Merching-Steinach-Hochdorf,2,1,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,10,Vereine,Die Ambulante e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,11,Vereine,Dorfbühne Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,12,Vereine,Elternbeirat des Hauses für Kinder St. Josef,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,13,Vereine,Fischergilde Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,14,Vereine,Freie Wähler Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,15,Vereine,Freiwillige Feuerwehr Hochdorf,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,16,Vereine,Freiwillige Feuerwehr Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,17,Vereine,Freiwillige Feuerwehr Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,18,Vereine,Freiwillige Feuerwehr Steinach,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,19,Vereine,Freiwillige Feuerwehr Steinach,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,20,Vereine,Gartenbauverein Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,21,Vereine,Heimat- und Trachtenverein Bayermünching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,22,Vereine,Heimat- und Volkstrachtenverein D'Paartaler Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,23,Vereine,Jagdgenossenschaft Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,24,Vereine,Jugendbeauftragte der Gemeinde Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,25,Vereine,Jugendbeauftragter der Gemeinde Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,26,Vereine,Kath. Frauenbund Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,27,Vereine,Katholischer Burschenverein Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,28,Vereine,Kirchenchor St. Martin,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,29,Vereine,Kirchenverwaltung Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,30,Vereine,Klimaschutz Merching eV,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,31,Vereine,Krieger- u. Soldatenverein Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,32,Vereine,Krieger- u. Soldatenverein Steinach,2,0,1,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,33,Vereine,Mandicho-Schützen Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,34,Vereine,Merchinger Frauenstammtisch,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,35,Vereine,Merchinger JuKi Förderverein e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,36,Vereine,Modellfliegerclub MFC Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,37,Vereine,Musikverein Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,38,Vereine,Ortsbäuerin Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,39,Vereine,Paartaler Zwoagsang,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,40,Vereine,Parteifreie Bürger,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,41,Vereine,Pfarrgemeinderat Hochdorf,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,42,Vereine,Pfarrgemeinderat Steinach,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,43,Vereine,Pfarrgemeinderat Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,44,Vereine,Schützenverein Bacherleh-Steinach e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,45,Vereine,Seglervereinigung Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,46,Vereine,Seniorenteam St. Martin,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,47,Vereine,SPD Ortsverein Merching-Schmiechen-Steindorf,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,48,Vereine,Tennisclub Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,49,Vereine,TSV Merching e.V.,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,50,Vereine,"VBT ""Verein für Brauchtum und Tradition"" Steinach",2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,51,Vereine,VDK Ortsverband Merching,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,52,Vereine,Volksschule Aichach-Friedberg Außenstelle Merching & Schmiechen,2,0,2,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2028,4,53,Vereine,,2,0,0,Organization directory,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,0,Bürgerservice von A-Z,Bereich,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,1,Bürgerservice von A-Z,Abbuchungen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,2,Bürgerservice von A-Z,Abfallbeseitigung,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,3,Bürgerservice von A-Z,Abwasserbeseitigung (Gebühren),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,4,Bürgerservice von A-Z,"Abwasserbeseitigung (Satzungsfragen, Beiträge)",3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,5,Bürgerservice von A-Z,Abwasserbeseitigung (technische Fragen),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,6,Bürgerservice von A-Z,"An-, Ab-, Ummeldungen",3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,7,Bürgerservice von A-Z,Anmeldung zur Eheschließung,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,8,Bürgerservice von A-Z,Asylangelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,9,Bürgerservice von A-Z,Aufgrabungen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,10,Bürgerservice von A-Z,Ausbaubeiträge,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,11,Bürgerservice von A-Z,Ausländerangelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,12,Bürgerservice von A-Z,Ausweise,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,13,Bürgerservice von A-Z,Bauanträge,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,14,Bürgerservice von A-Z,Baulandumlegungsverfahren,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,15,Bürgerservice von A-Z,Bauplätze,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,16,Bürgerservice von A-Z,Bauvoranfragen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,17,Bürgerservice von A-Z,Bauwasser,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,18,Bürgerservice von A-Z,Bebauungsplan,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,19,Bürgerservice von A-Z,Beglaubigungen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,20,Bürgerservice von A-Z,Beglaubigungen (Rentenzwecke),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,21,Bürgerservice von A-Z,Bestattungswesen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,22,Bürgerservice von A-Z,"Beurkundungen (Geburten, Eheschließungen, Sterbefälle)",3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,23,Bürgerservice von A-Z,Briefwahl,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,24,Bürgerservice von A-Z,Buchhaltung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,25,Bürgerservice von A-Z,"Bürgerauskunft, elektronisch",3,1,1,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,26,Bürgerservice von A-Z,Bürgermeister,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,27,Bürgerservice von A-Z,Datenschutz,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,28,Bürgerservice von A-Z,Eheschließung,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,29,Bürgerservice von A-Z,Einwohnermeldeamt,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,30,Bürgerservice von A-Z,Enteignungsverfahren,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,31,Bürgerservice von A-Z,Entwässerung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,32,Bürgerservice von A-Z,Entwässerung (technische Fragen),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,33,Bürgerservice von A-Z,Erschließungsbeiträge,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,34,Bürgerservice von A-Z,Ferienprogramm,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,35,Bürgerservice von A-Z,Feuerwerk,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,36,Bürgerservice von A-Z,Finanzplanung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,37,Bürgerservice von A-Z,Fischereiwesen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,38,Bürgerservice von A-Z,Flächennutzungsplan,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,39,Bürgerservice von A-Z,Friedhofsangelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,40,Bürgerservice von A-Z,Führungszeugnis,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,41,Bürgerservice von A-Z,Fundsachen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,42,Bürgerservice von A-Z,Gastschulverhältnisse,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,43,Bürgerservice von A-Z,Gaststättenerlaubnis (Gewerbe),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,44,Bürgerservice von A-Z,Gaststättenerlaubnis (Veranstaltungen),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,45,Bürgerservice von A-Z,Gebührenbefreiung für Rundfunk und Fernsehen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,46,Bürgerservice von A-Z,Gemeinderatsangelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,47,Bürgerservice von A-Z,Gemeinderatsangelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,48,Bürgerservice von A-Z,Gewässerunterhalt,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,49,Bürgerservice von A-Z,Gewerbean- und abmeldung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,50,Bürgerservice von A-Z,Gewerbegrundstücke,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,51,Bürgerservice von A-Z,Gewerbesteuer,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,52,Bürgerservice von A-Z,Grünanlagen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,53,Bürgerservice von A-Z,Grundsteuer,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,54,Bürgerservice von A-Z,Grundstücksan- und verkäufe,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,55,Bürgerservice von A-Z,Grundstücksan- und verkäufe,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,56,Bürgerservice von A-Z,Hausanschluss Wasser,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,57,Bürgerservice von A-Z,Haushaltsplan,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,58,Bürgerservice von A-Z,Hausnummernvergabe,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,59,Bürgerservice von A-Z,Herstellungsbeiträge für Kanal,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,60,Bürgerservice von A-Z,Herstellungsbeiträge für Wasser,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,61,Bürgerservice von A-Z,Hort,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,62,Bürgerservice von A-Z,Hort (Gebühren),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,63,Bürgerservice von A-Z,Hundesteuer,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,64,Bürgerservice von A-Z,Immissionsschutz,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,65,Bürgerservice von A-Z,Internet,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,66,Bürgerservice von A-Z,Jagdrecht,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,67,Bürgerservice von A-Z,Jugendangelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,68,Bürgerservice von A-Z,Kanalgebühren,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,69,Bürgerservice von A-Z,Kanalherstellungsbeiträge,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,70,Bürgerservice von A-Z,"Kanalisation, Kanalanschluss",3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,71,Bürgerservice von A-Z,Kasse,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,72,Bürgerservice von A-Z,Kinderausweis,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,73,Bürgerservice von A-Z,Kindergarten,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,74,Bürgerservice von A-Z,Kindergarten (Gebühren),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,75,Bürgerservice von A-Z,Kinderkrippe,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,76,Bürgerservice von A-Z,Kinderkrippe (Gebühren),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,77,Bürgerservice von A-Z,Kinderhort,3,0,2,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,78,Bürgerservice von A-Z,Kirchenaustritte,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,79,Bürgerservice von A-Z,Kühlgeräteabholung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,80,Bürgerservice von A-Z,Kulturelle Angelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,81,Bürgerservice von A-Z,Kulturelle Angelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,82,Bürgerservice von A-Z,Landschaftsplan,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,83,Bürgerservice von A-Z,Lärmschutz,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,84,Bürgerservice von A-Z,Liegenschaftsverwaltung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,85,Bürgerservice von A-Z,Mahnungen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,86,Bürgerservice von A-Z,Manöverschäden,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,87,Bürgerservice von A-Z,Mehrzweckhalle,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,88,Bürgerservice von A-Z,Meldewesen,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,89,Bürgerservice von A-Z,Mietbeihilfe,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,90,Bürgerservice von A-Z,Mittagsbetreuung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,91,Bürgerservice von A-Z,Mittagsbetreuung (Gebühren),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,92,Bürgerservice von A-Z,Müllabfuhr (Müllgebühren),3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,93,Bürgerservice von A-Z,Öffentlichkeitsarbeit,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,94,Bürgerservice von A-Z,Öko-Konto (Planungsfragen),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,95,Bürgerservice von A-Z,Offene Ganztagsschule,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,96,Bürgerservice von A-Z,Offene Ganztagsschule (Gebühren),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,97,Bürgerservice von A-Z,Ortsrecht,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,98,Bürgerservice von A-Z,Pachtwesen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,99,Bürgerservice von A-Z,Personalangelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,100,Bürgerservice von A-Z,Parkausweis,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,101,Bürgerservice von A-Z,Personalausweise,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,102,Bürgerservice von A-Z,Personenstandswesen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,103,Bürgerservice von A-Z,Plakatierung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,104,Bürgerservice von A-Z,Pressestelle,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,105,Bürgerservice von A-Z,Reisepässe,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,106,Bürgerservice von A-Z,Rentenangelegenheiten,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,107,Bürgerservice von A-Z,Ruhezeiten,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,108,Bürgerservice von A-Z,Satzungen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,109,Bürgerservice von A-Z,Schadenersatzansprüche,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,110,Bürgerservice von A-Z,Schadensmeldung Straßenbeleuchtung,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,111,Bürgerservice von A-Z,Schülerbeförderung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,112,Bürgerservice von A-Z,Schulwesen/Schulverband,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,113,Bürgerservice von A-Z,Schwerbehindertenausweis,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,114,Bürgerservice von A-Z,Sondernutzungen allgemein,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,115,Bürgerservice von A-Z,"Sondernutzungen, Plakatierung",3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,116,Bürgerservice von A-Z,Sozialhilfe,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,117,Bürgerservice von A-Z,Spendenbescheinigungen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,118,Bürgerservice von A-Z,Sperrmüll,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,119,Bürgerservice von A-Z,Spielplätze,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,120,Bürgerservice von A-Z,Sportangelegenheiten (Förderung),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,121,Bürgerservice von A-Z,Staatsangehörigkeitsrecht,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,122,Bürgerservice von A-Z,Standesamt,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,123,Bürgerservice von A-Z,Standesamt,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,124,Bürgerservice von A-Z,Sterbefall,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,125,Bürgerservice von A-Z,Straßenausbaubeiträge,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,126,Bürgerservice von A-Z,"Straßenbeleuchtung, Straßenbau, Straßenbeschilderung, Straßenschäden",3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,127,Bürgerservice von A-Z,Straßenreinigung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,128,Bürgerservice von A-Z,Straßenverkehrsrechtliche Erlaubnisse,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,129,Bürgerservice von A-Z,"Stundung, Niederschlagung, Erlass",3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,130,Bürgerservice von A-Z,"Stundung, Niederschlagung, Erlass",3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,131,Bürgerservice von A-Z,Sühneverfahren,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,132,Bürgerservice von A-Z,Trinkwasser (aktuelle Werte),3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,133,Bürgerservice von A-Z,Verbrauchsgebühren,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,134,Bürgerservice von A-Z,Vereine und Verbände,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,135,Bürgerservice von A-Z,Verkehrsrecht,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,136,Bürgerservice von A-Z,(Arbeiten im Straßenraum),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,137,Bürgerservice von A-Z,Vermessungen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,138,Bürgerservice von A-Z,Vermietungen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,139,Bürgerservice von A-Z,Verpachtungen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,140,Bürgerservice von A-Z,Volkshochschule,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,141,Bürgerservice von A-Z,Wahlen,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,142,Bürgerservice von A-Z,Wasserversorgung (Gebühren),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,143,Bürgerservice von A-Z,"Wasserversorgung (Satzungsfragen, Beiträge)",3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,144,Bürgerservice von A-Z,Wasserversorgung/ -qualität (techn. Fragen und Anschluss),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,145,Bürgerservice von A-Z,Wehrerfassung,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,146,Bürgerservice von A-Z,Wertstoffsammelstelle,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,147,Bürgerservice von A-Z,Winterdienst,3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,148,Bürgerservice von A-Z,Zählerstände,3,1,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,149,Bürgerservice von A-Z,Zuschüsse an Vereine (Investitionen),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+2029,5,150,Bürgerservice von A-Z,Zuschüsse an Vereine (laufende Zuschüsse),3,0,3,Service + Person/Department,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,0,Gemeinderat 2026-2032,Foto,5,0,5,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,1,Gemeinderat 2026-2032,,5,1,4,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,2,Gemeinderat 2026-2032,,5,1,4,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,3,Gemeinderat 2026-2032,,5,1,4,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,4,Gemeinderat 2026-2032,,5,0,0,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,5,Gemeinderat 2026-2032,,5,1,4,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,6,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,7,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,8,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,9,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,10,Gemeinderat 2026-2032,,5,1,4,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,11,Gemeinderat 2026-2032,,5,1,4,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,12,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,13,Gemeinderat 2026-2032,,5,1,4,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,14,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,15,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,16,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,17,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,18,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,19,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,20,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,21,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,22,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,23,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,24,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,25,Gemeinderat 2026-2032,,5,0,0,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,26,Gemeinderat 2026-2032,,5,1,3,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,27,Gemeinderat 2026-2032,,5,1,4,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,28,Gemeinderat 2026-2032,,5,0,0,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,29,Gemeinderat 2026-2032,Beauftragte außerhalb des Gemeinderates,5,0,1,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4582,7,30,Gemeinderat 2026-2032,,5,1,4,CouncilMember / CouncilTerm,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4656,8,0,Standortfaktoren Gewerbe,Gewerbesteuer- Hebesatz,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4851,11,0,Startseite-Intro,"Liebe Mitbürgerinnen, liebe Mitbürger, liebe Besucher, als 1. Bürgermeister freue ich mich, dass sie uns auf dem digitalen Weg besuchen. Auf unserer Internetseite finden Sie viel Wissenswertes und Interessantes über Merching, es stehen Ihnen auch aktuelle Informationen zu verschiedenen Themen rund um unsere Gemeinde Merching zur Verfügung. Ihr 1. Bürgermeister Helmut Luichtl",2,1,1,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,0,Standortfaktoren Allgemein,Breitbandversorgung,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,1,Standortfaktoren Allgemein,Trinkwasserwerte,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,2,Standortfaktoren Allgemein,Wassergebühr,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,3,Standortfaktoren Allgemein,Kanalgebühren,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,4,Standortfaktoren Allgemein,Hundesteuer,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,5,Standortfaktoren Allgemein,Kindergarten und Kinderkrippe,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,6,Standortfaktoren Allgemein,Schulen,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,7,Standortfaktoren Allgemein,örtliche Nahversorgung,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,8,Standortfaktoren Allgemein,Anbindung,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4791,9,9,Standortfaktoren Allgemein,Behördendienste,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4793,10,0,Standortfaktoren Freizeit,"Unterkünfte, Gaststätten",3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4793,10,1,Standortfaktoren Freizeit,,3,1,0,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4793,10,2,Standortfaktoren Freizeit,Naherholung,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4793,10,3,Standortfaktoren Freizeit,,3,1,0,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4793,10,4,Standortfaktoren Freizeit,Spielplätze,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4793,10,5,Standortfaktoren Freizeit,,3,1,0,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4793,10,6,Standortfaktoren Freizeit,Vereinsleben,3,1,2,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4856,12,0,Startseite-Intro-2,,1,1,0,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4856,12,1,Startseite-Intro-2,"Liebe Mitbürgerinnen, liebe Mitbürger, liebe Besucher, als 1. Bürgermeister freue ich mich, dass sie uns auf dem digitalen Weg besuchen. Auf unserer Internetseite finden Sie viel Wissenswertes und Interessantes über Merching, es stehen Ihnen auch aktuelle Informationen zu verschiedenen Themen rund um unsere Gemeinde Merching zur Verfügung. Ihr 1. Bürgermeister Helmut Luichtl",1,0,1,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4856,12,2,Startseite-Intro-2,,1,0,0,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4856,12,3,Startseite-Intro-2,,1,0,0,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+4863,13,0,Startseite-Intro-3,,2,2,1,manual review; controlled table block currently unavailable,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,0,Veranstaltungskalender,Datum,6,0,6,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,1,Veranstaltungskalender,22.09.2026 bis 24.09.2026,6,0,6,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,2,Veranstaltungskalender,22.09.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,3,Veranstaltungskalender,24.09.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,4,Veranstaltungskalender,26.09.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,5,Veranstaltungskalender,26.09.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,6,Veranstaltungskalender,27.09.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,7,Veranstaltungskalender,29.09.2026,6,0,6,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,8,Veranstaltungskalender,30.09.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,9,Veranstaltungskalender,09.10.26 bis 17.10.26,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,10,Veranstaltungskalender,10.10.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,11,Veranstaltungskalender,10.10.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,12,Veranstaltungskalender,10.10.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,13,Veranstaltungskalender,14.10.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,14,Veranstaltungskalender,17.10.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,15,Veranstaltungskalender,17.10.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,16,Veranstaltungskalender,19.10.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,17,Veranstaltungskalender,19.10.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,18,Veranstaltungskalender,21.10.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,19,Veranstaltungskalender,22.10.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,20,Veranstaltungskalender,23.10.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,21,Veranstaltungskalender,24.10.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,22,Veranstaltungskalender,24.10.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,23,Veranstaltungskalender,25.10.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,24,Veranstaltungskalender,27.10.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,25,Veranstaltungskalender,27.10.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,26,Veranstaltungskalender,30.10.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,27,Veranstaltungskalender,31.10.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,28,Veranstaltungskalender,03.11.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,29,Veranstaltungskalender,07.11.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,30,Veranstaltungskalender,14.11.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,31,Veranstaltungskalender,14.11.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,32,Veranstaltungskalender,14.11.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,33,Veranstaltungskalender,14.11.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,34,Veranstaltungskalender,15.11.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,35,Veranstaltungskalender,15.11.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,36,Veranstaltungskalender,15.11.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,37,Veranstaltungskalender,19.11.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,38,Veranstaltungskalender,20.11.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,39,Veranstaltungskalender,23.11.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,40,Veranstaltungskalender,24.11.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,41,Veranstaltungskalender,26.11.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,42,Veranstaltungskalender,27.11.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,43,Veranstaltungskalender,28.11.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,44,Veranstaltungskalender,29.11.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,45,Veranstaltungskalender,01.12.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,46,Veranstaltungskalender,04.12.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,47,Veranstaltungskalender,05.12.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,48,Veranstaltungskalender,05.12.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,49,Veranstaltungskalender,05.12.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,50,Veranstaltungskalender,06.12.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,51,Veranstaltungskalender,10.12.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,52,Veranstaltungskalender,11.12.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,53,Veranstaltungskalender,12.12.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,54,Veranstaltungskalender,12.12.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,55,Veranstaltungskalender,12.12.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,56,Veranstaltungskalender,17.12.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,57,Veranstaltungskalender,18.12.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,58,Veranstaltungskalender,19.12.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,59,Veranstaltungskalender,19.12.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,60,Veranstaltungskalender,20.12.2026,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,61,Veranstaltungskalender,20.12.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,62,Veranstaltungskalender,24.12.2026,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,63,Veranstaltungskalender,24.12.2026,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,64,Veranstaltungskalender,01.01.2027,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,65,Veranstaltungskalender,09.01.2027,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,66,Veranstaltungskalender,09.01.2027,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,67,Veranstaltungskalender,13.01.2027,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,68,Veranstaltungskalender,16.01.2027,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,69,Veranstaltungskalender,16.01.2027,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,70,Veranstaltungskalender,23.01.2027,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,71,Veranstaltungskalender,24.01.2027,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,72,Veranstaltungskalender,24.01.2027,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,73,Veranstaltungskalender,29.01.2027,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,74,Veranstaltungskalender,29.01.2027,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,75,Veranstaltungskalender,30.01.2027,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,76,Veranstaltungskalender,30.01.2027,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,77,Veranstaltungskalender,31.01.2027,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,78,Veranstaltungskalender,04.02.2027,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,79,Veranstaltungskalender,09.02.2027,6,0,5,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,80,Veranstaltungskalender,12.02.2027,6,0,3,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,81,Veranstaltungskalender,19.02.2027,6,0,4,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,82,Veranstaltungskalender,,6,0,0,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded
+8634,15,83,Veranstaltungskalender,,6,0,0,Event rows,Header/separator/layout rows must be distinguished; raw HTML/contact addresses intentionally excluded

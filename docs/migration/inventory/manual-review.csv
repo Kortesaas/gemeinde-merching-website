@@ -1,0 +1,794 @@
+source_id,type,issue
+4,page,Page; verify structured fields/relationships; widgets=; shortcodes=table
+6,page,Page; verify structured fields/relationships; widgets=; shortcodes=html-sitemap
+8,page,Page; verify structured fields/relationships; widgets=; shortcodes=html-sitemap
+10,page,Page; verify structured fields/relationships; widgets=; shortcodes=html-sitemap
+12,page,Organization catalog; verify structured fields/relationships; widgets=; shortcodes=connections|html-sitemap|table
+14,page,Page; verify structured fields/relationships; widgets=; shortcodes=html-sitemap|ngg|table
+20,page,Page; verify structured fields/relationships; widgets=; shortcodes=table
+22,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+24,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+26,page,Page; verify structured fields/relationships; widgets=; shortcodes=html-sitemap
+51,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+56,page,Page; verify structured fields/relationships; widgets=; shortcodes=wpdm_category
+6877,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+88,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+92,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+129,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+131,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+138,page,Page; verify structured fields/relationships; widgets=; shortcodes=contact-form-7
+178,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+212,page,CouncilTerm / CouncilMember / Committee; verify structured fields/relationships; widgets=; shortcodes=table
+222,page,Page; verify structured fields/relationships; widgets=; shortcodes=table
+224,page,LifeSituation; verify structured fields/relationships; widgets=; shortcodes=html-sitemap
+227,page,Page; verify structured fields/relationships; widgets=; shortcodes=wpdm_category
+231,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+233,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+235,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+237,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+241,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+249,page,Organization catalog; verify structured fields/relationships; widgets=; shortcodes=table|wpdm_category
+251,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+255,page,Page; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+257,page,Page; verify structured fields/relationships; widgets=; shortcodes=link-library
+273,page,Page; verify structured fields/relationships; widgets=; shortcodes=link-library
+280,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+296,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+300,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+302,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+310,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+311,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+336,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+344,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+345,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+353,page,Page; verify structured fields/relationships; widgets=; shortcodes=wpdm_category
+354,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+376,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+382,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+385,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+390,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+396,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+415,page,Organization catalog; verify structured fields/relationships; widgets=; shortcodes=
+406,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+407,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+427,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+441,page,CouncilTerm / CouncilMember / Committee; verify structured fields/relationships; widgets=; shortcodes=wpdm_category
+449,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+451,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9958,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9959,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+2316,page,Page; verify structured fields/relationships; widgets=; shortcodes=wpdm_category
+542,page,Page; verify structured fields/relationships; widgets=; shortcodes=wpdm_category
+547,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+553,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9964,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+670,page,Page; verify structured fields/relationships; widgets=; shortcodes=catlist|wpdm_category
+718,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+719,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+720,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+727,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+734,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+736,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+761,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+810,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+989,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+995,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1002,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1003,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1007,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1011,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1012,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1014,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1077,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1081,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1191,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1247,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9980,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10790,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10253,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1578,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1579,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1580,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1581,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1582,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1583,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9979,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+1987,page,Organization catalog; verify structured fields/relationships; widgets=; shortcodes=
+1999,page,Page; verify structured fields/relationships; widgets=; shortcodes=wpdm_category
+2025,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+2026,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+2027,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+2028,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+2029,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+2093,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10272,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10273,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10164,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10040,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10786,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10248,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10837,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10788,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10789,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10251,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+2376,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+2378,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7566,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7568,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+2799,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+2800,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+2801,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+2802,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+2847,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+2850,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+3068,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7777,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10693,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9977,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9017,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9018,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+3658,page,Page; verify structured fields/relationships; widgets=; shortcodes=cc-edit
+7617,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+3736,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+3868,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3867,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3866,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3865,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3864,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3863,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3861,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3862,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3860,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3859,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3857,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3856,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3853,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3854,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3855,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3851,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3849,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3848,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3846,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3847,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3845,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3844,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3843,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3842,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3841,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3840,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3839,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3838,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3837,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3836,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3835,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3824,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3823,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3822,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3821,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3820,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3819,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3817,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3818,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3816,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3815,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3813,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3814,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3812,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3869,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3872,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3873,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3874,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+3942,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4016,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10382,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10364,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4096,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+10479,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9056,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4149,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+4152,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7607,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7605,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8006,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10245,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10246,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8134,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+8132,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+8133,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4401,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+7608,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+7609,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10017,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4535,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4544,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4545,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4546,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4547,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4548,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4549,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4550,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4551,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4552,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4553,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4554,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4555,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4556,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4557,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4558,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4559,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4565,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4566,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4567,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4568,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4569,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4570,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4571,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4572,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4573,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4574,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4575,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4576,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4577,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4578,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4579,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4580,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9846,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4582,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+4590,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4592,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4595,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4597,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4604,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4610,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+4623,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4624,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4625,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4631,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+4654,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4656,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+4660,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4662,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4851,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+4671,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9976,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9972,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9973,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10179,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9969,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4726,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4698,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4702,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4711,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4727,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4754,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4755,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4756,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4757,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4758,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4759,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4760,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4762,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4765,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+4776,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4782,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4787,page,Page; verify structured fields/relationships; widgets=; shortcodes=table
+4789,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4791,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+4793,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+4798,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4799,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4800,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4801,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4802,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4803,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4804,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4805,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4806,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4808,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4809,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4812,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4813,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4856,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+4858,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4863,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+4887,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4893,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4894,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4899,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4903,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4920,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4946,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4944,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4957,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4958,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+4959,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5157,encyclopedia,manual review; verify structured fields/relationships; widgets=; shortcodes=
+5159,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5066,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5413,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5035,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5037,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5052,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5322,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9852,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5117,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5122,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5125,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5126,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5127,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5128,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6976,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9141,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9143,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9147,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9145,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5152,encyclopedia,manual review; verify structured fields/relationships; widgets=; shortcodes=
+5160,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5161,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5162,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5163,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5164,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10430,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10431,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5190,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5194,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+9075,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9076,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5260,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5261,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10091,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+5288,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5291,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5293,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5296,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5298,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5300,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5302,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5306,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5308,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5309,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5312,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5316,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5372,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+5336,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5371,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5346,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5348,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10077,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10079,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10080,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10082,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10084,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10089,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5403,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8198,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8202,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5417,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5418,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5480,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5477,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5478,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5479,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7620,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7621,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7622,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5490,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5492,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+5503,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5508,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5512,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5522,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5537,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7623,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7624,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5590,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10033,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10034,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5570,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5573,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7618,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5607,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+5608,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5612,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5613,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5614,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9128,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9132,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9136,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9134,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9139,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9922,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+5783,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+5808,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5811,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+5810,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7551,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5896,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+5922,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10027,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10026,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9754,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9881,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10028,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9680,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9681,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9672,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6117,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6119,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7545,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7715,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7720,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7721,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+6179,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6180,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6210,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6245,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6268,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6277,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10453,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10426,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10427,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6525,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8854,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9637,page,Page; verify structured fields/relationships; widgets=; shortcodes=
+6564,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+9189,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10225,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10013,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10130,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6679,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8241,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6748,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8020,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+6800,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10170,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6879,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6880,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+6899,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7149,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7009,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10815,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10568,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+7085,page,Page; verify structured fields/relationships; widgets=; shortcodes=wpdm_tree
+9916,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7589,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7168,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9923,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9919,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9926,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7191,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10165,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9913,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9914,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9915,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+7539,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7210,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7212,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7214,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7216,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7218,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7220,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7222,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7856,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7224,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7226,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7228,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7230,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7237,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7238,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7239,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7588,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7528,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7651,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7895,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9161,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8229,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7515,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9994,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10133,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7483,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7517,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7670,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9937,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7681,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7686,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7734,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9939,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9940,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7705,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7706,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7769,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7711,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7723,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10123,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7736,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8188,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7738,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7740,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7742,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7744,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7745,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7749,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7751,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8224,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7753,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8249,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7755,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7757,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7760,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8064,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7834,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7847,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7860,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7862,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+7863,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9900,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8112,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7894,link_library_links,ExternalResource; verify structured fields/relationships; widgets=; shortcodes=
+9896,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9898,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7918,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7920,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7922,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7924,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+7940,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8237,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8785,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+8194,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8000,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8021,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8786,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8234,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8040,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8043,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8135,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9205,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8084,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8087,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8088,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+8089,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8090,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+8091,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8093,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8095,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8594,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8097,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8601,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8099,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8101,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8599,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8103,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9925,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9911,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9912,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8154,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9968,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9198,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8179,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10180,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8316,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8323,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8607,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10169,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8659,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+8567,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+8622,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8634,tablepress_table,ContentBlock table; verify structured fields/relationships; widgets=; shortcodes=
+10177,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10532,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10515,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10516,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10376,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+8674,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8675,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8715,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8717,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8722,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+8869,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9222,page,Haushaltsplan catalog + yearly BudgetPlan; verify structured fields/relationships; widgets=; shortcodes=wpdm_category
+8815,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8816,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8817,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8818,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8819,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9686,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9856,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9689,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8974,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10112,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10167,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10816,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10478,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+8912,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10701,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9046,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9458,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9288,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9291,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10804,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9418,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9349,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9353,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9783,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9844,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9370,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9372,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9542,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9417,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9388,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9426,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9425,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9395,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9397,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9399,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9401,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9515,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9414,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9511,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9512,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9462,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9465,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9469,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9656,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9471,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9478,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9695,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9518,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9521,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9523,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9525,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9527,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9529,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9531,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9545,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9548,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9549,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10803,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+9885,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9560,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10274,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9878,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9879,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9880,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10161,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9570,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9573,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9593,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9595,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9603,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+9609,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10471,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10508,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10509,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10793,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10315,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10316,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10317,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10326,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10327,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10551,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10533,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10377,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10385,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10388,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10772,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10555,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10394,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10400,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10402,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10406,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10407,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10408,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10569,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10454,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10455,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10456,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10463,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10464,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10773,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10485,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10486,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10521,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10498,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10522,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10570,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10791,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10580,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10581,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10588,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10656,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10597,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10605,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10657,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10649,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10650,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10624,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10625,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10839,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10630,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10639,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10653,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10641,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10642,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10645,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10794,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10662,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10663,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10669,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10757,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10677,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10845,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10848,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10762,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10681,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10683,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10684,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10867,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10844,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10710,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10714,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10722,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10723,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10724,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10725,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10726,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10727,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10735,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10931,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10932,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10737,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10738,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10785,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10741,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10742,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10849,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10748,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10749,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10928,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10929,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10827,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10828,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10833,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10834,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10838,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10853,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10855,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10862,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10868,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10870,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10871,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10872,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10873,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10874,wpdmpro,Document; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10875,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10885,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10887,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10888,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10891,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10896,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10897,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10900,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10904,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10906,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10909,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10917,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10918,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10944,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10945,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+10947,post,Article; verify structured fields/relationships; widgets=; shortcodes=pdf-embedder
+10948,attachment,Media / Document; verify structured fields/relationships; widgets=; shortcodes=
+workflow,PDF merge compatibility,3 actual main 2026 budget PDFs rejected by existing FPDI parser; obtain compatible exports or select a hosting-compatible supported parser before importing budgets
+workflow,Legacy URL delivery,Root query download URLs (?wpdmdl=...) and direct /wp-content/ paths need reviewed secure compatibility delivery. Existing Redirect/PublicRoute only match paths; no query redirect rules implemented
+workflow,TablePress conversion,No generic controlled table block; map contacts/services/council/events/organizations to structured records; decide accessible alternatives for remaining statistics tables
+workflow,Incomplete filesystem backup,61 NextGEN originals absent from backup but live image GETs succeed; recover original bytes before cutover
+workflow,Private attachment boundaries,WordPress inherit attachment status does not authorize public exposure; validate parent/public references before publishing any orphan
+workflow,Source/model semantics,"61 Link Library CPT records, 64 legacy links and 26 Connections records can overlap; deduplicate using public URLs/legacy IDs without importing submitters/internal emails"
+workflow,Category semantics,Choose one context category for each record; map Topaktuell to featured status and review additional category/tag relationships rather than dropping them
+workflow,Expiry,21 enabled Future actions on published posts; timezone Europe/Berlin and newStatus/action must be mapped. Historical disabled jobs and private/draft records are not public data
+workflow,Media upload compatibility,"4 GIFs, 2 DOC files and 7 ZIPs in content backup; current secure uploads do not accept these formats. Preserve safe convertible content or explicitly review legacy-file handling; do not widen allowlist blindly"
+workflow,Calendar parsing,"83 TablePress rows after header include headings/separators/date ranges, not 83 guaranteed events. Confirm parsed dates, organizers, venues and duplicates"
+workflow,Forms,"2 Contact Form 7 definitions; migrate public workflow/labels to existing form, configure internal recipients privately; no submissions, credentials or mail templates in reports"
+workflow,Council,"26 nonblank council entries/portrait references; separator rows are not members; review term dates, functions and committee memberships; employees remain without portraits"
+workflow,External services,"Portal/BayernAtlas/captcha/widget embeds must become managed links or existing privacy-safe UI, rather than carrying plugin scripts/iframes"
+workflow,Drafts and historical data,"17 nonpublished pages, 33 nonpublished posts, 6 nonpublished download packages and inactive-prefix content require an explicit retention decision; do not publish automatically"
+workflow,Accessibility,No PDF accessibility claims inferred from Tagged=yes or source labels. All 770 PDFs remain not verified; merged output requires independent review

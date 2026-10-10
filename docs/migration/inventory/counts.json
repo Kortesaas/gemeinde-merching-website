@@ -1,0 +1,296 @@
+{
+  "active_prefix": "wp_",
+  "prefix_evidence": "secondary DB single prefix; cross-check WXR IDs/titles; wp-config.php absent from supplied archives",
+  "prefixes_in_dump": [
+    "wp_",
+    "wpd754ae"
+  ],
+  "post_types_statuses": {
+    "page:publish": 55,
+    "post:draft": 29,
+    "revision:inherit": 2114,
+    "page:pending": 7,
+    "page:draft": 9,
+    "nav_menu_item:publish": 51,
+    "attachment:inherit": 579,
+    "page:private": 1,
+    "pt_view:publish": 6,
+    "ngg_pictures:draft": 314,
+    "wpdmpro:publish": 96,
+    "wp-help:publish": 31,
+    "wp-help:draft": 1,
+    "post:publish": 66,
+    "wpcf7_contact_form:publish": 2,
+    "gal_display_source:draft": 5,
+    "lightbox_library:draft": 7,
+    "display_type:draft": 7,
+    "displayed_gallery:draft": 2,
+    "tablepress_table:publish": 13,
+    "ppfuture_workflow:draft": 4,
+    "ngg_gallery:draft": 8,
+    "ngg_album:draft": 1,
+    "link_library_links:publish": 61,
+    "link_library_links:private": 5,
+    "link_library_links:draft": 13,
+    "wpephpcompat_jobs:publish": 14,
+    "encyclopedia:publish": 2,
+    "encyclopedia:pending": 1,
+    "wpdmpro:draft": 5,
+    "wpdmpro:trash": 1,
+    "wp_global_styles:publish": 2,
+    "wp_navigation:publish": 1,
+    "post:trash": 2,
+    "post:auto-draft": 2
+  },
+  "wxr_types": {
+    "attachment": 579,
+    "display_type": 7,
+    "gal_display_source": 5,
+    "displayed_gallery": 2,
+    "link_library_links": 79,
+    "nav_menu_item": 51,
+    "ngg_gallery": 8,
+    "ngg_album": 1,
+    "ngg_pictures": 314,
+    "page": 72,
+    "post": 97,
+    "ppfuture_workflow": 4,
+    "pt_view": 6,
+    "tablepress_table": 13,
+    "wp_global_styles": 2,
+    "wp-help": 32,
+    "wp_navigation": 1,
+    "wpcf7_contact_form": 2,
+    "wpdmpro": 102
+  },
+  "public_content_types": {
+    "page": 55,
+    "attachment": 579,
+    "wpdmpro": 96,
+    "post": 66,
+    "tablepress_table": 13,
+    "link_library_links": 61,
+    "encyclopedia": 2
+  },
+  "filesystem_extensions": {
+    ".jpg": 2105,
+    ".pdf": 770,
+    ".png": 139,
+    ".zip": 7,
+    ".gif": 4,
+    ".jpeg": 21,
+    ".webp": 15,
+    ".docx": 8,
+    ".doc": 2
+  },
+  "filesystem_classification": {
+    "original/referenced": 948,
+    "generated thumbnail": 1653,
+    "unreferenced candidate (not proven orphan)": 470
+  },
+  "attachments": 893,
+  "documents": 770,
+  "galleries": 8,
+  "duplicates": 308,
+  "missing_files": 62,
+  "discrepancies": 87,
+  "seeds": 1279,
+  "plugins": {
+    "list-category-posts": {
+      "name": "List category posts",
+      "version": "0.96.0"
+    },
+    "google-sitemap-generator": {
+      "name": "XML Sitemap Generator for Google",
+      "version": "4.1.24"
+    },
+    "contact-form-7": {
+      "name": "Contact Form 7",
+      "version": "6.1.7"
+    },
+    "advanced-image-styles": {
+      "name": "Advanced Image Styles",
+      "version": "0.4.1"
+    },
+    "content-views-query-and-display-post-page": {
+      "name": "Content Views - Post Grid & Filter (Shortcode, Blocks, Elementor Widgets)",
+      "version": "4.5.1.1"
+    },
+    "pojo-accessibility": {
+      "name": "Web Accessibility - WCAG Scanning, Guided Fixes, Usability Widget",
+      "version": "4.1.4"
+    },
+    "wp-help": {
+      "name": "WP Help",
+      "version": "1.7.5"
+    },
+    "cms-tree-page-view": {
+      "name": "CMS Tree Page View",
+      "version": "2.5.1"
+    },
+    "user-locker": {
+      "name": "User Locker",
+      "version": "1.2"
+    },
+    "astra-import-export": {
+      "name": "Import / Export Customizer Settings",
+      "version": "1.1.0"
+    },
+    "wp-rollback": {
+      "name": "WP Rollback",
+      "version": "3.1.2"
+    },
+    "sidebar-manager": {
+      "name": "Sidebar Manager",
+      "version": "2.0.0"
+    },
+    "nextgen-gallery": {
+      "name": "NextGEN Gallery",
+      "version": "4.4.0"
+    },
+    "astra-widgets": {
+      "name": "Astra Widgets",
+      "version": "1.2.17"
+    },
+    "wordfence": {
+      "name": "Wordfence Security",
+      "version": "9.0.2"
+    },
+    "link-library": {
+      "name": "Link Library",
+      "version": "7.9.5"
+    },
+    "pt-content-views-pro": {
+      "name": "Content Views Pro",
+      "version": "7.4.1"
+    },
+    "wp-db-backup": {
+      "name": "Database Backup for WordPress",
+      "version": "2.5.3"
+    },
+    "post-expirator": {
+      "name": "PublishPress Future Free",
+      "version": "4.10.5"
+    },
+    "html-sitemap": {
+      "name": "HTML Page Sitemap (Block and Shortcode)",
+      "version": "2.2"
+    },
+    "really-simple-captcha": {
+      "name": "Really Simple CAPTCHA",
+      "version": "2.4"
+    },
+    "download-manager": {
+      "name": "Download Manager",
+      "version": "3.3.68"
+    },
+    "accessibility-widget": {
+      "name": "AccessiYes Accessibility Widget for ADA, EAA & WCAG Readiness",
+      "version": "3.2.6"
+    },
+    "cookie-cracker": {
+      "name": "Cookie Cracker",
+      "version": "1.2"
+    },
+    "user-role-editor": {
+      "name": "User Role Editor",
+      "version": "4.66.1"
+    },
+    "local-google-fonts": {
+      "name": "Local Google Fonts",
+      "version": "0.24.0"
+    },
+    "pdf-embedder": {
+      "name": "PDF Embedder",
+      "version": "5.0.2"
+    },
+    "backwpup": {
+      "name": "BackWPup",
+      "version": "5.7.5"
+    },
+    "tablepress": {
+      "name": "TablePress",
+      "version": "3.3.4"
+    },
+    "customizer-search": {
+      "name": "Customizer Search",
+      "version": "1.2.1"
+    },
+    "classic-editor": {
+      "name": "Classic Editor",
+      "version": "1.7.0"
+    },
+    "gutenberg": {
+      "name": "Gutenberg",
+      "version": "23.8.0"
+    },
+    "redirector": {
+      "name": "Redirector",
+      "version": "3.0.1"
+    },
+    "authenticator": {
+      "name": "Authenticator",
+      "version": "1.3.1"
+    },
+    "classic-widgets": {
+      "name": "Classic Widgets",
+      "version": "0.3"
+    },
+    "wpdm-extended-shortcodes": {
+      "name": "WPDM - Extended Short-codes",
+      "version": "3.0.4"
+    },
+    "better-plugin-compatibility-control": {
+      "name": "Better Plugin Compatibility Control",
+      "version": "7.1.0"
+    }
+  },
+  "public_settings": {
+    "permalink_structure": "/%postname%/",
+    "gmt_offset": "",
+    "template": "astra",
+    "stylesheet": "astra",
+    "show_on_front": "page",
+    "timezone_string": "Europe/Berlin",
+    "page_for_posts": "0",
+    "page_on_front": "51",
+    "siteurl": "https://www.gemeinde-merching.de",
+    "blogname": "Gemeinde Merching",
+    "home": "https://www.gemeinde-merching.de"
+  },
+  "active_plugin_paths": [
+    "advanced-image-styles/advanced-image-styles.php",
+    "astra-import-export/astra-import-export.php",
+    "astra-widgets/astra-widgets.php",
+    "better-plugin-compatibility-control/better-plugin-compatibility-control.php",
+    "classic-editor/classic-editor.php",
+    "classic-widgets/classic-widgets.php",
+    "cms-tree-page-view/index.php",
+    "contact-form-7/wp-contact-form-7.php",
+    "content-views-query-and-display-post-page/content-views.php",
+    "cookie-cracker/cookie-cracker.php",
+    "customizer-search/customizer-search.php",
+    "download-manager/download-manager.php",
+    "google-sitemap-generator/sitemap.php",
+    "html-sitemap/html-sitemap.php",
+    "link-library/link-library.php",
+    "list-category-posts/list-category-posts.php",
+    "local-google-fonts/local-google-fonts.php",
+    "pdf-embedder/pdf_embedder.php",
+    "pojo-accessibility/pojo-accessibility.php",
+    "post-expirator/post-expirator.php",
+    "pt-content-views-pro/content-views.php",
+    "really-simple-captcha/really-simple-captcha.php",
+    "redirector/redirector.php",
+    "sidebar-manager/sidebar-manager.php",
+    "tablepress/tablepress.php",
+    "user-locker/user-locker.php",
+    "user-role-editor/user-role-editor.php",
+    "wordfence/wordfence.php",
+    "wp-help/wp-help.php",
+    "wp-rollback/wp-rollback.php",
+    "wpdm-extended-shortcodes/wpdm-extended-shortcodes.php",
+    "wpvivid-backuprestore/wpvivid-backuprestore.php",
+    "nextgen-gallery/nggallery.php"
+  ]
+}

@@ -1,0 +1,183 @@
+table,rows,secondary_rows,columns,scope
+wpd754aeactionscheduler_actions,75,,action_id|hook|status|scheduled_date_gmt|scheduled_date_local|priority|args|schedule|group_id|attempts|last_attempt_gmt|last_attempt_local|claim_id|extended_args,operational/private or inactive prefix; not exported
+wpd754aeactionscheduler_claims,0,,claim_id|date_created_gmt,operational/private or inactive prefix; not exported
+wpd754aeactionscheduler_groups,2,,group_id|slug,operational/private or inactive prefix; not exported
+wpd754aeactionscheduler_logs,635,,log_id|action_id|message|log_date_gmt|log_date_local,operational/private or inactive prefix; not exported
+wpd754aeahm_assets,0,,ID|path|owner|activities|comments|access|metadata,operational/private or inactive prefix; not exported
+wpd754aeahm_asset_links,0,,ID|asset_ID|asset_key|access|time,operational/private or inactive prefix; not exported
+wpd754aeahm_cron_jobs,0,,ID|code|type|data|execute_at|repeat_execution|execution_count|interval|created_at|created_by,operational/private or inactive prefix; not exported
+wpd754aeahm_download_stats,5203,,id|pid|uid|oid|year|month|day|timestamp|ip|filename|agent|version,operational/private or inactive prefix; not exported
+wpd754aeahm_emails,0,,id|email|pid|date|custom_data|request_status,operational/private or inactive prefix; not exported
+wpd754aeahm_sessions,863,,ID|deviceID|name|value|lastAccess|expire,operational/private or inactive prefix; not exported
+wpd754aeahm_social_conns,0,,ID|pid|email|name|user_data|access_token|refresh_token|source|timestamp|processed,operational/private or inactive prefix; not exported
+wpd754aeahm_user_download_counts,4378,,ID|user|package_id|download_count,operational/private or inactive prefix; not exported
+wpd754aeai1ec_facebook_users,0,,user_id|user_name|user_pic|subscribed|type|tag|category|last_synced|comments_enabled|map_display_enabled,operational/private or inactive prefix; not exported
+wpd754aeai1ec_facebook_users_events,0,,user_id|eid|start,operational/private or inactive prefix; not exported
+wpd754aeai1ec_facebook_users_events_2014_12_05_44253,0,,user_id|eid|start,operational/private or inactive prefix; not exported
+wpd754aecc_agreements,35330,,ID|version|agreement|date|ip|uuid,operational/private or inactive prefix; not exported
+wpd754aecommentmeta,0,,meta_id|comment_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wpd754aecomments,2,,comment_ID|comment_post_ID|comment_author|comment_author_email|comment_author_url|comment_author_IP|comment_date|comment_date_gmt|comment_content|comment_karma|comment_approved|comment_agent|comment_type|comment_parent|user_id,operational/private or inactive prefix; not exported
+wpd754aeconnections,26,,id|ts|date_added|ordo|entry_type|visibility|slug|family_name|honorific_prefix|first_name|middle_name|last_name|honorific_suffix|title|organization|department|contact_first_name|contact_last_name|addresses|phone_numbers|email|im|social|links|dates|birthday|anniversary|bio|notes|excerpt|options|added_by|edited_by|owner|user|status,operational/private or inactive prefix; not exported
+wpd754aeconnections_address,6,,id|entry_id|order|preferred|type|line_1|line_2|line_3|line_4|district|county|city|state|zipcode|country|latitude|longitude|visibility,operational/private or inactive prefix; not exported
+wpd754aeconnections_date,0,,id|entry_id|order|preferred|type|date|visibility,operational/private or inactive prefix; not exported
+wpd754aeconnections_email,1,,id|entry_id|order|preferred|type|address|visibility,operational/private or inactive prefix; not exported
+wpd754aeconnections_link,19,,id|entry_id|order|preferred|type|title|url|target|follow|image|logo|visibility,operational/private or inactive prefix; not exported
+wpd754aeconnections_messenger,0,,id|entry_id|order|preferred|type|uid|visibility,operational/private or inactive prefix; not exported
+wpd754aeconnections_meta,0,,meta_id|entry_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wpd754aeconnections_phone,9,,id|entry_id|order|preferred|type|number|visibility,operational/private or inactive prefix; not exported
+wpd754aeconnections_social,0,,id|entry_id|order|preferred|type|url|visibility,operational/private or inactive prefix; not exported
+wpd754aeconnections_terms,1,,term_id|name|slug|term_group,operational/private or inactive prefix; not exported
+wpd754aeconnections_term_meta,0,,meta_id|term_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wpd754aeconnections_term_relationships,26,,entry_id|term_taxonomy_id|term_order,operational/private or inactive prefix; not exported
+wpd754aeconnections_term_taxonomy,1,,term_taxonomy_id|term_id|taxonomy|description|parent|count,operational/private or inactive prefix; not exported
+wpd754aelinkcategorymeta,1,,meta_id|linkcategory_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wpd754aelinks,64,,link_id|link_url|link_name|link_image|link_target|link_description|link_visible|link_owner|link_rating|link_updated|link_rel|link_notes|link_rss,operational/private or inactive prefix; not exported
+wpd754aelinks_extrainfo,65,,link_id|link_second_url|link_telephone|link_email|link_visits|link_reciprocal|link_submitter|link_submitter_name|link_submitter_email|link_textfield|link_no_follow|link_featured|link_manual_updated|link_addl_rel,operational/private or inactive prefix; not exported
+wpd754aengg_album,1,,id|name|slug|previewpic|albumdesc|sortorder|pageid|extras_post_id,operational/private or inactive prefix; not exported
+wpd754aengg_gallery,7,,gid|name|slug|path|title|galdesc|pageid|previewpic|author|extras_post_id,operational/private or inactive prefix; not exported
+wpd754aengg_pictures,290,,pid|image_slug|post_id|galleryid|filename|description|alttext|imagedate|exclude|sortorder|meta_data|extras_post_id|updated_at,operational/private or inactive prefix; not exported
+wpd754aeoptions,722,,option_id|option_name|option_value|autoload,operational/private or inactive prefix; not exported
+wpd754aepostexpirator_debug,0,,id|timestamp|blog|message,operational/private or inactive prefix; not exported
+wpd754aepostmeta,12467,,meta_id|post_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wpd754aeposts,3676,,ID|post_author|post_date|post_date_gmt|post_content|post_title|post_excerpt|post_status|comment_status|ping_status|post_password|post_name|to_ping|pinged|post_modified|post_modified_gmt|post_content_filtered|post_parent|guid|menu_order|post_type|post_mime_type|comment_count,operational/private or inactive prefix; not exported
+wpd754aeppfuture_actions_args,21,,id|cron_action_id|post_id|enabled|scheduled_date|created_at|args,operational/private or inactive prefix; not exported
+wpd754aeppfuture_workflow_scheduled_steps,0,,action_id|workflow_id|step_id|action_uid_hash|action_uid|is_recurring|repeat_until|repeat_times|repeat_until_date|uncompressed_args|compressed_args|is_compressed|created_at,operational/private or inactive prefix; not exported
+wpd754aetermmeta,60,,meta_id|term_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wpd754aeterms,188,,term_id|name|slug|term_group,operational/private or inactive prefix; not exported
+wpd754aeterm_relationships,1170,,object_id|term_taxonomy_id|term_order,operational/private or inactive prefix; not exported
+wpd754aeterm_taxonomy,188,,term_taxonomy_id|term_id|taxonomy|description|parent|count,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_1,4,,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal_BgCol|TotalSoftCal_GrCol|TotalSoftCal_GW|TotalSoftCal_BW|TotalSoftCal_BStyle|TotalSoftCal_BCol|TotalSoftCal_BSCol|TotalSoftCal_MW|TotalSoftCal_HBgCol|TotalSoftCal_HCol|TotalSoftCal_HFS|TotalSoftCal_HFF|TotalSoftCal_WBgCol|TotalSoftCal_WCol|TotalSoftCal_WFS|TotalSoftCal_WFF|TotalSoftCal_LAW|TotalSoftCal_LAWS|TotalSoftCal_LAWC|TotalSoftCal_DBgCol|TotalSoftCal_DCol|TotalSoftCal_DFS|TotalSoftCal_TBgCol|TotalSoftCal_TCol|TotalSoftCal_TFS|TotalSoftCal_TNBgCol|TotalSoftCal_HovBgCol|TotalSoftCal_HovCol|TotalSoftCal_NumPos|TotalSoftCal_WDStart|TotalSoftCal_RefIcCol|TotalSoftCal_RefIcSize|TotalSoftCal_ArrowType|TotalSoftCal_ArrowLeft|TotalSoftCal_ArrowRight|TotalSoftCal_ArrowCol|TotalSoftCal_ArrowSize|TotalSoftCal_BackIconType|TotalSoftCal_DFF,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_2,2,,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal2_WDStart|TotalSoftCal2_BW|TotalSoftCal2_BS|TotalSoftCal2_BC|TotalSoftCal2_W|TotalSoftCal2_H|TotalSoftCal2_BxShShow|TotalSoftCal2_BxShType|TotalSoftCal2_BxSh|TotalSoftCal2_BxShC|TotalSoftCal2_MBgC|TotalSoftCal2_MC|TotalSoftCal2_MFS|TotalSoftCal2_MFF|TotalSoftCal2_WBgC|TotalSoftCal2_WC|TotalSoftCal2_WFS|TotalSoftCal2_WFF|TotalSoftCal2_LAW_W|TotalSoftCal2_LAW_S|TotalSoftCal2_LAW_C|TotalSoftCal2_DBgC|TotalSoftCal2_DC|TotalSoftCal2_DFS|TotalSoftCal2_TdBgC|TotalSoftCal2_TdC|TotalSoftCal2_TdFS|TotalSoftCal2_EdBgC|TotalSoftCal2_EdC|TotalSoftCal2_EdFS|TotalSoftCal2_HBgC|TotalSoftCal2_HC|TotalSoftCal2_ArrType|TotalSoftCal2_ArrFS|TotalSoftCal2_ArrC|TotalSoftCal2_OmBgC|TotalSoftCal2_OmC|TotalSoftCal2_OmFS|TotalSoftCal2_Ev_HBgC|TotalSoftCal2_Ev_HC|TotalSoftCal2_Ev_HFS|TotalSoftCal2_Ev_HFF|TotalSoftCal2_Ev_HText|TotalSoftCal2_Ev_BBgC|TotalSoftCal2_Ev_TC|TotalSoftCal2_Ev_TFF|TotalSoftCal2_Ev_TFS,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_3,2,,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal3_MW|TotalSoftCal3_WDStart|TotalSoftCal3_BgC|TotalSoftCal3_GrC|TotalSoftCal3_BBC|TotalSoftCal3_BoxShShow|TotalSoftCal3_BoxShType|TotalSoftCal3_BoxSh|TotalSoftCal3_BoxShC|TotalSoftCal3_H_BgC|TotalSoftCal3_H_BTW|TotalSoftCal3_H_BTC|TotalSoftCal3_H_FF|TotalSoftCal3_H_MFS|TotalSoftCal3_H_MC|TotalSoftCal3_H_YFS|TotalSoftCal3_H_YC|TotalSoftCal3_H_Format|TotalSoftCal3_Arr_Type|TotalSoftCal3_Arr_C|TotalSoftCal3_Arr_S|TotalSoftCal3_Arr_HC|TotalSoftCal3_LAH_W|TotalSoftCal3_LAH_C|TotalSoftCal3_WD_BgC|TotalSoftCal3_WD_C|TotalSoftCal3_WD_FS|TotalSoftCal3_WD_FF|TotalSoftCal3_D_BgC|TotalSoftCal3_D_C|TotalSoftCal3_TD_BgC|TotalSoftCal3_TD_C|TotalSoftCal3_HD_BgC|TotalSoftCal3_HD_C|TotalSoftCal3_ED_C|TotalSoftCal3_ED_HC|TotalSoftCal3_Ev_Format|TotalSoftCal3_Ev_BTW|TotalSoftCal3_Ev_BTC|TotalSoftCal3_Ev_BgC|TotalSoftCal3_Ev_C|TotalSoftCal3_Ev_FS|TotalSoftCal3_Ev_FF,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_4,2,,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal4_01|TotalSoftCal4_02|TotalSoftCal4_03|TotalSoftCal4_04|TotalSoftCal4_05|TotalSoftCal4_06|TotalSoftCal4_07|TotalSoftCal4_08|TotalSoftCal4_09|TotalSoftCal4_10|TotalSoftCal4_11|TotalSoftCal4_12|TotalSoftCal4_13|TotalSoftCal4_14|TotalSoftCal4_15|TotalSoftCal4_16|TotalSoftCal4_17|TotalSoftCal4_18|TotalSoftCal4_19|TotalSoftCal4_20|TotalSoftCal4_21|TotalSoftCal4_22|TotalSoftCal4_23|TotalSoftCal4_24|TotalSoftCal4_25|TotalSoftCal4_26|TotalSoftCal4_27|TotalSoftCal4_28|TotalSoftCal4_29|TotalSoftCal4_30|TotalSoftCal4_31|TotalSoftCal4_32|TotalSoftCal4_33|TotalSoftCal4_34|TotalSoftCal4_35|TotalSoftCal4_36|TotalSoftCal4_37|TotalSoftCal4_38|TotalSoftCal4_39,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_events,0,,id|TotalSoftCal_EvName|TotalSoftCal_EvCal|TotalSoftCal_EvStartDate|TotalSoftCal_EvEndDate|TotalSoftCal_EvURL|TotalSoftCal_EvURLNewTab|TotalSoftCal_EvStartTime|TotalSoftCal_EvEndTime|TotalSoftCal_EvColor,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_events_p2,0,,id|TotalSoftCal_EvDesc|TotalSoftCal_EvImg|TotalSoftCal_EvVid_Src|TotalSoftCal_EvVid_Iframe|TotalSoftCal_EvCal,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_events_p3,0,,id|TotalSoftCal_EvCal|TotalSoftCal_EvRec|TotalSoftCal_Ev_01|TotalSoftCal_Ev_02|TotalSoftCal_Ev_03|TotalSoftCal_Ev_04|TotalSoftCal_Ev_05|TotalSoftCal_Ev_06|TotalSoftCal_Ev_07|TotalSoftCal_Ev_08|TotalSoftCal_Ev_09|TotalSoftCal_Ev_10|TotalSoftCal_Ev_11|TotalSoftCal_Ev_12|TotalSoftCal_Ev_13|TotalSoftCal_Ev_14|TotalSoftCal_Ev_15|TotalSoftCal_Ev_16|TotalSoftCal_Ev_17|TotalSoftCal_Ev_18|TotalSoftCal_Ev_19|TotalSoftCal_Ev_20,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_ids,10,,id|Cal_ID,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_part,10,,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal_01|TotalSoftCal_02|TotalSoftCal_03|TotalSoftCal_04|TotalSoftCal_05|TotalSoftCal_06|TotalSoftCal_07|TotalSoftCal_08|TotalSoftCal_09|TotalSoftCal_10|TotalSoftCal_11|TotalSoftCal_12|TotalSoftCal_13|TotalSoftCal_14|TotalSoftCal_15|TotalSoftCal_16|TotalSoftCal_17|TotalSoftCal_18|TotalSoftCal_19|TotalSoftCal_20|TotalSoftCal_21|TotalSoftCal_22|TotalSoftCal_23|TotalSoftCal_24|TotalSoftCal_25|TotalSoftCal_26|TotalSoftCal_27|TotalSoftCal_28|TotalSoftCal_29|TotalSoftCal_30,operational/private or inactive prefix; not exported
+wpd754aetotalsoft_cal_types,10,,id|TotalSoftCal_Name|TotalSoftCal_Type,operational/private or inactive prefix; not exported
+wpd754aeusermeta,469,,umeta_id|user_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wpd754aeusers,14,,ID|user_login|user_pass|user_nicename|user_email|user_url|user_registered|user_activation_key|user_status|display_name,operational/private or inactive prefix; not exported
+wpd754aewfAuditEvents,0,,id|type|data|event_time|request_id|state|state_timestamp,operational/private or inactive prefix; not exported
+wpd754aewfBlockedIPLog,1412,,IP|countryCode|blockCount|unixday|blockType,operational/private or inactive prefix; not exported
+wpd754aewfBlocks7,2,,id|type|IP|blockedTime|reason|lastAttempt|blockedHits|expiration|parameters,operational/private or inactive prefix; not exported
+wpd754aewfConfig,316,,name|val|autoload,operational/private or inactive prefix; not exported
+wpd754aewfCrawlers,1,,IP|patternSig|status|lastUpdate|PTR,operational/private or inactive prefix; not exported
+wpd754aewfFileChanges,0,,filenameHash|file|md5,operational/private or inactive prefix; not exported
+wpd754aewfFileMods,0,,filenameMD5|filename|real_path|knownFile|oldMD5|newMD5|SHAC|stoppedOnSignature|stoppedOnPosition|isSafeFile,operational/private or inactive prefix; not exported
+wpd754aewfHits,1818,,id|attackLogTime|ctime|IP|jsRun|statusCode|isGoogle|userID|newVisit|URL|referer|UA|action|actionDescription|actionData,operational/private or inactive prefix; not exported
+wpd754aewfHoover,0,,id|owner|host|path|hostKey,operational/private or inactive prefix; not exported
+wpd754aewfIssues,21,,id|time|lastUpdated|status|type|severity|ignoreP|ignoreC|shortMsg|longMsg|data,operational/private or inactive prefix; not exported
+wpd754aewfKnownFileList,0,,id|path|wordpress_path,operational/private or inactive prefix; not exported
+wpd754aewfLiveTrafficHuman,0,,IP|identifier|expiration,operational/private or inactive prefix; not exported
+wpd754aewfLocs,1,,IP|ctime|failed|city|region|countryName|countryCode|lat|lon,operational/private or inactive prefix; not exported
+wpd754aewfLogins,2003,,id|hitID|ctime|fail|action|username|userID|IP|UA,operational/private or inactive prefix; not exported
+wpd754aewfls_2fa_secrets,0,,id|user_id|secret|recovery|ctime|vtime|mode,operational/private or inactive prefix; not exported
+wpd754aewfls_role_counts,0,,serialized_roles|two_factor_inactive|user_count,operational/private or inactive prefix; not exported
+wpd754aewfls_settings,30,,name|value|autoload,operational/private or inactive prefix; not exported
+wpd754aewfNotifications,193,,id|new|category|priority|ctime|html|links,operational/private or inactive prefix; not exported
+wpd754aewfPendingIssues,0,,id|time|lastUpdated|status|type|severity|ignoreP|ignoreC|shortMsg|longMsg|data,operational/private or inactive prefix; not exported
+wpd754aewfReverseCache,1,,IP|host|lastUpdate,operational/private or inactive prefix; not exported
+wpd754aewfSecurityEvents,0,,id|type|data|event_time|state|state_timestamp,operational/private or inactive prefix; not exported
+wpd754aewfSNIPCache,0,,id|IP|expiration|body|count|type,operational/private or inactive prefix; not exported
+wpd754aewfStatus,1009,,ctime|level|type|msg|id,operational/private or inactive prefix; not exported
+wpd754aewfTrafficRates,0,,eMin|IP|hitType|hits,operational/private or inactive prefix; not exported
+wpd754aewfWafFailures,0,,id|throwable|rule_id|timestamp,operational/private or inactive prefix; not exported
+wpd754aewpfb_cats,13,,cat_id|cat_name|cat_description|cat_folder|cat_path|cat_parent|cat_num_files|cat_num_files_total|cat_user_roles|cat_owner|cat_icon|cat_exclude_browser|cat_order|cat_scan_lock|cat_wp_term_id,operational/private or inactive prefix; not exported
+wpd754aewpfb_files,52,,file_id|file_name|file_name_original|file_path|file_size|file_date|file_mtime|file_hash|file_remote_uri|file_thumbnail|file_display_name|file_description|file_tags|file_requirement|file_version|file_author|file_language|file_platform|file_license|file_user_roles|file_offline|file_direct_linking|file_force_download|file_category|file_category_name|file_update_of|file_post_id|file_attach_order|file_wpattach_id|file_added_by|file_hits|file_ratings|file_rating_sum|file_last_dl_ip|file_last_dl_time|file_custom_cf1|file_custom_cf2|file_rescan_pending|file_scan_lock,operational/private or inactive prefix; not exported
+wpd754aewpfb_files_id3,52,,file_id|analyzetime|value|keywords,operational/private or inactive prefix; not exported
+wp_actionscheduler_actions,156,156,action_id|hook|status|scheduled_date_gmt|scheduled_date_local|priority|args|schedule|group_id|attempts|last_attempt_gmt|last_attempt_local|claim_id|extended_args,operational/private or inactive prefix; not exported
+wp_actionscheduler_claims,0,,claim_id|date_created_gmt,operational/private or inactive prefix; not exported
+wp_actionscheduler_groups,3,3,group_id|slug,operational/private or inactive prefix; not exported
+wp_actionscheduler_logs,6962,6962,log_id|action_id|message|log_date_gmt|log_date_local,operational/private or inactive prefix; not exported
+wp_ahm_assets,0,,ID|path|owner|activities|comments|access|metadata,operational/private or inactive prefix; not exported
+wp_ahm_asset_links,0,,ID|asset_ID|asset_key|access|time,operational/private or inactive prefix; not exported
+wp_ahm_cron_jobs,0,,ID|code|type|data|execute_at|repeat_execution|execution_count|interval|created_at|created_by|queue|priority|status|attempts|max_attempts|started_at|completed_at|next_retry_at|interval_seconds|error_message|locked_by|locked_at,operational/private or inactive prefix; not exported
+wp_ahm_download_stats,9484,9484,id|pid|uid|oid|year|month|day|timestamp|ip|filename|agent|version,operational/private or inactive prefix; not exported
+wp_ahm_emails,0,,id|email|pid|date|custom_data|request_status,operational/private or inactive prefix; not exported
+wp_ahm_sessions,0,,ID|deviceID|name|value|lastAccess|expire,operational/private or inactive prefix; not exported
+wp_ahm_social_conns,0,,ID|pid|email|name|user_data|access_token|refresh_token|source|timestamp|processed,operational/private or inactive prefix; not exported
+wp_ahm_user_download_counts,7691,7691,ID|user|package_id|download_count,operational/private or inactive prefix; not exported
+wp_ai1ec_facebook_users,0,,user_id|user_name|user_pic|subscribed|type|tag|category|last_synced|comments_enabled|map_display_enabled,operational/private or inactive prefix; not exported
+wp_ai1ec_facebook_users_events,0,,user_id|eid|start,operational/private or inactive prefix; not exported
+wp_ai1ec_facebook_users_events_2014_12_05_44253,0,,user_id|eid|start,operational/private or inactive prefix; not exported
+wp_cc_agreements,50449,50449,ID|version|agreement|date|ip|uuid,operational/private or inactive prefix; not exported
+wp_commentmeta,0,,meta_id|comment_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wp_comments,0,,comment_ID|comment_post_ID|comment_author|comment_author_email|comment_author_url|comment_author_IP|comment_date|comment_date_gmt|comment_content|comment_karma|comment_approved|comment_agent|comment_type|comment_parent|user_id,operational/private or inactive prefix; not exported
+wp_connections,26,26,id|ts|date_added|ordo|entry_type|visibility|slug|family_name|honorific_prefix|first_name|middle_name|last_name|honorific_suffix|title|organization|department|contact_first_name|contact_last_name|addresses|phone_numbers|email|im|social|links|dates|birthday|anniversary|bio|notes|excerpt|options|added_by|edited_by|owner|user|status,public/editorial candidate
+wp_connections_address,6,6,id|entry_id|order|preferred|type|line_1|line_2|line_3|line_4|district|county|city|state|zipcode|country|latitude|longitude|visibility,public/editorial candidate
+wp_connections_date,0,,id|entry_id|order|preferred|type|date|visibility,operational/private or inactive prefix; not exported
+wp_connections_email,1,1,id|entry_id|order|preferred|type|address|visibility,operational/private or inactive prefix; not exported
+wp_connections_link,19,19,id|entry_id|order|preferred|type|title|url|target|follow|image|logo|visibility,public/editorial candidate
+wp_connections_messenger,0,,id|entry_id|order|preferred|type|uid|visibility,operational/private or inactive prefix; not exported
+wp_connections_meta,0,,meta_id|entry_id|meta_key|meta_value,public/editorial candidate
+wp_connections_phone,9,9,id|entry_id|order|preferred|type|number|visibility,public/editorial candidate
+wp_connections_social,0,,id|entry_id|order|preferred|type|url|visibility,operational/private or inactive prefix; not exported
+wp_connections_terms,1,1,term_id|name|slug|term_group,public/editorial candidate
+wp_connections_term_meta,0,,meta_id|term_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wp_connections_term_relationships,26,26,entry_id|term_taxonomy_id|term_order,public/editorial candidate
+wp_connections_term_taxonomy,1,1,term_taxonomy_id|term_id|taxonomy|description|parent|count,public/editorial candidate
+wp_ea11y_global_remediation_relationship,0,,id|page_url|remediation_id|active|created_at|updated_at,operational/private or inactive prefix; not exported
+wp_ea11y_pages_remediation,0,,id|url|category|rule|group|content|active|created_at|updated_at|global,operational/private or inactive prefix; not exported
+wp_ea11y_page_scanned,0,,id|url|title|object_id|object_type|object_type_name|hash|full_html|violations|resolved|status|created_at|updated_at,operational/private or inactive prefix; not exported
+wp_ea11y_scanner_results,0,,id|url|results|summary|created_at|updated_at,operational/private or inactive prefix; not exported
+wp_linkcategorymeta,1,1,meta_id|linkcategory_id|meta_key|meta_value,public/editorial candidate
+wp_links,64,64,link_id|link_url|link_name|link_image|link_target|link_description|link_visible|link_owner|link_rating|link_updated|link_rel|link_notes|link_rss,public/editorial candidate
+wp_links_extrainfo,65,65,link_id|link_second_url|link_telephone|link_email|link_visits|link_reciprocal|link_submitter|link_submitter_name|link_submitter_email|link_textfield|link_no_follow|link_featured|link_manual_updated|link_addl_rel,public/editorial candidate
+wp_ngg_album,1,1,id|name|slug|previewpic|albumdesc|sortorder|pageid|extras_post_id|date_created|date_modified|display_type|display_type_settings,public/editorial candidate
+wp_ngg_gallery,8,8,gid|name|slug|path|title|galdesc|pageid|previewpic|author|extras_post_id|date_created|date_modified|display_type|display_type_settings|is_private|is_ecommerce_enabled|external_source,public/editorial candidate
+wp_ngg_pictures,314,314,pid|image_slug|post_id|galleryid|filename|description|alttext|imagedate|exclude|sortorder|meta_data|extras_post_id|updated_at,public/editorial candidate
+wp_options,784,782,option_id|option_name|option_value|autoload,operational/private or inactive prefix; not exported
+wp_postexpirator_debug,0,,id|timestamp|blog|message|request_id|trigger_activated,operational/private or inactive prefix; not exported
+wp_postmeta,12461,12461,meta_id|post_id|meta_key|meta_value,public/editorial candidate
+wp_posts,3517,3517,ID|post_author|post_date|post_date_gmt|post_content|post_title|post_excerpt|post_status|comment_status|ping_status|post_password|post_name|to_ping|pinged|post_modified|post_modified_gmt|post_content_filtered|post_parent|guid|menu_order|post_type|post_mime_type|comment_count,public/editorial candidate
+wp_ppfuture_actions_args,126,126,id|cron_action_id|post_id|enabled|scheduled_date|created_at|args,public/editorial candidate
+wp_ppfuture_workflow_scheduled_steps,0,,action_id|workflow_id|step_id|action_uid_hash|action_uid|is_recurring|repeat_until|repeat_times|repeat_until_date|uncompressed_args|compressed_args|is_compressed|created_at|repetition_number|post_id,public/editorial candidate
+wp_termmeta,64,64,meta_id|term_id|meta_key|meta_value,public/editorial candidate
+wp_terms,189,189,term_id|name|slug|term_group,public/editorial candidate
+wp_term_relationships,1020,1020,object_id|term_taxonomy_id|term_order,public/editorial candidate
+wp_term_taxonomy,189,189,term_taxonomy_id|term_id|taxonomy|description|parent|count,public/editorial candidate
+wp_totalsoft_cal_1,4,4,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal_BgCol|TotalSoftCal_GrCol|TotalSoftCal_GW|TotalSoftCal_BW|TotalSoftCal_BStyle|TotalSoftCal_BCol|TotalSoftCal_BSCol|TotalSoftCal_MW|TotalSoftCal_HBgCol|TotalSoftCal_HCol|TotalSoftCal_HFS|TotalSoftCal_HFF|TotalSoftCal_WBgCol|TotalSoftCal_WCol|TotalSoftCal_WFS|TotalSoftCal_WFF|TotalSoftCal_LAW|TotalSoftCal_LAWS|TotalSoftCal_LAWC|TotalSoftCal_DBgCol|TotalSoftCal_DCol|TotalSoftCal_DFS|TotalSoftCal_TBgCol|TotalSoftCal_TCol|TotalSoftCal_TFS|TotalSoftCal_TNBgCol|TotalSoftCal_HovBgCol|TotalSoftCal_HovCol|TotalSoftCal_NumPos|TotalSoftCal_WDStart|TotalSoftCal_RefIcCol|TotalSoftCal_RefIcSize|TotalSoftCal_ArrowType|TotalSoftCal_ArrowLeft|TotalSoftCal_ArrowRight|TotalSoftCal_ArrowCol|TotalSoftCal_ArrowSize|TotalSoftCal_BackIconType|TotalSoftCal_DFF,public/editorial candidate
+wp_totalsoft_cal_2,2,2,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal2_WDStart|TotalSoftCal2_BW|TotalSoftCal2_BS|TotalSoftCal2_BC|TotalSoftCal2_W|TotalSoftCal2_H|TotalSoftCal2_BxShShow|TotalSoftCal2_BxShType|TotalSoftCal2_BxSh|TotalSoftCal2_BxShC|TotalSoftCal2_MBgC|TotalSoftCal2_MC|TotalSoftCal2_MFS|TotalSoftCal2_MFF|TotalSoftCal2_WBgC|TotalSoftCal2_WC|TotalSoftCal2_WFS|TotalSoftCal2_WFF|TotalSoftCal2_LAW_W|TotalSoftCal2_LAW_S|TotalSoftCal2_LAW_C|TotalSoftCal2_DBgC|TotalSoftCal2_DC|TotalSoftCal2_DFS|TotalSoftCal2_TdBgC|TotalSoftCal2_TdC|TotalSoftCal2_TdFS|TotalSoftCal2_EdBgC|TotalSoftCal2_EdC|TotalSoftCal2_EdFS|TotalSoftCal2_HBgC|TotalSoftCal2_HC|TotalSoftCal2_ArrType|TotalSoftCal2_ArrFS|TotalSoftCal2_ArrC|TotalSoftCal2_OmBgC|TotalSoftCal2_OmC|TotalSoftCal2_OmFS|TotalSoftCal2_Ev_HBgC|TotalSoftCal2_Ev_HC|TotalSoftCal2_Ev_HFS|TotalSoftCal2_Ev_HFF|TotalSoftCal2_Ev_HText|TotalSoftCal2_Ev_BBgC|TotalSoftCal2_Ev_TC|TotalSoftCal2_Ev_TFF|TotalSoftCal2_Ev_TFS,public/editorial candidate
+wp_totalsoft_cal_3,2,2,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal3_MW|TotalSoftCal3_WDStart|TotalSoftCal3_BgC|TotalSoftCal3_GrC|TotalSoftCal3_BBC|TotalSoftCal3_BoxShShow|TotalSoftCal3_BoxShType|TotalSoftCal3_BoxSh|TotalSoftCal3_BoxShC|TotalSoftCal3_H_BgC|TotalSoftCal3_H_BTW|TotalSoftCal3_H_BTC|TotalSoftCal3_H_FF|TotalSoftCal3_H_MFS|TotalSoftCal3_H_MC|TotalSoftCal3_H_YFS|TotalSoftCal3_H_YC|TotalSoftCal3_H_Format|TotalSoftCal3_Arr_Type|TotalSoftCal3_Arr_C|TotalSoftCal3_Arr_S|TotalSoftCal3_Arr_HC|TotalSoftCal3_LAH_W|TotalSoftCal3_LAH_C|TotalSoftCal3_WD_BgC|TotalSoftCal3_WD_C|TotalSoftCal3_WD_FS|TotalSoftCal3_WD_FF|TotalSoftCal3_D_BgC|TotalSoftCal3_D_C|TotalSoftCal3_TD_BgC|TotalSoftCal3_TD_C|TotalSoftCal3_HD_BgC|TotalSoftCal3_HD_C|TotalSoftCal3_ED_C|TotalSoftCal3_ED_HC|TotalSoftCal3_Ev_Format|TotalSoftCal3_Ev_BTW|TotalSoftCal3_Ev_BTC|TotalSoftCal3_Ev_BgC|TotalSoftCal3_Ev_C|TotalSoftCal3_Ev_FS|TotalSoftCal3_Ev_FF,public/editorial candidate
+wp_totalsoft_cal_4,2,2,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal4_01|TotalSoftCal4_02|TotalSoftCal4_03|TotalSoftCal4_04|TotalSoftCal4_05|TotalSoftCal4_06|TotalSoftCal4_07|TotalSoftCal4_08|TotalSoftCal4_09|TotalSoftCal4_10|TotalSoftCal4_11|TotalSoftCal4_12|TotalSoftCal4_13|TotalSoftCal4_14|TotalSoftCal4_15|TotalSoftCal4_16|TotalSoftCal4_17|TotalSoftCal4_18|TotalSoftCal4_19|TotalSoftCal4_20|TotalSoftCal4_21|TotalSoftCal4_22|TotalSoftCal4_23|TotalSoftCal4_24|TotalSoftCal4_25|TotalSoftCal4_26|TotalSoftCal4_27|TotalSoftCal4_28|TotalSoftCal4_29|TotalSoftCal4_30|TotalSoftCal4_31|TotalSoftCal4_32|TotalSoftCal4_33|TotalSoftCal4_34|TotalSoftCal4_35|TotalSoftCal4_36|TotalSoftCal4_37|TotalSoftCal4_38|TotalSoftCal4_39,public/editorial candidate
+wp_totalsoft_cal_events,0,,id|TotalSoftCal_EvName|TotalSoftCal_EvCal|TotalSoftCal_EvStartDate|TotalSoftCal_EvEndDate|TotalSoftCal_EvURL|TotalSoftCal_EvURLNewTab|TotalSoftCal_EvStartTime|TotalSoftCal_EvEndTime|TotalSoftCal_EvColor,public/editorial candidate
+wp_totalsoft_cal_events_p2,0,,id|TotalSoftCal_EvDesc|TotalSoftCal_EvImg|TotalSoftCal_EvVid_Src|TotalSoftCal_EvVid_Iframe|TotalSoftCal_EvCal,public/editorial candidate
+wp_totalsoft_cal_events_p3,0,,id|TotalSoftCal_EvCal|TotalSoftCal_EvRec|TotalSoftCal_Ev_01|TotalSoftCal_Ev_02|TotalSoftCal_Ev_03|TotalSoftCal_Ev_04|TotalSoftCal_Ev_05|TotalSoftCal_Ev_06|TotalSoftCal_Ev_07|TotalSoftCal_Ev_08|TotalSoftCal_Ev_09|TotalSoftCal_Ev_10|TotalSoftCal_Ev_11|TotalSoftCal_Ev_12|TotalSoftCal_Ev_13|TotalSoftCal_Ev_14|TotalSoftCal_Ev_15|TotalSoftCal_Ev_16|TotalSoftCal_Ev_17|TotalSoftCal_Ev_18|TotalSoftCal_Ev_19|TotalSoftCal_Ev_20,public/editorial candidate
+wp_totalsoft_cal_ids,10,10,id|Cal_ID,public/editorial candidate
+wp_totalsoft_cal_part,10,10,id|TotalSoftCal_ID|TotalSoftCal_Name|TotalSoftCal_Type|TotalSoftCal_01|TotalSoftCal_02|TotalSoftCal_03|TotalSoftCal_04|TotalSoftCal_05|TotalSoftCal_06|TotalSoftCal_07|TotalSoftCal_08|TotalSoftCal_09|TotalSoftCal_10|TotalSoftCal_11|TotalSoftCal_12|TotalSoftCal_13|TotalSoftCal_14|TotalSoftCal_15|TotalSoftCal_16|TotalSoftCal_17|TotalSoftCal_18|TotalSoftCal_19|TotalSoftCal_20|TotalSoftCal_21|TotalSoftCal_22|TotalSoftCal_23|TotalSoftCal_24|TotalSoftCal_25|TotalSoftCal_26|TotalSoftCal_27|TotalSoftCal_28|TotalSoftCal_29|TotalSoftCal_30,public/editorial candidate
+wp_totalsoft_cal_types,10,10,id|TotalSoftCal_Name|TotalSoftCal_Type,public/editorial candidate
+wp_usermeta,444,444,umeta_id|user_id|meta_key|meta_value,operational/private or inactive prefix; not exported
+wp_users,12,12,ID|user_login|user_pass|user_nicename|user_email|user_url|user_registered|user_activation_key|user_status|display_name,operational/private or inactive prefix; not exported
+wp_wfAuditEvents,0,,id|type|data|event_time|request_id|state|state_timestamp,operational/private or inactive prefix; not exported
+wp_wfBlockedIPLog,174,173,IP|countryCode|blockCount|unixday|blockType,operational/private or inactive prefix; not exported
+wp_wfBlocks7,7,6,id|type|IP|blockedTime|reason|lastAttempt|blockedHits|expiration|parameters,operational/private or inactive prefix; not exported
+wp_wfConfig,320,320,name|val|autoload,operational/private or inactive prefix; not exported
+wp_wfCrawlers,24,24,IP|patternSig|status|lastUpdate|PTR,operational/private or inactive prefix; not exported
+wp_wfFileChanges,0,,filenameHash|file|md5,operational/private or inactive prefix; not exported
+wp_wfFileMods,26325,26325,filenameMD5|filename|real_path|knownFile|oldMD5|newMD5|SHAC|stoppedOnSignature|stoppedOnPosition|isSafeFile,operational/private or inactive prefix; not exported
+wp_wfHits,911,910,id|attackLogTime|ctime|IP|jsRun|statusCode|isGoogle|userID|newVisit|URL|referer|UA|action|actionDescription|actionData,operational/private or inactive prefix; not exported
+wp_wfHoover,0,,id|owner|host|path|hostKey,operational/private or inactive prefix; not exported
+wp_wfIssues,109,109,id|time|lastUpdated|status|type|severity|ignoreP|ignoreC|shortMsg|longMsg|data,operational/private or inactive prefix; not exported
+wp_wfKnownFileList,26383,26383,id|path|wordpress_path,operational/private or inactive prefix; not exported
+wp_wfLiveTrafficHuman,0,,IP|identifier|expiration,operational/private or inactive prefix; not exported
+wp_wfLocs,1,1,IP|ctime|failed|city|region|countryName|countryCode|lat|lon,operational/private or inactive prefix; not exported
+wp_wfLogins,2008,2008,id|hitID|ctime|fail|action|username|userID|IP|UA,operational/private or inactive prefix; not exported
+wp_wfls_2fa_secrets,0,,id|user_id|secret|recovery|ctime|vtime|mode,operational/private or inactive prefix; not exported
+wp_wfls_passkeys,0,,id|user_id|credential_id|credential_id_hash|public_key|sign_count|transports|label|user_handle|ctime|mtime|last_used_at,operational/private or inactive prefix; not exported
+wp_wfls_role_counts,0,,serialized_roles|two_factor_inactive|passkey_inactive|user_count,operational/private or inactive prefix; not exported
+wp_wfls_settings,42,42,name|value|autoload,operational/private or inactive prefix; not exported
+wp_wfNotifications,200,200,id|new|category|priority|ctime|html|links,operational/private or inactive prefix; not exported
+wp_wfPendingIssues,1,1,id|time|lastUpdated|status|type|severity|ignoreP|ignoreC|shortMsg|longMsg|data,operational/private or inactive prefix; not exported
+wp_wfReverseCache,3,3,IP|host|lastUpdate,operational/private or inactive prefix; not exported
+wp_wfSecurityEvents,0,,id|type|data|event_time|state|state_timestamp,operational/private or inactive prefix; not exported
+wp_wfSNIPCache,0,,id|IP|expiration|body|count|type,operational/private or inactive prefix; not exported
+wp_wfStatus,955,955,ctime|level|type|msg|id,operational/private or inactive prefix; not exported
+wp_wfTrafficRates,0,,eMin|IP|hitType|hits,operational/private or inactive prefix; not exported
+wp_wfWafFailures,0,,id|throwable|rule_id|timestamp,operational/private or inactive prefix; not exported
+wp_wpfb_cats,13,13,cat_id|cat_name|cat_description|cat_folder|cat_path|cat_parent|cat_num_files|cat_num_files_total|cat_user_roles|cat_owner|cat_icon|cat_exclude_browser|cat_order|cat_scan_lock|cat_wp_term_id,public/editorial candidate
+wp_wpfb_files,52,52,file_id|file_name|file_name_original|file_path|file_size|file_date|file_mtime|file_hash|file_remote_uri|file_thumbnail|file_display_name|file_description|file_tags|file_requirement|file_version|file_author|file_language|file_platform|file_license|file_user_roles|file_offline|file_direct_linking|file_force_download|file_category|file_category_name|file_update_of|file_post_id|file_attach_order|file_wpattach_id|file_added_by|file_hits|file_ratings|file_rating_sum|file_last_dl_ip|file_last_dl_time|file_custom_cf1|file_custom_cf2|file_rescan_pending|file_scan_lock,public/editorial candidate
+wp_wpfb_files_id3,52,52,file_id|analyzetime|value|keywords,public/editorial candidate
+wp_wpvivid_options,2,,option_id|option_name|option_value,operational/private or inactive prefix; not exported
+wp_wpvivid_scan_result,1418,1418,id|path|from_post,operational/private or inactive prefix; not exported
+wp_wpvivid_unused_uploads_files,941,941,id|path|folder,operational/private or inactive prefix; not exported

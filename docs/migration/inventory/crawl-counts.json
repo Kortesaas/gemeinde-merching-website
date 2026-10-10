@@ -1,0 +1,31 @@
+{
+  "crawled": 1872,
+  "types": {
+    "page": 430,
+    "file": 83,
+    "PDF": 537,
+    "image": 718,
+    "sitemap/xml": 75,
+    "stylesheet": 29
+  },
+  "statuses": {
+    "200": 350,
+    "404": 69,
+    "206": 1378,
+    "403": 75
+  },
+  "classifications": {
+    "duplicate/alias": 75,
+    "preserve exactly": 1337,
+    "migrate to another canonical URL + 301": 255,
+    "broken/obsolete": 69,
+    "manual review": 136
+  },
+  "robots_status": "200",
+  "robots_blocked": 0,
+  "pending": 0,
+  "limit": 10000,
+  "delay_seconds": 0.6,
+  "workers": 2,
+  "finished_at": "2026-10-10T15:27:50Z"
+}
