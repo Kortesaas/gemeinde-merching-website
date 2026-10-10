@@ -377,11 +377,12 @@ final class PublicContentImporter
     {
         // Only this isolated migration database is rebuilt; stable keys make reruns idempotent.
         DB::table('navigation_items')->delete();
+        $shortLabels = ['wp:20' => 'Verwaltung', 'wp:92' => 'Grußwort'];
         $groups = [
-            ['structure:rathaus', 'Rathaus und Politik', ['wp:20', 'wp:212', 'wp:92', 'wp:227', 'wp:9222']],
+            ['structure:rathaus', 'Rathaus & Politik', ['wp:20', 'wp:212', 'wp:92', 'wp:227', 'wp:9222']],
             ['wp:10', 'Bürgerservice', ['wp:222', 'wp:224', 'wp:257', 'wp:7085', 'wp:2847', 'wp:1999', 'wp:441', 'wp:353']],
-            ['structure:leben', 'Leben in Merching', ['wp:6', 'wp:14', 'wp:2316', 'wp:249', 'wp:251', 'wp:255', 'wp:547']],
-            ['structure:bauen', 'Bauen und Wirtschaft', ['wp:12', 'wp:4787', 'wp:415']],
+            ['structure:leben', 'Leben & Freizeit', ['wp:6', 'wp:14', 'wp:2316', 'wp:249', 'wp:251', 'wp:255', 'wp:547']],
+            ['structure:bauen', 'Bauen & Wirtschaft', ['wp:12', 'wp:4787', 'wp:415']],
             ['wp:8', 'Aktuelles', ['wp:4', 'wp:670', 'wp:542', 'wp:4631', 'wp:4765']],
         ];
         foreach ($groups as $i => [$key, $label, $children]) {
@@ -389,12 +390,12 @@ final class PublicContentImporter
             $parent = Models\NavigationItem::query()->create(['menu' => 'main', 'label' => $label, 'public_route_id' => $model->canonicalRoute()->firstOrFail()->getKey(), 'sort_order' => $i, 'is_active' => true]);
             foreach ($children as $j => $child) {
                 $target = $this->routable($child);
-                Models\NavigationItem::query()->create(['menu' => 'main', 'parent_id' => $parent->getKey(), 'label' => $target->displayTitle(), 'public_route_id' => $target->canonicalRoute()->firstOrFail()->getKey(), 'sort_order' => $j, 'is_active' => true]);
+                Models\NavigationItem::query()->create(['menu' => 'main', 'parent_id' => $parent->getKey(), 'label' => $shortLabels[$child] ?? $target->displayTitle(), 'public_route_id' => $target->canonicalRoute()->firstOrFail()->getKey(), 'sort_order' => $j, 'is_active' => true]);
             }
         }
         foreach (['wp:222', 'wp:257', 'wp:20', 'wp:7085', 'wp:2847'] as $i => $key) {
             $model = $this->routable($key);
-            Models\NavigationItem::query()->create(['menu' => 'service', 'label' => $model->displayTitle(), 'public_route_id' => $model->canonicalRoute()->firstOrFail()->getKey(), 'sort_order' => $i, 'is_active' => true]);
+            Models\NavigationItem::query()->create(['menu' => 'service', 'label' => $key === 'wp:20' ? 'Öffnungszeiten' : $model->displayTitle(), 'public_route_id' => $model->canonicalRoute()->firstOrFail()->getKey(), 'sort_order' => $i, 'is_active' => true]);
         }
         $footer = [
             ['Bürgerservice', 'wp:10', [['Leistungen A–Z', 'wp:222'], ['Formulare', 'wp:257'], ['Dokumente', 'wp:7085'], ['Verwaltung und Öffnungszeiten', 'wp:20']]],

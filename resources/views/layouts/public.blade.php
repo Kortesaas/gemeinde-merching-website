@@ -121,12 +121,20 @@
         </div>
     </div>
     <div class="search-panel__body">
-        <h2 id="search-panel-title">Wonach suchen Sie?</h2>
+        <h2 id="search-panel-title">Suche</h2>
+        <p class="search-panel__intro">Leistungen, Kontakte und Meldungen finden.</p>
         @include('public.partials.search-form', ['searchId' => 'overlay-search', 'pill' => true, 'searchLabel' => 'Suchbegriff'])
         <div class="search-panel__footer">
             <a href="{{ route('public.search') }}" data-search-all>Alle Ergebnisse anzeigen</a>
             <p class="search-panel__hint">Pfeiltasten wählen · Eingabetaste öffnet · Esc schließt</p>
         </div>
+        @php $searchShortcuts = array_slice($nav->tree(\App\Enums\NavigationMenu::Service), 0, 5); @endphp
+        @if ($searchShortcuts)
+            <nav class="search-panel__shortcuts" aria-labelledby="search-shortcuts-title" data-search-shortcuts>
+                <h3 id="search-shortcuts-title">Häufig gesucht</h3>
+                <ul>@foreach ($searchShortcuts as $shortcut)<li><a href="{{ $shortcut->href }}">{{ $shortcut->item->label }} <x-icon name="arrow-right" /></a></li>@endforeach</ul>
+            </nav>
+        @endif
     </div>
 </dialog>
 <button class="button display-trigger display-launcher" type="button" data-display-trigger aria-label="Darstellung &amp; Barrierefreiheit" title="Darstellung &amp; Barrierefreiheit" aria-haspopup="dialog" aria-controls="display-panel" aria-expanded="false" hidden><x-icon name="eye" /></button>

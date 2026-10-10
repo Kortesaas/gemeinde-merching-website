@@ -1,0 +1,61 @@
+source_id,type,source_title,title,path
+wp:20,page,Verwaltung: Adressen und Öffnungszeiten,Verwaltung & Öffnungszeiten,/rathaus-und-politik/verwaltung
+wp:92,page,Grußwort des 1. Bürgermeisters,Grußwort des Bürgermeisters,/rathaus-und-politik/grusswort
+wp:138,page,eMail-Formular,Kontakt per E-Mail,/email-formular
+wp:222,page,Bürgerservice von A-Z,Leistungen A–Z,/buergerservice/a-z
+wp:273,page,Interessante Links im Web,Nützliche Links,/interessante-links-im-web
+wp:353,page,Gemeindekurier und Bürgerinformationen,Gemeindekurier,/gemeindekurier
+wp:385,page,Aus dem Landratsamt und anderen Behörden,Aus anderen Behörden,/landratsamt-andere-behoerden
+wp:415,page,Gastronomiebetriebe,Gastronomie,/gastronomiebetriebe
+wp:441,page,Ratsinformation Gemeinderat und Schulverbände,Ratsinformation,/gemeinderat
+wp:542,page,Unsere Stellenanzeigen,Stellenangebote,/stellenanzeigen
+wp:547,page,Bildergalerien aus Merching,Bildergalerien,/bildergalerie-merching
+wp:670,page,Öffentliche Bekanntmachungen,Bekanntmachungen,/bekanntmachungen
+wp:1999,page,Flächennutzungsplan - Bebauungspläne,Bauleitplanung,/flaechennutzungsplan-bebauungsplaene
+wp:2847,page,Bürgerserviceportal,Online-Anträge,/buergerserviceportal
+wp:3658,page,Datenschutzerklärung,Datenschutz,/datenschutz
+wp:4787,page,Standortfaktoren Leben und Wohnen in Merching,Leben & Wohnen,/standortfaktoren-leben-und-wohnen-in-merching
+wp:9637,page,Barrieren reduzieren in unserem Webauftritt,Barrierefreiheit,/barrierefreiheit
+wp:7085,page,Alle Downloads in der Übersicht,Dokumente,/dokumente
+structure:calendar-source,page,Vollständiger veröffentlichter Veranstaltungskalender,Veranstaltungskalender,/veranstaltungen/veroeffentlichter-kalender
+structure:rathaus,page,Rathaus und Politik,Rathaus & Politik,/rathaus-und-politik
+structure:leben,page,Leben in Merching,Leben & Freizeit,/leben
+structure:bauen,page,Bauen und Wirtschaft,Bauen & Wirtschaft,/bauen-und-wirtschaft
+structure:verzeichnisse,page,Ansprechpersonen und Einrichtungen,Kontakte & Einrichtungen,/verzeichnisse
+wp:10156,article,Bekanntmachung über die Eintragungsmöglichkeiten in Unterstützungslisten,Eintragung in Unterstützungslisten,/aktuelles/bekanntmachung-ueber-die-eintragungsmoeglichkeiten-in-unterstuetzungslisten
+wp:10254,article,Bekanntmachungen zur 1. Änderung des Bebauungsplanes Nr. 34 - Östlich der Nebelhornstraße,Bebauungsplan 34: Erste Änderung,/aktuelles/bekanntmachungen-zur-1-aenderung-des-bebauungsplanes-nr-34-oestlich-der-nebelhornstrasse
+wp:10152,article,Bekanntmachung über die Aufforderung zur Einreichung von Wahlvorschlägen für die Wahl des Gemeinderats und der ersten Bürgermeisterin/des ersten Bürgermeisters,Kommunalwahl: Wahlvorschläge einreichen,/aktuelles/bekanntmachung-ueber-die-aufforderung-zur-einreichung-von-wahlvorschlaegen-fuer-die-wahl-des-gemeinderats-und-der-ersten-buergermeisterin-des-ersten-buergermeisters
+wp:10428,article,Bekanntmachung des abschließenden Ergebnisses der Wahl des ersten Bürgermeisters am 08. März 2026,Bürgermeisterwahl 2026: Endgültiges Ergebnis,/aktuelles/bekanntmachung-des-abschliessenden-ergebnisses-der-wahl-des-ersten-buergermeisters-am-08-maerz-2026
+wp:8018,article,"Flyer ""Stromausfall"" - Was ist ein Blackout und wie bereiten wir uns darauf vor?",Stromausfall: Vorbereitung auf einen Blackout,/aktuelles/flyer-stromausfall-was-ist-ein-blackout-und-wie-bereiten-wir-uns-darauf-vor
+wp:10534,article,Verkündung des Ergebnisses der Wahl des Ortssprechers für den Ortsteil Hochdorf,Hochdorf: Ergebnis der Ortssprecherwahl,/aktuelles/verkuendung-des-ergebnisses-der-wahl-des-ortssprechers-fuer-den-ortsteil-hochdorf
+wp:9197,article,Grundsteuer ab 2025 - Info des Finanzamtes zur Korrektur der Messbeträge,Grundsteuer: Messbeträge korrigieren,/aktuelles/grundsteuer-ab-2025-info-des-finanzamtes-zur-korrektur-der-messbetraege
+wp:10515,article,Pressemitteilung Landratsamt Aichach-Friedberg : Bündnis f. Demokratie spricht Förderempfehlungen für 2026 aus,Demokratieförderung: Empfehlungen für 2026,/aktuelles/pressemitteilung-landratsamt-aichach-friedberg-buendnis-f-demokratie-spricht-foerderempfehlungen-fuer-2026-aus
+wp:10173,article,Bekanntmachung der Beitrags- und Gebührensatzung zur Wasserabgabesatzung der Gemeinde Merching v. 12.12.2025,Wasserversorgung: Beiträge und Gebühren,/aktuelles/bekanntmachung-der-beitrags-und-gebuehrensatzung-zur-wasserabgabesatzung-der-gemeinde-merching-v-12-12-2025
+wp:10171,article,Bekanntmachung der Beitrags- und Gebührensatzung zur Entwässerungssatzung der Gemeinde Merching v. 12.12.2025,Entwässerung: Beiträge und Gebühren,/aktuelles/bekanntmachung-der-beitrags-und-gebuehrensatzung-zur-entwaesserungssatzung-der-gemeinde-merching-v-12-12-2025
+wp:10477,article,Balkonkraftwerk o. klassiche Photovoltaikanlage - Sonnenstrom für jeden Bedarf,Photovoltaik: Sonnenstrom für jeden Bedarf,/aktuelles/balkonkraftwerk-o-klassiche-photovoltaikanlage-sonnenstrom-fuer-jeden-bedarf
+wp:9508,article,Zensus 2022: Gesetz über den Schutz der Sonn- und Feiertage (Feiertagsgesetz) Mariä Himmelfahrt,Mariä Himmelfahrt: Feiertagsregelung,/aktuelles/zensus-2022-gesetz-ueber-den-schutz-der-sonn-und-feiertage-feiertagsgesetz-mariae-himmelfahrt
+wp:9600,article,Spielplatz an der Paar mit Spielschiff u. gestifteten Bänken des Hühnerkomitees Merching wurde offiziell eröffnet,Spielplatz an der Paar eröffnet,/aktuelles/spielschiff-an-der-paar-u-gestiftete-baenke-des-huehnerkomitees-merching-wurden-offiziell-eroeffnet
+wp:10508,article,Pressemitteilung Landratsamt Aichach-Friedberg - Geflügelpest: Sperrzone aufgehoben,Geflügelpest: Sperrzone aufgehoben,/aktuelles/pressemitteilung-landratsamt-aichach-friedberg-gefluegelpest-sperrzone-aufgehoben
+wp:10432,article,Bekanntmachung des abschließenden Ergebnisses der Wahl des Gemeinderats am 08. März 2026,Gemeinderatswahl 2026: Endgültiges Ergebnis,/aktuelles/bekanntmachung-des-abschliessenden-ergebnisses-der-wahl-des-gemeinderats-am-08-maerz-2026
+wp:10521,article,Grundsteuer - Änderungen am Grundbesitz bis 30.04.2026 dem Finanzamt anzeigen,Grundsteuer: Änderungen am Grundbesitz melden,/aktuelles/aenderungen-am-grundbesitz-dem-finanzamt-anzeigen
+wp:10570,article,Bekanntmachung v. 12.05.2026 - Vergabe von gemeindlichen Wohnbaugrundstücken,Vergabe von Wohnbaugrundstücken,/aktuelles/bekanntmachung-v-12-05-2026-vergabe-von-gemeindlichen-wohnbaugrundstuecken
+wp:10662,article,Pressemitteilung Finanzamt Augsburg Land - Erinnerung an Steuervorauszahlung,Erinnerung an Steuervorauszahlungen,/aktuelles/pressemitteilung-finanzamt-augsburg-land-erinnerung-an-steuervorauszahlung
+wp:10848,article,Fachstelle f. pflegende Angehörige - Tageskurs für ehrenamtlich tätige Einzelperson am 27.10.2026 in Aichach,Tageskurs für ehrenamtliche Einzelpersonen,/aktuelles/fachstelle-f-pflegende-angehoerige-tageskurs-fuer-ehrenamtlich-taetige-einzelperson-am-27-10-2026-in-aichach
+wp:10867,article,Pressemitteilung: Region wehrt sich gegen geplante Ausdünnung des Regionalverkehrs zwischen Augsburg und München,Regionalverkehr: Widerstand gegen Kürzungen,/aktuelles/pressemitteilung-region-wehrt-sich-gegen-geplante-ausduennung-des-regionalverkehrs-zwischen-augsburg-und-muenchen
+wp:10931,article,"Unterstützung für Menschen mit Pfegebedarf - Tagesschulung zur ""Ehrenamtlich tätigen Einzelperson""",Pflege: Schulung für ehrenamtliche Einzelpersonen,/aktuelles/unterstuetzung-fuer-menschen-mit-pfegebedarf-tagesschulung-zur-ehrenamtlich-taetigen-einzelperson
+wp:10928,article,E-Rechnung im Verein: Online-Seminar des Landratsamtes informiert über neue Anforderungen,E-Rechnung im Verein: Online-Seminar,/aktuelles/e-rechnung-im-verein-online-seminar-des-landratsamtes-informiert-ueber-neue-anforderungen
+wp:10940,article,DB InfraGO AG führt am 20.10.26 Bauarbeiten durch (Bf Kissing - Bf Augsburg Hbf u. Bf Mammendorf - Bf Mering),Bahnarbeiten bei Kissing und Mering am 20. Oktober,/aktuelles/db-infrago-ag-fuehrt-am-20-10-26-bauarbeiten-durch-bf-kissing-bf-augsburg-hbf-u-bf-mammendorf-bf-mering
+wp:10833,article,Neue Termine für kostenlose Rückgabe von Pflanzenschutz-Verpackungen - Entsorgungssystem PAMIRA,PAMIRA: Pflanzenschutz-Verpackungen zurückgeben,/aktuelles/neue-termine-fuer-kostenlose-rueckgabe-von-pflanzenschutz-verpackungen-entsorgungssystem-pamira
+wp:10887,article,Pressemitteilung Landratsamt Aichach-Friedberg: Tychonema in mehreren Badeseen nachgewiesen,Tychonema in mehreren Badeseen nachgewiesen,/aktuelles/pressemitteilung-landratsamt-aichach-friedberg-tychonema-in-mehreren-badeseen-nachgewiesen
+wp:10896,article,Pressemitteilung Landratsamt Aichach-Friedberg: Blaualgen im Uferbereich des Auensees bei Kissing,Blaualgen am Ufer des Auensees,/aktuelles/pressemitteilung-landratsamt-aichach-friedberg-blaualgen-im-uferbereich-des-auensees-bei-kissing
+wp:10917,article,Übernahme Papiertonne v. REMONDIS durch den Landkreis - Erfassung der Tonnen in Merching ab 19.10.2026,Papiertonnen: Erfassung ab 19. Oktober,/aktuelles/10917-2
+wp:10942,article,DB InfraGO AG führt am 13.10. u. 14.10.26 Bauarbeiten durch (Bf Mering - Bf Egling),Bahnarbeiten Mering–Egling am 13. und 14. Oktober,/aktuelles/db-infrago-ag-fuehrt-am-13-10-u-14-10-26-bauarbeiten-durch-bf-mering-bf-egling
+wp:10944,article,Workshop Freiwilligenagentur: Wie gewinnen wir neue Freiwillige? Alle im Blick - Ehrenamt neu gestalten,Workshop: Neue Freiwillige gewinnen,/aktuelles/workshop-freiwilligenagentur-wie-gewinnen-wir-neue-freiwillige-alle-im-blick-ehrenamt-neu-gestalten
+wp:10947,article,Veranstaltung Landratsamt Aichach-Friedberg: Ratschen über Photovoltaik - SolarTreffs in verschiedenen Gemeinden,SolarTreffs: Austausch über Photovoltaik,/aktuelles/veranstaltung-landratsamt-aichach-friedberg-ratschen-ueber-photovoltaik-solartreffs-in-verschiedenen-gemeinden
+wp:10952,article,Vollsperrung Bahnübergang zwischen Brunnen und St. 2052 im Zeitraum vom 13.10.2026 - 15.10.2026,Bahnübergang Brunnen: Sperrung vom 13.–15. Oktober,/aktuelles/vollsperrung-bahnuebergang-zwischen-brunnen-und-st-2052-im-zeitraum-vom-13-10-2026-15-10-2026
+table:8634:1,event,Tage der offenen Tür im Rahmen der Bayerischen Demenzwoche mit Vorträgen u. Veranstaltungen,Bayerische Demenzwoche: Tage der offenen Tür,/veranstaltungen/tage-der-offenen-tuer-im-rahmen-der-bayerischen-demenzwoche-mit-vortraegen-u-veranstaltungen-1
+table:8634:7,event,"Kostenloser Onlinekurs LRA AIC-FDB: ""Erste Schritte zur eigenen Photovoltaikanlage""",Onlinekurs: Die eigene Photovoltaikanlage,/veranstaltungen/kostenloser-onlinekurs-lra-aic-fdb-erste-schritte-zur-eigenen-photovoltaikanlage-7
+table:8634:10,event,Kinderflohmarkt (Termin wurde geändert - 10.10.26 = neuer Termin),Kinderflohmarkt,/veranstaltungen/kinderflohmarkt-termin-wurde-geaendert-10-10-26-neuer-termin-10
+table:8634:25,event,"Tageskurs f. Helferinnen und Helfer, Ehrenamtlich tätige Einzelpersonen",Tageskurs für ehrenamtliche Einzelpersonen,/veranstaltungen/tageskurs-f-helferinnen-und-helfer-ehrenamtlich-taetige-einzelpersonen-25
+table:8634:63,event,vorauss. Anblasen der Heiligen Nacht am Maibaum mit Glühweinausschank,Voraussichtlich: Anblasen der Heiligen Nacht,/veranstaltungen/vorauss-anblasen-der-heiligen-nacht-am-maibaum-mit-gluehweinausschank-63
+table:8634:68,event,"Bürgerball ""Merching tanzt"" mit SOUND TRAIN und Faschingsgarde Narrneusia",Bürgerball: Merching tanzt,/veranstaltungen/buergerball-merching-tanzt-mit-sound-train-und-faschingsgarde-narrneusia-68

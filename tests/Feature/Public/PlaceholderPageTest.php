@@ -15,7 +15,7 @@ class PlaceholderPageTest extends TestCase
             ->assertOk()
             ->assertSee('<html lang="de">', false)
             ->assertSee('<title>Gemeinde Merching</title>', false)
-            ->assertSee('<h1 id="home-heading">Wie können wir Ihnen helfen?</h1>', false);
+            ->assertSee('<h1 id="home-heading">Wie können wir helfen?</h1>', false);
     }
 
     public function test_page_has_accessible_landmarks_and_skip_link(): void

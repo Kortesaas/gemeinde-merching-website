@@ -3,8 +3,8 @@
     $pill ??= false;
     $labelHidden ??= $pill && ! ($labelVisible ?? false);
 @endphp
-<form method="GET" action="{{ route('public.search') }}" role="search" class="search-form {{ $pill ? 'search-form--pill' : '' }}" @if ($suggest) data-search-form @endif>
-    <label class="search-form__label {{ $labelHidden ? 'visually-hidden' : '' }}" for="{{ $searchId }}">{{ $searchLabel ?? 'Website durchsuchen' }}</label>
+<form method="GET" action="{{ route('public.search') }}" role="search" aria-labelledby="{{ $searchId }}-label" class="search-form {{ $pill ? 'search-form--pill' : '' }}" @if ($suggest) data-search-form @endif>
+    <label id="{{ $searchId }}-label" class="search-form__label {{ $labelHidden ? 'visually-hidden' : '' }}" for="{{ $searchId }}">{{ $searchLabel ?? 'Website durchsuchen' }}</label>
     <div class="search-form__field">
         <x-icon name="search" class="search-form__icon" />
         <input class="search-form__input" id="{{ $searchId }}" name="q" type="search" value="{{ $searchValue ?? '' }}" maxlength="150" autocomplete="off" enterkeyhint="search" @if ($suggest) data-search-input @endif>

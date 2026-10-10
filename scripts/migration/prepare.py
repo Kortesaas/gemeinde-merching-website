@@ -589,6 +589,14 @@ class Migration:
             for field in ['description','body']:
                 if r['attributes'].get(field):r['attributes'][field]=rewrite(r['attributes'][field])
         self.review=[x for x in self.review if not ('alternative text' in x['reason'] and self.assets.get(x['source'],{}).get('attributes',{}).get('alt_text'))]
+        # Short public headings; preserve all source wording and schedule context.
+        headings=[]
+        for key,title in json.loads((ROOT/'scripts/migration/editorial-titles.json').read_text()).items():
+            r=self.records[key];original=r['attributes']['title']
+            r['source_title']=original;r['attributes']['title']=title
+            if r['type']=='article':r['blocks'].insert(0,{'type':'text','text':original})
+            elif r['type']=='event':r['attributes']['description']=original+'\n\n'+(r['attributes'].get('description') or '')
+            headings.append({'source_id':key,'type':r['type'],'source_title':original,'title':title,'path':r['path']})
         # User-selected homepage portrait retained from the pre-migration site.
         portrait=SOURCE/'editorial/helmut-luichtl-buergermeister.png'
         if portrait.exists():
@@ -600,7 +608,7 @@ class Migration:
         manifest={'version':1,'records':list(self.records.values()),'assets':list(self.assets.values()),'legacy':list(self.legacy.values()),'review':self.review,'tables':self.tables}
         (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
         report=ROOT/'docs/migration/local';report.mkdir(exist_ok=True)
-        for name,rows in [('preparation-review.csv',self.review),('tablepress.csv',self.tables)]:
+        for name,rows in [('preparation-review.csv',self.review),('tablepress.csv',self.tables),('editorial-titles.csv',headings)]:
             with (report/name).open('w',newline='') as handle:
                 w=csv.DictWriter(handle,fieldnames=list(rows[0]),lineterminator='\n');w.writeheader();w.writerows(rows)
         print(json.dumps({'records':dict(collections.Counter(r['type'] for r in self.records.values())),'assets':dict(collections.Counter(r['type'] for r in self.assets.values())),'legacy_mappings':len(self.legacy),'review':len(self.review)},indent=2))

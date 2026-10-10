@@ -34,6 +34,14 @@ There are 1,198 imported records/assets, including the restored editorial portra
 
 The homepage uses the real Rathaus image, municipal contact details, opening hours and Helmut Luichtl greeting. At the user’s request, its portrait is the previously supplied 1200 × 899 PNG, with the original focal position; the small WordPress original remains preserved. The additional editorial image is copied from ignored `migration-source/editorial/helmut-luichtl-buergermeister.png` into the prepared manifest with its verified SHA-256 and prior publication timestamp. Preparation falls back to the WordPress portrait if that editorial source is absent. The compact hours explicitly omit Wednesday, which the public source lists as closed. Menus use real destinations within the new architecture. Veranstaltungen is a child of Aktuelles. The footer restores the redesigned Bürgerservice, Aktuelles and Rechtliches link groups beside the municipal contact details, replacing the sparse legal-only groups. Crest previews use a neutral background, contain the crest without cropping and keep normal photo-frame proportions, including old “Logo Merching” filenames. Other authorities’ original crests retain their identity.
 
+## Headings and popup review
+
+[editorial-titles.csv](editorial-titles.csv) records 60 deliberate heading changes: 23 pages/landing sections, 31 long news titles and six events. The prepared manifest retains each original title. News articles display the full original headline as their opening text; event descriptions retain the full wording, including changed or provisional dates. Canonical paths, source identities and publication dates are preserved. The overrides live in `scripts/migration/editorial-titles.json` and apply on repeat preparation/import.
+
+The homepage now asks “Wie können wir helfen?”. Navigation uses shorter labels, and desktop submenus use an even three-column grid. Page headings can use the full container width while paragraphs retain their reading width. The search popup uses the short heading “Suche”, five managed service shortcuts and responsive result titles; shortcuts disappear while typing. The display popup uses the visible heading “Darstellung” while retaining its full accessible name, with a compact introduction and a fixed-width close control. Search landmarks have distinct accessible names when the mobile menu and page search are both visible.
+
+The representative homepage/page headings fit one line at 1280 and 1366px with default display settings. Mobile text and enlarged text remain free to wrap. Real-content popup tests at 390, 1280 and 1366px cover menus, search shortcuts/results, display controls, Escape/focus return, axe checks and horizontal reflow.
+
 ## Preservation and editorial review
 
 The primary active WordPress SQL data provides identities, public statuses and original publication dates. WXR, filesystem/WPvivid backups, existing inventory and the public crawl supply cross-checks, paths and public relationships. The importer never executes the SQL dump. Original sources are unchanged; preparation verifies their recorded hashes.
@@ -76,6 +84,7 @@ Search is rebuilt from normal models/controlled blocks; real Personalausweis sea
 - Existing Playwright suite: **76 passed**; the three migration-only tests are separately opt-in.
 - Real migration Playwright: **3 passed**, including 16 representative paths at 390/1440px, axe WCAG/best-practice scans, no third-party requests, no visitor cookies, reflow, crest framing, search, gallery and original budget downloads.
 - Manual browser review: homepage, desktop news/crest cards, mobile council portraits and ordered budget downloads. The complete source calendar and long controlled tables are also covered by responsive axe checks.
+- After the heading/popup changes: **18 targeted PHPUnit tests passed** (164 assertions), **34 relevant real-site browser tests passed** (including three new popup tests), the 11 Python tests, Pint, PHPStan and production build passed. All 734 destinations/1,564 legacy mappings were revalidated, and the audit additionally verifies all 60 imported headings and original article/event context.
 
 Transient test-artifact folder collisions were resolved with separate output directories. Repeated local contact-form tests hit the existing hourly limiter; only synthetic local browser counters were reset for the final run. The limiter remains enabled. A later targeted PHPUnit run inherited the review container’s database settings and reset the local migration database; it was fully restored from the unchanged prepared source, and URL/integrity/browser checks were rerun. `Tests\TestCase` now refuses any database without the `_testing` suffix before database-refresh traits can run; the refusal was explicitly verified, and the greeting tests passed against the isolated test database.
 
@@ -92,6 +101,7 @@ docker compose -f compose.yaml -f compose.migration.yaml exec -T migration-app p
 python3 scripts/migration/decisions.py
 python3 scripts/migration/validate.py
 BASE_URL=http://localhost:8089 REAL_MIGRATION=1 npx playwright test tests/Browser/migration.spec.js --output=migration-source/test-results-migration
+BASE_URL=http://localhost:8089 REAL_MIGRATION=1 npx playwright test tests/Browser/headings-popups.spec.js --output=migration-source/test-results-headings
 ```
 
 No CMS login is imported or invented. To review/edit in the CMS, create a fresh local administrator through the existing interactive command: `docker compose -f compose.yaml -f compose.migration.yaml exec migration-app php artisan admin:create`.

@@ -1,10 +1,10 @@
 <dialog class="display-panel" id="display-panel" aria-labelledby="display-panel-title" aria-describedby="display-panel-intro" data-display-panel>
     <div class="display-panel__header">
-        <h2 id="display-panel-title">Darstellung &amp; Barrierefreiheit</h2>
+        <h2 id="display-panel-title">Darstellung<span class="visually-hidden"> &amp; Barrierefreiheit</span></h2>
         <form method="dialog"><button class="button button--ghost display-panel__close" aria-label="Darstellung schließen" autofocus><x-icon name="close" /></button></form>
     </div>
-    <p id="display-panel-intro" class="display-panel__intro">Passen Sie die Darstellung nach Ihren Bedürfnissen an.</p>
-    <p class="display-hint" data-storage-hint>Ihre Auswahl wird nur in diesem Browser gespeichert und gilt auch auf anderen Seiten und in geöffneten Tabs. „Alles zurücksetzen“ löscht sie.</p>
+    <p id="display-panel-intro" class="display-panel__intro">Schrift, Farben und Bewegung anpassen.</p>
+    <p class="display-hint" data-storage-hint>Die Auswahl bleibt in diesem Browser und gilt auf allen Seiten und in anderen Tabs. „Alles zurücksetzen“ löscht sie.</p>
     <form data-display-form>
         <fieldset class="display-group">
             <legend>Schriftgröße</legend>

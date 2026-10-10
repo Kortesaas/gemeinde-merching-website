@@ -1,8 +1,10 @@
 <?php
 
 use App\Contracts\Routable;
+use App\Models\Article;
 use App\Models\BudgetPlan;
 use App\Models\Document;
+use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Media;
 use App\Models\SourceReference;
@@ -27,6 +29,7 @@ $galleries = [];
 $budgets = [];
 $dates = 0;
 $files = 0;
+$headings = 0;
 // Settings create these structured contacts in addition to manifest records.
 $settingsRecords = [
     ['key' => 'structure:town-hall', 'path' => null],
@@ -46,6 +49,18 @@ foreach ([...$manifest['records'], ...$manifest['assets'], ...$settingsRecords] 
     }
     if ($target instanceof Routable && isset($record['path']) && $target->publicPath() !== $record['path']) {
         $failures[] = $record['key'].': canonical path changed';
+    }
+    if (isset($record['source_title'])) {
+        $headings++;
+        if (! $target instanceof Routable || $target->displayTitle() !== $record['attributes']['title']) {
+            $failures[] = $record['key'].': shortened heading not imported';
+        }
+        if ($target instanceof Article && $target->blocks()->first()?->getAttribute('text') !== $record['source_title']) {
+            $failures[] = $record['key'].': original headline context missing';
+        }
+        if ($target instanceof Event && ! str_starts_with($target->description ?? '', $record['source_title']."\n\n")) {
+            $failures[] = $record['key'].': original event context missing';
+        }
     }
     if (isset($target->getAttributes()['publish_at'])) {
         $dates++;
@@ -93,6 +108,7 @@ $report = [
     'targets' => count($identities),
     'identity_fingerprint' => hash('sha256', json_encode($identities, JSON_THROW_ON_ERROR)),
     'publication_timestamps_checked' => $dates,
+    'editorial_headings_checked' => $headings,
     'stored_and_original_files_checked' => $files,
     'nonmigration_source_references' => $foreignReferences,
     'users' => User::query()->count(),

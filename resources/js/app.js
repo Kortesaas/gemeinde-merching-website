@@ -141,7 +141,12 @@ if (searchDialog?.showModal) {
     });
     searchDialog.addEventListener('close', () => opener?.focus());
     const all = searchDialog.querySelector('[data-search-all]'), overlayInput = searchDialog.querySelector('[data-search-input]');
-    overlayInput.addEventListener('input', () => { all.href = '/suche' + (overlayInput.value.trim() ? '?q=' + encodeURIComponent(overlayInput.value.trim()) : ''); });
+    const shortcuts = searchDialog.querySelector('[data-search-shortcuts]');
+    overlayInput.addEventListener('input', () => {
+        const phrase = overlayInput.value.trim();
+        all.href = '/suche' + (phrase ? '?q=' + encodeURIComponent(phrase) : '');
+        if (shortcuts) shortcuts.hidden = Boolean(phrase);
+    });
 }
 for (const form of document.querySelectorAll('[data-search-form]')) {
     const input = form.querySelector('[data-search-input]');

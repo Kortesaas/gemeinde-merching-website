@@ -10,7 +10,7 @@
 <section class="home-hero {{ $hero ? '' : 'home-hero--text' }}" aria-labelledby="home-heading">
     <div class="home-hero__main">
         <p class="eyebrow">Willkommen in der {{ $siteTitle }}</p>
-        <h1 id="home-heading">Wie können wir Ihnen helfen?</h1>
+        <h1 id="home-heading">Wie können wir helfen?</h1>
         @include('public.partials.search-form', ['searchId' => 'home-search', 'pill' => true, 'searchLabel' => 'Anliegen oder Suchbegriff'])
         @if ($chips)
             <nav class="chip-list" aria-label="Häufige Anliegen">
