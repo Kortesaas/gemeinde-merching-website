@@ -24,6 +24,9 @@ test.describe('real local migration', () => {
             }
             expect(await context.cookies()).toEqual([]);
             expect(foreign).toEqual([]);
+            await page.goto('/');
+            await page.locator('.greeting').screenshot({ path: `migration-source/preview-greeting-${width}.png` });
+            await page.locator('.site-footer').screenshot({ path: `migration-source/preview-footer-${width}.png` });
             await page.goto('/aktuelles');
             const crest = page.locator('.news-preview-crest').first();
             await expect(crest).toBeVisible();

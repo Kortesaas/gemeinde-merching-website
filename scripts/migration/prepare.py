@@ -589,6 +589,14 @@ class Migration:
             for field in ['description','body']:
                 if r['attributes'].get(field):r['attributes'][field]=rewrite(r['attributes'][field])
         self.review=[x for x in self.review if not ('alternative text' in x['reason'] and self.assets.get(x['source'],{}).get('attributes',{}).get('alt_text'))]
+        # User-selected homepage portrait retained from the pre-migration site.
+        portrait=SOURCE/'editorial/helmut-luichtl-buergermeister.png'
+        if portrait.exists():
+            checksum=digest(portrait)
+            assert checksum=='07cf3190d1b8cb3d4bcc3b77c85762dda5537215019e61dd6805afd0e9511c1a', 'Editorial portrait changed; review the replacement first'
+            prepared=OUT/'editorial/helmut-luichtl-buergermeister.png'
+            prepared.parent.mkdir(parents=True,exist_ok=True);prepared.write_bytes(portrait.read_bytes())
+            self.assets['editorial:homepage-mayor']={'key':'editorial:homepage-mayor','type':'media','attributes':{'title':'Helmut Luichtl – Erster Bürgermeister','alt_text':'Helmut Luichtl, Erster Bürgermeister der Gemeinde Merching','focal_x':70,'focal_y':0},'file':str(prepared.relative_to(ROOT)),'original_filename':portrait.name,'sha256':checksum,'date':'2026-10-09 22:39:14','urls':[],'source_keys':[]}
         manifest={'version':1,'records':list(self.records.values()),'assets':list(self.assets.values()),'legacy':list(self.legacy.values()),'review':self.review,'tables':self.tables}
         (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
         report=ROOT/'docs/migration/local';report.mkdir(exist_ok=True)

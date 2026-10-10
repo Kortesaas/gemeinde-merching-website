@@ -369,7 +369,7 @@ final class PublicContentImporter
         // WordPress form recipients are read. The local SMTP host is Mailpit.
         $contact = Models\ContactRoute::query()->firstOrCreate(['label' => 'Gemeindeverwaltung'], ['department_id' => $department->getKey(), 'recipients' => ['rathaus@gemeinde-merching.bayern.de'], 'is_active' => true]);
         $hero = collect($this->models)->first(fn ($m, $key) => $m instanceof Models\Media && str_contains($key, 'Rathaus-2020-neu'));
-        $greeting = collect($this->models)->first(fn ($m, $key) => $m instanceof Models\Media && str_contains($key, 'Helmut-Luichtl-kl.'));
+        $greeting = $this->models['editorial:homepage-mayor'] ?? collect($this->models)->first(fn ($m, $key) => $m instanceof Models\Media && str_contains($key, 'Helmut-Luichtl-kl.'));
         (Models\SiteSettings::query()->find(1) ?? new Models\SiteSettings)->fill(['municipality_name' => 'Gemeinde Merching', 'town_hall_location_id' => $location->getKey(), 'central_department_id' => $department->getKey(), 'central_contact_route_id' => $contact->getKey(), 'homepage_media_id' => $hero?->getKey(), 'greeting_media_id' => $greeting?->getKey(), 'greeting_page_id' => $this->models['wp:92']->getKey(), 'greeting_text' => "Liebe Mitbürgerinnen, liebe Mitbürger, liebe Besucher,\n\nich freue mich sehr, dass sie uns auf dem digitalen Weg besuchen.\n\nAuf unserer Internetseite finden Sie viel Wissenswertes und Interessantes über Merching.\n\nEs stehen Ihnen aber auch aktuelle Informationen zu verschiedenen Themen rund um unsere Gemeinde zur Verfügung.", 'greeting_name' => 'Helmut Luichtl', 'greeting_role' => '1. Bürgermeister', 'postal_address' => "Hauptstr. 26\n86504 Merching", 'default_meta_description' => 'Informationen und Bürgerservice der Gemeinde Merching im Landkreis Aichach-Friedberg.'])->save();
     }
 
@@ -382,8 +382,7 @@ final class PublicContentImporter
             ['wp:10', 'Bürgerservice', ['wp:222', 'wp:224', 'wp:257', 'wp:7085', 'wp:2847', 'wp:1999', 'wp:441', 'wp:353']],
             ['structure:leben', 'Leben in Merching', ['wp:6', 'wp:14', 'wp:2316', 'wp:249', 'wp:251', 'wp:255', 'wp:547']],
             ['structure:bauen', 'Bauen und Wirtschaft', ['wp:12', 'wp:4787', 'wp:415']],
-            ['wp:8', 'Aktuelles', ['wp:670', 'wp:542', 'wp:4631', 'wp:4765']],
-            ['wp:4', 'Veranstaltungen', []],
+            ['wp:8', 'Aktuelles', ['wp:4', 'wp:670', 'wp:542', 'wp:4631', 'wp:4765']],
         ];
         foreach ($groups as $i => [$key, $label, $children]) {
             $model = $this->routable($key);
@@ -397,9 +396,18 @@ final class PublicContentImporter
             $model = $this->routable($key);
             Models\NavigationItem::query()->create(['menu' => 'service', 'label' => $model->displayTitle(), 'public_route_id' => $model->canonicalRoute()->firstOrFail()->getKey(), 'sort_order' => $i, 'is_active' => true]);
         }
-        foreach (['wp:24', 'wp:3658', 'wp:9637', 'wp:26'] as $i => $key) {
+        $footer = [
+            ['Bürgerservice', 'wp:10', [['Leistungen A–Z', 'wp:222'], ['Formulare', 'wp:257'], ['Dokumente', 'wp:7085'], ['Verwaltung und Öffnungszeiten', 'wp:20']]],
+            ['Aktuelles', 'wp:8', [['Meldungen', 'wp:8'], ['Veranstaltungen', 'wp:4'], ['Bekanntmachungen', 'wp:670']]],
+            ['Rechtliches', 'wp:24', [['Impressum', 'wp:24'], ['Datenschutz', 'wp:3658'], ['Barrierefreiheit', 'wp:9637'], ['Inhaltsverzeichnis', 'wp:26']]],
+        ];
+        foreach ($footer as $i => [$label, $key, $children]) {
             $model = $this->routable($key);
-            Models\NavigationItem::query()->create(['menu' => 'footer', 'label' => $model->displayTitle(), 'public_route_id' => $model->canonicalRoute()->firstOrFail()->getKey(), 'sort_order' => $i, 'is_active' => true]);
+            $parent = Models\NavigationItem::query()->create(['menu' => 'footer', 'label' => $label, 'public_route_id' => $model->canonicalRoute()->firstOrFail()->getKey(), 'sort_order' => $i, 'is_active' => true]);
+            foreach ($children as $j => [$childLabel, $childKey]) {
+                $target = $this->routable($childKey);
+                Models\NavigationItem::query()->create(['menu' => 'footer', 'parent_id' => $parent->getKey(), 'label' => $childLabel, 'public_route_id' => $target->canonicalRoute()->firstOrFail()->getKey(), 'sort_order' => $j, 'is_active' => true]);
+            }
         }
     }
 

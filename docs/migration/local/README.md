@@ -11,7 +11,7 @@ Review the redesigned site at **http://localhost:8089**. The existing demo app r
 | Services | 153 |
 | Events | 80 |
 | Documents: 168 PDFs and 2 publicly linked DOCX originals | 170 |
-| Media | 432 |
+| Media | 433 |
 | Galleries / public gallery items | 8 / 312 |
 | Organizations | 78 |
 | External resources | 52 |
@@ -20,7 +20,7 @@ Review the redesigned site at **http://localhost:8089**. The existing demo app r
 | Council terms / members / committees | 1 / 26 / 3 |
 | Budget packages / ordered originals | 3 / 25 |
 
-There are 1,197 imported records/assets, including the structured town-hall location and central department, 1,392 source references and 684 search entries. Counts are model counts, not a count of unique facts: the calendar table and specialized events intentionally preserve the same information in complementary forms. Notices and their original documents also have distinct model identities.
+There are 1,198 imported records/assets, including the restored editorial portrait, structured town-hall location and central department, 1,393 source references and 684 search entries. Counts are model counts, not a count of unique facts: the calendar table and specialized events intentionally preserve the same information in complementary forms. Notices and their original documents also have distinct model identities.
 
 ## Structure decisions
 
@@ -32,7 +32,7 @@ There are 1,197 imported records/assets, including the structured town-hall loca
 - **Removed:** demo facts, synthetic alerts, quality fixtures and WordPress presentation helpers. Repeated source listings no longer precede the new searchable catalogues. Author/category/plugin archive aliases consolidate into current catalogues.
 - **Kept empty:** unverified committee memberships, additional historical council terms, additional budget topics and unused LifeSituation scaffolding. The models/workflows remain available; fictional records are not published.
 
-The homepage uses the real Rathaus image, municipal contact details, opening hours and Helmut Luichtl greeting. The compact hours explicitly omit Wednesday, which the public source lists as closed. Menus use real destinations within the new architecture. Crest previews use a neutral background, contain the crest without cropping and keep normal photo-frame proportions, including old “Logo Merching” filenames. Other authorities’ original crests retain their identity.
+The homepage uses the real Rathaus image, municipal contact details, opening hours and Helmut Luichtl greeting. At the user’s request, its portrait is the previously supplied 1200 × 899 PNG, with the original focal position; the small WordPress original remains preserved. The additional editorial image is copied from ignored `migration-source/editorial/helmut-luichtl-buergermeister.png` into the prepared manifest with its verified SHA-256 and prior publication timestamp. Preparation falls back to the WordPress portrait if that editorial source is absent. The compact hours explicitly omit Wednesday, which the public source lists as closed. Menus use real destinations within the new architecture. Veranstaltungen is a child of Aktuelles. The footer restores the redesigned Bürgerservice, Aktuelles and Rechtliches link groups beside the municipal contact details, replacing the sparse legal-only groups. Crest previews use a neutral background, contain the crest without cropping and keep normal photo-frame proportions, including old “Logo Merching” filenames. Other authorities’ original crests retain their identity.
 
 ## Preservation and editorial review
 
@@ -67,7 +67,7 @@ Search is rebuilt from normal models/controlled blocks; real Personalausweis sea
 
 ## Validation and tests
 
-[integrity.json](integrity.json) reports zero failures across 1,197 target identities, 1,063 source/import publication timestamps, all 602 stored/prepared original files, gallery order and 25 budget originals. [idempotency.json](idempotency.json) confirms identical target IDs, source-reference counts, URL counts and search counts before and after repeat import.
+[integrity.json](integrity.json) reports zero failures across 1,198 target identities, 1,064 source/import publication timestamps, all 603 stored/prepared original files, gallery order and 25 budget originals. [idempotency.json](idempotency.json) confirms identical target IDs, source-reference counts, URL counts and search counts before and after repeat import.
 
 - PHPUnit: **468 passed**, 2,962 assertions.
 - Pint: passed; PHPStan/Larastan: no errors.
@@ -77,7 +77,7 @@ Search is rebuilt from normal models/controlled blocks; real Personalausweis sea
 - Real migration Playwright: **3 passed**, including 16 representative paths at 390/1440px, axe WCAG/best-practice scans, no third-party requests, no visitor cookies, reflow, crest framing, search, gallery and original budget downloads.
 - Manual browser review: homepage, desktop news/crest cards, mobile council portraits and ordered budget downloads. The complete source calendar and long controlled tables are also covered by responsive axe checks.
 
-Transient test-artifact folder collisions were resolved with separate output directories. Repeated local contact-form tests hit the existing hourly limiter; only synthetic local browser counters were reset for the final run. The limiter remains enabled.
+Transient test-artifact folder collisions were resolved with separate output directories. Repeated local contact-form tests hit the existing hourly limiter; only synthetic local browser counters were reset for the final run. The limiter remains enabled. A later targeted PHPUnit run inherited the review container’s database settings and reset the local migration database; it was fully restored from the unchanged prepared source, and URL/integrity/browser checks were rerun. `Tests\TestCase` now refuses any database without the `_testing` suffix before database-refresh traits can run; the refusal was explicitly verified, and the greeting tests passed against the isolated test database.
 
 ## Local rerun and review
 

@@ -1,15 +1,15 @@
 {
     "database": "merching_migration",
     "failures": [],
-    "targets": 1197,
-    "identity_fingerprint": "f562ee6fc46724ed81dcd8534f0aaf864a4129a7aaeda238f2f9f485cefe9e97",
-    "publication_timestamps_checked": 1063,
-    "stored_and_original_files_checked": 602,
+    "targets": 1198,
+    "identity_fingerprint": "bb692af9e4b92ad632f919c4237044658212be5cf22b0c017d9a47a717350a07",
+    "publication_timestamps_checked": 1064,
+    "stored_and_original_files_checked": 603,
     "nonmigration_source_references": 0,
     "users": 0,
     "search_entries": 684,
     "legacy_urls": 1564,
-    "source_references": 1392,
+    "source_references": 1393,
     "galleries": [
         {
             "title": "Bilder rund um Merching, Hochdorf und Steinach",
