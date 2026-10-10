@@ -46,6 +46,8 @@ Route::get('/robots.txt', RobotsController::class)->name('public.robots');
 Route::get('/download/{document}/{filename}', DocumentDownloadController::class)
     ->whereNumber('document')->where('filename', '[^/]+')->name('public.document.download');
 
+Route::get('/haushaltsplaene/{year}/paket/{budget}/gesamt.pdf', BudgetDownloadController::class)->whereNumber(['year', 'budget'])->name('public.budget.package.download');
+Route::get('/haushaltsplaene/{year}/paket/{budget}/quelle/{source}.pdf', BudgetDownloadController::class)->whereNumber(['year', 'budget', 'source'])->name('public.budget.package.source');
 Route::get('/haushaltsplaene/{year}/gesamt.pdf', BudgetDownloadController::class)->whereNumber('year')->name('public.budget.download');
 Route::get('/haushaltsplaene/{year}/quelle/{source}.pdf', BudgetDownloadController::class)->whereNumber(['year', 'source'])->name('public.budget.source');
 

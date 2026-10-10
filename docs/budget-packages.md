@@ -8,11 +8,11 @@ The public council page renders a 4:5 image with the Media focal position. Missi
 
 ## Storage and editorial state
 
-- `budget_plans`: one unique year, editorial description/options, independent combined-PDF accessibility, normal publication/SEO/revision/proposal/editor fields, generation state and current output pointer.
+- `budget_plans`: year and Thema / Art (several independent packages per year, including supplements/corrections), editorial description/options, independent combined-PDF accessibility, normal publication/SEO/revision/proposal/editor fields, generation state and current output pointer.
 - `budget_sources`: immutable original PDFs and secure upload metadata, upload actor/time and page count when inspected during generation. Files live on the existing private uploads disk.
 - `budget_components`: ordered associations. Removing a row does not destroy its original file. Revisions/proposals contain only source IDs and positions, not storage paths, hashes or system generation state.
 - `budget_generations`: immutable combined files and ordered source manifests with filenames, checksums, bytes, page counts and upload times.
-- `budget_publications`: immutable successful publication records with title/year/status/date, actor ID and name snapshot, canonical public URL, selected generation and accessibility state.
+- `budget_publications`: immutable successful publication records with title/year/status/date, topic, actor ID and name snapshot, canonical public URL, selected generation and accessibility state.
 
 The package workflow reuses `UploadInspector` via `DocumentStorage` and its safe streamed file response. Immutable originals have their own records because ordinary Document file replacement deletes previous bytes, which would invalidate historical publication proofs. Budget sources and generated files do not appear as independent entries in the ordinary public Document catalog.
 
@@ -34,7 +34,7 @@ Official reference: <https://manuals.setasign.com/fpdi-manual/v2/limitations/>.
 
 After successful publication the editor offers **Upload-Nachweis drucken**. This opens a private HTML page with a local browser print button. It displays a stored publication snapshot and the referenced immutable generation/source manifest. GET does not recalculate hashes or regenerate files. Historical records are retained and linked. Later title/year, actor name, file order or publication edits do not rewrite an earlier proof. Date/times display in Europe/Berlin, including seconds. A future publication is labelled planned. The proof is an internal traceability record, not a digital signature or an independent accessibility certificate.
 
-Public listing: `/haushaltsplaene`; published packages also participate in the existing site search; one entry per year, descending. Detail routes default to `/haushaltsplaene/haushaltsplan-YYYY` and remain editable using the normal route system; demo detail routes use `/haushaltsplaene/2026`. Combined download: `/haushaltsplaene/YYYY/gesamt.pdf`. Component downloads only exist publicly when enabled on the publication snapshot and selected in that generation. Drafts, future publications, expired/hidden entries, deleted plans and unselected sources follow existing visibility rules.
+Public listing: `/haushaltsplaene`; published packages also participate in the existing site search; one entry per package, grouped by year descending and topic/title. Detail routes default to `/haushaltsplaene/haushaltsplan-YYYY` and remain editable using the normal route system; demo detail routes use `/haushaltsplaene/2026`. Combined download: `/haushaltsplaene/YYYY/paket/ID/gesamt.pdf`. Old year-only download URLs remain usable when exactly one public package exists in that year; ambiguous year-only URLs return 404 instead of selecting an arbitrary package. Topic is recorded in revisions/proposals and new proofs; historical proofs without a recorded topic remain unchanged. Component downloads only exist publicly when enabled on the publication snapshot and selected in that generation. Drafts, future publications, expired/hidden entries, deleted plans and unselected sources follow existing visibility rules.
 
 ## Local demonstration
 

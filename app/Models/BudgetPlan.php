@@ -20,12 +20,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /** @property AccessibilityStatus $accessibility_status */
-#[Fillable(['year', 'title', 'description', 'show_components', 'accessibility_status', 'accessibility_notes'])]
+#[Fillable(['year', 'topic', 'title', 'description', 'show_components', 'accessibility_status', 'accessibility_notes'])]
 class BudgetPlan extends Model implements Proposable, Routable, Searchable
 {
     use HasProposals, HasPublication, HasPublicRoute, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
 
-    protected $attributes = ['accessibility_status' => 'not_checked', 'show_components' => false, 'generation_status' => 'stale'];
+    protected $attributes = ['topic' => 'Haushaltsplan', 'accessibility_status' => 'not_checked', 'show_components' => false, 'generation_status' => 'stale'];
 
     protected function casts(): array
     {
@@ -34,7 +34,7 @@ class BudgetPlan extends Model implements Proposable, Routable, Searchable
 
     public function toSearchDocument(): SearchDocument
     {
-        return new SearchDocument($this->title, (string) $this->description, [(string) $this->year, 'Haushalt', 'Finanzen']);
+        return new SearchDocument($this->title, (string) $this->description, [(string) $this->year, (string) $this->topic, 'Haushalt', 'Finanzen']);
     }
 
     public function displayTitle(): string
@@ -79,7 +79,7 @@ class BudgetPlan extends Model implements Proposable, Routable, Searchable
     /** @return list<string> */
     public function revisionAttributes(): array
     {
-        return ['year', 'title', 'description', 'show_components', 'accessibility_status', 'accessibility_notes', 'seo_title', 'meta_description', 'seo_noindex'];
+        return ['year', 'topic', 'title', 'description', 'show_components', 'accessibility_status', 'accessibility_notes', 'seo_title', 'meta_description', 'seo_noindex'];
     }
 
     /** @return array<string,list<string>> */

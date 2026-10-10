@@ -50,7 +50,7 @@ final class PublicCatalog
             $query->visible();
         }
         if ($kind === 'budgets') {
-            $query->orderBy('year', 'desc');
+            $query->orderBy('year', 'desc')->orderBy('topic')->orderBy('title');
         }
         $query->orderBy(in_array($kind, ['services', 'az'], true) ? 'title' : ($kind === 'events' ? 'starts_at' : 'publish_at'), in_array($kind, ['services', 'az', 'events'], true) ? 'asc' : 'desc');
 

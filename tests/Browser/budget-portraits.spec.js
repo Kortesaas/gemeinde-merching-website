@@ -29,7 +29,7 @@ for (const width of [390, 768, 1024, 1440]) {
 
 test('budget downloads serve the same stored PDF and do not create a public session', async ({ page, context }) => {
     await page.goto('/haushaltsplaene/2026');
-    const download = page.getByRole('link', { name: 'Gesamter Haushaltsplan 2026 (PDF)' });
+    const download = page.getByRole('link', { name: 'Gesamt-PDF herunterladen' });
     test.skip(await download.count() === 0, 'Requires the published budget demo.');
     const url = await download.getAttribute('href');
     const first = await context.request.get(url), second = await context.request.get(url);

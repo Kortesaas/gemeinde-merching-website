@@ -171,16 +171,20 @@ class BudgetPlanWorkflowTest extends TestCase
         $proposals = app(ProposalService::class);
         $proposal = $proposals->create($plan, $editor);
         $ids = $plan->components()->pluck('budget_source_id')->all();
-        $proposals->update($proposal, app(BudgetPlanResource::class), ['components__present' => 1, 'components' => [['budget_source_id' => $ids[1], 'sort_order' => 0], ['budget_source_id' => $ids[0], 'sort_order' => 1]]], Request::create('/'), $editor);
+        $proposals->update($proposal, app(BudgetPlanResource::class), ['topic' => 'Nachtrag', 'components__present' => 1, 'components' => [['budget_source_id' => $ids[1], 'sort_order' => 0], ['budget_source_id' => $ids[0], 'sort_order' => 1]]], Request::create('/'), $editor);
         $this->assertSame($originalGeneration, $plan->refresh()->current_generation_id);
         $this->assertSame($ids, $plan->components()->pluck('budget_source_id')->all());
+        $this->assertSame('Haushaltsplan', $plan->topic);
         $proposals->submit($proposal, $editor);
         $proposals->apply($proposal, $this->publisher, false);
         $this->assertNotSame($originalGeneration, $plan->refresh()->current_generation_id);
         $this->assertSame(array_reverse($ids), array_column($plan->currentGeneration->sources, 'id'));
+        $this->assertSame('Nachtrag', $plan->topic);
+        $this->assertSame('Nachtrag', $plan->publications()->first()->topic);
         app(RevisionService::class)->restore($original, $this->publisher);
         $this->assertSame($ids, array_column($plan->refresh()->currentGeneration->sources, 'id'));
         $this->assertSame(3, $plan->publications()->count());
+        $this->assertSame('Haushaltsplan', $plan->topic);
     }
 
     public function test_public_upload_preserves_published_files_until_selection_is_approved(): void
@@ -218,12 +222,12 @@ class BudgetPlanWorkflowTest extends TestCase
         $this->get(route('admin.budget-plan.proof', [$plan->id, $plan->publications()->first()->id]))->assertRedirect(route('admin.login'));
     }
 
-    public function test_public_listing_has_one_entry_per_year_and_components_are_opt_in(): void
+    public function test_public_listing_has_one_entry_per_package_and_components_are_opt_in(): void
     {
         $plan = $this->package();
         $this->save($plan, ['status' => 'published']);
-        $this->get('/haushaltsplaene')->assertOk()->assertSee('Haushaltsplan 2026')->assertSee(route('public.budget.download', 2026))->assertCookieMissing(config('session.cookie'));
-        $this->get('/haushaltsplaene/2026')->assertOk()->assertSee('Gesamter Haushaltsplan 2026')->assertDontSee('Satzung.pdf');
+        $this->get('/haushaltsplaene')->assertOk()->assertSee('Haushaltsplan 2026')->assertSee(route('public.budget.package.download', [2026, $plan->id]))->assertCookieMissing(config('session.cookie'));
+        $this->get('/haushaltsplaene/2026')->assertOk()->assertSee('Gesamt-PDF herunterladen')->assertDontSee('Satzung.pdf');
         $source = $plan->sources()->first();
         $this->get(route('public.budget.source', [2026, $source->id]))->assertNotFound();
         $this->save($plan, ['show_components' => 1]);
@@ -341,5 +345,46 @@ class BudgetPlanWorkflowTest extends TestCase
         $this->assertSame(2, $plan->publications()->count());
         $this->assertNotSame($first, $plan->publications()->first()->id);
         $this->assertSame(1, BudgetGeneration::count());
+    }
+
+    public function test_multiple_packages_per_year_are_independent_and_never_ambiguously_downloaded(): void
+    {
+        $plan = $this->package();
+        $this->save($plan, ['status' => 'published']);
+        $other = BudgetPlan::create(['year' => 2026, 'topic' => 'Nachtrag', 'title' => 'Nachtrag zum Gemeindehaushalt 2026', 'show_components' => true]);
+        $source = $this->workflow->upload($other, UploadedFile::fake()->createWithContent('Nachtrag.pdf', DemoFiles::pdf('Nachtrag', ['Separates Paket'])), $this->publisher);
+        $other->components()->create(['budget_source_id' => $source->id, 'sort_order' => 0]);
+        app(RouteManager::class)->assign($other, '/haushaltsplaene/nachtrag-2026');
+        $this->save($other, ['status' => 'published', 'show_components' => true]);
+        $this->assertSame(2, BudgetPlan::where('year', 2026)->count());
+        $this->get('/haushaltsplaene')->assertSee('Nachtrag zum Gemeindehaushalt 2026')->assertSee('Haushaltsplan 2026')
+            ->assertSee(route('public.budget.package.download', [2026, $plan->id]))->assertSee(route('public.budget.package.download', [2026, $other->id]));
+        $a = $this->get(route('public.budget.package.download', [2026, $plan->id]))->assertOk();
+        $b = $this->get(route('public.budget.package.download', [2026, $other->id]))->assertOk();
+        $this->assertNotSame(hash('sha256', $a->streamedContent()), hash('sha256', $b->streamedContent()));
+        $this->get(route('public.budget.download', 2026))->assertNotFound();
+        $this->get(route('public.budget.package.source', [2026, $other->id, $source->id]))->assertOk();
+        $this->get(route('public.budget.package.source', [2026, $plan->id, $source->id]))->assertNotFound();
+        $this->get(route('public.budget.package.download', [2027, $other->id]))->assertNotFound();
+        $first = $other->publications()->first();
+        $this->assertSame('Nachtrag', $first->topic);
+        $this->save($other, ['topic' => 'Berichtigung']);
+        $this->assertSame('Nachtrag', $first->fresh()->topic);
+        $this->assertSame('Berichtigung', $other->publications()->first()->topic);
+    }
+
+    public function test_topic_is_in_revisions_and_legacy_snapshots_restore_the_default(): void
+    {
+        $plan = $this->package();
+        $revision = app(RevisionService::class)->record($plan, $this->publisher);
+        $this->save($plan, ['topic' => 'Berichtigung']);
+        $this->assertSame('Berichtigung', app(RevisionService::class)->snapshot($plan)['attributes']['topic']);
+        app(RevisionService::class)->restore($revision, $this->publisher);
+        $this->assertSame('Haushaltsplan', $plan->fresh()->topic);
+        $snapshot = app(RevisionService::class)->snapshot($plan);
+        unset($snapshot['attributes']['topic']);
+        $plan->update(['topic' => 'Nachtrag']);
+        app(RevisionService::class)->applySnapshot($plan, $snapshot);
+        $this->assertSame('Haushaltsplan', $plan->fresh()->topic);
     }
 }

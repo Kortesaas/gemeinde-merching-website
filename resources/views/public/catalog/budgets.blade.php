@@ -4,7 +4,8 @@
         @php $receipt = $plan->publications->first(); $pdf = $receipt->generation; @endphp
         <li class="content-section"><h2><a href="{{ \App\Support\Routing\PublicPath::toUrl($plan->publicPath()) }}">{{ $plan->title }}</a></h2>
             @if ($plan->description)<p>{{ $plan->description }}</p>@endif
-            <p><a class="button" href="{{ route('public.budget.download', $plan->year) }}">Haushaltsplan {{ $plan->year }} herunterladen (PDF)</a></p>
+            <p class="meta">{{ $receipt->topic ?? $plan->topic }}</p>
+            <p><a class="button" href="{{ route('public.budget.package.download', [$plan->year, $plan->id]) }}">{{ $receipt->title }} herunterladen (PDF)</a></p>
             <p class="meta">{{ $pdf->page_count }} Seiten · {{ number_format($pdf->size_bytes / 1024 / 1024, 1, ',', '.') }} MB · {{ $receipt->accessibility_status->label() }}</p>
         </li>
     @endforeach

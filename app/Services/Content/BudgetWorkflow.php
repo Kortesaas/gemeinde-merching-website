@@ -235,7 +235,7 @@ class BudgetWorkflow
         $plan->unsetRelation('canonicalRoute');
         $data = [
             'budget_plan_id' => $plan->getKey(), 'budget_generation_id' => $generation->getKey(),
-            'year' => $plan->year, 'title' => $plan->title, 'status' => $plan->status->value,
+            'year' => $plan->year, 'topic' => $plan->topic, 'title' => $plan->title, 'status' => $plan->status->value,
             'publish_at' => $plan->publish_at, 'expires_at' => $plan->expires_at,
             'public_url' => url((string) $plan->publicPath()), 'accessibility_status' => $plan->accessibility_status->value,
             'accessibility_notes' => $plan->accessibility_notes, 'show_components' => $plan->show_components,

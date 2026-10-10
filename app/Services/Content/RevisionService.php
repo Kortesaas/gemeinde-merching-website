@@ -153,6 +153,9 @@ class RevisionService
         if ($model instanceof CouncilMember && $onlyAttributes === null && ! array_key_exists('portrait_id', $snapshot['attributes'] ?? [])) {
             $attributes['portrait_id'] = null;
         }
+        if ($model instanceof BudgetPlan && $onlyAttributes === null && ! array_key_exists('topic', $snapshot['attributes'] ?? [])) {
+            $attributes['topic'] = 'Haushaltsplan';
+        }
         $model->forceFill($attributes)->save();
 
         foreach ((array) ($snapshot['relations'] ?? []) as $relation => $rows) {

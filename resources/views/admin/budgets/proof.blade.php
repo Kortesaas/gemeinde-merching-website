@@ -14,6 +14,7 @@
     <h2>{{ $receipt->title }}</h2>
     <p>Gespeicherter Veröffentlichungsstand #{{ $receipt->id }}. Spätere Änderungen am Haushaltsplan verändern diesen Nachweis nicht.</p>
     <dl class="proof-facts">
+        @if ($receipt->topic)<div><dt>Thema / Art</dt><dd>{{ $receipt->topic }}</dd></div>@endif
         <div><dt>Haushaltsjahr</dt><dd>{{ $receipt->year }}</dd></div>
         <div><dt>Veröffentlichungsstatus</dt><dd>{{ $receipt->publish_at->greaterThan($receipt->created_at) ? 'Veröffentlichung geplant' : 'Veröffentlicht' }}</dd></div>
         <div><dt>Öffentlich ab</dt><dd>{{ \App\Support\SiteTime::format($receipt->publish_at, 'd.m.Y H:i:s') }} (Europe/Berlin)</dd></div>

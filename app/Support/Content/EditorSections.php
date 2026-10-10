@@ -23,7 +23,7 @@ final class EditorSections
                 $resource === 'site-settings' && in_array($name, ['postal_address', 'legal_contact']) => 'Postanschrift & rechtlicher Kontakt',
                 $resource === 'site-settings' && in_array($name, ['default_seo_title', 'default_meta_description']) => 'Suchmaschinen',
                 $resource === 'site-settings' => 'Gemeinde & zentrale Kontakte',
-                $resource === 'budget-plan' && in_array($name, ['year', 'title', 'description']) => 'Haushaltsjahr & Inhalt',
+                $resource === 'budget-plan' && in_array($name, ['year', 'topic', 'title', 'description']) => 'Haushaltsjahr & Inhalt',
                 $resource === 'budget-plan' && in_array($name, ['components', 'show_components']) => 'PDF-Paket',
                 $resource === 'navigation' && in_array($name, ['public_route_id', 'external_resource_id', 'url']) => 'Linkziel',
                 $resource === 'navigation' && in_array($name, ['menu', 'label', 'parent_id']) => 'Menü & Beschriftung',
