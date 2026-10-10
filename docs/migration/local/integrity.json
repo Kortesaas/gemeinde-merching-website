@@ -1,0 +1,75 @@
+{
+    "database": "merching_migration",
+    "failures": [],
+    "targets": 1195,
+    "identity_fingerprint": "ca42aa1585235ccb19d2db0b9fb2a4cf499b8c0aae99d91a13253eae6b686151",
+    "publication_timestamps_checked": 1063,
+    "stored_and_original_files_checked": 602,
+    "nonmigration_source_references": 0,
+    "users": 0,
+    "search_entries": 684,
+    "legacy_urls": 1564,
+    "source_references": 1392,
+    "galleries": [
+        {
+            "title": "Bilder rund um Merching, Hochdorf und Steinach",
+            "items": 48,
+            "path": "\/galerien\/bilder-rund-um-merching-hochdorf-und-steinach"
+        },
+        {
+            "title": "Naherholungsgebiet Mandichosee",
+            "items": 20,
+            "path": "\/galerien\/naherholungsgebiet-mandichosee"
+        },
+        {
+            "title": "Gewerbegebiet \"Am Lerchenberg\"",
+            "items": 6,
+            "path": "\/galerien\/gewerbegebiet-am-lerchenberg"
+        },
+        {
+            "title": "Sommerimpressionen",
+            "items": 4,
+            "path": "\/galerien\/sommerimpressionen"
+        },
+        {
+            "title": "Merching im Advent",
+            "items": 45,
+            "path": "\/galerien\/merching-im-advent"
+        },
+        {
+            "title": "2024-Bürgerball",
+            "items": 129,
+            "path": "\/galerien\/2024-buergerball"
+        },
+        {
+            "title": "2024-Krippenweg",
+            "items": 36,
+            "path": "\/galerien\/2024-krippenweg"
+        },
+        {
+            "title": "2025-Adventsfenster",
+            "items": 24,
+            "path": "\/galerien\/2025-adventsfenster"
+        }
+    ],
+    "budgets": [
+        {
+            "title": "Grundschulverband – Haushaltsplan 2026",
+            "sources": 7,
+            "source_only": true,
+            "accessibility": "not_checked"
+        },
+        {
+            "title": "Gemeinde Merching – Haushaltsplan 2026",
+            "sources": 10,
+            "source_only": true,
+            "accessibility": "not_checked"
+        },
+        {
+            "title": "Mittelschulverband – Haushaltsplan 2026",
+            "sources": 8,
+            "source_only": true,
+            "accessibility": "not_checked"
+        }
+    ]
+}

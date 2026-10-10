@@ -1,0 +1,17 @@
+{
+  "destinations_checked": 734,
+  "destination_failures": [],
+  "legacy_checks": 1564,
+  "legacy_failures": 0,
+  "crawl_coverage": {
+    "mapped": 1205,
+    "review": 471,
+    "intentionally skipped": 196
+  },
+  "source_content_coverage": {
+    "imported": 462,
+    "intentionally skipped": 386,
+    "converted or intentionally skipped": 13,
+    "merged or review": 11
+  }
+}

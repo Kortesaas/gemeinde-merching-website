@@ -1,0 +1,1126 @@
+{
+    "database": "merching_migration",
+    "counts": {
+        "article": 66,
+        "ausschuesse": 3,
+        "budget-plan": 3,
+        "department": 34,
+        "document": 170,
+        "event": 80,
+        "external-resource": 52,
+        "gallery": 8,
+        "location": 1,
+        "media": 432,
+        "notice": 16,
+        "organization": 78,
+        "page": 53,
+        "person": 21,
+        "ratsmitglieder": 26,
+        "service": 153,
+        "wahlperioden": 1
+    },
+    "search_entries": 684,
+    "legacy_urls": 1564,
+    "review": [
+        {
+            "source": "wp:8722",
+            "status": "imported",
+            "reason": "Public package has no file: preserved as verified external online service"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2022\/12\/banner2.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2026\/04\/Logo-Solaroffensive.png",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2026\/04\/Screenshot-2026-04-08-095702-Solaroffensive-LRA-04_26.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2021\/01\/Vollbild-II-1.png",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2021\/03\/QR_Merching-e1615196274737.png",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/link-library-images\/64.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/link-library-images\/10.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/link-library-images\/66.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/link-library-images\/14.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2014\/11\/Logo_Energieatlas.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2024\/06\/Energieberatung-Landkreis-Aichach-Friedberg-Typo-schwarz-RGB-scaled-e1719300013415.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/link-library-images\/67.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/link-library-images\/69.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2018\/08\/Logo-Hochwasser.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2023\/08\/Logo-Pflegestuetzpunkt-Landkreis-Aichach-Friedberg-CMYK-e1691053220541.webp",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/link-library-images\/65.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2024\/05\/QRCode_StoermelderApp_Merching_210602.png",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2026\/09\/Logo-Bayer.-Staatsministerium-f.-Gesundheit-Pflege-u.-Praevention-e1788338968120.png",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2026\/08\/Logo-Amt-f.-Ernaehrung-Landwirtschaft-und-Forsten-e1786006927906.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2026\/08\/Sharepic_Ein-Herz-fuer-regionale-LM_1080x1920px.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2012\/06\/Wappen-Merching_k.gif",
+            "status": "imported but needs review",
+            "reason": "Legacy format retained through migration-only inspected storage; GIF delivered as safe PNG"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2026\/07\/Screenshot-2026-07-30-144027.png",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2026\/05\/Kobarschik-Jochen-kl.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2024\/04\/miteinand-und-fuereinand-e1712737064492.png",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2026\/03\/DEU_Augsburg_COA_klein.png",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "file:wp-content\/uploads\/2021\/08\/Energieberatung-Landkreis-Aichach-Friedberg-Typo-schwarz-RGB-scaled-e1629102681482.jpg",
+            "status": "imported but needs review",
+            "reason": "Original has no verified alternative text; original download remains available, inline placement needs review"
+        },
+        {
+            "source": "ngg:75",
+            "status": "intentionally skipped",
+            "reason": "NextGEN excluded image"
+        },
+        {
+            "source": "ngg:4",
+            "status": "intentionally skipped",
+            "reason": "NextGEN excluded image"
+        },
+        {
+            "source": "table:8634:1",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:2",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:4",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:5",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:7",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:8",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:9",
+            "status": "ambiguous mapping",
+            "reason": "Calendar separator or ambiguous date preserved in calendar table"
+        },
+        {
+            "source": "table:8634:10",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:13",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:14",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:15",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:18",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:20",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:21",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:22",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:23",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:24",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:25",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:26",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:27",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:29",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:30",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:31",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:32",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:33",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:34",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:35",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:36",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:42",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:43",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:44",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:45",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:46",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:47",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:48",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:49",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:50",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:53",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:54",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:55",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:56",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:58",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:59",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:61",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:62",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:63",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:65",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:66",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:67",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:69",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:71",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:72",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:73",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:74",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:75",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:77",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:78",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:79",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:80",
+            "status": "imported but needs review",
+            "reason": "No single clock time; original schedule retained verbatim"
+        },
+        {
+            "source": "table:8634:82",
+            "status": "ambiguous mapping",
+            "reason": "Calendar separator or ambiguous date preserved in calendar table"
+        },
+        {
+            "source": "table:8634:83",
+            "status": "ambiguous mapping",
+            "reason": "Calendar separator or ambiguous date preserved in calendar table"
+        },
+        {
+            "source": "wp:3872",
+            "status": "intentionally skipped",
+            "reason": "Internal link retained in page conversion; specialized resource unnecessary"
+        },
+        {
+            "source": "wp:8",
+            "status": "imported but needs review",
+            "reason": "Dynamic html-sitemap replaced by local catalog, navigation or contact; source preserved"
+        },
+        {
+            "source": "wp:10",
+            "status": "imported but needs review",
+            "reason": "Dynamic html-sitemap replaced by local catalog, navigation or contact; source preserved"
+        },
+        {
+            "source": "wp:12",
+            "status": "imported but needs review",
+            "reason": "Dynamic html-sitemap replaced by local catalog, navigation or contact; source preserved"
+        },
+        {
+            "source": "wp:14",
+            "status": "imported but needs review",
+            "reason": "Dynamic ngg replaced by local catalog, navigation or contact; source preserved"
+        },
+        {
+            "source": "wp:14",
+            "status": "imported but needs review",
+            "reason": "Dynamic html-sitemap replaced by local catalog, navigation or contact; source preserved"
+        },
+        {
+            "source": "wp:22",
+            "status": "imported but needs review",
+            "reason": "Embedded third-party content converted to an external link"
+        },
+        {
+            "source": "wp:26",
+            "status": "imported but needs review",
+            "reason": "Dynamic html-sitemap replaced by local catalog, navigation or contact; source preserved"
+        },
+        {
+            "source": "wp:138",
+            "status": "imported but needs review",
+            "reason": "Dynamic contact-form-7 replaced by local catalog, navigation or contact; source preserved"
+        },
+        {
+            "source": "wp:224",
+            "status": "imported but needs review",
+            "reason": "Dynamic html-sitemap replaced by local catalog, navigation or contact; source preserved"
+        },
+        {
+            "source": "wp:227",
+            "status": "imported but needs review",
+            "reason": "Download category requires editorial check: 199"
+        },
+        {
+            "source": "wp:227",
+            "status": "imported but needs review",
+            "reason": "Download category requires editorial check: 200"
+        },
+        {
+            "source": "wp:231",
+            "status": "imported but needs review",
+            "reason": "Embedded third-party content converted to an external link"
+        },
+        {
+            "source": "wp:249",
+            "status": "imported but needs review",
+            "reason": "Download category requires editorial check: 213"
+        },
+        {
+            "source": "wp:441",
+            "status": "imported but needs review",
+            "reason": "Download category requires editorial check: 197"
+        },
+        {
+            "source": "wp:3658",
+            "status": "ambiguous mapping",
+            "reason": "Unconverted shortcode: cc-edit"
+        },
+        {
+            "source": "wp:5492",
+            "status": "imported but needs review",
+            "reason": "Embedded third-party content converted to an external link"
+        },
+        {
+            "source": "wp-content\/uploads\/2024\/02\/Abschaffung-Kinderreisepass.pdf",
+            "status": "missing source",
+            "reason": "Referenced public original absent"
+        },
+        {
+            "source": "wp:8567",
+            "status": "missing source",
+            "reason": "Embedded original is unavailable; related verified public notice WPDM 8132 is supplied for the same topic"
+        },
+        {
+            "source": "wp:5157",
+            "status": "imported but needs review",
+            "reason": "SQL-only Encyclopedia entry preserved as service; classification needs review"
+        },
+        {
+            "source": "wp:5152",
+            "status": "imported but needs review",
+            "reason": "SQL-only Encyclopedia entry preserved as service; classification needs review"
+        },
+        {
+            "source": "budget:2026:Grundschulverband",
+            "status": "merge issue",
+            "reason": "Main PDF unsupported by FPDI; original sources published, combined derivative unavailable"
+        },
+        {
+            "source": "budget:2026:Gemeinde Merching",
+            "status": "merge issue",
+            "reason": "Main PDF unsupported by FPDI; original sources published, combined derivative unavailable"
+        },
+        {
+            "source": "budget:2026:Mittelschulverband",
+            "status": "merge issue",
+            "reason": "Main PDF unsupported by FPDI; original sources published, combined derivative unavailable"
+        },
+        {
+            "source": "notice:10788",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:9976",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10179",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10430",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:9075",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10426",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10568",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:9925",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:9968",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10532",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:9511",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10316",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10772",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10463",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10737",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "notice:10785",
+            "status": "imported but needs review",
+            "reason": "Official notice category verified; legal notice\/Aushang dates remain unverified"
+        },
+        {
+            "source": "wp:9513",
+            "status": "ambiguous mapping",
+            "reason": "Notice retained as Article; legal publication dates\/notice subtype require review"
+        },
+        {
+            "source": "wp:6998",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:38",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:2702",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:801",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:229",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:253",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:392",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:400",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:435",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:437",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:439",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:2790",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10365",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:4415",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:4741",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:5130",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:5144",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:5153",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:8197",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10861",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:8248",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10134",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:9936",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10019",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10224",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10506",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:9927",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:7088",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:8228",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:8250",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:8656",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:8193",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:8298",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:8714",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:9774",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:9047",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:9357",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:9464",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10314",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10405",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10780",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10474",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10596",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10599",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10604",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10795",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10756",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10680",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10899",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10732",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10852",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10859",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10884",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10903",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10911",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10937",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "wp:10950",
+            "status": "intentionally skipped",
+            "reason": "Unpublished or password-protected source; no import"
+        },
+        {
+            "source": "filebase:7",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:9",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:36",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:154",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:155",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:280",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:285",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:306",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:308",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:309",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:313",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:464",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:452",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:483",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:560",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:561",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:563",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:562",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:639",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:620",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:650",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:642",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:643",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:646",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:652",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:653",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:714",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:720",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:721",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:723",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:724",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        },
+        {
+            "source": "filebase:725",
+            "status": "intentionally skipped",
+            "reason": "Backup-only or no verified current public file relationship"
+        }
+    ]
+}
