@@ -6,6 +6,7 @@
     $hours = \App\Support\Content\PublicFormat::lines($townHall?->opening_hours);
 @endphp
 @section('content')
+<div class="home-page">
 <section class="home-hero {{ $hero ? '' : 'home-hero--text' }}" aria-labelledby="home-heading">
     <div class="home-hero__main">
         <p class="eyebrow">Willkommen in der {{ $siteTitle }}</p>
@@ -19,7 +20,7 @@
     </div>
     @if ($hero)
         <figure class="home-hero__media">
-            @include('public.partials.image', ['medium' => $hero, 'imageSizes' => '(max-width: 64rem) calc(100vw - 2rem), 34rem', 'imageLoading' => 'eager', 'imageClass' => 'home-hero__image'])
+            @include('public.partials.image', ['medium' => $hero, 'imageSizes' => '(max-width: 40rem) calc(100vw - 2rem), (max-width: 80rem) 45vw, 34rem', 'imageLoading' => 'eager', 'imageClass' => 'home-hero__image'])
             @if ($townHall)
                 <figcaption class="home-hero__caption"><span>{{ $townHall->displayTitle() }} · {{ $townHall->street }}</span>@if ($hours)<span><x-icon name="clock" /> {{ $hours[0] }}</span>@endif</figcaption>
             @endif
@@ -36,7 +37,7 @@
 @if ($greeting)
     <figure class="section greeting {{ $greeting['media'] ? '' : 'greeting--text' }}" aria-labelledby="greeting-text">
         @if ($greeting['media'])
-            <div class="greeting__media">@include('public.partials.image', ['medium' => $greeting['media'], 'imageSizes' => '(max-width: 40rem) calc(100vw - 2rem), 9rem', 'imageClass' => 'greeting__image'])</div>
+            <div class="greeting__media">@include('public.partials.image', ['medium' => $greeting['media'], 'imageSizes' => '(max-width: 40rem) calc(100vw - 4rem), 10rem', 'imageClass' => 'greeting__image'])</div>
         @endif
         <div class="greeting__body">
             <blockquote class="greeting__quote" id="greeting-text">{!! \App\Support\Content\SafeMarkdown::toHtml($greeting['text']) !!}</blockquote>
@@ -167,4 +168,5 @@
         </div>
     </section>
 @endif
+</div>
 @endsection

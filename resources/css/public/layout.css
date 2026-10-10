@@ -403,10 +403,11 @@ html:not(.js) .site-navigation {
     }
 
     .main-nav__list {
+        --nav-hover-gap: var(--space-1);
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: var(--space-1);
+        gap: var(--nav-hover-gap);
         border: 0;
     }
 
@@ -434,7 +435,7 @@ html:not(.js) .site-navigation {
     }
 
     .nav-branch__toggle {
-        position: static;
+        position: relative;
         right: auto;
         width: 1.75rem;
         height: var(--control-height);
@@ -549,6 +550,31 @@ html:not(.js) .site-navigation {
 
     .mega__links > li {
         break-inside: avoid;
+    }
+}
+
+/* Invisible mouse targets meet halfway across the visual gap. The pills,
+   links and toggle buttons keep their existing size and position. */
+@media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
+    .main-nav__link::before,
+    .nav-branch__toggle::before {
+        content: "";
+        position: absolute;
+        inset-block: -.25rem;
+    }
+
+    .main-nav__link::before {
+        inset-inline-start: calc(var(--nav-hover-gap) / -2);
+        inset-inline-end: 0;
+    }
+
+    .main-nav__item:not(.main-nav__item--branch) > .main-nav__link::before {
+        inset-inline-end: calc(var(--nav-hover-gap) / -2);
+    }
+
+    .nav-branch__toggle::before {
+        inset-inline-start: 0;
+        inset-inline-end: calc(var(--nav-hover-gap) / -2);
     }
 }
 
@@ -934,7 +960,7 @@ html:not(.js) .site-navigation {
     }
 
     .main-nav__list {
-        gap: 0;
+        --nav-hover-gap: 0px;
     }
 
     .main-nav__link,

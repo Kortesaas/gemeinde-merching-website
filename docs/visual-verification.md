@@ -1,7 +1,34 @@
 # Visual verification — 2026-10-09
 
 Implementation and reference adaptations: [visual-system.md](visual-system.md).
-No real content was imported, nothing was deployed and nothing was pushed.
+Nothing was deployed or pushed. The homepage now uses the user-provided greeting
+excerpt and portrait through CMS settings; earlier phases below used demo content.
+
+## Homepage layout experiment — 2026-10-10
+
+The preceding greeting implementation was committed as `b7fcce9` by `manuelth`.
+The current experiment gives the greeting a full-width soft panel, removes its
+bottom rule, standardizes section spacing and keeps the hero/news layouts in two
+columns above 40rem. The greeting excerpt and supplied portrait are managed CMS
+content; the full greeting page remains unchanged.
+
+- Actual rendered homepage reviewed at 390, 768, 1024 and 1440px: no overflow or
+  axe violations; no bottom divider on the greeting; photo/text heights match
+  in the side-by-side layout.
+- Display/privacy browser suite: 26 tests passed, including 150% text, 320px
+  reflow, keyboard, no JavaScript, reduced motion, forced colours and all 24
+  colour-helper combinations on home/contact/events.
+- Homepage greeting feature tests: 3 passed / 19 assertions. Production build
+  and `git diff --check` passed.
+
+This records local layout verification, with no deployment or push.
+
+Header hover follow-up: invisible mouse targets bridge the desktop navigation's
+visual gaps and extend 4px vertically, preserving link/toggle geometry and native
+keyboard behavior. The build and 14 navigation/accessibility browser tests passed,
+including pauses in both halves of a gap, switching submenus, leaving the menu,
+Enter/Escape and 320px reflow. Header screenshots with and without the extra hit
+areas are pixel-identical at 390, 768, 1024 and 1440px.
 
 ## CMS usability polish — 2026-10-09
 
