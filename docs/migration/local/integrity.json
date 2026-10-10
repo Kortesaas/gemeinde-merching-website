@@ -1,8 +1,8 @@
 {
     "database": "merching_migration",
     "failures": [],
-    "targets": 1195,
-    "identity_fingerprint": "ca42aa1585235ccb19d2db0b9fb2a4cf499b8c0aae99d91a13253eae6b686151",
+    "targets": 1197,
+    "identity_fingerprint": "f562ee6fc46724ed81dcd8534f0aaf864a4129a7aaeda238f2f9f485cefe9e97",
     "publication_timestamps_checked": 1063,
     "stored_and_original_files_checked": 602,
     "nonmigration_source_references": 0,

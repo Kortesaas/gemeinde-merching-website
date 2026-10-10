@@ -27,7 +27,12 @@ $galleries = [];
 $budgets = [];
 $dates = 0;
 $files = 0;
-foreach ([...$manifest['records'], ...$manifest['assets']] as $record) {
+// Settings create these structured contacts in addition to manifest records.
+$settingsRecords = [
+    ['key' => 'structure:town-hall', 'path' => null],
+    ['key' => 'structure:central', 'path' => null],
+];
+foreach ([...$manifest['records'], ...$manifest['assets'], ...$settingsRecords] as $record) {
     $references = SourceReference::query()->where('source_system', PublicContentImporter::SOURCE)->where('source_id', $record['key'])->get();
     $target = $references->first()?->referenceable;
     if ($references->count() !== 1 || $target === null) {

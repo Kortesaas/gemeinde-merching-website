@@ -20,7 +20,7 @@ Review the redesigned site at **http://localhost:8089**. The existing demo app r
 | Council terms / members / committees | 1 / 26 / 3 |
 | Budget packages / ordered originals | 3 / 25 |
 
-There are 1,195 imported records/assets, 1,392 source references and 684 search entries. Counts are model counts, not a count of unique facts: the calendar table and specialized events intentionally preserve the same information in complementary forms. Notices and their original documents also have distinct model identities.
+There are 1,197 imported records/assets, including the structured town-hall location and central department, 1,392 source references and 684 search entries. Counts are model counts, not a count of unique facts: the calendar table and specialized events intentionally preserve the same information in complementary forms. Notices and their original documents also have distinct model identities.
 
 ## Structure decisions
 
@@ -32,7 +32,7 @@ There are 1,195 imported records/assets, 1,392 source references and 684 search 
 - **Removed:** demo facts, synthetic alerts, quality fixtures and WordPress presentation helpers. Repeated source listings no longer precede the new searchable catalogues. Author/category/plugin archive aliases consolidate into current catalogues.
 - **Kept empty:** unverified committee memberships, additional historical council terms, additional budget topics and unused LifeSituation scaffolding. The models/workflows remain available; fictional records are not published.
 
-The homepage uses the real Rathaus image, municipal contact details, opening hours and Helmut Luichtl greeting. Menus use real destinations within the new architecture. Crest previews use a neutral background, contain the crest without cropping and keep normal photo-frame proportions, including old “Logo Merching” filenames. Other authorities’ original crests retain their identity.
+The homepage uses the real Rathaus image, municipal contact details, opening hours and Helmut Luichtl greeting. The compact hours explicitly omit Wednesday, which the public source lists as closed. Menus use real destinations within the new architecture. Crest previews use a neutral background, contain the crest without cropping and keep normal photo-frame proportions, including old “Logo Merching” filenames. Other authorities’ original crests retain their identity.
 
 ## Preservation and editorial review
 
@@ -67,7 +67,7 @@ Search is rebuilt from normal models/controlled blocks; real Personalausweis sea
 
 ## Validation and tests
 
-[integrity.json](integrity.json) reports zero failures across 1,195 target identities, 1,063 source/import publication timestamps, all 602 stored/prepared original files, gallery order and 25 budget originals. [idempotency.json](idempotency.json) confirms identical target IDs, source-reference counts, URL counts and search counts before and after repeat import.
+[integrity.json](integrity.json) reports zero failures across 1,197 target identities, 1,063 source/import publication timestamps, all 602 stored/prepared original files, gallery order and 25 budget originals. [idempotency.json](idempotency.json) confirms identical target IDs, source-reference counts, URL counts and search counts before and after repeat import.
 
 - PHPUnit: **468 passed**, 2,962 assertions.
 - Pint: passed; PHPStan/Larastan: no errors.

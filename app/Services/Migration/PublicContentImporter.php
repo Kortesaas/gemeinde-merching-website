@@ -363,7 +363,7 @@ final class PublicContentImporter
 
     private function settings(): void
     {
-        $location = $this->record(['key' => 'structure:town-hall', 'type' => 'location', 'attributes' => ['name' => 'Rathaus Merching', 'type' => 'verwaltung', 'street' => 'Hauptstr. 26', 'postal_code' => '86504', 'city' => 'Merching', 'phone' => '(0 82 33) 74 41 - 0', 'opening_hours' => "Mo–Fr: 08.00–12.00 Uhr\nDo: 14.00–18.00 Uhr\nMittwoch geschlossen", 'is_active' => true], 'path' => null, 'date' => '2026-10-10 00:00:00', 'urls' => ['https://www.gemeinde-merching.de/adressen-oeffnungszeiten/']]);
+        $location = $this->record(['key' => 'structure:town-hall', 'type' => 'location', 'attributes' => ['name' => 'Rathaus Merching', 'type' => 'verwaltung', 'street' => 'Hauptstr. 26', 'postal_code' => '86504', 'city' => 'Merching', 'phone' => '(0 82 33) 74 41 - 0', 'opening_hours' => "Mo, Di, Do, Fr: 08.00–12.00 Uhr\nDo: 14.00–18.00 Uhr\nMittwoch geschlossen", 'is_active' => true], 'path' => null, 'date' => '2026-10-10 00:00:00', 'urls' => ['https://www.gemeinde-merching.de/adressen-oeffnungszeiten/']]);
         $department = $this->record(['key' => 'structure:central', 'type' => 'department', 'attributes' => ['name' => 'Gemeindeverwaltung Merching', 'phone' => '(0 82 33) 74 41 - 0', 'location_id' => $location->getKey(), 'opening_hours' => $location->getAttribute('opening_hours'), 'is_active' => true], 'path' => null, 'date' => '2026-10-10 00:00:00', 'urls' => ['https://www.gemeinde-merching.de/adressen-oeffnungszeiten/']]);
         // This destination is displayed publicly on the old calendar page; no private
         // WordPress form recipients are read. The local SMTP host is Mailpit.
