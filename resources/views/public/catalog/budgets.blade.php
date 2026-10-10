@@ -2,7 +2,7 @@
 <ul class="plain-list budget-list">
     @foreach ($records as $plan)
         @php $receipt = $plan->publications->first(); $pdf = $receipt->generation; @endphp
-        <li class="content-section"><h2><a href="{{ \App\Support\Routing\PublicPath::toUrl($plan->publicPath()) }}">{{ $plan->title }}</a></h2>
+        <li class="budget-card"><p class="eyebrow">{{ $plan->year }}</p><h2><a href="{{ \App\Support\Routing\PublicPath::toUrl($plan->publicPath()) }}">{{ $plan->title }}</a></h2>
             @if ($plan->description)<p>{{ $plan->description }}</p>@endif
             <p class="meta">{{ $receipt->topic ?? $plan->topic }}</p>
             @if ($receipt->source_only)

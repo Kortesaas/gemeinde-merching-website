@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Services\Routing\RouteManager;
 use App\Support\Content\EventCalendar;
 use App\Support\SiteTime;
+use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -51,6 +52,31 @@ class EventCalendarTest extends TestCase
     {
         $this->get('/veranstaltungen?monat=2031-02')->assertOk()->assertSee('Februar 2031')->assertSee('monat=2031-03', false)->assertSee('monat=2031-01', false);
         $this->get('/veranstaltungen?monat=2031-13')->assertStatus(302);
+    }
+
+    public function test_only_selected_month_is_listed_without_truncation_and_filters_keep_that_month(): void
+    {
+        $this->travelTo(CarbonImmutable::parse('2030-01-01'));
+        for ($i = 1; $i <= 23; $i++) {
+            $this->event('Februartermin '.$i, sprintf('2030-02-%02dT18:00', $i));
+        }
+        $march = $this->event('Märztermin', '2030-03-03T10:00');
+        $span = $this->event('Monatsübergreifend', '2030-01-31T10:00', '2030-02-02T12:00');
+        $exclusive = $this->event('Nur Januar', '2030-01-31T00:00', '2030-02-01T00:00', allDay: true);
+        $this->get('/veranstaltungen?monat=2030-02')->assertOk()
+            ->assertSee('24 Veranstaltungen')->assertSee('Februartermin 23')
+            ->assertSee($span->title)->assertDontSee($march->title)->assertDontSee($exclusive->title)
+            ->assertSee('name="monat" value="2030-02"', false);
+        $this->get('/veranstaltungen?monat=2030-03&q=März')->assertOk()->assertSee($march->title)->assertDontSee('Februartermin');
+    }
+
+    public function test_long_spanning_events_mark_the_selected_month_even_after_the_first_31_days(): void
+    {
+        $event = $this->event('Ausstellung', '2031-01-01T10:00', '2031-03-15T18:00');
+        $month = EventCalendar::month('2031-02', null);
+        $this->assertCount(28, EventCalendar::dates($event, $month));
+        $this->assertTrue(EventCalendar::overlaps($event, $month));
+        $this->assertFalse(EventCalendar::overlaps($event, EventCalendar::month('2031-04', null)));
     }
 
     public function test_unspecified_source_time_is_preserved_without_inventing_all_day_or_midnight(): void

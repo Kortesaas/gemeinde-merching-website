@@ -68,12 +68,14 @@ for (const item of document.querySelectorAll('.site-navigation [data-nav-item]')
     });
 }
 // Event calendar ⇄ list: pointing at a day highlights its events and vice versa.
-// Month arrows swap only the calendar (no reload, no scroll); the links work without JavaScript.
+// Month arrows replace both the calendar and its event list; native links remain usable without JavaScript.
 const calendarStatus = document.createElement('p');
 calendarStatus.className = 'visually-hidden'; calendarStatus.setAttribute('role', 'status');
 const initEventCalendar = calendar => {
     if (!calendar) return;
-    if (!calendarStatus.isConnected) calendar.after(calendarStatus);
+    const view = calendar.closest('[data-events-view]');
+    if (!view) return;
+    if (!calendarStatus.isConnected) view.after(calendarStatus);
     const items = [...document.querySelectorAll('[data-event-dates]')];
     const cells = [...calendar.querySelectorAll('[data-cal-date]')];
     const mark = dates => {
@@ -88,20 +90,26 @@ const initEventCalendar = calendar => {
         item.onpointerenter = () => mark(item.dataset.eventDates.split(' '));
         item.onpointerleave = () => mark([]);
     }
-    for (const link of calendar.querySelectorAll('[data-cal-nav]')) link.addEventListener('click', async event => {
+    for (const link of view.querySelectorAll('[data-cal-nav], [data-month-nav]')) link.addEventListener('click', async event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
         event.preventDefault();
-        calendar.setAttribute('aria-busy', 'true');
+        if (view.hasAttribute('aria-busy')) return;
+        view.setAttribute('aria-busy', 'true');
         try {
             const response = await fetch(link.href, { credentials: 'omit', headers: { Accept: 'text/html' } });
             if (!response.ok) throw new Error('calendar');
-            const next = new DOMParser().parseFromString(await response.text(), 'text/html').querySelector('[data-event-calendar]');
+            const next = new DOMParser().parseFromString(await response.text(), 'text/html').querySelector('[data-events-view]');
             if (!next) throw new Error('calendar');
-            calendar.replaceWith(next);
+            const wasOpen = view.querySelector('[data-calendar-disclosure]').open;
+            next.querySelector('[data-calendar-disclosure]').open = wasOpen;
+            view.replaceWith(next);
             const url = new URL(link.href); url.hash = '';
             history.replaceState(null, '', url.pathname + url.search);
-            initEventCalendar(next);
-            next.querySelector(`[data-cal-nav="${link.dataset.calNav}"]`)?.focus({ preventScroll: true });
-            calendarStatus.textContent = next.querySelector('.event-calendar__title')?.textContent.trim() + ' angezeigt';
+            document.querySelector('.filter-bar input[name=monat]').value = url.searchParams.get('monat');
+            initEventCalendar(next.querySelector('[data-event-calendar]'));
+            const navAttribute = link.hasAttribute('data-month-nav') ? 'data-month-nav' : 'data-cal-nav';
+            next.querySelector(`[${navAttribute}="${link.getAttribute(navAttribute)}"]`)?.focus({ preventScroll: true });
+            calendarStatus.textContent = next.querySelector('.event-calendar__title')?.textContent.trim() + ': ' + next.querySelector('.result-count')?.textContent.trim();
         } catch { location.assign(link.href); }
     });
 };
@@ -442,4 +450,10 @@ if (budgetEditor) {
         // Row controls can move their DOM nodes during the current event.
         queueMicrotask(syncActions);
     });
+}
+// Keep the date list immediately reachable on small screens; the complete
+// calendar remains a native disclosure and stays open without JavaScript.
+const calendarDisclosure = document.querySelector('[data-calendar-disclosure]');
+if (calendarDisclosure && window.matchMedia('(max-width: 48rem)').matches) {
+    calendarDisclosure.open = location.hash === '#kalender';
 }

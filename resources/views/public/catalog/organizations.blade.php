@@ -1,4 +1,4 @@
-@php $byCategory = $records->getCollection()->groupBy(fn ($o) => $o->category?->name ?? 'Weitere')->sortKeys(); @endphp
+@php $byCategory = $records->getCollection()->groupBy(fn ($o) => $o->category?->name ?? $o->type?->label() ?? 'Weitere')->sortKeys(); @endphp
 @include('public.catalog.filters', ['searchLabel' => 'Name oder Stichwort'])
 @include('public.catalog.results-count', ['singular' => 'Eintrag', 'plural' => 'Einträge'])
 @if ($records->isEmpty())
@@ -7,13 +7,13 @@
     @foreach ($byCategory as $name => $items)
         <section class="directory-section" aria-labelledby="org-{{ $loop->index }}">
             <h2 id="org-{{ $loop->index }}">{{ $name }}</h2>
-            <ul class="card-grid">
+            <ul class="card-grid organization-grid">
                 @foreach ($items as $record)
                     @php $path = $record->publicPath(); @endphp
                     <li class="directory-card">
                         <h3 class="directory-card__title">@if ($path)<a href="{{ \App\Support\Routing\PublicPath::toUrl($path) }}">{{ $record->displayTitle() }}</a>@else{{ $record->displayTitle() }}@endif</h3>
-                        <p class="meta">{{ $record->type?->label() }}</p>
-                        @if ($record->description)<p class="directory-card__text">{{ \Illuminate\Support\Str::limit($record->description, 140) }}</p>@endif
+                        @if ($record->type?->label() !== $name)<p class="meta">{{ $record->type?->label() }}</p>@endif
+                        @if ($record->description)<p class="directory-card__text">{{ \Illuminate\Support\Str::limit(strip_tags(\App\Support\Content\SafeMarkdown::toHtml($record->description)), 140) }}</p>@endif
                         @include('public.partials.contact-data', ['contact' => $record])
                         @if ($record->website)<p class="directory-card__link"><a href="{{ $record->website }}">Website<span class="visually-hidden"> von {{ $record->name }} (externer Link)</span><x-icon name="external" class="icon--inline" /></a></p>@endif
                     </li>
@@ -21,4 +21,5 @@
             </ul>
         </section>
     @endforeach
+    @include('public.partials.pagination', ['paginator' => $records])
 @endif

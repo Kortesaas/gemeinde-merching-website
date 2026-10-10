@@ -38,6 +38,22 @@ final class PublicFormat
         return number_format(max(1, (int) ceil($bytes / 1024)), 0, ',', '.').' KB';
     }
 
+    /** @return list<array{label:string, href:string}> */
+    public static function phoneLinks(string $phone): array
+    {
+        $parts = preg_split('/\s+(?=bzw\.\s)|\s+(?=0\d{2,}\/)|[\r\n]+/u', trim($phone)) ?: [$phone];
+        $prefix = preg_match('/^(.*-)[0-9]+$/', $parts[0], $match) ? $match[1] : '';
+
+        return array_map(function (string $part) use ($prefix): array {
+            $number = trim((string) preg_replace('/^bzw\.\s*/u', '', $part));
+            if ($prefix !== '' && preg_match('/^-[0-9]+$/', $number)) {
+                $number = $prefix.substr($number, 1);
+            }
+
+            return ['label' => $part, 'href' => self::phoneHref($number)];
+        }, $parts);
+    }
+
     public static function phoneHref(string $phone): string
     {
         return 'tel:'.preg_replace('/[^+0-9]/', '', $phone);

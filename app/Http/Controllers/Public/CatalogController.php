@@ -16,6 +16,7 @@ use App\Models\Location;
 use App\Models\Organization;
 use App\Models\Page;
 use App\Models\Person;
+use App\Models\PublicNotice;
 use App\Models\Service;
 use App\Services\Content\PublicCatalog;
 use App\Services\Navigation\NavigationManager;
@@ -36,6 +37,7 @@ class CatalogController extends Controller
         $catalog = app(PublicCatalog::class);
         /** @var Collection<int, Model&Routable> $items */
         $items = match ($kind) {
+            'events' => $catalog->items('events')->concat($catalog->items('events', true))->sortBy('starts_at')->values(),
             'directory' => $catalog->directory(),
             'organizations' => $catalog->directory()->filter(fn ($m) => $m instanceof Organization)->values(),
             default => $catalog->items($kind, $request->boolean('archiv')),
@@ -54,17 +56,32 @@ class CatalogController extends Controller
             && (empty($data['category']) || $m->getAttribute('category_id') === (int) $data['category'])
             && (empty($data['online']) || ($m instanceof Service && $m->onlineService?->isPubliclyReachable())))->values();
         $groups = $kind === 'az' ? $items->sortBy(fn ($m) => self::letter($m->getAttribute('sort_title') ?: $m->displayTitle()).mb_strtolower($m->getAttribute('sort_title') ?: $m->displayTitle()))->groupBy(fn ($m) => self::letter($m->getAttribute('sort_title') ?: $m->displayTitle()))->sortKeys() : collect();
-        $page = (int) ($data['page'] ?? 1);
-        $perPage = in_array($kind, ['directory', 'organizations', 'services'], true) ? max(1, $items->count()) : 20;
+        $extra = $kind === 'services' ? $this->serviceLanding($catalog) : [];
+        if ($kind === 'notices') {
+            /** @var Collection<int, PublicNotice> $notices */
+            $notices = $catalog->items('notices')->concat($catalog->items('notices', true));
+            $extra['omitDocumentIds'] = $notices->flatMap(fn ($notice) => $notice->blocks->where('type', 'downloads')->pluck('document_id')->all())->unique()->all();
+        }
+        if ($kind === 'events') {
+            // Month navigation replaces the full event list. Earlier months use
+            // the same public archive visibility rules as the existing archive.
+            $upcoming = $catalog->items('events');
+            $allEvents = $items;
+            $first = $request->boolean('archiv') ? $catalog->items('events', true)->last() : $upcoming->first();
+            $month = EventCalendar::month($data['monat'] ?? null, $first instanceof Event ? $first : null);
+            /** @var Collection<int, Event> $events */
+            $events = $allEvents->filter(fn ($event) => $event instanceof Event
+                && ($term === '' || mb_stripos($event->displayTitle(), $term) !== false)
+                && (empty($data['category']) || $event->category_id === (int) $data['category'])
+                && EventCalendar::overlaps($event, $month))->values();
+            $items = $events;
+            $extra['calendar'] = EventCalendar::build($events, $month);
+        }
+        $page = $kind === 'events' ? 1 : (int) ($data['page'] ?? 1);
+        $perPage = in_array($kind, ['directory', 'services', 'events'], true) ? max(1, $items->count()) : ($kind === 'organizations' ? 24 : 20);
         $records = new LengthAwarePaginator($items->forPage($page, $perPage)->values(), $items->count(), $perPage, $page, ['path' => $request->url(), 'query' => $request->query()]);
         $situations = $kind === 'services' ? LifeSituation::query()->with('canonicalRoute')->visible()->orderBy('sort_order')->orderBy('title')->get()->filter(fn ($m) => $m->publicPath() !== null) : collect();
         $filtered = $term !== '' || ! empty($data['category']) || ! empty($data['online']);
-        $extra = $kind === 'services' ? $this->serviceLanding($catalog) : [];
-        if ($kind === 'events') {
-            /** @var Collection<int, Event> $events */
-            $events = $items->filter(fn ($m) => $m instanceof Event)->values();
-            $extra['calendar'] = EventCalendar::build($events, EventCalendar::month($data['monat'] ?? null, $request->boolean('archiv') ? $events->last() : $events->first()));
-        }
 
         return response()->view('public.catalog', compact('section', 'kind', 'term', 'groups', 'records', 'situations', 'model', 'categories', 'filtered') + $extra);
     }

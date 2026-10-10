@@ -5,7 +5,7 @@
     $tag = $headingTag ?? 'h2';
     $featured = $featured ?? false;
 @endphp
-<article class="article-card {{ $featured ? 'article-card--featured' : '' }}">
+<article class="article-card {{ $featured ? 'article-card--featured' : '' }} {{ $crest ? 'article-card--symbol' : '' }}">
     <div class="article-card__media {{ $crest ? 'news-preview-crest' : '' }}">
         @if ($image && ! $municipalCrest)
             @include('public.partials.image', ['medium' => $image, 'imageAlt' => '', 'imageClass' => $crest ? 'news-preview-crest__image' : '', 'imageSizes' => $featured ? '(max-width: 48rem) calc(100vw - 2rem), 44rem' : '(max-width: 48rem) calc(100vw - 2rem), 24rem', 'imageLoading' => $featured ? 'eager' : 'lazy'])

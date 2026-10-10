@@ -138,5 +138,6 @@
     </div>
 </dialog>
 <button class="button display-trigger display-launcher" type="button" data-display-trigger aria-label="Darstellung &amp; Barrierefreiheit" title="Darstellung &amp; Barrierefreiheit" aria-haspopup="dialog" aria-controls="display-panel" aria-expanded="false" hidden><x-icon name="eye" /></button>
+<span id="new-tab-description" hidden>Öffnet in einem neuen Tab.</span>
 @include('public.partials.display-panel')
 @endsection

@@ -86,6 +86,22 @@ class ContentCompositionTest extends TestCase
         ];
     }
 
+    public function test_repeated_resource_blocks_render_once_per_section_without_changing_stored_content(): void
+    {
+        $page = $this->page([], PublicationStatus::Published);
+        app(RouteManager::class)->assign($page, '/resource-references');
+        $resource = ExternalResource::create(['title' => 'Formular', 'url' => 'https://example.org/formular', 'type' => 'form']);
+        $resource->forceFill(['status' => 'published', 'publish_at' => now()->subDay()])->save();
+        foreach ([0, 1] as $order) {
+            $page->blocks()->create(['type' => 'external', 'sort_order' => $order, 'external_resource_id' => $resource->id]);
+        }
+        $page->blocks()->create(['type' => 'heading', 'sort_order' => 2, 'heading_level' => 2, 'heading' => 'Ein anderer Kontext']);
+        $page->blocks()->create(['type' => 'external', 'sort_order' => 3, 'external_resource_id' => $resource->id]);
+        $html = $this->get('/resource-references')->assertOk()->getContent();
+        $this->assertSame(2, substr_count($html, 'href="https://example.org/formular"'));
+        $this->assertSame(4, $page->blocks()->count());
+    }
+
     #[DataProvider('unsafeBlocks')]
     public function test_invalid_compositions_are_rejected_atomically(array $block): void
     {

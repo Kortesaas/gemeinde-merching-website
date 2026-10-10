@@ -309,6 +309,12 @@ class Migration:
             if n.tag in {'p','div','li','ul','ol','blockquote','figure'}:buffer.append('\n\n')
         walk(tree);flush();return blocks
 
+    def content_view_articles(self, page_id):
+        # The municipality confirmed this Content Views selection was empty.
+        if page_id=='4765':return []
+        categories={'4631':['Fundsachen'],'390':['Aus dem Rathaus'],'382':['Aus Merching'],'385':['Aus dem Landratsamt und anderen Behörden']}.get(page_id,[])
+        return [article for article in self.records.values() if article['type']=='article' and (not categories or set(categories)&set(article.get('categories',[])))]
+
     def run(self):
         OUT.mkdir(parents=True,exist_ok=True)
         recovery=json.loads((SOURCE/'recovery/manifest.json').read_text());assert len(recovery)==61 and all(r['status']=='recovered' for r in recovery)
@@ -482,17 +488,20 @@ class Migration:
             r=self.records[key]
             if r['type']=='wahlperioden':continue
             r['blocks']=self.convert(p['post_content'],key)+r['blocks']
+            if id=='4765' and not r['blocks']:
+                r['blocks']=[{'type':'text','text':'Derzeit sind keine Ausschreibungen veröffentlicht.'}]
             thumb=self.meta[id].get('_thumbnail_id')
             if thumb in self.posts:
                 path=self.meta[thumb].get('_wp_attached_file','')
                 mk=self.file('wp-content/uploads/'+path,self.posts[thumb]['post_title'],self.meta[thumb].get('_wp_attachment_image_alt'),date=self.posts[thumb]['post_date_gmt']) if path else None
                 if mk:r['relations']['media']=[mk]
             # Views are replaced by explicitly selected published articles, not the view runtime.
+            # WP 4765 (Ausschreibungen) has an empty Content Views selection,
+            # confirmed by the site owner. Never expand it to all news articles.
             views=re.findall(r'"viewId":"([^" ]+)"',p['post_content'])
             if views and id!='51':
-                categories={'4631':['Fundsachen'],'390':['Aus dem Rathaus'],'382':['Aus Merching'],'385':['Aus dem Landratsamt und anderen Behörden']}.get(id,[])
-                for article in self.records.values():
-                    if article['type']=='article' and (not categories or set(categories)&set(article.get('categories',[]))):r['blocks'].append({'type':'text','text':'['+article['attributes']['title']+']('+article['path']+')'})
+                for article in self.content_view_articles(id):
+                    r['blocks'].append({'type':'text','text':'['+article['attributes']['title']+']('+article['path']+')'})
         # Preserve explicit archive-only Encyclopedia information, flag classification.
         for id,p in self.public.items():
             if p['post_type']=='encyclopedia':self.issue('wp:'+id,'SQL-only Encyclopedia entry preserved as service; classification needs review')

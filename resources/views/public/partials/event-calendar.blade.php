@@ -1,9 +1,8 @@
-{{-- Visual month overview next to the event list. The list stays the primary,
-     complete presentation; the calendar is a navigational aid. --}}
+{{-- Visual month overview next to the event list. Both views show the selected month. --}}
 @php
     $month = $calendar['month']->locale('de');
     $title = $month->translatedFormat('F Y');
-    $monthUrl = fn (string $value) => request()->fullUrlWithQuery(['monat' => $value, 'page' => null]).'#kalender';
+    $monthUrl = fn (string $value) => request()->fullUrlWithQuery(['monat' => $value, 'page' => null, 'archiv' => null]).'#kalender';
     $weekdays = ['Mo' => 'Montag', 'Di' => 'Dienstag', 'Mi' => 'Mittwoch', 'Do' => 'Donnerstag', 'Fr' => 'Freitag', 'Sa' => 'Samstag', 'So' => 'Sonntag'];
 @endphp
 <aside class="event-calendar" id="kalender" aria-labelledby="kalender-titel" data-event-calendar>

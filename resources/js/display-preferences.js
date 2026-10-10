@@ -231,7 +231,11 @@ export function initDisplayPreferences() {
     }
     panel.addEventListener('close', () => {
         opener?.setAttribute('aria-expanded', 'false');
-        opener?.focus({ preventScroll: true });
+        // Native dialogs restore focus before this queued event. Preserve a
+        // visitor's next focus target instead of stealing it back later.
+        if (document.activeElement === document.body || panel.contains(document.activeElement)) {
+            opener?.focus({ preventScroll: true });
+        }
     });
     // Clicking outside the compact dialog (including its visible launcher) dismisses it.
     panel.addEventListener('click', event => {

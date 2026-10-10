@@ -3,7 +3,7 @@
    notices, documents, directory, pager
    ========================================================================== */
 .catalog-intro {
-    max-width: var(--reading-width);
+    max-width: none;
     margin-bottom: var(--space-5);
 }
 
@@ -745,7 +745,7 @@
 }
 
 .download-list--wide {
-    max-width: 58rem;
+    max-width: none;
 }
 
 /* --- Directory ------------------------------------------------------------- */

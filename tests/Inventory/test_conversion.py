@@ -30,6 +30,12 @@ class PublicConversionTest(unittest.TestCase):
         self.assertEqual(blocks[0]['text'], 'Bereich\tZuständig\nAbfall\t[Landkreis](https://example.org/)')
         self.assertEqual(blocks[0]['heading'], 'Bürgerservice')
 
+    def test_empty_tenders_view_does_not_expand_into_general_news(self):
+        migration = self.migration()
+        migration.records = {'wp:1': {'type': 'article', 'attributes': {'title': 'Allgemeine Nachricht'}, 'path': '/aktuelles/nachricht'}}
+        self.assertEqual([], migration.content_view_articles('4765'))
+        self.assertEqual(1, len(migration.content_view_articles('8')))
+
     def test_long_text_is_split_without_loss(self):
         migration = self.migration()
         value = 'Gemeinde ' * 5000

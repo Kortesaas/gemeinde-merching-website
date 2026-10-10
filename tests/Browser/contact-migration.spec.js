@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 
 test.describe('migrated email form', () => {
     test.skip(process.env.REAL_MIGRATION !== '1', 'Use the isolated local migration site.');
-    for (const width of [320, 1280]) {
+    for (const width of [320, 390, 768, 1024, 1280, 1440]) {
         test(`legacy categories and complete form remain accessible at ${width}px`, async ({ page, baseURL, context }) => {
             await page.setViewportSize({ width, height: 960 });
             const external = [];

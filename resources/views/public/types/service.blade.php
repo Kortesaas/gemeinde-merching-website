@@ -27,7 +27,7 @@
         @if ($actionable || $primary?->phone)
             <div class="action-row">
                 @if ($actionable)<a class="button button--pill" href="{{ $online->url }}">{{ $actionLabel }}<span class="visually-hidden"> (externer Link)</span> <x-icon name="external" /></a>@endif
-                @if ($primary?->phone)<a class="{{ $actionable ? 'action-link' : 'button button--pill' }}" href="{{ \App\Support\Content\PublicFormat::phoneHref($primary->phone) }}"><x-icon name="phone" /> {{ $primary->name }} anrufen</a>@endif
+                @if ($primary?->phone)<a class="{{ $actionable ? 'action-link' : 'button button--pill' }}" href="{{ \App\Support\Content\PublicFormat::phoneLinks($primary->phone)[0]['href'] }}"><x-icon name="phone" /> {{ $primary->name }} anrufen</a>@endif
                 @if ($place?->opening_hours)<a class="action-link" href="#zustaendig">Öffnungszeiten</a>@endif
             </div>
             @if ($actionable)<p class="meta">{{ $mode->label() }} über {{ $online->provider_name ?? 'einen externen Dienst' }} · externer Dienst</p>@endif

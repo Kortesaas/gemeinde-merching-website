@@ -120,7 +120,7 @@
 /* A welcoming inset; list rules below it provide the only section divider. */
 .greeting {
     display: grid;
-    grid-template-columns: 10rem minmax(0, 1fr);
+    grid-template-columns: clamp(11rem, 18vw, 13rem) minmax(0, 1fr);
     gap: var(--space-5);
     align-items: stretch;
     margin-inline: 0;
@@ -160,8 +160,11 @@
     text-wrap: pretty;
 }
 
+.greeting__quote p:first-child { margin-bottom: var(--space-2); }
+
 .greeting__quote p + p {
-    margin-top: var(--space-3);
+    display: inline;
+    margin-top: 0;
     max-width: 70ch;
     font-size: 1.0625rem;
     line-height: 1.65;

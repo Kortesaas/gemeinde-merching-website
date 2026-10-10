@@ -4,10 +4,10 @@
     <p class="meta">{{ $receipt->topic }} · {{ $receipt->year }} · {{ $receipt->accessibility_status->label() }}</p>
     <section class="content-section" aria-labelledby="budget-originals">
         <h2 id="budget-originals">Haushaltsplan und Anlagen herunterladen</h2>
-        <p>Die einzelnen Originaldateien stehen vollständig zur Verfügung. Ein zusammengefasstes Gesamt-PDF ist derzeit nicht verfügbar.</p>
-        <ol class="plain-list">
+        <p class="prose">Die einzelnen Originaldateien stehen vollständig zur Verfügung. Ein zusammengefasstes Gesamt-PDF ist derzeit nicht verfügbar.</p>
+        <ol class="budget-sources">
             @foreach ($receipt->source_manifest as $source)
-                <li><a href="{{ route('public.budget.package.source', [$receipt->year, $model->id, $source['id']]) }}">{{ $source['original_filename'] }}</a> <span class="meta">{{ number_format($source['size_bytes'] / 1024, 0, ',', '.') }} KB · Barrierefreiheit nicht geprüft</span></li>
+                <li><div><a href="{{ route('public.budget.package.source', [$receipt->year, $model->id, $source['id']]) }}">{{ $source['original_filename'] }}</a> <span class="meta">{{ number_format($source['size_bytes'] / 1024, 0, ',', '.') }} KB · Barrierefreiheit nicht geprüft</span></div></li>
             @endforeach
         </ol>
     </section>

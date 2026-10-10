@@ -37,7 +37,7 @@
 @if ($greeting)
     <figure class="section greeting {{ $greeting['media'] ? '' : 'greeting--text' }}" aria-labelledby="greeting-text">
         @if ($greeting['media'])
-            <div class="greeting__media">@include('public.partials.image', ['medium' => $greeting['media'], 'imageSizes' => '(max-width: 40rem) calc(100vw - 4rem), 10rem', 'imageClass' => 'greeting__image'])</div>
+            <div class="greeting__media">@include('public.partials.image', ['medium' => $greeting['media'], 'imageSizes' => '(max-width: 40rem) calc(100vw - 4rem), 13rem', 'imageClass' => 'greeting__image'])</div>
         @endif
         <div class="greeting__body">
             <blockquote class="greeting__quote" id="greeting-text">{!! \App\Support\Content\SafeMarkdown::toHtml($greeting['text']) !!}</blockquote>
@@ -146,7 +146,7 @@
                     <h3>{{ $townHall?->displayTitle() ?? $central->name }}</h3>
                     @if ($townHall)<p>{{ $townHall->street }}, {{ $townHall->postal_code }} {{ $townHall->city }}</p>@endif
                     @if ($central) @include('public.partials.contact-data', ['contact' => $central]) @endif
-                    <p><a href="{{ route('public.contact') }}">Nachricht schreiben</a></p>
+                    <p class="home-contact__message"><x-icon name="mail" /><a href="{{ route('public.contact') }}">Nachricht schreiben</a></p>
                 </div>
             @endif
             @if ($hours)

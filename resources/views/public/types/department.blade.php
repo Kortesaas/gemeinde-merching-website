@@ -5,6 +5,13 @@
 @endphp
 @include('public.partials.page-header', ['eyebrow' => 'Verwaltung'.($model->short_name ? ' · '.$model->short_name : ''), 'lead' => $model->description])
 <div class="content-layout">
+    <aside class="content-aside" aria-labelledby="dept-contact">
+        <h2 id="dept-contact" class="aside-heading">Kontakt</h2>
+        @include('public.partials.contact-data', ['contact' => $model])
+        @if ($model->opening_hours)<h3 class="aside-subheading">Sprechzeiten</h3><ul class="plain-list">@foreach (\App\Support\Content\PublicFormat::lines($model->opening_hours) as $line)<li>{{ $line }}</li>@endforeach</ul>@endif
+        @if ($location)<div class="aside-section"><h2 class="aside-heading">Adresse</h2>@include('public.partials.location', ['location' => $location, 'showHours' => ! $model->opening_hours])</div>@endif
+        <p class="aside-section"><a href="{{ route('public.contact') }}">Nachricht schreiben</a></p>
+    </aside>
     <div class="content-main">
         @if ($people->isNotEmpty())
             <section class="content-section" aria-labelledby="people"><h2 id="people">Ansprechpersonen</h2>
@@ -21,11 +28,5 @@
             </section>
         @endif
     </div>
-    <aside class="content-aside" aria-labelledby="dept-contact">
-        <h2 id="dept-contact" class="aside-heading">Kontakt</h2>
-        @include('public.partials.contact-data', ['contact' => $model])
-        @if ($model->opening_hours)<h3 class="aside-subheading">Sprechzeiten</h3><ul class="plain-list">@foreach (\App\Support\Content\PublicFormat::lines($model->opening_hours) as $line)<li>{{ $line }}</li>@endforeach</ul>@endif
-        @if ($location)<div class="aside-section"><h2 class="aside-heading">Adresse</h2>@include('public.partials.location', ['location' => $location, 'showHours' => ! $model->opening_hours])</div>@endif
-        <p class="aside-section"><a href="{{ route('public.contact') }}">Nachricht schreiben</a></p>
-    </aside>
+
 </div>

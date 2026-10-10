@@ -26,7 +26,7 @@ final class EventCalendar
         $month = $month->startOfMonth();
         $byDate = [];
         foreach ($events as $event) {
-            foreach (self::dates($event) as $date) {
+            foreach (self::dates($event, $month) as $date) {
                 $byDate[$date][] = $event;
             }
         }
@@ -56,7 +56,7 @@ final class EventCalendar
      *
      * @return list<string>
      */
-    public static function dates(Event $event): array
+    public static function dates(Event $event, ?CarbonImmutable $month = null): array
     {
         $start = SiteTime::fromUtc($event->starts_at)->startOfDay();
         $end = $event->ends_at !== null ? SiteTime::fromUtc($event->ends_at) : $start;
@@ -64,12 +64,24 @@ final class EventCalendar
         if ($event->all_day && $event->ends_at !== null && $end->format('H:i') === '00:00' && $end->greaterThan($start)) {
             $end = $end->subSecond();
         }
+        if ($month !== null) {
+            $start = $start->max($month->startOfMonth());
+            $end = $end->min($month->endOfMonth());
+            if ($start->greaterThan($end)) {
+                return [];
+            }
+        }
         $dates = [];
         for ($day = $start; $day->lessThanOrEqualTo($end) && count($dates) < self::MAX_SPAN_DAYS; $day = $day->addDay()) {
             $dates[] = $day->toDateString();
         }
 
         return $dates === [] ? [$start->toDateString()] : $dates;
+    }
+
+    public static function overlaps(Event $event, CarbonImmutable $month): bool
+    {
+        return self::dates($event, $month) !== [];
     }
 
     /** Month to show: an explicit "YYYY-MM", else the month of the first listed event, else now. */

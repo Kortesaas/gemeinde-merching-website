@@ -1,6 +1,7 @@
 @php $model->loadMissing(['category', 'links']); @endphp
+@php $hasContact = (bool) ($model->contact_name || $model->street || $model->phone || $model->email); @endphp
 @include('public.partials.page-header', ['eyebrow' => ($model->type?->label() ?? 'Organisation').($model->category ? ' · '.$model->category->name : ''), 'lead' => $model->description])
-<div class="content-layout">
+<div class="content-layout {{ $hasContact ? '' : 'content-layout--single' }}">
     <div class="content-main">
         @if ($model->website || $model->links->isNotEmpty())
             <section class="content-section" aria-labelledby="org-links"><h2 id="org-links">Im Internet</h2>
@@ -11,11 +12,14 @@
                 <p class="meta">Für die Inhalte externer Websites ist der jeweilige Anbieter verantwortlich.</p>
             </section>
         @endif
+        @unless ($hasContact)<p class="meta">Keine weiteren Kontaktdaten veröffentlicht.</p>@endunless
     </div>
+    @if ($hasContact)
     <aside class="content-aside" aria-labelledby="org-contact">
         <h2 id="org-contact" class="aside-heading">Kontakt</h2>
         @if ($model->contact_name)<p>{{ $model->contact_name }}</p>@endif
         @if ($model->street)<p>{{ $model->street }}<br>{{ $model->postal_code }} {{ $model->city }}</p>@endif
         @include('public.partials.contact-data', ['contact' => $model])
     </aside>
+    @endif
 </div>

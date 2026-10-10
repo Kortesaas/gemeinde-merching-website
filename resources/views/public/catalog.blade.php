@@ -13,7 +13,7 @@
         'directory' => 'Verwaltung, Ansprechpersonen, Einrichtungen und Vereine.',
         'organizations' => 'Vereine, Initiativen, Gastronomie und Betriebe in der Gemeinde.',
     ];
-    $archive = request()->boolean('archiv');
+    $archive = $kind !== 'events' && request()->boolean('archiv');
 @endphp
 @section('content')
 <header class="page-header">
@@ -22,10 +22,20 @@
 </header>
 @isset($model)
     @if ($model->body || $model->blocks()->exists())
+        @if ($kind === 'organizations' && $model->blocks()->where('type', 'table')->exists())
+            <details class="accordion directory-source-overview">
+                <summary><span>Veröffentlichte Übersicht</span><x-icon name="plus" class="accordion__plus" /><x-icon name="minus" class="accordion__minus" /></summary>
+                <div class="accordion__body">
+                    @if ($model->body)<div class="prose">{!! \App\Support\Content\SafeMarkdown::toHtml($model->body) !!}</div>@endif
+                    @include('public.partials.blocks')
+                </div>
+            </details>
+        @else
         <div class="catalog-intro">
             @if ($model->body)<div class="prose">{!! \App\Support\Content\SafeMarkdown::toHtml($model->body) !!}</div>@endif
             @include('public.partials.blocks')
         </div>
+        @endif
     @endif
 @endisset
 @include('public.catalog.'.$kind)

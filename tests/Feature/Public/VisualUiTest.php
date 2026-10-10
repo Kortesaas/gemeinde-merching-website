@@ -13,6 +13,7 @@ use App\Services\Content\MediaStorage;
 use App\Services\Navigation\NavigationManager;
 use App\Services\Routing\RedirectManager;
 use App\Services\Routing\RouteManager;
+use App\Support\SiteTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -68,12 +69,14 @@ class VisualUiTest extends TestCase
         $this->get('/buergerservice')->assertDontSee($service->title)->assertDontSee('Testkategorie');
     }
 
-    public function test_past_event_without_automatic_expiry_appears_in_archive_only_and_remains_reachable(): void
+    public function test_month_navigation_includes_public_past_events_and_excludes_drafts(): void
     {
         $event = Event::create(['title' => 'Vergangener Testtermin', 'starts_at' => now()->subDays(2), 'auto_archive' => false]);
         $event->forceFill(['status' => PublicationStatus::Published, 'publish_at' => now()->subDays(3)])->save();
         app(RouteManager::class)->assign($event, '/testtermin');
-        $this->get('/veranstaltungen')->assertDontSee($event->title);
+        $month = SiteTime::fromUtc($event->starts_at)->format('Y-m');
+        $this->get('/veranstaltungen?monat='.$month)->assertSee($event->title);
+        $this->get('/')->assertDontSee($event->title);
         $this->get('/veranstaltungen?archiv=1')->assertSee($event->title);
         $this->get('/testtermin')->assertOk();
         $event->forceFill(['status' => PublicationStatus::Draft])->save();

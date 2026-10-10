@@ -25,7 +25,7 @@
                 <li class="az-row">
                     <h3 class="az-row__title"><a href="{{ \App\Support\Routing\PublicPath::toUrl($record->publicPath()) }}">{{ $record->displayTitle() }}</a>@if ($record->onlineService?->isPubliclyReachable() && in_array($record->online_service_mode, [\App\Enums\OnlineServiceMode::Application, \App\Enums\OnlineServiceMode::Appointment], true)) <span class="badge badge--online">Online</span>@endif</h3>
                     <p class="az-row__who">@if ($department){{ $department->name }}@else<span class="meta">Zuständigkeit siehe Leistungsseite</span>@endif @if ($people->isNotEmpty())<span class="az-row__people">{{ $people->map->displayTitle()->implode(', ') }}</span>@endif</p>
-                    <p class="az-row__phone">@if ($department?->phone)<a href="{{ \App\Support\Content\PublicFormat::phoneHref($department->phone) }}"><span class="visually-hidden">Telefon: </span>{{ $department->phone }}</a>@endif</p>
+                    <p class="az-row__phone">@if ($department?->phone)@foreach (\App\Support\Content\PublicFormat::phoneLinks($department->phone) as $phone)<a href="{{ $phone['href'] }}"><span class="visually-hidden">Telefon: </span>{{ $phone['label'] }}</a>@endforeach @endif</p>
                 </li>
             @endforeach
         </ul>

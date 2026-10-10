@@ -13,6 +13,7 @@ final class SourceOnlyBudget
     public function source(BudgetPlan $plan, BudgetPublication $receipt, int $id): BudgetSource
     {
         abort_unless($receipt->getAttribute('source_only') && $receipt->show_components, 404);
+        /** @var list<array{id: int, sha256: string, size_bytes: int}> $manifest */
         $manifest = $receipt->getAttribute('source_manifest') ?? [];
         $entry = collect($manifest)->first(fn ($entry) => (int) $entry['id'] === $id);
         abort_unless(is_array($entry), 404);

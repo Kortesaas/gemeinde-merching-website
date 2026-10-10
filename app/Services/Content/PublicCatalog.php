@@ -36,6 +36,9 @@ final class PublicCatalog
         if ($class === Models\Event::class) {
             $query->with(['location']);
         }
+        if ($class === Models\PublicNotice::class) {
+            $query->with(['blocks.document']);
+        }
         if ($class === Models\Article::class) {
             $query->with(['media']);
         }
