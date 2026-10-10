@@ -52,4 +52,15 @@ class EventCalendarTest extends TestCase
         $this->get('/veranstaltungen?monat=2031-02')->assertOk()->assertSee('Februar 2031')->assertSee('monat=2031-03', false)->assertSee('monat=2031-01', false);
         $this->get('/veranstaltungen?monat=2031-13')->assertStatus(302);
     }
+
+    public function test_unspecified_source_time_is_preserved_without_inventing_all_day_or_midnight(): void
+    {
+        $event = $this->event('Termin ohne feste Uhrzeit', '2031-02-15T00:00');
+        $event->update(['time_is_unspecified' => true, 'time_text' => 'wird noch bekanntgegeben', 'auto_archive' => true]);
+
+        $this->get($event->publicPath())->assertOk()
+            ->assertSee('wird noch bekanntgegeben')->assertDontSee('00:00 Uhr')->assertDontSee('ganztägig');
+        $this->assertSame('2031-02-15', SiteTime::fromUtc($event->expires_at)->toDateString());
+        $this->assertSame('23:59:59', SiteTime::fromUtc($event->expires_at)->format('H:i:s'));
+    }
 }

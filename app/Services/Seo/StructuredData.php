@@ -36,10 +36,10 @@ final class StructuredData
             }
             $page['mainEntity'] = $entity;
         } elseif ($model instanceof Event) {
-            $entity = ['@type' => 'Event', ...$entity, 'startDate' => SiteTime::fromUtc($model->starts_at)->format($model->all_day ? 'Y-m-d' : 'c'),
+            $entity = ['@type' => 'Event', ...$entity, 'startDate' => SiteTime::fromUtc($model->starts_at)->format(($model->all_day || $model->time_is_unspecified) ? 'Y-m-d' : 'c'),
                 'eventStatus' => 'https://schema.org/'.($model->operational_status === EventOperationalStatus::Cancelled ? 'EventCancelled' : 'EventScheduled')];
             if ($model->ends_at !== null) {
-                $entity['endDate'] = SiteTime::fromUtc($model->ends_at)->format($model->all_day ? 'Y-m-d' : 'c');
+                $entity['endDate'] = SiteTime::fromUtc($model->ends_at)->format(($model->all_day || $model->time_is_unspecified) ? 'Y-m-d' : 'c');
             }
             $location = $model->location;
             if ($location?->isPubliclyReachable()) {

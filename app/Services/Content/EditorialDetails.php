@@ -20,7 +20,7 @@ final class EditorialDetails
         $rules = match (true) {
             $model instanceof Models\Media => ['focal_x' => ['nullable', 'numeric', 'between:0,100'], 'focal_y' => ['nullable', 'numeric', 'between:0,100']],
             $model instanceof Models\Service => ['prerequisites' => $text, 'required_items' => $text, 'processing_duration' => $text, 'important_notice' => $text, 'online_service_mode' => ['required', Rule::enum(OnlineServiceMode::class)]],
-            $model instanceof Models\Event => ['operational_status' => ['required', Rule::enum(EventOperationalStatus::class)], 'schedule_notice' => $text],
+            $model instanceof Models\Event => ['time_text' => $text, 'operational_status' => ['required', Rule::enum(EventOperationalStatus::class)], 'schedule_notice' => $text],
             $model instanceof Models\Location => ['accessibility_note' => $text],
             $model instanceof Models\CouncilTerm => ['starts_on' => ['nullable', 'date'], 'ends_on' => ['nullable', 'date', 'after_or_equal:starts_on']],
             $model instanceof Models\Committee => ['council_term_id' => ['required', 'integer', Rule::exists('council_terms', 'id')->whereNull('deleted_at')], 'sort_order' => ['nullable', 'integer', 'between:0,65535']],

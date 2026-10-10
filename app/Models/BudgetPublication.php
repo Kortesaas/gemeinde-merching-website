@@ -22,7 +22,7 @@ class BudgetPublication extends Model
 
     protected function casts(): array
     {
-        return ['publish_at' => 'immutable_datetime', 'expires_at' => 'immutable_datetime', 'show_components' => 'boolean', 'accessibility_status' => AccessibilityStatus::class];
+        return ['publish_at' => 'immutable_datetime', 'expires_at' => 'immutable_datetime', 'show_components' => 'boolean', 'source_only' => 'boolean', 'source_manifest' => 'array', 'accessibility_status' => AccessibilityStatus::class];
     }
 
     /** @return BelongsTo<BudgetGeneration, $this> */

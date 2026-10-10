@@ -30,7 +30,7 @@ class ContentComposition implements QualityCheck
                     $level = $block->heading_level;
                 }
                 $target = $block->referenced();
-                if (in_array($block->type, ['text', 'heading', 'callout', 'accordion'], true)) {
+                if (in_array($block->type, ['text', 'heading', 'callout', 'accordion', 'table'], true)) {
                     if (preg_match('/\[(hier|mehr|weiter|klicken|link)\]\(/iu', (string) $block->text)) {
                         $issues[] = new QualityIssue('blocks.link_label', S::Warning, 'Bitte aussagekräftige Linktexte in Inhaltsbausteinen verwenden.', 'blocks');
                     }

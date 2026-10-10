@@ -20,7 +20,7 @@
     <div class="content-main">
         <dl class="fact-strip fact-strip--event {{ $cancelled ? 'is-cancelled' : '' }}">
             <div><dt>Datum</dt><dd><strong class="fact-strip__value">{{ $start->translatedFormat('j. F Y') }}</strong><span>{{ $start->translatedFormat('l') }}@if ($end && ! $sameDay && ! ($model->all_day && $end->copy()->subDay()->isSameDay($start))) bis {{ ($model->all_day ? $end->copy()->subSecond() : $end)->translatedFormat('l, j. F') }}@endif</span></dd></div>
-            <div><dt>Uhrzeit</dt><dd><strong class="fact-strip__value">@if ($model->all_day) ganztägig @else {{ $start->format('H:i') }}@if ($end && $sameDay)–{{ $end->format('H:i') }}@endif Uhr @endif</strong></dd></div>
+            <div><dt>Uhrzeit</dt><dd><strong class="fact-strip__value">@if ($model->time_is_unspecified) {{ $model->time_text ?: 'Nicht angegeben' }} @elseif ($model->all_day) ganztägig @else {{ $start->format('H:i') }}@if ($end && $sameDay)–{{ $end->format('H:i') }}@endif Uhr @endif</strong></dd></div>
             @if ($location || $model->venue)<div><dt>Ort</dt><dd><strong class="fact-strip__value fact-strip__value--text">{{ $location?->displayTitle() ?? $model->venue }}</strong>@if ($location?->street)<span>{{ $location->street }}, {{ $location->city }}</span>@endif</dd></div>@endif
         </dl>
         @if (($model->registration_url || $model->url) && ! $cancelled && ! $past)

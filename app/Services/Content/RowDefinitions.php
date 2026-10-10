@@ -5,6 +5,7 @@ namespace App\Services\Content;
 use App\Exceptions\DomainRuleViolation;
 use App\Models;
 use App\Rules\ControlledText;
+use App\Support\Content\ControlledTable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -12,15 +13,15 @@ use Illuminate\Validation\Rule;
 /** Shared schemas for accessible row forms and model/revision persistence. */
 final class RowDefinitions
 {
-    public const BLOCK_TYPES = ['text' => 'Text', 'heading' => 'Überschrift', 'image' => 'Bild', 'gallery' => 'Galerie', 'callout' => 'Hinweis', 'contact' => 'Ansprechperson', 'department' => 'Zuständige Stelle', 'downloads' => 'Dokument / Download', 'services' => 'Verwandte Leistung', 'events' => 'Veranstaltung', 'accordion' => 'Aufklappbare Information', 'external' => 'Externer Dienst / Link', 'location' => 'Ort / Karteninformation'];
+    public const BLOCK_TYPES = ['table' => 'Tabelle (Kopfzeile, Tabulatoren zwischen Zellen)', 'text' => 'Text', 'heading' => 'Überschrift', 'image' => 'Bild', 'gallery' => 'Galerie', 'callout' => 'Hinweis', 'contact' => 'Ansprechperson', 'department' => 'Zuständige Stelle', 'downloads' => 'Dokument / Download', 'services' => 'Verwandte Leistung', 'events' => 'Veranstaltung', 'accordion' => 'Aufklappbare Information', 'external' => 'Externer Dienst / Link', 'location' => 'Ort / Karteninformation'];
 
     /** @return array<string, array{label:string,rules:list<mixed>,options?:array<int|string,string>,multiline?:bool,type?:string}> */
-    public function fields(string $definition): array
+    public function fields(string $definition, bool $withOptions = true): array
     {
         $text = fn (string $label, int $max = 255, bool $required = false) => ['label' => $label, 'rules' => [$required ? 'required' : 'nullable', 'string', 'max:'.$max, new ControlledText]];
-        $reference = function (string $label, string $table, string $class, bool $required = false): array {
+        $reference = function (string $label, string $table, string $class, bool $required = false) use ($withOptions): array {
             $titles = [];
-            foreach ($class::query()->orderBy('id')->get() as $record) {
+            foreach ($withOptions ? $class::query()->orderBy('id')->get() : [] as $record) {
                 $titles[$record->getKey()] = $record->displayTitle();
             }
 
@@ -56,7 +57,7 @@ final class RowDefinitions
     /** @param array<string,mixed> $row */
     public function validate(string $definition, array $row): void
     {
-        $rules = array_map(fn ($field) => $field['rules'], $this->fields($definition));
+        $rules = array_map(fn ($field) => $field['rules'], $this->fields($definition, false));
         $validator = Validator::make($row, $rules);
         if ($validator->fails()) {
             throw new DomainRuleViolation($validator->errors()->first(), $definition);
@@ -72,6 +73,16 @@ final class RowDefinitions
                 || ($type === 'heading' && empty($row['heading_level']))
                 || (in_array($type, ['text', 'callout', 'accordion'], true) && empty(trim((string) ($row['text'] ?? ''))))) {
                 throw new DomainRuleViolation('Überschrift, Ebene oder Text des Bausteins fehlt.', 'blocks');
+            }
+            if ($type === 'table') {
+                try {
+                    ControlledTable::rows((string) ($row['text'] ?? ''));
+                } catch (\InvalidArgumentException $e) {
+                    throw new DomainRuleViolation($e->getMessage(), 'blocks');
+                }
+                if (empty(trim((string) ($row['heading'] ?? '')))) {
+                    throw new DomainRuleViolation('Die Tabelle benötigt einen beschreibenden Titel.', 'blocks');
+                }
             }
             if ($type === 'image' && ! Models\Media::query()->findOrFail((int) $row['media_id'])->isImage()) {
                 throw new DomainRuleViolation('Ein Bildbaustein benötigt eine Bilddatei.', 'blocks');

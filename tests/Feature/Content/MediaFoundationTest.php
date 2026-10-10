@@ -207,6 +207,6 @@ class MediaFoundationTest extends TestCase
 
     public function test_new_admin_create_screen_has_usable_file_input_and_language(): void
     {
-        $this->actingAsAdmin($this->createUser())->get($this->adminUrl('medien/neu'))->assertOk()->assertSee('type="file"',false)->assertSee('name="language"',false);
+        $this->actingAsAdmin($this->createUser())->get($this->adminUrl('medien/neu'))->assertOk()->assertSee('type="file"', false)->assertSee('name="language"', false);
     }
 }

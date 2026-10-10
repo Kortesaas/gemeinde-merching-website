@@ -35,7 +35,7 @@
                                     <p class="event-calendar__popover-date">{{ $date->translatedFormat('l, j. F') }}</p>
                                     <ul>
                                         @foreach ($events as $event)
-                                            <li>@unless ($event->all_day)<time>{{ \App\Support\SiteTime::format($event->starts_at, 'H:i') }}</time>@endunless {{ $event->displayTitle() }}@if ($event->operational_status === \App\Enums\EventOperationalStatus::Cancelled) <strong>(abgesagt)</strong>@endif</li>
+                                            <li>@unless ($event->all_day || $event->time_is_unspecified)<time>{{ \App\Support\SiteTime::format($event->starts_at, 'H:i') }}</time>@endunless {{ $event->displayTitle() }}@if ($event->operational_status === \App\Enums\EventOperationalStatus::Cancelled) <strong>(abgesagt)</strong>@endif</li>
                                         @endforeach
                                     </ul>
                                 </div>

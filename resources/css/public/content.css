@@ -922,3 +922,11 @@ h4.block-heading {
     .member-card { padding: var(--space-2); min-width: 0; }
     .member-card__name, .member-card__role { overflow-wrap: anywhere; }
 }
+
+/* Controlled municipal tables remain readable at narrow viewports. */
+.controlled-table-scroll { max-width: 100%; overflow-x: auto; margin-block: 1.5rem; }
+.controlled-table { width: 100%; border-collapse: collapse; min-width: 30rem; }
+.controlled-table caption { text-align: left; font-weight: 700; padding-block: .75rem; }
+.controlled-table th, .controlled-table td { padding: .75rem; border-bottom: 1px solid var(--color-border, #ddd); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+.controlled-table th { background: var(--color-surface, #f4f4f4); }
+.controlled-table p { margin: 0; }

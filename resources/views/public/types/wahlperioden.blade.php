@@ -35,10 +35,10 @@
                 @foreach ($committees as $committee)
                     @php $rows = $committee->committeeMemberships()->with('member.portrait')->get()->filter(fn ($m) => $m->member && $m->member->isPubliclyReachable() && in_array($m->council_member_id, $memberIds, true)); @endphp
                     <details class="accordion">
-                        <summary><span>{{ $committee->title }} <span class="meta">· {{ $rows->count() }} Mitglieder</span></span><x-icon name="plus" class="accordion__plus" /><x-icon name="minus" class="accordion__minus" /></summary>
+                        <summary><span>{{ $committee->title }} @if ($rows->isNotEmpty())<span class="meta">· {{ $rows->count() }} Mitglieder</span>@endif</span><x-icon name="plus" class="accordion__plus" /><x-icon name="minus" class="accordion__minus" /></summary>
                         <div class="accordion__body">
                             @if ($committee->description)<p>{{ $committee->description }}</p>@endif
-                            <ul class="plain-list committee-list">@foreach ($rows as $row)<li><span>{{ $row->member->title }}</span> <span class="meta">{{ $row->role }}</span></li>@endforeach</ul>
+                            @if ($rows->isEmpty())<p>Mitglieder sind noch nicht veröffentlicht.</p>@else<ul class="plain-list committee-list">@foreach ($rows as $row)<li><span>{{ $row->member->title }}</span> <span class="meta">{{ $row->role }}</span></li>@endforeach</ul>@endif
                         </div>
                     </details>
                 @endforeach

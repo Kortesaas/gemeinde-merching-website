@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Contracts\Routable;
 use App\Models\Gallery;
+use App\Models\LegacyUrl;
 use App\Models\Media;
 use App\Services\Content\ContentUsage;
 use App\Services\Content\MediaStorage;
@@ -16,8 +17,11 @@ class MediaController
 {
     public function __invoke(Request $request, Media $media, MediaStorage $storage, ContentUsage $usage): StreamedResponse
     {
-        abort_unless($media->isPubliclyReachable() && (! $media->isImage() || $media->hasAccessibleAlternative()), 404);
-        $reachable = false;
+        // An explicit, verified public legacy file is itself a public context.
+        // Unknown alt text still prevents inline placement in page/gallery templates.
+        $legacyContext = LegacyUrl::query()->where('target_type', 'media')->where('target_id', $media->getKey())->exists();
+        abort_unless($media->isPubliclyReachable() && (! $media->isImage() || $media->hasAccessibleAlternative() || $legacyContext), 404);
+        $reachable = $legacyContext;
         foreach ($usage->mediaOwners($media) as $owner) {
             if ($owner instanceof Gallery && $owner->publicPath() === null) {
                 $contexts = app(ReferenceProtection::class)->liveOwners($owner);

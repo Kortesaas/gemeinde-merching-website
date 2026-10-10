@@ -54,6 +54,8 @@ class EventResource extends ContentResource
             Fields\Textarea::make('schedule_notice', 'Hinweis zur Terminänderung')->rules(['max:2000', new ControlledText]),
             Fields\DateTime::make('starts_at', 'Beginn')->required(),
             Fields\DateTime::make('ends_at', 'Ende'),
+            Fields\Checkbox::make('time_is_unspecified', 'Keine eindeutige Uhrzeit bekannt')->hint('Datum bleibt sichtbar, ohne eine Uhrzeit oder Ganztägigkeit zu behaupten.'),
+            Fields\Textarea::make('time_text', 'Veröffentlichte Zeitangabe')->rules(['max:2000', new ControlledText]),
             Fields\Checkbox::make('all_day', 'Ganztägig')->hint('Uhrzeiten werden ignoriert; die Veranstaltung gilt von Tagesbeginn bis Tagesende.'),
             Fields\Markdown::make('description', 'Beschreibung'),
             Fields\BelongsTo::make('location_id', 'Ort (aus Verzeichnis)')->options(fn () => Options::locations()),

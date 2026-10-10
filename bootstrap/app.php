@@ -5,6 +5,7 @@ use App\Http\Middleware\CanonicalUrlRedirect;
 use App\Http\Middleware\PreventRequestForgery;
 use App\Http\Middleware\RemoveTrailingSlash;
 use App\Http\Middleware\RequireTwoFactor;
+use App\Http\Middleware\ResolveLegacyUrl;
 use App\Http\Middleware\SearchEngineIndexingHeader;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\TrustProxies;
@@ -53,6 +54,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Stateless group for the public website: no session, no cookies.
         $middleware->group('public', [
+            ResolveLegacyUrl::class,
             RemoveTrailingSlash::class,
             SubstituteBindings::class,
         ]);

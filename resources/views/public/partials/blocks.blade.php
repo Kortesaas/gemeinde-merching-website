@@ -20,6 +20,16 @@
 @foreach ($groups as $group)
     @php ['block' => $block, 'target' => $target] = $group['items'][0]; @endphp
     @switch ($group['type'])
+        @case ('table')
+            @php $rows = \App\Support\Content\ControlledTable::rows($block->text); @endphp
+            <div class="controlled-table-scroll" role="region" aria-label="{{ $block->heading }}" tabindex="0">
+                <table class="controlled-table">
+                    <caption>{{ $block->heading }}</caption>
+                    <thead><tr>@foreach ($rows[0] as $cell)<th scope="col">{!! \App\Support\Content\SafeMarkdown::toHtml($cell) !!}</th>@endforeach</tr></thead>
+                    <tbody>@foreach (array_slice($rows, 1) as $row)<tr>@foreach ($row as $cell)<td>{!! \App\Support\Content\SafeMarkdown::toHtml($cell) !!}</td>@endforeach</tr>@endforeach</tbody>
+                </table>
+            </div>
+            @break
         @case ('text')
             <div class="prose">{!! \App\Support\Content\SafeMarkdown::toHtml($block->text) !!}</div>
             @break

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BudgetPlan;
 use App\Services\Content\BudgetWorkflow;
 use App\Services\Content\DocumentStorage;
+use App\Services\Content\SourceOnlyBudget;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -29,6 +30,15 @@ class BudgetDownloadController extends Controller
         abort_unless($plan->isPubliclyReachable(), 404);
         $receipt = $plan->publications()->with('generation')->first();
         abort_if($receipt === null, 404);
+        if ($receipt->getAttribute('source_only')) {
+            abort_if($source === null, 404);
+            $file = app(SourceOnlyBudget::class)->source($plan, $receipt, $source);
+            $document = $workflow->document($file);
+            $response = $storage->response($document);
+            $response->headers->set('X-Robots-Tag', 'noindex');
+
+            return $response;
+        }
         $file = $receipt->generation;
         abort_if($file === null, 404);
         if ($source !== null) {

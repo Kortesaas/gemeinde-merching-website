@@ -44,7 +44,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $recurrence_rule
  * @property bool $auto_archive
  */
-#[Fillable(['title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive', 'operational_status', 'schedule_notice'])]
+#[Fillable(['title', 'description', 'starts_at', 'ends_at', 'all_day', 'time_is_unspecified', 'time_text', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive', 'operational_status', 'schedule_notice'])]
 class Event extends Model implements Proposable, Routable, Searchable
 {
     use HasContentBlocks, HasDocumentPlacements, HasMedia, HasProposals, HasPublication, HasPublicRoute, HasResourcePlacements, HasRevisions, HasSourceReferences, SoftDeletes, TracksEditors;
@@ -58,7 +58,7 @@ class Event extends Model implements Proposable, Routable, Searchable
         });
     }
 
-    protected $attributes = ['operational_status' => 'scheduled'];
+    protected $attributes = ['operational_status' => 'scheduled', 'time_is_unspecified' => false, 'time_text' => null];
 
     protected function casts(): array
     {
@@ -67,6 +67,7 @@ class Event extends Model implements Proposable, Routable, Searchable
             'starts_at' => 'immutable_datetime',
             'ends_at' => 'immutable_datetime',
             'all_day' => 'boolean',
+            'time_is_unspecified' => 'boolean',
             'auto_archive' => 'boolean',
         ];
     }
@@ -88,7 +89,7 @@ class Event extends Model implements Proposable, Routable, Searchable
         $end = $this->ends_at ?? $this->starts_at;
 
         // All-day events last until the end of that day in the site time zone.
-        return $this->all_day ? SiteTime::fromUtc($end)->endOfDay()->utc() : $end;
+        return $this->all_day || $this->time_is_unspecified ? SiteTime::fromUtc($end)->endOfDay()->utc() : $end;
     }
 
     /**
@@ -153,7 +154,7 @@ class Event extends Model implements Proposable, Routable, Searchable
      */
     public function revisionAttributes(): array
     {
-        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'description', 'starts_at', 'ends_at', 'all_day', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive', 'operational_status', 'schedule_notice'];
+        return ['seo_title', 'meta_description', 'seo_noindex', 'title', 'description', 'starts_at', 'ends_at', 'all_day', 'time_is_unspecified', 'time_text', 'recurrence_rule', 'location_id', 'venue', 'organization_id', 'organizer_name', 'contact_person_id', 'remarks', 'category_id', 'url', 'registration_url', 'auto_archive', 'operational_status', 'schedule_notice'];
     }
 
     /**
