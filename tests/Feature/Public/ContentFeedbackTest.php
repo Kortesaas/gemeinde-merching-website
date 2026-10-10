@@ -29,7 +29,7 @@ class ContentFeedbackTest extends TestCase
         $nonce = session('contact.nonce');
         $this->travel(4)->seconds();
         $message = 'Synthetischer Fehlerbericht mit privaten Angaben.';
-        $this->post('/kontakt', ['contact_route_id' => $topic->id, 'contact_name' => 'Testperson', 'contact_email' => 'visitor@example.test', 'contact_message' => $message, 'form_nonce' => $nonce, 'source_url' => 'https://evil.test', 'contact_context' => ['path' => '/fake', 'title' => 'Gefälscht']])->assertRedirect(route('public.contact.success'));
+        $this->post('/kontakt', ['contact_route_id' => $topic->id, 'contact_name' => 'Testperson', 'contact_email' => 'visitor@example.test', 'contact_message' => $message, 'contact_privacy' => '1', 'form_nonce' => $nonce, 'source_url' => 'https://evil.test', 'contact_context' => ['path' => '/fake', 'title' => 'Gefälscht']])->assertRedirect(route('public.contact.success'));
         Mail::assertSent(ContactMessage::class, function ($mail) use ($message) {
             return $mail->hasTo('private-feedback@example.test') && $mail->enquiry['contact_context'] === ['path' => '/testinformation', 'title' => 'Testinformation', 'type' => 'page'] && $mail->enquiry['contact_message'] === $message;
         });
@@ -60,7 +60,7 @@ class ContentFeedbackTest extends TestCase
         $this->get('/kontakt');
         $nonce = session('contact.nonce');
         $this->travel(4)->seconds();
-        $this->post('/kontakt', ['contact_route_id' => $topic->id, 'contact_name' => 'Test', 'contact_email' => 'visitor@example.test', 'contact_message' => 'Synthetische Testnachricht', 'form_nonce' => $nonce, 'feedback' => '/gefälscht'])->assertRedirect(route('public.contact.success'));
+        $this->post('/kontakt', ['contact_route_id' => $topic->id, 'contact_name' => 'Test', 'contact_email' => 'visitor@example.test', 'contact_message' => 'Synthetische Testnachricht', 'contact_subject' => 'Testanfrage', 'contact_street' => 'Teststraße 1', 'contact_postal_code' => '86504', 'contact_city' => 'Merching', 'contact_reply_by' => 'email', 'contact_privacy' => '1', 'form_nonce' => $nonce, 'feedback' => '/gefälscht'])->assertRedirect(route('public.contact.success'));
         Mail::assertSent(ContactMessage::class, fn ($mail) => $mail->enquiry['contact_context'] === null);
     }
 
@@ -74,7 +74,7 @@ class ContentFeedbackTest extends TestCase
         $nonce = session('contact.nonce');
         $page->delete();
         $this->travel(4)->seconds();
-        $this->post('/kontakt', ['contact_route_id' => $topic->id, 'contact_name' => 'Test', 'contact_email' => 'visitor@example.test', 'contact_message' => 'Synthetische Testnachricht', 'form_nonce' => $nonce])->assertRedirect(route('public.contact.success'));
+        $this->post('/kontakt', ['contact_route_id' => $topic->id, 'contact_name' => 'Test', 'contact_email' => 'visitor@example.test', 'contact_message' => 'Synthetische Testnachricht', 'contact_privacy' => '1', 'form_nonce' => $nonce])->assertRedirect(route('public.contact.success'));
         Mail::assertSent(ContactMessage::class, fn ($mail) => $mail->enquiry['contact_context'] === null);
     }
 }

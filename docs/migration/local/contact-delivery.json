@@ -1,0 +1,10 @@
+{
+  "transport": "local Mailpit",
+  "selected_category": "Standesamt",
+  "staff_delivery": "passed",
+  "sender_confirmation": "passed",
+  "postal_address_and_reply_preference": "passed",
+  "recipient_addresses_hidden_from_confirmation": true,
+  "messages_captured": 2,
+  "live_mail_sent": false
+}

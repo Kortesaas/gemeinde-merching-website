@@ -84,7 +84,7 @@ for label,status,reason in [
  ('Synthetic alerts and announcements','removed','No invented amounts, dates, facilities, people or public safety alerts are imported.'),
  ('Historical council terms / additional budget topics','kept but empty pending real content','Schema and workflows remain available; no synthetic past term/package is published.'),
  ('Revision/proposal/role architecture','kept','Normal roles, revision, proposal, publication, routing, upload and search services remain; no old users or operational history imported.'),
- ('Public contact and feedback','kept','Recipient comes only from an explicitly public municipal contact address. Local delivery goes to Mailpit.'),
+ ('Public contact and feedback','kept','User-requested 15 active legacy form aliases route to existing encrypted recipients. Postal address, subject, reply preference, privacy acknowledgement and confirmation copy are restored. Local delivery goes to Mailpit.'),
  ]:add('section',label,status,reason=reason)
 with (REPORT/'structure-decisions.csv').open('w',newline='') as handle:
     writer=csv.DictWriter(handle,fieldnames=list(rows[0]),lineterminator='\n');writer.writeheader();writer.writerows(rows)

@@ -42,13 +42,17 @@ The homepage now asks “Wie können wir helfen?”. Navigation uses shorter lab
 
 The representative homepage/page headings fit one line at 1280 and 1366px with default display settings. Mobile text and enlarged text remain free to wrap. Real-content popup tests at 390, 1280 and 1366px cover menus, search shortcuts/results, display controls, Escape/focus return, axe checks and horizontal reflow.
 
+## Email form parity
+
+At the user’s explicit request, the native [email form](http://localhost:8089/email-formular) now restores all 15 legacy recipient aliases with their existing backing addresses, postal-address fields, subject, email/postal reply preference, privacy acknowledgement and automatic confirmation copy. The old image CAPTCHA is replaced by the existing accessible spam controls. [contact-form-parity.md](contact-form-parity.md) records the live/source comparison, implementation and local delivery verification; [contact-categories.csv](contact-categories.csv) lists the aliases without addresses. Contextual website feedback retains its shorter form.
+
 ## Preservation and editorial review
 
 The primary active WordPress SQL data provides identities, public statuses and original publication dates. WXR, filesystem/WPvivid backups, existing inventory and the public crawl supply cross-checks, paths and public relationships. The importer never executes the SQL dump. Original sources are unchanged; preparation verifies their recorded hashes.
 
 Files enter the import through published/password-free packages or successful public HTML links. NextGEN exclusions remain excluded. Byte-identical already-public originals and backed-up original/resized variants share safe legacy destinations. Successful seeded file GETs alone do **not** authorize publishing private-parent or unlinked backup assets. Re-encoded image delivery strips EXIF/GPS; immutable source originals remain in ignored migration storage. The source/delivery checksum distinction is deliberate. All PDFs remain **not checked** for accessibility.
 
-[preparation-review.csv](preparation-review.csv) and [import-result.json](import-result.json) record 117 imported-but-review warnings, five ambiguous mappings, three budget merge issues, two missing-source rows, 92 intentional skips and one successful external-package conversion. Review priorities:
+[preparation-review.csv](preparation-review.csv) and [import-result.json](import-result.json) record 116 imported-but-review warnings, five ambiguous mappings, three budget merge issues, two missing-source rows, 92 intentional skips and two successful conversions (external package and contact form). Review priorities:
 
 1. **Legal pages:** the public legacy Impressum, privacy and accessibility information is preserved, but must be reviewed for the Laravel website. The obsolete cookie-plugin edit shortcode is flagged; no cookie/plugin functionality or claim of compliance is carried over.
 2. **Events:** 58 rows have no single clock time. Their original time wording remains visible; the import does not invent midnight, all-day status, cancellation or schedule-change notices. Three ambiguous/separator rows remain in the complete accessible [source calendar](http://localhost:8089/veranstaltungen/veroeffentlichter-kalender).
@@ -71,13 +75,13 @@ The three **2026** packages are Gemeinde Merching (10 files), Grundschulverband 
 
 [crawl-coverage.csv](crawl-coverage.csv) accounts for all **1,872** inventoried URLs: 1,205 mapped, 196 obsolete presentation/feed/runtime assets intentionally skipped, and 471 explicit review rows. No successful current public HTML link remains unresolved. The review rows comprise 240 unlinked reachable PDFs, 161 unlinked reachable images, six other unlinked resources and 64 old URLs already returning 404. Each row records its reason and incoming public pages, if any. They are not silently imported merely because they appeared in the source inventory. [source-content-coverage.csv](source-content-coverage.csv) covers every content inventory record separately.
 
-Search is rebuilt from normal models/controlled blocks; real Personalausweis search, gallery navigation and budget downloads pass browser checks. Public search delivery still applies current publication/context visibility checks. The audit confirms zero foreign/demo source references and zero users. Passwords, private form recipients/submissions, plugin secrets, security history, backup records and WordPress caches are excluded. The contact recipient comes only from an explicitly public municipal address; local SMTP delivery goes to Mailpit.
+Search is rebuilt from normal models/controlled blocks; real Personalausweis search, gallery navigation and budget downloads pass browser checks. Public search delivery still applies current publication/context visibility checks. The audit confirms zero foreign/demo source references and zero users. Passwords, private submissions, plugin secrets, security history, backup records and WordPress caches are excluded. The user-requested exception is the 15 active contact-form recipient mappings, kept in encrypted backend routing rather than public content. No other private form configuration is imported. Local SMTP delivery goes to Mailpit.
 
 ## Validation and tests
 
 [integrity.json](integrity.json) reports zero failures across 1,198 target identities, 1,064 source/import publication timestamps, all 603 stored/prepared original files, gallery order and 25 budget originals. [idempotency.json](idempotency.json) confirms identical target IDs, source-reference counts, URL counts and search counts before and after repeat import.
 
-- PHPUnit: **468 passed**, 2,962 assertions.
+- PHPUnit after email-form parity: **475 passed**, 3,007 assertions.
 - Pint: passed; PHPStan/Larastan: no errors.
 - Composer/npm audits: no reported vulnerabilities; production Vite build: passed.
 - Python inventory/conversion suite: **11 passed**.
@@ -85,6 +89,7 @@ Search is rebuilt from normal models/controlled blocks; real Personalausweis sea
 - Real migration Playwright: **3 passed**, including 16 representative paths at 390/1440px, axe WCAG/best-practice scans, no third-party requests, no visitor cookies, reflow, crest framing, search, gallery and original budget downloads.
 - Manual browser review: homepage, desktop news/crest cards, mobile council portraits and ordered budget downloads. The complete source calendar and long controlled tables are also covered by responsive axe checks.
 - After the heading/popup changes: **18 targeted PHPUnit tests passed** (164 assertions), **34 relevant real-site browser tests passed** (including three new popup tests), the 11 Python tests, Pint, PHPStan and production build passed. All 734 destinations/1,564 legacy mappings were revalidated, and the audit additionally verifies all 60 imported headings and original article/event context.
+- After email-form parity: **35 targeted contact/feedback/privacy tests passed** (190 assertions), followed by the full PHPUnit pass above. All **76 existing browser tests passed**, plus **five real-migration tests** including the two new form tests at 320/1280px. The 11 Python tests, Pint, PHPStan, build and dependency audits passed. Local Mailpit delivery captured both enquiry and receipt; all 15 encrypted routes retain their identities across repeat import, and URL validation remains at zero failures.
 
 Transient test-artifact folder collisions were resolved with separate output directories. Repeated local contact-form tests hit the existing hourly limiter; only synthetic local browser counters were reset for the final run. The limiter remains enabled. A later targeted PHPUnit run inherited the review container’s database settings and reset the local migration database; it was fully restored from the unchanged prepared source, and URL/integrity/browser checks were rerun. `Tests\TestCase` now refuses any database without the `_testing` suffix before database-refresh traits can run; the refusal was explicitly verified, and the greeting tests passed against the isolated test database.
 
@@ -102,6 +107,7 @@ python3 scripts/migration/decisions.py
 python3 scripts/migration/validate.py
 BASE_URL=http://localhost:8089 REAL_MIGRATION=1 npx playwright test tests/Browser/migration.spec.js --output=migration-source/test-results-migration
 BASE_URL=http://localhost:8089 REAL_MIGRATION=1 npx playwright test tests/Browser/headings-popups.spec.js --output=migration-source/test-results-headings
+BASE_URL=http://localhost:8089 REAL_MIGRATION=1 npx playwright test tests/Browser/contact-migration.spec.js --output=migration-source/test-results-contact
 ```
 
 No CMS login is imported or invented. To review/edit in the CMS, create a fresh local administrator through the existing interactive command: `docker compose -f compose.yaml -f compose.migration.yaml exec migration-app php artisan admin:create`.

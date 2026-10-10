@@ -31,6 +31,7 @@ Route::get('/suche/vorschlaege', [SearchController::class, 'suggestions'])->midd
 
 Route::middleware(['web', ContactFormHeaders::class])->group(function () {
     Route::get('/kontakt', [ContactController::class, 'create'])->block(30, 10)->name('public.contact');
+    Route::get('/email-formular', [ContactController::class, 'create'])->block(30, 10)->name('public.contact.legacy');
     Route::post('/kontakt', [ContactController::class, 'store'])->middleware('throttle:contact')->block(30, 10)->name('public.contact.store');
     Route::get('/kontakt/bestaetigung', [ContactController::class, 'success'])->name('public.contact.success');
 });

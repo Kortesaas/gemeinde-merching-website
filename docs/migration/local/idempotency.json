@@ -5,5 +5,7 @@
   "identity_fingerprint": "bb692af9e4b92ad632f919c4237044658212be5cf22b0c017d9a47a717350a07",
   "source_references": 1393,
   "legacy_urls": 1564,
-  "search_entries": 684
+  "search_entries": 684,
+  "contact_routes_checked": 15,
+  "contact_route_identity_fingerprint": "de0e8b26c813e82c3bc715b1e18f00b281bc384879054c1471eba89458dfea16"
 }

@@ -2,13 +2,19 @@
 
 namespace Tests\Feature\Public;
 
+use App\Logging\RedactSensitiveData;
 use App\Mail\ContactMessage;
+use App\Mail\ContactReceipt;
 use App\Models\ContactRoute;
 use App\Services\Mail\ContactDelivery;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Mail\Transport\ArrayTransport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
+use Symfony\Component\Mailer\Envelope;
+use Symfony\Component\Mailer\SentMessage;
+use Symfony\Component\Mime\RawMessage;
 use Tests\TestCase;
 
 class ContactFormTest extends TestCase
@@ -26,7 +32,7 @@ class ContactFormTest extends TestCase
         $nonce = session('contact.nonce');
         $this->travel(4)->seconds();
 
-        return ['contact_route_id' => $topic->id, 'contact_name' => 'Testperson', 'contact_email' => 'visitor@example.test', 'contact_message' => 'Eine synthetische Testanfrage.', 'form_nonce' => $nonce, ...$extra];
+        return ['contact_route_id' => $topic->id, 'contact_name' => 'Testperson', 'contact_email' => 'visitor@example.test', 'contact_message' => 'Eine synthetische Testanfrage.', 'contact_subject' => 'Synthetische Anfrage', 'contact_street' => 'Teststraße 1', 'contact_postal_code' => '86504', 'contact_city' => 'Merching', 'contact_reply_by' => 'email', 'contact_privacy' => '1', 'form_nonce' => $nonce, ...$extra];
     }
 
     public function test_form_only_exposes_active_topics_and_never_recipient_address(): void
@@ -58,17 +64,21 @@ class ContactFormTest extends TestCase
     {
         Mail::fake();
         $this->post('/kontakt', $this->ready($this->topic()))->assertRedirect(route('public.contact.success'));
-        Mail::assertSentCount(1);
+        Mail::assertSent(ContactMessage::class, 1);
+        Mail::assertSent(ContactReceipt::class, 1);
         $this->assertFalse(Schema::hasTable('contact_messages'));
     }
 
     public function test_invalid_fields_have_accessible_errors_and_no_sensitive_old_input(): void
     {
         Mail::fake();
-        $payload = $this->ready($this->topic(), ['contact_name' => '', 'contact_email' => 'invalid', 'contact_message' => 'x']);
+        $payload = $this->ready($this->topic(), ['contact_name' => '', 'contact_email' => 'invalid', 'contact_message' => str_repeat('x', 10001)]);
         $this->from('/kontakt')->post('/kontakt', $payload)->assertSessionHasErrors(['contact_name', 'contact_email', 'contact_message']);
         $this->assertArrayNotHasKey('contact_message', session()->getOldInput());
         $this->assertArrayNotHasKey('contact_email', session()->getOldInput());
+        foreach (['contact_street', 'contact_postal_code', 'contact_city', 'contact_subject'] as $field) {
+            $this->assertArrayNotHasKey($field, session()->getOldInput());
+        }
         $this->withSessionCookie()->get('/kontakt')->assertSee('Bitte prüfen Sie Ihre Angaben')->assertSee('aria-invalid="true"', false)->assertSee('<title>Fehler:', false);
         Mail::assertNothingSent();
     }
@@ -117,7 +127,8 @@ class ContactFormTest extends TestCase
         $payload = $this->ready($this->topic());
         $this->post('/kontakt', $payload)->assertRedirect(route('public.contact.success'));
         $this->post('/kontakt', $payload)->assertSessionHasErrors('general');
-        Mail::assertSentCount(1);
+        Mail::assertSent(ContactMessage::class, 1);
+        Mail::assertSent(ContactReceipt::class, 1);
     }
 
     public function test_too_many_links_are_rejected(): void
@@ -172,5 +183,82 @@ class ContactFormTest extends TestCase
         $sent = Mail::mailer()->getSymfonyTransport()->messages()->first();
         $this->assertSame('Anfrage über das Kontaktformular', $sent->getOriginalMessage()->getSubject());
         $this->assertStringContainsString('Text mit <Test> & Sonderzeichen.', $sent->getOriginalMessage()->getTextBody());
+    }
+
+    public function test_legacy_email_form_url_opens_the_complete_form(): void
+    {
+        $this->topic();
+        $this->get('/email-formular')->assertOk()->assertSee('Meldewesen')->assertSee('Postanschrift')->assertSee('Betreff (Pflichtfeld)')->assertSee('Auf dem Postweg')->assertSee('Datenschutzerklärung')->assertDontSee('private@example.test');
+    }
+
+    public function test_postal_address_subject_reply_choice_and_privacy_are_required(): void
+    {
+        Mail::fake();
+        $payload = $this->ready($this->topic(), ['contact_street' => '', 'contact_postal_code' => '', 'contact_city' => '', 'contact_subject' => '', 'contact_reply_by' => 'fax', 'contact_privacy' => '0']);
+        $this->post('/kontakt', $payload)->assertSessionHasErrors(['contact_street', 'contact_postal_code', 'contact_city', 'contact_subject', 'contact_reply_by', 'contact_privacy']);
+        Mail::assertNothingSent();
+    }
+
+    public function test_subject_only_enquiry_and_postal_reply_reach_the_selected_recipient(): void
+    {
+        Mail::fake();
+        $topic = $this->topic();
+        $this->post('/kontakt', $this->ready($topic, ['contact_message' => '', 'contact_reply_by' => 'post']))->assertRedirect(route('public.contact.success'));
+        Mail::assertSent(ContactMessage::class, function ($mail) {
+            $body = $mail->render();
+
+            return $mail->hasTo('private@example.test') && $mail->envelope()->subject === 'Kontakt: Synthetische Anfrage'
+                && $mail->enquiry['contact_message'] === '' && str_contains($body, 'Teststraße 1')
+                && str_contains($body, '86504 Merching') && str_contains($body, 'Auf dem Postweg');
+        });
+    }
+
+    public function test_subject_header_injection_is_rejected(): void
+    {
+        Mail::fake();
+        $this->post('/kontakt', $this->ready($this->topic(), ['contact_subject' => "Anfrage\r\nBcc: other@example.test"]))->assertSessionHasErrors('contact_subject');
+        Mail::assertNothingSent();
+    }
+
+    public function test_postal_address_and_subject_are_redacted_from_logs(): void
+    {
+        $this->assertSame(['contact_street' => '[redacted]', 'contact_postal_code' => '[redacted]', 'contact_city' => '[redacted]', 'contact_subject' => '[redacted]'], RedactSensitiveData::redact(['contact_street' => 'Teststraße 1', 'contact_postal_code' => '86504', 'contact_city' => 'Merching', 'contact_subject' => 'Privates Anliegen']));
+    }
+
+    public function test_confirmation_copy_uses_visitor_address_and_only_the_public_recipient_label(): void
+    {
+        Mail::fake();
+        $topic = $this->topic();
+        $this->post('/kontakt', $this->ready($topic))->assertRedirect(route('public.contact.success'))->assertSessionHas('contact_receipt_sent', true);
+        Mail::assertSent(ContactReceipt::class, function ($mail) {
+            $body = $mail->render();
+
+            return $mail->hasTo('visitor@example.test') && str_contains($body, 'Eine synthetische Testanfrage.')
+                && str_contains($body, 'Meldewesen') && str_contains($body, 'Mittels unverschlüsselter E-Mail')
+                && ! str_contains($body, 'private@example.test');
+        });
+    }
+
+    public function test_receipt_failure_keeps_successful_enquiry_and_does_not_request_resubmission(): void
+    {
+        $transport = new class extends ArrayTransport
+        {
+            public function send(RawMessage $message, ?Envelope $envelope = null): ?SentMessage
+            {
+                if ($this->messages()->isNotEmpty()) {
+                    throw new \RuntimeException('SECRET receipt body visitor@example.test');
+                }
+
+                return parent::send($message, $envelope);
+            }
+        };
+        Mail::extend('array', fn () => $transport);
+        Mail::purge();
+        $this->post('/kontakt', $this->ready($this->topic()))->assertRedirect(route('public.contact.success'))->assertSessionHas('contact_receipt_sent', false);
+        $this->assertCount(1, $transport->messages());
+        $this->assertDatabaseHas('audit_events', ['action' => 'contact.sent']);
+        $this->assertDatabaseHas('audit_events', ['action' => 'contact.receipt_failed']);
+        $this->assertStringNotContainsString('SECRET', json_encode(session()->all()));
+        $this->withSessionCookie()->get('/kontakt/bestaetigung')->assertSee('nicht erneut senden');
     }
 }

@@ -77,6 +77,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Never flash secrets back into the session after validation errors.
         $exceptions->dontFlash([
             'contact_name', 'contact_email', 'contact_phone', 'contact_message', 'website', 'form_nonce',
+            'contact_subject', 'contact_street', 'contact_postal_code', 'contact_city',
             'current_password',
             'password',
             'password_confirmation',

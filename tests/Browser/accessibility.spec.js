@@ -86,7 +86,7 @@ test('contact validation errors are accessible and never retain the message', as
     await expect(page).toHaveTitle(/^Fehler: Kontakt/);
     await expect(page.locator('.error-summary')).toBeFocused();
     await expect(page.getByLabel('E-Mail (Pflichtfeld)')).toHaveAttribute('aria-invalid', 'true');
-    await expect(page.getByLabel('Nachricht (Pflichtfeld)')).toHaveValue('');
+    await expect(page.getByLabel('Nachricht (optional)')).toHaveValue('');
     await expectNoViolations(page);
 });
 

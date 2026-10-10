@@ -605,12 +605,31 @@ class Migration:
             prepared=OUT/'editorial/helmut-luichtl-buergermeister.png'
             prepared.parent.mkdir(parents=True,exist_ok=True);prepared.write_bytes(portrait.read_bytes())
             self.assets['editorial:homepage-mayor']={'key':'editorial:homepage-mayor','type':'media','attributes':{'title':'Helmut Luichtl – Erster Bürgermeister','alt_text':'Helmut Luichtl, Erster Bürgermeister der Gemeinde Merching','focal_x':70,'focal_y':0},'file':str(prepared.relative_to(ROOT)),'original_filename':portrait.name,'sha256':checksum,'date':'2026-10-09 22:39:14','urls':[],'source_keys':[]}
-        manifest={'version':1,'records':list(self.records.values()),'assets':list(self.assets.values()),'legacy':list(self.legacy.values()),'review':self.review,'tables':self.tables}
+        # Explicitly requested contact routing: only the form referenced by public page 138.
+        assert re.search(r'contact-form-7 id="1087"',self.public['138']['post_content'])
+        form=self.meta['1087']['_form']
+        select=re.search(r'\[select\* recipient\s+(.*?)\]',form,re.S)
+        assert select, 'Recipient selector absent from the active public form'
+        contacts=[]
+        for item in re.findall(r'"([^"\n]+)"',select.group(1)):
+            label,address=item.split('|',1);label=label.strip();address=address.strip()
+            assert re.fullmatch(r'[a-z0-9._+-]+@gemeinde-merching\.bayern\.de',address), 'Unexpected contact recipient'
+            contacts.append({'label':label,'recipients':[address],'sort_order':len(contacts)})
+        assert len(contacts)==15 and len({r['label'] for r in contacts})==15, 'Review contact category changes'
+        for row in self.review:
+            if row['source']=='wp:138' and 'contact-form-7' in row['reason']:
+                row.update(status='converted',reason='User-requested active form aliases mapped to encrypted contact routing; native form restores postal address, subject, reply preference, privacy acknowledgement and confirmation copy.')
+        # Routing addresses stay in the ignored manifest and encrypted database configuration.
+        self.records['wp:138']['blocks']=[{'type':'text','text':'[E-Mail an die Gemeinde senden](/kontakt)'}]
+        manifest={'version':1,'records':list(self.records.values()),'assets':list(self.assets.values()),'legacy':list(self.legacy.values()),'review':self.review,'tables':self.tables,'contact_routes':contacts}
         (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
         report=ROOT/'docs/migration/local';report.mkdir(exist_ok=True)
         for name,rows in [('preparation-review.csv',self.review),('tablepress.csv',self.tables),('editorial-titles.csv',headings)]:
             with (report/name).open('w',newline='') as handle:
                 w=csv.DictWriter(handle,fieldnames=list(rows[0]),lineterminator='\n');w.writeheader();w.writerows(rows)
+        with (report/'contact-categories.csv').open('w',newline='') as handle:
+            w=csv.DictWriter(handle,fieldnames=['source','label','recipient_count','sort_order'],lineterminator='\n');w.writeheader()
+            w.writerows({'source':'wp:1087 recipient','label':r['label'],'recipient_count':len(r['recipients']),'sort_order':r['sort_order']} for r in contacts)
         print(json.dumps({'records':dict(collections.Counter(r['type'] for r in self.records.values())),'assets':dict(collections.Counter(r['type'] for r in self.assets.values())),'legacy_mappings':len(self.legacy),'review':len(self.review)},indent=2))
 
 if __name__=='__main__':Migration().run()

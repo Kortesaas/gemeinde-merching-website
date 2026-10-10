@@ -3,6 +3,7 @@
 use App\Contracts\Routable;
 use App\Models\Article;
 use App\Models\BudgetPlan;
+use App\Models\ContactRoute;
 use App\Models\Document;
 use App\Models\Event;
 use App\Models\Gallery;
@@ -98,6 +99,23 @@ foreach ([...$manifest['records'], ...$manifest['assets'], ...$settingsRecords] 
     }
 }
 ksort($identities);
+$contactIdentities = [];
+foreach ($manifest['contact_routes'] ?? [] as $definition) {
+    $routes = ContactRoute::query()->where('label', $definition['label'])->get();
+    $topic = $routes->first();
+    if ($routes->count() !== 1 || $topic === null || ! $topic->is_active || $topic->recipients !== $definition['recipients'] || $topic->getAttribute('sort_order') !== $definition['sort_order']) {
+        $failures[] = $definition['label'].': contact routing missing or changed';
+
+        continue;
+    }
+    $contactIdentities[$definition['label']] = $topic->getKey();
+    foreach ($definition['recipients'] as $recipient) {
+        if (str_contains((string) $topic->getRawOriginal('recipients'), $recipient) || str_contains($topic->toJson(), $recipient)) {
+            $failures[] = $definition['label'].': recipient encryption/serialization failed';
+        }
+    }
+}
+ksort($contactIdentities);
 $foreignReferences = SourceReference::query()->where('source_system', '!=', PublicContentImporter::SOURCE)->count();
 if ($foreignReferences !== 0 || User::query()->count() !== 0) {
     $failures[] = 'Unexpected nonmigration source identities or imported users';
@@ -109,6 +127,8 @@ $report = [
     'identity_fingerprint' => hash('sha256', json_encode($identities, JSON_THROW_ON_ERROR)),
     'publication_timestamps_checked' => $dates,
     'editorial_headings_checked' => $headings,
+    'contact_routes_checked' => count($contactIdentities),
+    'contact_route_identity_fingerprint' => hash('sha256', json_encode($contactIdentities, JSON_THROW_ON_ERROR)),
     'stored_and_original_files_checked' => $files,
     'nonmigration_source_references' => $foreignReferences,
     'users' => User::query()->count(),

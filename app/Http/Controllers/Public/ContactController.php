@@ -25,7 +25,7 @@ class ContactController
         $request->session()->put('contact', ['nonce' => $nonce, 'issued_at' => now()->getTimestamp(), 'context' => $context]);
         $topics = ContactRoute::query()->where('is_active', true)->orderBy('sort_order')->orderBy('id')->get()->map(fn ($r) => $r->publicData());
 
-        return view('public.contact', ['topics' => $topics, 'nonce' => $nonce, 'context' => $context, 'selectedTopic' => $context ? SiteSettings::query()->find(1)?->central_contact_route_id : null]);
+        return view('public.contact', ['topics' => $topics, 'nonce' => $nonce, 'context' => $context, 'selectedTopic' => old('contact_route_id', (string) SiteSettings::query()->find(1)?->central_contact_route_id)]);
     }
 
     public function store(ContactRequest $request, ContactDelivery $delivery, AuditLogger $audit): RedirectResponse
@@ -39,16 +39,26 @@ class ContactController
         }
         $topic = ContactRoute::query()->where('is_active', true)->findOrFail((int) $data['contact_route_id']);
         try {
-            $delivery->send($topic, ['contact_name' => (string) $data['contact_name'], 'contact_email' => (string) $data['contact_email'], 'contact_phone' => isset($data['contact_phone']) ? (string) $data['contact_phone'] : null, 'contact_message' => (string) $data['contact_message'], 'contact_context' => $context]);
+            $receiptSent = $delivery->send($topic, [
+                'contact_name' => (string) $data['contact_name'], 'contact_email' => (string) $data['contact_email'],
+                'contact_phone' => $data['contact_phone'] ?? null, 'contact_message' => $data['contact_message'] ?? '',
+                'contact_subject' => $data['contact_subject'] ?? 'Hinweis zur Website',
+                'contact_street' => $data['contact_street'] ?? null, 'contact_postal_code' => $data['contact_postal_code'] ?? null,
+                'contact_city' => $data['contact_city'] ?? null, 'contact_reply_by' => $data['contact_reply_by'] ?? 'email',
+                'contact_context' => $context,
+            ]);
         } catch (Throwable) {
             // Deliberately do not report a transport exception: it may contain mail body or SMTP secrets.
             $audit->record('contact.delivery_failed', null, ['topic_id' => $topic->id]);
 
-            return redirect()->route('public.contact')->withErrors(['general' => 'Die Nachricht konnte derzeit nicht gesendet werden. Bitte versuchen Sie es später erneut.']);
+            return redirect()->route('public.contact', $context ? ['feedback' => $context['path']] : [])->withErrors(['general' => 'Die Nachricht konnte derzeit nicht gesendet werden. Bitte versuchen Sie es später erneut.']);
         }
         $audit->record('contact.sent', null, ['topic_id' => $topic->id]);
+        if (! $receiptSent) {
+            $audit->record('contact.receipt_failed', null, ['topic_id' => $topic->id]);
+        }
 
-        return redirect()->route('public.contact.success');
+        return redirect()->route('public.contact.success')->with('contact_receipt_sent', $receiptSent);
     }
 
     public function success(): View

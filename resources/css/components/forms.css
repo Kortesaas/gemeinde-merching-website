@@ -42,6 +42,57 @@
     border-width: 3px;
 }
 
+.public-form[data-contact-form] .form-input {
+    max-width: 42rem;
+}
+
+.contact-group {
+    min-width: 0;
+    margin: var(--space-5) 0;
+    padding: 0;
+    border: 0;
+}
+
+.contact-group legend {
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.contact-address {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: var(--space-3);
+    max-width: 42rem;
+}
+
+.contact-choice {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    min-height: var(--control-height);
+    padding-block: var(--space-2);
+    max-width: 42rem;
+}
+
+.contact-choice input {
+    flex-shrink: 0;
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.contact-recipient {
+    margin-top: var(--space-2);
+    max-width: 42rem;
+}
+
+@media (max-width: 40rem) {
+    .contact-address {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+}
+
 /* Selects: own chevron, inset from the edge (the native arrow sits tight to the border). */
 select.form-input {
     appearance: none;

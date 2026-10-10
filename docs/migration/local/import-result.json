@@ -514,8 +514,8 @@
         },
         {
             "source": "wp:138",
-            "status": "imported but needs review",
-            "reason": "Dynamic contact-form-7 replaced by local catalog, navigation or contact; source preserved"
+            "status": "converted",
+            "reason": "User-requested active form aliases mapped to encrypted contact routing; native form restores postal address, subject, reply preference, privacy acknowledgement and confirmation copy."
         },
         {
             "source": "wp:224",

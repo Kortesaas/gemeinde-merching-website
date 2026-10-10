@@ -309,6 +309,15 @@ for (const anchor of document.querySelectorAll('a[href^="#"]')) anchor.addEventL
 // The message is deliberately cleared, as in the existing privacy contract.
 function enhanceContact(form) {
     if (!form) return;
+    const recipient = form.querySelector('#contact_route_id'), recipientHint = form.querySelector('[data-contact-recipient]');
+    if (recipient && recipientHint) {
+        const describeRecipient = () => {
+            recipientHint.textContent = recipient.value ? recipient.selectedOptions[0].textContent : '';
+            recipientHint.hidden = recipientHint.textContent.length <= 40;
+        };
+        recipient.addEventListener('change', describeRecipient);
+        describeRecipient();
+    }
     form.addEventListener('submit', async event => {
         event.preventDefault();
         const snapshot = new FormData(form);
@@ -320,9 +329,14 @@ function enhanceContact(form) {
             if (!replacement) { location.assign(response.url); return; }
             const nextForm = replacement.querySelector('[data-contact-form]');
             if (nextForm && parsed.title.startsWith('Fehler:')) {
-                for (const name of ['contact_name','contact_email','contact_phone','contact_route_id']) {
+                for (const name of ['contact_name','contact_email','contact_phone','contact_route_id','contact_street','contact_postal_code','contact_city','contact_subject']) {
                     const control = nextForm.elements.namedItem(name);
                     if (control && control.getAttribute('aria-invalid') !== 'true') control.value = String(snapshot.get(name) ?? '');
+                }
+                for (const name of ['contact_reply_by','contact_privacy']) {
+                    for (const control of nextForm.querySelectorAll(`[name="${name}"]`)) {
+                        if (control.getAttribute('aria-invalid') !== 'true') control.checked = control.value === snapshot.get(name);
+                    }
                 }
             }
             document.querySelector('main#inhalt').replaceWith(replacement); document.title = parsed.title;

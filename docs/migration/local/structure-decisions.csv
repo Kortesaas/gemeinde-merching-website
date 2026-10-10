@@ -102,4 +102,4 @@ section,Budget workflows,replaced with real content,,Three real topics with 25 o
 section,Synthetic alerts and announcements,removed,,"No invented amounts, dates, facilities, people or public safety alerts are imported."
 section,Historical council terms / additional budget topics,kept but empty pending real content,,Schema and workflows remain available; no synthetic past term/package is published.
 section,Revision/proposal/role architecture,kept,,"Normal roles, revision, proposal, publication, routing, upload and search services remain; no old users or operational history imported."
-section,Public contact and feedback,kept,,Recipient comes only from an explicitly public municipal contact address. Local delivery goes to Mailpit.
+section,Public contact and feedback,kept,,"User-requested 15 active legacy form aliases route to existing encrypted recipients. Postal address, subject, reply preference, privacy acknowledgement and confirmation copy are restored. Local delivery goes to Mailpit."

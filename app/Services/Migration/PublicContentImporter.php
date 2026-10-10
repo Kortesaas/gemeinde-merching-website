@@ -142,7 +142,7 @@ final class PublicContentImporter
                     }
                     Models\LegacyUrl::query()->updateOrCreate(['url_hash' => hash('sha256', $legacy['url'])], ['url' => $legacy['url'], 'target_type' => $model->getMorphClass(), 'target_id' => $model->getKey(), 'destination' => $legacy['destination']]);
                 }
-                $this->settings();
+                $this->settings($manifest['contact_routes'] ?? []);
                 $this->navigation();
             });
         } catch (\Throwable $error) {
@@ -361,13 +361,21 @@ final class PublicContentImporter
         $receipt->forceFill(['budget_plan_id' => $plan->getKey(), 'budget_generation_id' => null, 'year' => $plan->getAttribute('year'), 'topic' => $plan->getAttribute('topic'), 'title' => $plan->getAttribute('title'), 'status' => 'published', 'publish_at' => $plan->publish_at, 'expires_at' => null, 'publisher_name' => 'Lokale Inhaltsmigration', 'public_url' => $plan->publicPath(), 'accessibility_status' => 'not_checked', 'show_components' => true, 'source_only' => true, 'source_manifest' => $manifest])->save();
     }
 
-    private function settings(): void
+    /** @param list<array{label:string,recipients:list<string>,sort_order:int}> $contactRoutes */
+    private function settings(array $contactRoutes): void
     {
         $location = $this->record(['key' => 'structure:town-hall', 'type' => 'location', 'attributes' => ['name' => 'Rathaus Merching', 'type' => 'verwaltung', 'street' => 'Hauptstr. 26', 'postal_code' => '86504', 'city' => 'Merching', 'phone' => '(0 82 33) 74 41 - 0', 'opening_hours' => "Mo, Di, Do, Fr: 08.00–12.00 Uhr\nDo: 14.00–18.00 Uhr\nMittwoch geschlossen", 'is_active' => true], 'path' => null, 'date' => '2026-10-10 00:00:00', 'urls' => ['https://www.gemeinde-merching.de/adressen-oeffnungszeiten/']]);
         $department = $this->record(['key' => 'structure:central', 'type' => 'department', 'attributes' => ['name' => 'Gemeindeverwaltung Merching', 'phone' => '(0 82 33) 74 41 - 0', 'location_id' => $location->getKey(), 'opening_hours' => $location->getAttribute('opening_hours'), 'is_active' => true], 'path' => null, 'date' => '2026-10-10 00:00:00', 'urls' => ['https://www.gemeinde-merching.de/adressen-oeffnungszeiten/']]);
-        // This destination is displayed publicly on the old calendar page; no private
-        // WordPress form recipients are read. The local SMTP host is Mailpit.
-        $contact = Models\ContactRoute::query()->firstOrCreate(['label' => 'Gemeindeverwaltung'], ['department_id' => $department->getKey(), 'recipients' => ['rathaus@gemeinde-merching.bayern.de'], 'is_active' => true]);
+        // User-requested aliases from the active legacy form; recipients remain encrypted
+        // and never enter public models, reports or search. Local delivery uses Mailpit.
+        $contactRoutes = $contactRoutes ?: [['label' => 'Gemeindeverwaltung', 'recipients' => ['rathaus@gemeinde-merching.bayern.de'], 'sort_order' => 0]];
+        $contact = Models\ContactRoute::query()->where('label', $contactRoutes[0]['label'])->first()
+            ?? Models\ContactRoute::query()->where('label', 'Gemeindeverwaltung')->first()
+            ?? new Models\ContactRoute;
+        foreach ($contactRoutes as $index => $definition) {
+            $topic = $index === 0 ? $contact : (Models\ContactRoute::query()->where('label', $definition['label'])->first() ?? new Models\ContactRoute);
+            $topic->fill([...$definition, 'is_active' => true, 'department_id' => $index === 0 ? $department->getKey() : null])->save();
+        }
         $hero = collect($this->models)->first(fn ($m, $key) => $m instanceof Models\Media && str_contains($key, 'Rathaus-2020-neu'));
         $greeting = $this->models['editorial:homepage-mayor'] ?? collect($this->models)->first(fn ($m, $key) => $m instanceof Models\Media && str_contains($key, 'Helmut-Luichtl-kl.'));
         (Models\SiteSettings::query()->find(1) ?? new Models\SiteSettings)->fill(['municipality_name' => 'Gemeinde Merching', 'town_hall_location_id' => $location->getKey(), 'central_department_id' => $department->getKey(), 'central_contact_route_id' => $contact->getKey(), 'homepage_media_id' => $hero?->getKey(), 'greeting_media_id' => $greeting?->getKey(), 'greeting_page_id' => $this->models['wp:92']->getKey(), 'greeting_text' => "Liebe Mitbürgerinnen, liebe Mitbürger, liebe Besucher,\n\nich freue mich sehr, dass sie uns auf dem digitalen Weg besuchen.\n\nAuf unserer Internetseite finden Sie viel Wissenswertes und Interessantes über Merching.\n\nEs stehen Ihnen aber auch aktuelle Informationen zu verschiedenen Themen rund um unsere Gemeinde zur Verfügung.", 'greeting_name' => 'Helmut Luichtl', 'greeting_role' => '1. Bürgermeister', 'postal_address' => "Hauptstr. 26\n86504 Merching", 'default_meta_description' => 'Informationen und Bürgerservice der Gemeinde Merching im Landkreis Aichach-Friedberg.'])->save();

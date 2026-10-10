@@ -97,7 +97,7 @@ wp:14,imported but needs review,"Dynamic ngg replaced by local catalog, navigati
 wp:14,imported but needs review,"Dynamic html-sitemap replaced by local catalog, navigation or contact; source preserved"
 wp:22,imported but needs review,Embedded third-party content converted to an external link
 wp:26,imported but needs review,"Dynamic html-sitemap replaced by local catalog, navigation or contact; source preserved"
-wp:138,imported but needs review,"Dynamic contact-form-7 replaced by local catalog, navigation or contact; source preserved"
+wp:138,converted,"User-requested active form aliases mapped to encrypted contact routing; native form restores postal address, subject, reply preference, privacy acknowledgement and confirmation copy."
 wp:224,imported but needs review,"Dynamic html-sitemap replaced by local catalog, navigation or contact; source preserved"
 wp:227,imported but needs review,Download category requires editorial check: 199
 wp:227,imported but needs review,Download category requires editorial check: 200
